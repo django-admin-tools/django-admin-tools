@@ -8,7 +8,8 @@
 /* Dashboard general styles {{{ */
 
 .dashboard #content {
-    width: auto;
+    display: block;
+    width: auto; !important;
 }
 
 #dashboard {
@@ -73,9 +74,7 @@
     padding: 7px 5px 8px 8px;
     text-align: left;
     font-weight: normal;
-	background-image: url(../images/dashboard.png);
-	background-repeat: repeat-x;
-    background-position: 0 0px;
+	background: url(../images/admin-tools.png) repeat-x 0 -245px;
     height: 20px;
     color: #555;
 }
@@ -93,32 +92,32 @@
     width: 17px;
     margin: 0 0 0 5px;
     cursor: pointer;
-    background-image: url(../images/dashboard.png);
+    background-image: url(../images/admin-tools.png);
     background-repeat: no-repeat;
 }
 
 .dashboard-module h2 a.toggle-icon {
-    background-position: 0 -35px;
+    background-position: 0 -45px;
 }
 
 .dashboard-module h2 a.toggle-icon:hover {
-    background-position: 0 -55px;
+    background-position: 0 -65px;
 }
 
 .dashboard-module h2 a.toggle-icon.collapsed {
-    background-position: 0 -75px;
+    background-position: 0 -85px;
 }
 
 .dashboard-module h2 a.toggle-icon.collapsed:hover {
-    background-position: 0 -95px;
+    background-position: 0 -105px;
 }
 
 .dashboard-module h2 a.close-icon {
-    background-position: 0 -115px;
+    background-position: 0 -125px;
 }
 
 .dashboard-module h2 a.close-icon:hover {
-    background-position: 0 -135px;
+    background-position: 0 -145px;
 }
 
 .fixed h2 span.toggle-icon,
@@ -129,11 +128,9 @@
 .dashboard-module h3 {
     padding: 5px 10px;
     margin: 0;
-	background-color: #f4f4f4;
-    background-image: url(../images/dashboard.png);
-    background-repeat: no-repeat;
-    background-position: 0 -175px;
+    background: transparent url(../images/admin-tools.png) repeat-x 0 -325px;
     text-indent: 12px;
+    height: 22px;
 }
 
 .dashboard-module h3 a {
@@ -148,22 +145,22 @@
 
 .dashboard-module ul li {
     vertical-align: top;
-    padding: 6px 8px 4px 8px;
-    line-height: 22px;
+    padding: 5px 8px;
+    line-height: 20px;
 }
 
 .dashboard-module ul li.odd {
-	background-color: #f4f4f4;
+    background: transparent url(../images/admin-tools.png) repeat-x 0 -325px;
 }
 
 .dashboard-module ul li.even {
-	background-color: #ffffff;
+    background: transparent url(../images/admin-tools.png) repeat-x 0 -285px;
 }
 
 .dashboard-module ul li a.external-link {
-    background-image: url(../images/dashboard.png);
+    background-image: url(../images/admin-tools.png);
     background-repeat: no-repeat;
-    background-position: -5px -158px;
+    background-position: -5px -168px;
     padding-left: 15px;
 }
 
@@ -182,7 +179,7 @@
 }
 
 .dashboard-module ul li:hover {
-    background-color: #fffff4;
+    background: #fffff4;
 }
 
 /* }}} */

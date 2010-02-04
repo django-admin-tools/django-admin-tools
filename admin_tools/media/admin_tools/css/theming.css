@@ -1,36 +1,29 @@
-/* header logo and user tools */
+/** 
+ * theming styles
+ * 
+ */
 
 #header {
-    overflow: visible;
-    height: auto;
-    background-color: #fff;
+    background: url(../images/admin-tools.png) 0 0 repeat-x;
 }
 
-#header #branding {
-    border: 1px solid #ededed;
-    border-width: 1px 0;
+#header #branding h1 {
     margin: 0;
-    background: url(../images/admin.png) 0 0 repeat-x;
+    padding: 5px 10px;
+    text-indent: -9999px;
+    background: transparent url(../images/django.png) 10px 5px no-repeat;
+    height: 31px;
+    width: 93px;
 }
 
-#header #branding a {
+div.breadcrumbs {
     display: block;
-    height: 32px;
-    width: 105px;
-    background: transparent url(../images/admin.png) 0 -122px no-repeat;
+    padding: 10px 15px;
+    border: 0;
+    background-position: 0 -8px;
+    border-bottom: 1px solid #ededed;
 }
 
-#header #branding a h1 span {
-    display: none;
-}
-
-#header #user-tools {
-    color: #656565;
-    font-size: 12px;
-    padding: 10px;
-}
-
-#header #user-tools a:link, #header #user-tools a:visited {
-    color: #5b80b2;
-    text-decoration: none;
+div.breadcrumbs a {
+    display: inline;
 }

@@ -1,50 +1,20 @@
-/** 
- * theming styles: 
- * todo: menu.css externalize this in the theming app
- */
-
-#header {
-    overflow: hidden;
-    height: auto;
-    background: url(../images/menu.png) 0 -135px repeat-x;
-}
-
-#header h1 {
-    text-indent: -9999px;
-    margin: 5px 10px;
-    background: url(../images/django.png) 0 0 no-repeat;
-    height: 31px;
-    width: 93px;
-}
-
-#header #user-tools {
-    padding-right: 10px;
-}
-
-#container .breadcrumbs {
-    display: block;
-    padding: 10px 15px;
-    border: 0;
-    background-position: 0 -8px;
-    border-bottom: 1px solid #ededed;
-}
-
-#container .breadcrumbs a {
-    position: relative;
-    float: none;
-    margin: 0;
-    padding: 0;
-}
-
 /* menu styles */
 
+
+#header {
+    overflow: visible;
+}
+
+#header #branding h1 {
+    margin: 0;
+    padding: 5px 10px;
+    height: 31px;
+}
+
 #header #navigation-wrapper {
-    border: 1px solid #ededed;
-    border-width: 1px 0 0 0;
-    background: url(../images/menu.png) 0 0 repeat-x;
-    display: block;
-    clear: both;
+    background: red url(../images/admin-tools.png) 0 -205px repeat-x;
     height: 35px;
+    z-index: 9999;
 }
 
 #header #navigation-wrapper ul {
@@ -56,58 +26,40 @@
 
 #header #navigation-wrapper ul li {
     list-style: none;
-}
-
-#header #navigation-wrapper ul.menu {
-    position: absolute;
-}
-
-#header #navigation-wrapper ul.menu:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
+    position: relative;
 }
 
 #header #navigation-wrapper ul.menu li {
     float: left;
-    position: relative;
 }
 
 #header #navigation-wrapper ul.menu li a {
-    float: left;
+    display: block;
     text-transform: uppercase;
     text-decoration: none;
-    margin: 0;
     padding: 9px 15px;
     border-right: 1px solid #ededed;
-    color: #666;
+    color: #555;
 }
 
 #header #navigation-wrapper ul.menu li.first a {
     margin-left: 12px;
-    background: url(../images/menu.png) 0 -95px no-repeat;
+    background: transparent url(../images/admin-tools.png) 0 -380px no-repeat;
     text-indent: 14px;
 }
 
 
 #header #navigation-wrapper ul.menu li:hover,
-#header #navigation-wrapper ul.menu li.hover {
-    background: url(../images/menu.png) repeat-x 0 -40px;
-}
-
-#header #navigation-wrapper ul.menu li a.active {
-    color: #6389b8;
-    background: url(../images/admin.png) -320px -358px no-repeat;
+#header #navigation-wrapper ul.menu li.hover,
+#header #navigation-wrapper ul.menu li.active {
+    background: url(../images/admin-tools.png) repeat-x 0 -245px;
 }
 
 #header #navigation-wrapper ul li span.icon {
-    display: block;
     float: right;
     width: 20px;
     height: 10px;
-    background: url(../images/menu.png) no-repeat 0 -75px;
+    background: transparent url(../images/admin-tools.png) no-repeat 0 -360px;
 }
 
 #header #navigation-wrapper ul.menu li ul {
@@ -115,56 +67,38 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: #fff;
-}
-
-#header #navigation-wrapper ul.menu li ul li ul {
-    left: 100%;
-    top: -1px;
-}
-
-#header #navigation-wrapper ul li ul li a em {
-    display: none;
+    margin-left: -1px;
+    margin-top: -1px;
 }
 
 #header #navigation-wrapper ul.menu li ul li {
-    position: relative;
-    display: block;
+    padding: 0;
     float: none;
     background: none;
-    border: 1px solid #ededed;
-    border-width: 0 1px 1px 1px;
-    min-width: 170px;
-}
-
-#header #navigation-wrapper ul.menu li ul li ul {
-    border-top: 1px solid #ededed;
-}
-
-#header #navigation-wrapper ul.menu li ul li.first {
-    margin: 0;
 }
 
 #header #navigation-wrapper ul.menu li ul li a {
     float: none;
     display: block;
-    color: #666 !important;
-    border: 0;
-    padding: 7px 20px 7px 16px;
-    white-space: nowrap;
+    border: 1px solid #ededed;
+    border-width: 0 1px 1px 1px;
     text-transform: none;
-    background-color: #fafafa;
-    background-image: none;
+    min-width: 170px;
+    margin: 0;
+}
+
+#header #navigation-wrapper ul.menu li ul li ul {
+    left: 100%;
+    top: 0;
+    border-top: 1px solid #ededed;
+}
+
+#header #navigation-wrapper ul.menu li ul li ul li a {
+    white-space: nowrap;
 }
 
 #header #navigation-wrapper ul li ul li span.icon {
-    background-position: 0 -85px;
-    margin: -14px -10px 0 0;
-}
-
-#header #navigation-wrapper ul.menu li:hover ul,
-#header #navigation-wrapper ul.menu li.hover ul {
-    display: block;
+    background-position: 0 -370px;
 }
 
 #header #navigation-wrapper ul.menu li:hover ul li ul,
@@ -172,27 +106,23 @@
     display: none;
 }
 
+#header #navigation-wrapper ul.menu li:hover ul,
+#header #navigation-wrapper ul.menu li.hover ul,
 #header #navigation-wrapper ul.menu li ul li:hover ul,
 #header #navigation-wrapper ul.menu li ul li.hover ul {
     display: block;
 }
 
 #header #navigation-wrapper ul.menu li:hover ul li,
-#header #navigation-wrapper ul.menu li.hover ul li {
-    background: none;
+#header #navigation-wrapper ul.menu li.hover ul li,
+#header #navigation-wrapper ul.menu li ul li:hover ul li,
+#header #navigation-wrapper ul.menu li ul li.hover ul li {
+    background: transparent url(../images/admin-tools.png) repeat-x 0 -285px;
 }
 
-#header #navigation-wrapper ul.menu li ul li:hover a,
-#header #navigation-wrapper ul.menu li ul li.hover a {
-    background: #f3f3f4;
-}
-
-#header #navigation-wrapper ul.menu li ul li:hover ul li a,
-#header #navigation-wrapper ul.menu li ul li.hover ul li a {
-    background: none;
-}
-
-#header #navigation-wrapper ul.menu li ul li ul li:hover a,
-#header #navigation-wrapper ul.menu li ul li ul li.hover a {
-    background: #f3f3f4;
+#header #navigation-wrapper ul.menu li ul li:hover,
+#header #navigation-wrapper ul.menu li ul li.hover,
+#header #navigation-wrapper ul.menu li ul li ul li:hover,
+#header #navigation-wrapper ul.menu li ul li ul li.hover {
+    background: transparent url(../images/admin-tools.png) repeat-x 0 -245px;
 }
