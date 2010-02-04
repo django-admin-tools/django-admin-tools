@@ -1,0 +1,15 @@
+{% extends "dashboard/module.html" %}
+{% block module_content %}
+<ul class="{{ module.layout }}">
+    {% spaceless %}
+    {% for entry in module.entries %}
+    <li class="{% cycle 'odd' 'even' %}">
+        <a{% if entry.external %} class="external-link"{% endif %} href="{{ entry.url }}">{{ entry.title }}</a>
+        {% if entry.description %}
+        <p class="linklist-description">{{ entry.description }}</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+    {% endspaceless %}
+</ul>
+{% endblock %}

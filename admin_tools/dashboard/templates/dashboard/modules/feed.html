@@ -1,0 +1,13 @@
+{% extends "dashboard/module.html" %}
+{% block module_content %}
+<ul>
+    {% spaceless %}
+    {% for entry in module.entries %}
+    <li class="{% cycle 'odd' 'even' %}">
+        {% if entry.date %}<span class="float-right">{{ entry.date|date }}&nbsp;</span>{% endif %}
+        <a class="external-link" href="{{ entry.url }}">{{ entry.title }}</a>
+    </li>
+    {% endfor %}
+    {% endspaceless %}
+</ul>
+{% endblock %}

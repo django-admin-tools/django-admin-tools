@@ -1,0 +1,19 @@
+{% extends "dashboard/module.html" %}
+{% load i18n %}
+{% block module_content %}
+        <ul>
+            {% for entry in module.entries %}
+            {% spaceless %}
+            <li>
+                {% if entry.change_url %}<a href="{{ entry.change_url }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}
+                {% if entry.add_url or entry.change_url %}
+                <ul>
+                    {% if entry.add_url %}<li><a class="addlink" href="{{ entry.add_url }}"><span class="icon">{% trans "Add" %}</span></a></li>{% endif %}
+                    {% if entry.change_url %}<li><a class="changelink" href="{{ entry.change_url }}"><span class="icon">{% trans "Change" %}</span></a></li>{% endif %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endspaceless %}
+            {% endfor %}
+        </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+{% load i18n dashboard_tags %}
+
+{% block extrahead %}
+{{ block.super }}
+{% render_dashboard_js %}
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% render_dashboard_css %}
+{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block content %}
+{% render_dashboard %}
+{% endblock %}

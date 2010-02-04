@@ -1,0 +1,3 @@
+include CHANGELOG INSTALL LICENSE MANIFEST.in README AUTHORS
+recursive-include docs *
+recursive-include admin_tools/locale *

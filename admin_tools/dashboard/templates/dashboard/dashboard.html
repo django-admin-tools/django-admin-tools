@@ -1,0 +1,34 @@
+{% load i18n dashboard_tags %}
+{% if dashboard.title %}
+<h1>{{ dashboard.title }}</h1>
+{% endif %}
+
+<!-- javascript code related to the admin_tools dashboard -->
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function() {
+    $('#dashboard').dashboard({
+        'columns': {{ dashboard.columns }}
+    });
+});
+//]]>
+</script>
+
+<!-- admin_tools dashboard -->
+<!-- todo: refactor the panel and style it -->
+<div id="dashboard-panel">
+    <h3><a href="#">{% trans "Add modules to the dashboard" %}</a></h3>
+    <ul>
+        {% spaceless %}
+        {% for module in dashboard %}
+        {% if not module.enabled %}
+        <li><a href="#" rel="module_{{ forloop.counter }}" class="addlink add-dashboard-module">{{ module.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% endspaceless %}
+    </ul>
+</div>
+<div id="dashboard">
+    {% for module in dashboard %}
+{% render_dashboard_module module forloop.counter %}{% endfor %}
+</div>

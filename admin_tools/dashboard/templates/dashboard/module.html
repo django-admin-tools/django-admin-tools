@@ -1,0 +1,20 @@
+{% if not module.is_empty %}
+    <div{% if index %} id="module_{{ index }}"{% endif %} class="{{ module.render_css_classes }}">
+        <h2>{{ module.title }}</h2>
+        <div class="dashboard-module-content">
+            {% spaceless %}
+            {% if module.pre_content %}
+            {{ module.pre_content }}
+            {% endif %}
+            {% block module_content %}
+            {% for entry in module.entries %}
+            {{ entry }}
+            {% endfor %}
+            {% endblock %}
+            {% if module.post_content %}
+            {{ module.post_content }}
+            {% endif %}
+            {% endspaceless %}
+        </div>
+    </div>
+{% endif %}

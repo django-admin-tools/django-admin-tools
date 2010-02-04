@@ -1,0 +1,22 @@
+Thanks for downloading django-admin-tools.
+
+This application requires Python 2.4 or later and Django 1.1.0 or newer.
+Optionally the following dependencies can be installed:
+* feedparser:http://www.feedparser.org/ 
+
+To install django-admin-tools, run the following command inside this directory::
+
+    python setup.py install
+
+If you have the Python ``easy_install`` utility available, you can also type 
+the following to download and install in one step::
+
+   easy_install django-admin-tools
+
+Or if you're using ``pip``::
+
+    pip install django-admin-tools
+
+Or if you'd prefer you can simply place the included ``admin_tools`` directory 
+somewhere on your Python path, or symlink to it from somewhere on your Python 
+path; this is useful if you're working from a Mercurial checkout.

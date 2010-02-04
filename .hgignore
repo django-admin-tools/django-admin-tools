@@ -1,0 +1,11 @@
+syntax: glob
+*.pyc
+*.*~
+*.orig
+*.old
+.*.swp
+build
+dist
+MANIFEST
+_build
+_static

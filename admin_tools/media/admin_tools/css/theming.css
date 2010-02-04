@@ -1,0 +1,36 @@
+/* header logo and user tools */
+
+#header {
+    overflow: visible;
+    height: auto;
+    background-color: #fff;
+}
+
+#header #branding {
+    border: 1px solid #ededed;
+    border-width: 1px 0;
+    margin: 0;
+    background: url(../images/admin.png) 0 0 repeat-x;
+}
+
+#header #branding a {
+    display: block;
+    height: 32px;
+    width: 105px;
+    background: transparent url(../images/admin.png) 0 -122px no-repeat;
+}
+
+#header #branding a h1 span {
+    display: none;
+}
+
+#header #user-tools {
+    color: #656565;
+    font-size: 12px;
+    padding: 10px;
+}
+
+#header #user-tools a:link, #header #user-tools a:visited {
+    color: #5b80b2;
+    text-decoration: none;
+}

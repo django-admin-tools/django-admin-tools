@@ -1,0 +1,10 @@
+=========================
+django-admin-tools changelog
+=========================
+
+
+Version 0.1.0, 30 January 2010:
+-------------------------------
+
+* Initial import of the project to Bitbucket:
+  http://bitbucket.org/izi/django-admin-tools/

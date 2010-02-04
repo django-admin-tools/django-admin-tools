@@ -1,0 +1,8 @@
+{% load menu_tags %}
+{% if not menu.is_empty %}
+<div id="navigation-wrapper">
+    <ul class="menu">
+        {% for item in menu %}{% render_menu_item item forloop.counter %}{% endfor %}
+    </ul>
+</div>
+{% endif %}
