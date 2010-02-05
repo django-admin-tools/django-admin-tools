@@ -1,8 +1,19 @@
-#header #navigation-menu li ul li {
+#header #navigation-menu li {
+    height: 35px;
     margin: 0;
-    height: 34px;
-    /* IE6 only */
-    _width: 200px;
+}
+
+#header #navigation-menu li a {
+    white-space: nowrap;
+}
+
+#header #navigation-menu li span {
+    /* fuck you ie */
+    display: none;
+}
+
+#header #navigation-menu li ul li {
+    _width: 220px;
 }
 
 #header #navigation-menu li ul li a {

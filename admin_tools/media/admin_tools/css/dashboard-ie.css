@@ -1,5 +1,10 @@
 /* todo: this fucker of ie6 doesn't want the dashboard to take full width... */
 
+html, body {
+    _overflow: auto;
+    _width: 100%;
+}
+
 #content {
     *min-width: 98%;
 }
