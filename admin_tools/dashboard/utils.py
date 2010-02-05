@@ -118,8 +118,6 @@ def get_app_index_dashboard(request, app_title='', model_list=[]):
         mod = import_module(mod)
         return getattr(mod, inst)(app_name)
 
-    import logging
-    logging.warn(model_list)
     app_index_dashboard = Dashboard(title='')
     app_index_dashboard.append(ModelListDashboardModule(
         title=app_title,
