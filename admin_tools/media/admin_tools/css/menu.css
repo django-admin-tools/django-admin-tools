@@ -11,29 +11,29 @@
     height: 31px;
 }
 
-#header #navigation-wrapper {
-    background: red url(../images/admin-tools.png) 0 -205px repeat-x;
-    height: 35px;
-    z-index: 9999;
-}
-
-#header #navigation-wrapper ul {
+#header ul {
     list-style: none;
     margin: 0;
     padding: 0;
     z-index: 9999;
 }
 
-#header #navigation-wrapper ul li {
-    list-style: none;
+#header ul li {
     position: relative;
+    list-style: none;
 }
 
-#header #navigation-wrapper ul.menu li {
+#header #navigation-menu {
+    background: transparent url(../images/admin-tools.png) 0 -205px repeat-x;
+    height: 35px;
+    z-index: 9999;
+}
+
+#header ul#navigation-menu li {
     float: left;
 }
 
-#header #navigation-wrapper ul.menu li a {
+#header ul#navigation-menu li a {
     display: block;
     text-transform: uppercase;
     text-decoration: none;
@@ -42,87 +42,86 @@
     color: #555;
 }
 
-#header #navigation-wrapper ul.menu li.first a {
+
+#header ul#navigation-menu li.first a {
     margin-left: 12px;
     background: transparent url(../images/admin-tools.png) 0 -380px no-repeat;
     text-indent: 14px;
 }
 
-
-#header #navigation-wrapper ul.menu li:hover,
-#header #navigation-wrapper ul.menu li.hover,
-#header #navigation-wrapper ul.menu li.active {
-    background: url(../images/admin-tools.png) repeat-x 0 -245px;
-}
-
-#header #navigation-wrapper ul li span.icon {
+#header ul#navigation-menu li span {
     float: right;
-    width: 20px;
     height: 10px;
+    width: 20px;
     background: transparent url(../images/admin-tools.png) no-repeat 0 -360px;
 }
 
-#header #navigation-wrapper ul.menu li ul {
+#header ul#navigation-menu li:hover,
+#header ul#navigation-menu li.over,
+#header ul#navigation-menu li.active {
+    background: url(../images/admin-tools.png) repeat-x 0 -245px;
+}
+
+#header ul#navigation-menu li ul {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: auto;
+    left: auto;
     margin-left: -1px;
     margin-top: -1px;
 }
 
-#header #navigation-wrapper ul.menu li ul li {
+#header ul#navigation-menu li ul li {
     padding: 0;
     float: none;
     background: none;
+    z-index: 9999;
 }
 
-#header #navigation-wrapper ul.menu li ul li a {
-    float: none;
+#header ul#navigation-menu li ul li a {
     display: block;
     border: 1px solid #ededed;
     border-width: 0 1px 1px 1px;
     text-transform: none;
     min-width: 170px;
-    margin: 0;
 }
 
-#header #navigation-wrapper ul.menu li ul li ul {
+#header ul#navigation-menu li ul li span {
+    background-position: 0 -370px;
+}
+
+#header ul#navigation-menu li ul li ul {
     left: 100%;
     top: 0;
     border-top: 1px solid #ededed;
 }
 
-#header #navigation-wrapper ul.menu li ul li ul li a {
+#header ul#navigation-menu li ul li ul li a {
     white-space: nowrap;
 }
 
-#header #navigation-wrapper ul li ul li span.icon {
-    background-position: 0 -370px;
-}
-
-#header #navigation-wrapper ul.menu li:hover ul li ul,
-#header #navigation-wrapper ul.menu li.hover ul li ul {
+#header ul#navigation-menu li:hover ul li ul,
+#header ul#navigation-menu li.over ul li ul {
     display: none;
 }
 
-#header #navigation-wrapper ul.menu li:hover ul,
-#header #navigation-wrapper ul.menu li.hover ul,
-#header #navigation-wrapper ul.menu li ul li:hover ul,
-#header #navigation-wrapper ul.menu li ul li.hover ul {
+#header ul#navigation-menu li:hover ul,
+#header ul#navigation-menu li.over ul,
+#header ul#navigation-menu li ul li:hover ul,
+#header ul#navigation-menu li ul li.over ul {
     display: block;
 }
 
-#header #navigation-wrapper ul.menu li:hover ul li,
-#header #navigation-wrapper ul.menu li.hover ul li,
-#header #navigation-wrapper ul.menu li ul li:hover ul li,
-#header #navigation-wrapper ul.menu li ul li.hover ul li {
+#header ul#navigation-menu li:hover ul li,
+#header ul#navigation-menu li.over ul li,
+#header ul#navigation-menu li ul li:hover ul li,
+#header ul#navigation-menu li ul li.over ul li {
     background: transparent url(../images/admin-tools.png) repeat-x 0 -285px;
 }
 
-#header #navigation-wrapper ul.menu li ul li:hover,
-#header #navigation-wrapper ul.menu li ul li.hover,
-#header #navigation-wrapper ul.menu li ul li ul li:hover,
-#header #navigation-wrapper ul.menu li ul li ul li.hover {
+#header ul#navigation-menu li ul li:hover,
+#header ul#navigation-menu li ul li.over,
+#header ul#navigation-menu li ul li ul li:hover,
+#header ul#navigation-menu li ul li ul li.over {
     background: transparent url(../images/admin-tools.png) repeat-x 0 -245px;
 }

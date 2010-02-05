@@ -69,7 +69,18 @@ def render_media(type, tpl, obj):
         ret = []
         for t, f in o.Media.css.items():
             if (t,f) not in cache:
-                ret.append(tpl % (t, p, f))
+                if t == 'ie6':
+                    template = "<!--[if IE 6]>\n" + tpl + "\n<![endif]-->"
+                    t = 'screen'
+                elif t == 'ie7':
+                    template = "<!--[if IE 7]>\n" + tpl + "\n<![endif]-->"
+                    t = 'screen'
+                elif t == 'ie':
+                    template = "<!--[if lt IE 8]>\n" + tpl + "\n<![endif]-->"
+                    t = 'screen'
+                else:
+                    template = tpl
+                ret.append(template % (t, p, f))
                 cache.append((t,f))
         return ret
 

@@ -1,7 +1,7 @@
 {% load menu_tags %}
 {% spaceless %}
 <li class="menu-item{% ifequal index 1 %} first{% endifequal %}{% if item.css_classes %} {{ item.css_classes|join:' ' }}{% endif %}">
-    <a href="{{ item.url }}"{% if item.description %} title="{{ item.description }}"{% endif %}{% if item.accesskey %} accesskey="{{ item.accesskey }}"{% endif %}>{{ item.title }}{% if item %}<span class="icon"></span>{% endif %}</a>
+    <a href="{{ item.url }}"{% if item.description %} title="{{ item.description }}"{% endif %}{% if item.accesskey %} accesskey="{{ item.accesskey }}"{% endif %}>{% if item %}<span class="icon"></span>{% endif %}{{ item.title }}</a>
     {% if item %}
     <ul>
         {% for child_item in item %}

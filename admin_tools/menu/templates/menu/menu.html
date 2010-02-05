@@ -1,8 +1,18 @@
 {% load menu_tags %}
+<!--[if IE 6]>
+<script type="text/javascript">
+var hover_ie6 = function() {
+    var children = document.getElementById('navigation-menu').getElementsByTagName('li');
+    for (i=0; i<children.length; i++) {
+        children[i].onmouseover = function() { this.className += ' over'; };
+        children[i].onmouseout = function() { this.className = this.className.replace(new RegExp(' over\\b'), ''); };
+    }
+}
+window.onload = hover_ie6;
+</script>
+<![endif]-->
 {% if not menu.is_empty %}
-<div id="navigation-wrapper">
-    <ul class="menu">
-        {% for item in menu %}{% render_menu_item item forloop.counter %}{% endfor %}
-    </ul>
+<ul id="navigation-menu">
+    {% for item in menu %}{% render_menu_item item forloop.counter %}{% endfor %}
 </div>
 {% endif %}

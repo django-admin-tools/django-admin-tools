@@ -1,0 +1,18 @@
+/* todo: this fucker of ie6 doesn't want the dashboard to take full width... */
+
+#content {
+    *min-width: 98%;
+}
+
+.dashboard-module h2 a.toggle-icon,
+.dashboard-module h2 a.close-icon {
+    margin-top: -16px;
+}
+
+.dashboard-module ul li ul {
+    margin-top: -25px;
+}
+
+.dashboard-module h3 {
+    clear: both;
+}

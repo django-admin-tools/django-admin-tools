@@ -24,6 +24,9 @@
 #dashboard-panel ul {
     display: none;
     position: absolute;
+    top: auto;
+    left: auto;
+    margin-top: -1px;
 }
 
 #dashboard-panel ul li {

@@ -1,0 +1,10 @@
+#header #navigation-menu li ul li {
+    margin: 0;
+    height: 34px;
+    /* IE6 only */
+    _width: 200px;
+}
+
+#header #navigation-menu li ul li a {
+    height: 20px;
+}

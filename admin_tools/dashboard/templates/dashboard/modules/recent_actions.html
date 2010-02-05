@@ -5,12 +5,12 @@
     {% spaceless %}
     {% for entry in module.entries %}
     <li class="{% cycle 'odd' 'even' %}">
+        <span class="float-right">{{ entry.action_time|date }}</span>
         {% if entry.is_deletion %}
         <span class="deletelink">{% if entry.content_type %}{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ entry.object_repr }}</span>
         {% else %}
         <a href="{{ entry.get_admin_url }}" class="{% if entry.is_addition %} addlink{% endif %}{% if entry.is_change %} changelink{% endif %}">{% if entry.content_type %}{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ entry.object_repr }}</a>
         {% endif %}
-        <span class="float-right">{{ entry.action_time|date }}</span>
     </li>
     {% endfor %}
     {% endspaceless %}

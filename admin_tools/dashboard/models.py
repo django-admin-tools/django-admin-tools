@@ -31,7 +31,10 @@ class Dashboard(list):
     """
 
     class Media:
-        css = {'all': 'dashboard.css'}
+        css = {
+            'all': 'dashboard.css',
+            'ie': 'dashboard-ie.css',
+        }
         js  = (
             'jquery/jquery-1.4.1.min.js',
             'jquery/jquery-ui-1.8rc1.custom.min.js',

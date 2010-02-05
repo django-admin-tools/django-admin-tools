@@ -28,7 +28,10 @@ class Menu(list):
     """
 
     class Media:
-        css = {'all': 'menu.css'}
+        css = {
+            'all': 'menu.css',
+            'ie' : 'menu-ie.css'
+        }
         js  = ()
 
     def __init__(self, *args, **kwargs):
