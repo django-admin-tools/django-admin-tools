@@ -1,0 +1,31 @@
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
+from admin_tools.menu.models import *
+
+# create your custom menu items here if you want:
+#
+# class CustomMenuItem(MenuItem):
+#     pass
+#
+
+
+# to activate your custom menu you must add the following to your 
+# project's settings.py file:
+#
+# ADMIN_TOOLS_MENU = '{{ project }}.{{ file }}.CustomMenu'
+class CustomMenu(Menu):
+    """
+    Returns the admin menu defined by the user or the default one.
+    """
+    def __init__(self, *args, **kwargs):
+        super(CustomMenu, self).__init__(*args, **kwargs)
+
+        # append your menu items here, for example:
+        self.append(MenuItem(
+            title=_('Home'),
+            url=reverse('admin:index')
+        ))
+        self.append(MenuItem(
+            title=_('Some link'),
+            url='http://example.com'
+        ))
