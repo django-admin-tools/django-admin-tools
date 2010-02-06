@@ -3,6 +3,7 @@ Menu utilities.
 """
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.importlib import import_module
@@ -15,9 +16,15 @@ def get_admin_menu(request):
     """
     menu_cls = getattr(settings, 'ADMIN_TOOLS_MENU', False)
     if menu_cls:
-        mod, inst = menu_cls.rsplit('.', 1)
-        mod = import_module(mod)
-        return getattr(mod, inst)()
+        try:
+            mod, inst = menu_cls.rsplit('.', 1)
+            mod = import_module(mod)
+            return getattr(mod, inst)()
+        except:
+            raise ImproperlyConfigured((
+                'The class pointed by your ADMIN_TOOLS_MENU setting variable '
+                'cannot be imported'
+            ))
 
     admin_menu = Menu()
     admin_menu.append(MenuItem(

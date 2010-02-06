@@ -4,6 +4,7 @@ Dashboard utilities.
 
 from django.conf import settings
 from django.contrib import admin
+from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 from django.utils.importlib import import_module
@@ -42,9 +43,15 @@ def get_index_dashboard(request):
     """
     dashboard_cls = getattr(settings, 'ADMIN_TOOLS_INDEX_DASHBOARD', False)
     if dashboard_cls:
-        mod, inst = dashboard_cls.rsplit('.', 1)
-        mod = import_module(mod)
-        return getattr(mod, inst)()
+        try:
+            mod, inst = dashboard_cls.rsplit('.', 1)
+            mod = import_module(mod)
+            return getattr(mod, inst)()
+        except:
+            raise ImproperlyConfigured((
+                'The class pointed by your ADMIN_TOOLS_INDEX_DASHBOARD '
+                'setting variable cannot be imported'
+            ))
     return DefaultIndexDashboard()
 
 
@@ -66,9 +73,15 @@ def get_app_index_dashboard(request, app_label='', model_list=[]):
     # try to discover a general app_index dashboard
     dashboard_cls = getattr(settings, 'ADMIN_TOOLS_APP_INDEX_DASHBOARD', False)
     if dashboard_cls:
-        mod, inst = dashboard_cls.rsplit('.', 1)
-        mod = import_module(mod)
-        return getattr(mod, inst)(app_title, model_list)
+        try:
+            mod, inst = dashboard_cls.rsplit('.', 1)
+            mod = import_module(mod)
+            return getattr(mod, inst)(app_title, model_list)
+        except:
+            raise ImproperlyConfigured((
+                'The class pointed by your ADMIN_TOOLS_APP_INDEX_DASHBOARD '
+                'setting variable cannot be imported'
+            ))
 
     # fallback to default dashboard
     return DefaultAppIndexDashboard(app_title, model_list)
