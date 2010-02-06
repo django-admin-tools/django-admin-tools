@@ -21,7 +21,7 @@ class DefaultIndexDashboard(Dashboard):
             draggable=False,
             deletable=False,
             collapsible=False,
-            link_list=[
+            entries=[
                 {
                     'title': _('Return to site'),
                     'url': '/',
@@ -67,7 +67,7 @@ class DefaultIndexDashboard(Dashboard):
         # append another link list module for "support". 
         self.append(LinkListDashboardModule(
             title=_('Support'),
-            link_list=[
+            entries=[
                 {
                     'title': _('Django documentation'),
                     'url': 'http://docs.djangoproject.com/',

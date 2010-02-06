@@ -147,7 +147,7 @@ class DashboardModule(object):
         self.pre_content = kwargs.get('pre_content')
         self.post_content = kwargs.get('post_content')
         self.template = kwargs.get('template', 'dashboard/module.html')
-        self.entries = []
+        self.entries = kwargs.get('entries', [])
 
     def render(self, request):
         pass
@@ -225,7 +225,6 @@ class LinkListDashboardModule(DashboardModule):
         self.template = kwargs.get('template',
                                    'dashboard/modules/link_list.html')
         self.layout = kwargs.get('layout', 'stacked')
-        self.entries = kwargs.get('link_list', [])
 
 
 class AppListDashboardModule(DashboardModule, AppListElementMixin):
