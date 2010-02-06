@@ -29,7 +29,6 @@ class Dashboard(list):
     >>> len(d)
     1
     """
-
     class Media:
         css = {
             'all': 'dashboard.css',
@@ -63,6 +62,28 @@ class Dashboard(list):
         self.template = kwargs.get('template', 'dashboard/dashboard.html')
         self.columns = kwargs.get('columns', 2)
 
+
+class AppIndexDashboard(Dashboard):
+    """
+    Class that represents an app index dashboard, it is very similar to the 
+    standard dashboard except that its constructors receives two arguments:
+
+    ``app_title``
+        The title of the application
+
+    ``models``
+        A list of strings representing the available models for the current 
+        application, example::
+            
+            ['yourproject.app.Model1', 'yourproject.app.Model2']
+
+    If you want to provide custom app index dashboard, be sure to inherit from
+    this class instead of the ``Dashboard`` class.
+    """
+    def __init__(self, app_title, models, *args, **kwargs):
+        super(AppIndexDashboard, self).__init__(*args, **kwargs)
+        self.app_title = app_title
+        self.models = models
 
 class DashboardModule(object):
     """
