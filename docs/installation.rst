@@ -14,8 +14,10 @@ For further information, consult the `Django download page
 <http://www.djangoproject.com/download/>`_, which offers convenient
 packaged downloads and installation instructions.
 
-If you want to display feeds in the admin dashboard, you'll also need 
-the `Universal Feed Parser module <http://www.feedparser.org/>`_.
+.. note::
+    If you want to display feeds in the admin dashboard, using the 
+    ``FeedDashboardModule`` you need to install the 
+    `Universal Feed Parser module <http://www.feedparser.org/>`_.
 
 
 Installing django-admin-tools
@@ -88,8 +90,9 @@ installation script. From a command line in that directory, type::
 
     python setup.py install
 
-Note that on some systems you may need to execute this with
-administrative privileges (e.g., ``sudo python setup.py install``).
+.. note::
+    On some systems you may need to execute this with administrative 
+    privileges (e.g., ``sudo python setup.py install``).
 
 
 Manual installation from a Mercurial checkout

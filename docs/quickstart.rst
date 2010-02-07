@@ -51,8 +51,16 @@ django-admin-tools is composed of several modules:
 Required settings
 ~~~~~~~~~~~~~~~~~
 
-You must add the django-admin-tools modules to the ``INSTALLED_APPS`` 
-setting of your project like this::
+First make sure you have the following template context processors 
+installed::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        'django.core.context_processors.auth',
+        'django.core.context_processors.request',
+    )
+
+Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like 
+this::
 
     INSTALLED_APPS = (
         'admin_tools.theming',
@@ -63,6 +71,12 @@ setting of your project like this::
         'django.contrib.admin'
         # ...other installed applications...
     )
+
+.. note::
+    it is very important that you put the admin_tools modules **before** 
+    the ``django.contrib.admin module``, because django-admin-tools
+    overrides the default django admin templates, and this will not work 
+    otherwise.
 
 django-admin-tools is modular, so if you want to disable a particular 
 module, just remove or comment it in your ``INSTALLED_APPS``. 
@@ -75,10 +89,6 @@ For example, if you just want to use the dashboard::
         'django.contrib.admin'
         # ...other installed applications...
     )
-
-Note: it is very important that you put the admin_tools modules **before** 
-the ``django.contrib.admin module``, because django-admin-tools overrides 
-the default django admin templates, and this will not work otherwise.
 
 
 Setting up the django-admin-tools media files
