@@ -1,5 +1,8 @@
 The primary author of django-admin-tools is David Jean Louis <izimobil@gmail.com>.
 
-
-Others who have contributed to the application:
-None at the moment.
+I'd like to thanks the following people in no particular order:
+- creators of the mockup of the initial django-cms dashboard proposal;
+- all the people that gave me feedback on the django-cms mailing list;
+- ojii and its django-dashboard draft from which I borrowed some concepts;
+- James Bennett and its excellent django-registration pluggable app from 
+  which I borrowed many things, especially from the documentation.

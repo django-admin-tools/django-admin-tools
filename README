@@ -15,5 +15,3 @@ pluggable app.
 For installation instructions, see the file "INSTALL" in this directory; for 
 instructions on how to use this application, and on what it provides, see the 
 file "quickstart.rst" in the "docs/" directory.
-
-todo: write a better README

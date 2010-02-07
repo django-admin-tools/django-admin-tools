@@ -19,7 +19,7 @@ django-admin-tools, read through the documentation listed below.
 Contents:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    quickstart
    installation
