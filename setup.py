@@ -38,6 +38,7 @@ setup(
         'admin_tools': [
             'media/admin_tools/css/*.css',
             'media/admin_tools/js/*.js',
+            'media/admin_tools/js/jquery/*.js',
             'media/admin_tools/images/*.png',
             'media/admin_tools/images/*.gif',
             'templates/admin_tools/*.html',
