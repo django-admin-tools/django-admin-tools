@@ -494,15 +494,14 @@ class RecentActionsDashboardModule(DashboardModule):
     ``RecentActionsDashboardModule`` takes three extra keyword arguments:
 
     ``include_list``
-        A list of models to include, only actions for models whose name (e.g. 
-        "blog.comments.Comment") starts with one of the strings (e.g. "blog") 
-        in the include list will appear in the dashboard module.
+        A list of contenttypes (e.g. "auth.group" or "sites.site") to include,
+        only recent actions that match the given contenttypes will be
+        displayed.
 
     ``exclude_list``
-        A list of models to exclude, if a model name (e.g. 
-        "blog.comments.Comment" starts with an element of this list (e.g. 
-        "blog.comments") it's recent actions won't appear in the dashboard
-        module.
+        A list of contenttypes (e.g. "auth.group" or "sites.site") to exclude,
+        recent actions that match the given contenttypes will not be
+        displayed.
 
     ``limit``
         The maximum number of entries to display. Default value: 10.
@@ -515,7 +514,7 @@ class RecentActionsDashboardModule(DashboardModule):
         # will only list the django.contrib apps
         mydashboard.append(RecentActionsDashboardModule(
             title='Django CMS recent actions',
-            include_list=('cms',)
+            include_list=('cms.page', 'cms.cmsplugin',)
         ))
 
     The screenshot of what this code produces:
