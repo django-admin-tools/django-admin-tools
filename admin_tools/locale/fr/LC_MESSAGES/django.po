@@ -2,7 +2,7 @@
 # Copyright (C) 2010 David Jean Louis <izimobil@gmail.com>
 # This file is distributed under the same license as the django-admin-tools package.
 # FIRST AUTHOR <izimobil@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
@@ -87,7 +87,7 @@ msgstr "Accueil"
 #: dashboard/templates/admin/app_index.html:10
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:17
 msgid "Modules"
