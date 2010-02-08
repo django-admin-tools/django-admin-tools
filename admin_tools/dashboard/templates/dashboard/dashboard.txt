@@ -55,14 +55,12 @@ class CustomIndexDashboard(Dashboard):
 
         # append a recent actions module
         self.append(RecentActionsDashboardModule(
-            enabled=False,
             title=_('Recent Actions'),
             limit=5
         ))
 
         # append a feed module
         self.append(FeedDashboardModule(
-            enabled=False,
             title=_('Latest Django News'),
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
