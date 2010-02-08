@@ -5,6 +5,7 @@ This module contains the base classes for the dashboard and dashboard modules.
 from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 from django.utils.importlib import import_module
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
@@ -105,6 +106,12 @@ class Dashboard(list):
         """
         pass
 
+    def get_id(self):
+        """
+        Internal method used to distinguish different dashboards in js code.
+        """
+        return 'dashboard'
+
 
 class AppIndexDashboard(Dashboard):
     """
@@ -184,6 +191,12 @@ class AppIndexDashboard(Dashboard):
         """
         return [ContentType.objects.get_for_model(c) for c \
                 in self.get_app_model_classes()]
+
+    def get_id(self):
+        """
+        Internal method used to distinguish different dashboards in js code.
+        """
+        return '%s-dashboard' % slugify(unicode(self.app_title))
 
 
 class DashboardModule(object):

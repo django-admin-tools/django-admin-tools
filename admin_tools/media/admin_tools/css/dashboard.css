@@ -12,7 +12,7 @@
     width: auto; !important;
 }
 
-#dashboard {
+.dashboard-container {
     clear: both;
 }
 

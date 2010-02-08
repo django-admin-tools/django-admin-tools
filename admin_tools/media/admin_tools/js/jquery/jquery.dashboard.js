@@ -33,6 +33,7 @@
             //Set the default values, use comma to separate the settings, example:
             var defaults = {
                 panel_id: 'dashboard-panel',
+                dashboard_id: this.attr('id'),
                 dashboard_module_class: 'dashboard-module',
                 columns: 2
             }    
@@ -57,8 +58,6 @@
         }
     });
 
-    var json_str = $.cookie('admin-tools.dashboard');
-    var preferences = json_str ? JSON.parse(json_str) : {};
 
     var _set_ids = function(elt, options) {
         elt.children('div[id!=' + options.panel_id +']').each(function(index) {
@@ -80,7 +79,13 @@
         }
     };
 
+    var preferences = false;
+
     var _restore_preferences = function(elt, options) {
+        if (preferences === false) {
+            var json_str = $.cookie('admin-tools.' + options.dashboard_id);
+            preferences = json_str ? JSON.parse(json_str) : {};
+        }
         elt.children().children('.disabled').each(function() {
             _delete_element($(this), options);
         });

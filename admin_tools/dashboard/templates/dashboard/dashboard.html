@@ -7,7 +7,7 @@
 <script type="text/javascript">
 // <![CDATA[
 $(document).ready(function() {
-    $('#dashboard').dashboard({
+    $('#{{ dashboard.get_id }}').dashboard({
         'columns': {{ dashboard.columns }}
     });
 });
@@ -28,7 +28,7 @@ $(document).ready(function() {
         {% endspaceless %}
     </ul>
 </div>
-<div id="dashboard">
+<div id="{{ dashboard.get_id }}" class="dashboard-container">
     {% for module in dashboard %}
 {% render_dashboard_module module forloop.counter %}{% endfor %}
 </div>
