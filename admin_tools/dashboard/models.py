@@ -3,7 +3,9 @@ This module contains the base classes for the dashboard and dashboard modules.
 """
 
 from django.contrib import admin
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
+from django.utils.importlib import import_module
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
@@ -120,6 +122,14 @@ class AppIndexDashboard(Dashboard):
             
             ['yourproject.app.Model1', 'yourproject.app.Model2']
 
+    It also provides two helper methods:
+
+    ``get_app_model_classes()``
+        Method that returns the list of model classes for the current app.
+
+    ``get_app_content_types()``
+        Method that returns the list of content types for the current app.
+
     If you want to provide custom app index dashboard, be sure to inherit from
     this class instead of the ``Dashboard`` class.
 
@@ -156,6 +166,24 @@ class AppIndexDashboard(Dashboard):
         super(AppIndexDashboard, self).__init__(*args, **kwargs)
         self.app_title = app_title
         self.models = models
+    
+    def get_app_model_classes(self):
+        """
+        Helper method that returns a list of model classes for the current app.
+        """
+        models = []
+        for m in self.models:
+            mod, cls = m.rsplit('.', 1)
+            mod = import_module(mod)
+            models.append(getattr(mod, cls))
+        return models
+
+    def get_app_content_types(self):
+        """
+        Return a list of all content_types for this app.
+        """
+        return [ContentType.objects.get_for_model(c) for c \
+                in self.get_app_model_classes()]
 
 
 class DashboardModule(object):
@@ -538,14 +566,17 @@ class RecentActionsDashboardModule(DashboardModule):
         def get_qset(list):
             qset = None
             for contenttype in list:
-                try:
-                    app_label, model = contenttype.split('.')
-                except:
-                    raise ValueError('Invalid contenttype: "%s"' % contenttype)
-                current_qset = Q(
-                    content_type__app_label=app_label,
-                    content_type__model=model
-                )
+                if isinstance(contenttype, ContentType):
+                    current_qset = Q(content_type__id=contenttype.id)
+                else:
+                    try:
+                        app_label, model = contenttype.split('.')
+                    except:
+                        raise ValueError('Invalid contenttype: "%s"' % contenttype)
+                    current_qset = Q(
+                        content_type__app_label=app_label,
+                        content_type__model=model
+                    )
                 if qset is None:
                     qset = current_qset
                 else:
@@ -747,6 +778,6 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
         # append a recent actions module
         self.append(RecentActionsDashboardModule(
             title=_('Recent Actions'),
-            include_list=self.models,
+            include_list=self.get_app_content_types(),
             limit=5
         ))
