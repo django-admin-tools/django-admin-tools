@@ -27,7 +27,10 @@ bitbucket_url = 'http://www.bitbucket.org/izi/django-admin-tools/'
 setup(
     name='django-admin-tools',
     version=VERSION.replace(' ', '-'),
-    description='Some ponies for the django administration interface',
+    description=('django-admin-tools is a collection of tools for the django '
+                 'administration interface, it includes a full featured and '
+                 'customizable dashboard, a customizable menu bar and tools '
+                 'to make admin ui theming easier.'),
     author='David Jean Louis',
     author_email='izimobil@gmail.com',
     url=bitbucket_url,
@@ -44,7 +47,10 @@ setup(
             'templates/admin_tools/*.html',
             'templates/admin_tools/*/*.html',
             '*/templates/*/*.html',
-            '*/templates/*/*/*.html'
+            '*/templates/*/*.txt',
+            '*/templates/*/*/*.html',
+            'tests/*',
+            'locale/*/*/*',
         ]
     },
     classifiers=[
