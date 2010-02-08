@@ -532,17 +532,39 @@ class RecentActionsDashboardModule(DashboardModule):
         self.limit = kwargs.get('limit', 10)
 
     def render(self, request):
+        from django.db.models import Q
         from django.contrib.admin.models import LogEntry
+
+        def get_qset(list):
+            qset = None
+            for contenttype in list:
+                try:
+                    app_label, model = contenttype.split('.')
+                except:
+                    raise ValueError('Invalid contenttype: "%s"' % contenttype)
+                current_qset = Q(
+                    content_type__app_label=app_label,
+                    content_type__model=model
+                )
+                if qset is None:
+                    qset = current_qset
+                else:
+                    qset = qset | current_qset
+            return qset
+
         if request.user is None:
             qs = LogEntry.objects.all()
         else:
             qs = LogEntry.objects.filter(user__id__exact=request.user.id)
-        # todo: RecentActionsDashboardModule: filter by contenttype
+
         if self.include_list:
-            pass
+            qs = qs.filter(get_qset(self.include_list))
         if self.exclude_list:
-            pass
+            qs = qs.exclude(get_qset(self.exclude_list))
+
         self.entries = qs.select_related('content_type', 'user')[:self.limit]
+        if not len(self.entries):
+            self.pre_content = _('No recent actions.')
 
 
 class FeedDashboardModule(DashboardModule):

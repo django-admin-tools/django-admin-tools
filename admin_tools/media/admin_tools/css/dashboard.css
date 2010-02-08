@@ -146,6 +146,10 @@
     border-top: 1px solid #ececec;
 }
 
+.dashboard-module-content p {
+    margin: 10px;
+}
+
 .dashboard-module ul li {
     vertical-align: top;
     padding: 5px 8px;

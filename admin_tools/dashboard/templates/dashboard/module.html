@@ -4,7 +4,7 @@
         <div class="dashboard-module-content">
             {% spaceless %}
             {% if module.pre_content %}
-            {{ module.pre_content }}
+            <p>{{ module.pre_content }}</p>
             {% endif %}
             {% block module_content %}
             {% for entry in module.entries %}
@@ -12,7 +12,7 @@
             {% endfor %}
             {% endblock %}
             {% if module.post_content %}
-            {{ module.post_content }}
+            <p>{{ module.post_content }}</p>
             {% endif %}
             {% endspaceless %}
         </div>
