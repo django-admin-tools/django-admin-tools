@@ -1,9 +1,11 @@
 {% extends "admin/base.html" %}
 {% load i18n menu_tags %}
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
 {% block extrastyle %}
+{{ block.super }}
 {% render_menu_css %}
 {% endblock %}
-{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
 {% block branding %}
 <h1 id="site-name">{% trans 'Django administration' %}</h1>

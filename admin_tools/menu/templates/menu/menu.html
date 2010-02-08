@@ -1,4 +1,5 @@
 {% load menu_tags %}
+{% if menu %}
 <!--[if IE 6]>
 <script type="text/javascript">
 var hover_ie6 = function() {
@@ -11,8 +12,8 @@ var hover_ie6 = function() {
 window.onload = hover_ie6;
 </script>
 <![endif]-->
-{% if menu %}
+
 <ul id="navigation-menu">
     {% for item in menu %}{% render_menu_item item forloop.counter %}{% endfor %}
-</div>
+</ul>
 {% endif %}

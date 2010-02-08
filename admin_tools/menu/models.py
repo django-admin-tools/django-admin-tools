@@ -26,7 +26,7 @@ class Menu(list):
 
         class MyMenu(Menu):
             class Media:
-                css = {'screen': '/media/css/mymenu.css'}
+                css = ('/media/css/mymenu.css',)
                 js = ('/media/js/mymenu.js',)
 
     Here's an example of a custom menu::
@@ -48,10 +48,7 @@ class Menu(list):
     """
 
     class Media:
-        css = {
-            'all': 'menu.css',
-            'ie' : 'menu-ie.css'
-        }
+        css = ()
         js  = ()
 
     def __init__(self, *args, **kwargs):

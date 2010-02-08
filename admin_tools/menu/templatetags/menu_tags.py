@@ -2,15 +2,13 @@
 Menu template tags, the following menu tags are available:
 * ``{% render_menu %}``
 * ``{% render_menu_item %}``
-* ``{% render_menu_js %}``
-* ``{% render_menu_css %}``
 
 To load the menu tags just do: ``{% load menu_tags %}``.
 """
 
 from django import template
+from django.conf import settings
 from django.http import HttpRequest
-from admin_tools.utils import render_media
 from admin_tools.menu.utils import get_admin_menu
 
 register = template.Library()
@@ -23,10 +21,12 @@ def render_menu(context, menu=None):
     """
     if menu is None:
         menu = get_admin_menu(context['request'])
+
     menu.render(context['request'])
     context.update({
         'template': menu.template,
         'menu': menu,
+        'media_url': settings.MEDIA_URL.rstrip('/'),
     })
     return context
 render_menu = register.inclusion_tag(
@@ -53,25 +53,19 @@ render_menu_item = register.inclusion_tag(
 )(render_menu_item)
 
 
-def render_menu_js(menu=None):
+def render_menu_css(context, menu=None):
     """
-    Template tag that renders the needed js files for the menu.
-    It relies on the ``Media`` inner class of the ``Menu`` instance.
-    """
-    if menu is None:
-        menu = get_admin_menu(None)
-    tpl = '<script type="text/javascript" src="%sadmin_tools/js/%s"></script>'
-    return render_media('js', tpl, menu)
-register.simple_tag(render_menu_js)
-
-
-def render_menu_css(menu=None):
-    """
-    Template tag that renders the needed css files for the menu.
-    It relies on the ``Media`` inner class of the ``Menu`` instance.
+    Template tag that renders the menu css files.
     """
     if menu is None:
-        menu = get_admin_menu(None)
-    tpl = '<link rel="stylesheet" type="text/css" media="%s" href="%sadmin_tools/css/%s" />'
-    return render_media('css', tpl, menu)
-register.simple_tag(render_menu_css)
+        menu = get_admin_menu(context['request'])
+
+    context.update({
+        'css_files': menu.Media.css,
+        'media_url': settings.MEDIA_URL.rstrip('/'),
+    })
+    return context
+render_menu_css = register.inclusion_tag(
+    'menu/css.html',
+    takes_context=True
+)(render_menu_css)

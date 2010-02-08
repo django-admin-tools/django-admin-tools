@@ -1,4 +1,30 @@
 {% load i18n dashboard_tags %}
+
+<script type="text/javascript" charset="utf-8">
+    // When jQuery is sourced, it's going to overwrite whatever might be in the
+    // '$' variable, so store a reference of it in a temporary variable...
+    var _$ = window.$;
+    // load jquery if it's not loaded yet
+    if (typeof jQuery == 'undefined') {
+        var jquery_url = '{{ media_url }}/admin_tools/js/jquery/jquery-1.4.1.min.js';
+        document.write(unescape('%3Cscript src="' + jquery_url + '" type="text/javascript"%3E%3C/script%3E'));
+    }
+</script>
+<script type="text/javascript" charset="utf-8">
+    // load jquery ui if it's not loaded yet
+    if (typeof jQuery.ui == 'undefined') {
+        var jquery_ui_url = '{{ media_url }}/admin_tools/js/jquery/jquery-ui-1.8rc1.custom.min.js';
+        document.write(unescape('%3Cscript src="' + jquery_ui_url + '" type="text/javascript"%3E%3C/script%3E'));
+    }
+</script>
+<script type="text/javascript" src="{{ media_url }}/admin_tools/js/json.min.js"></script>
+<script type="text/javascript" src="{{ media_url }}/admin_tools/js/jquery/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="{{ media_url }}/admin_tools/js/jquery/jquery.dashboard.js"></script>
+{% if dashboard.Media.js %}
+{% for js in dashboard.Media.js %}
+<script type="text/javascript" src="{{ media_url }}/{{ js }}"></script>{% endfor %}
+{% endif %}
+
 {% if dashboard.title %}
 <h1 class="dashboard-title">{{ dashboard.title }}</h1>
 {% endif %}
@@ -15,6 +41,7 @@ $(document).ready(function() {
 
 <div id="dashboard-panel">
     <h3><a href="#">{% trans "Modules" %}</a></h3>
+    {% if has_disabled_modules %}
     <ul>
         {% spaceless %}
         {% for module in dashboard %}
@@ -24,6 +51,7 @@ $(document).ready(function() {
         {% endfor %}
         {% endspaceless %}
     </ul>
+    {% endif %}
 </div>
 <div id="{{ dashboard.get_id }}" class="dashboard-container">
     {% for module in dashboard %}

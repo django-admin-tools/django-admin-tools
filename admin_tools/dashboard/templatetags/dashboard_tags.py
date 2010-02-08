@@ -2,15 +2,13 @@
 Dashboard template tags, the following dashboard tags are available:
 * ``{% render_dashboard %}``
 * ``{% render_dashboard_module %}``
-* ``{% render_dashboard_js %}``
-* ``{% render_dashboard_css %}``
 
 To load the dashboard tags just do: ``{% load dashboard_tags %}``.
 """
 
 import math
 from django import template
-from admin_tools.utils import render_media
+from django.conf import settings
 from admin_tools.dashboard.utils import get_dashboard_from_context
 
 register = template.Library()
@@ -28,7 +26,9 @@ def render_dashboard(context, dashboard=None):
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,
-        'split_at': math.ceil(float(len(dashboard))/float(dashboard.columns))
+        'split_at': math.ceil(float(len(dashboard))/float(dashboard.columns)),
+        'media_url': settings.MEDIA_URL.rstrip('/'),
+        'has_disabled_modules': len([m for m in dashboard if not m.enabled]) > 0,
     })
     return context
 render_dashboard = register.inclusion_tag(
@@ -56,25 +56,19 @@ render_dashboard_module = register.inclusion_tag(
 )(render_dashboard_module)
 
 
-def render_dashboard_js(dashboard=None):
+def render_dashboard_css(context, dashboard=None):
     """
-    Template tag that renders the needed js files for the dashboard.
-    It relies on the ``Media`` inner class of the ``Dashboard`` instance.
-    """
-    if dashboard is None:
-        dashboard = get_dashboard_from_context({})
-    tpl = '<script type="text/javascript" src="%sadmin_tools/js/%s"></script>'
-    return render_media('js', tpl, dashboard)
-register.simple_tag(render_dashboard_js)
-
-
-def render_dashboard_css(dashboard=None):
-    """
-    Template tag that renders the needed css files for the dashboard.
-    It relies on the ``Media`` inner class of the ``Dashboard`` instance.
+    Template tag that renders the dashboard css files.
     """
     if dashboard is None:
-        dashboard = get_dashboard_from_context({})
-    tpl = '<link rel="stylesheet" type="text/css" media="%s" href="%sadmin_tools/css/%s" />'
-    return render_media('css', tpl, dashboard)
-register.simple_tag(render_dashboard_css)
+        dashboard = get_dashboard_from_context(context)
+
+    context.update({
+        'css_files': dashboard.Media.css,
+        'media_url': settings.MEDIA_URL.rstrip('/'),
+    })
+    return context
+render_dashboard_css = register.inclusion_tag(
+    'dashboard/css.html',
+    takes_context=True
+)(render_dashboard_css)

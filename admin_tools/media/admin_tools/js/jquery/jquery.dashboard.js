@@ -149,7 +149,12 @@
     var _delete_element = function(elt, options, save_preference) {
         var existing = $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
         if (!existing.length) {
-            $('#' + options.panel_id).find('ul').append(
+            var panel_ul = $('#' + options.panel_id).find('ul');
+            if (!panel_ul.length) {
+                $('#' + options.panel_id).append('<ul/>');
+                panel_ul = $('#' + options.panel_id).find('ul');
+            }
+            panel_ul.append(
                 '<li><a href="#" rel="' 
                 + elt.attr('id') 
                 + '" class="addlink dashboard-module-add">'

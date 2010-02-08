@@ -1,11 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n dashboard_tags %}
 
-{% block extrahead %}
-{{ block.super }}
-{% render_dashboard_js %}
-{% endblock %}
-
 {% block extrastyle %}
 {{ block.super }}
 {% render_dashboard_css %}

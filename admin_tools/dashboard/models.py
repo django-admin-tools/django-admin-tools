@@ -38,7 +38,7 @@ class Dashboard(list):
 
         class MyDashboard(Dashboard):
             class Media:
-                css = {'screen': '/media/css/mydashboard.css'}
+                css = ('/media/css/mydashboard.css',)
                 js = ('/media/js/mydashboard.js',)
 
     Here's an example of a custom dashboard::
@@ -76,17 +76,8 @@ class Dashboard(list):
     .. image:: images/dashboard_example.png
     """
     class Media:
-        css = {
-            'all': 'dashboard.css',
-            'ie': 'dashboard-ie.css',
-        }
-        js  = (
-            'jquery/jquery-1.4.1.min.js',
-            'jquery/jquery-ui-1.8rc1.custom.min.js',
-            'jquery/jquery.cookie.min.js',
-            'json.min.js',
-            'jquery/jquery.dashboard.js',
-        )
+        css = ()
+        js  = ()
 
     def __init__(self, *args, **kwargs):
         """

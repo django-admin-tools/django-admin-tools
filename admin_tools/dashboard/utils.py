@@ -13,6 +13,7 @@ from admin_tools.dashboard import Registry
 from admin_tools.dashboard.models import *
 
 
+
 def get_dashboard_from_context(context):
     try:
         request = context['request']
@@ -20,23 +21,20 @@ def get_dashboard_from_context(context):
         request = HttpRequest()
     if request.META.get('REQUEST_URI') == reverse('admin:index'):
         return get_index_dashboard(request)
-    try:
-        app = context['app_list'][0]
-        models = []
-        app_label = None
-        app_title = app['name']
-        for model, model_admin in admin.site._registry.items():
-            if app['name'] == model._meta.app_label.title():
-                split = model.__module__.find(model._meta.app_label)
-                app_label = model.__module__[0:split] + model._meta.app_label
-                app_title = model._meta.app_label.title
-                for m in app['models']:
-                    if m['name'] == capfirst(model._meta.verbose_name_plural):
-                        mod = '%s.%s' % (model.__module__, model.__name__)
-                        models.append(mod)
-        return get_app_index_dashboard(request, app_label, app_title, models)
-    except KeyError:
-        return get_app_index_dashboard(request, '', [])
+    app = context['app_list'][0]
+    models = []
+    app_label = None
+    app_title = app['name']
+    for model, model_admin in admin.site._registry.items():
+        if app['name'] == model._meta.app_label.title():
+            split = model.__module__.find(model._meta.app_label)
+            app_label = model.__module__[0:split] + model._meta.app_label
+            app_title = model._meta.app_label.title
+            for m in app['models']:
+                if m['name'] == capfirst(model._meta.verbose_name_plural):
+                    mod = '%s.%s' % (model.__module__, model.__name__)
+                    models.append(mod)
+    return get_app_index_dashboard(request, app_label, app_title, models)
 
 
 def get_index_dashboard(request):
