@@ -24,6 +24,7 @@ def render_dashboard(context, dashboard=None):
     """
     if not dashboard:
         dashboard = get_dashboard_from_context(context)
+    dashboard.render(context['request'])
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,

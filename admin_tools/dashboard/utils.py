@@ -9,9 +9,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 from django.utils.importlib import import_module
 from django.utils.text import capfirst
-from django.utils.translation import ugettext_lazy as _
+from admin_tools.dashboard import Registry
 from admin_tools.dashboard.models import *
-from admin_tools.dashboard.default_dashboard import *
 
 
 def get_dashboard_from_context(context):
@@ -24,15 +23,18 @@ def get_dashboard_from_context(context):
     try:
         app = context['app_list'][0]
         models = []
-        app_label = app['name']
+        app_label = None
+        app_title = app['name']
         for model, model_admin in admin.site._registry.items():
             if app['name'] == model._meta.app_label.title():
-                app_label = model._meta.app_label
+                split = model.__module__.find(model._meta.app_label)
+                app_label = model.__module__[0:split] + model._meta.app_label
+                app_title = model._meta.app_label.title
                 for m in app['models']:
                     if m['name'] == capfirst(model._meta.verbose_name_plural):
                         mod = '%s.%s' % (model.__module__, model.__name__)
                         models.append(mod)
-        return get_app_index_dashboard(request, app_label, models)
+        return get_app_index_dashboard(request, app_label, app_title, models)
     except KeyError:
         return get_app_index_dashboard(request, '', [])
 
@@ -41,47 +43,45 @@ def get_index_dashboard(request):
     """
     Returns the admin dashboard defined by the user or the default one.
     """
-    dashboard_cls = getattr(settings, 'ADMIN_TOOLS_INDEX_DASHBOARD', False)
-    if dashboard_cls:
-        try:
-            mod, inst = dashboard_cls.rsplit('.', 1)
-            mod = import_module(mod)
-            return getattr(mod, inst)()
-        except:
-            raise ImproperlyConfigured((
-                'The class pointed by your ADMIN_TOOLS_INDEX_DASHBOARD '
-                'setting variable cannot be imported'
-            ))
-    return DefaultIndexDashboard()
+    dashboard_cls = getattr(
+        settings,
+        'ADMIN_TOOLS_INDEX_DASHBOARD',
+        'admin_tools.dashboard.models.DefaultIndexDashboard'
+    )
+    try:
+        mod, inst = dashboard_cls.rsplit('.', 1)
+        mod = import_module(mod)
+    except:
+        raise ImproperlyConfigured((
+            'The class pointed by your ADMIN_TOOLS_INDEX_DASHBOARD '
+            'setting variable cannot be imported'
+        ))
+    return getattr(mod, inst)()
 
 
-def get_app_index_dashboard(request, app_label='', model_list=[]):
+def get_app_index_dashboard(request, app_label=None, app_title='',
+                            model_list=[]):
     """
     Returns the admin dashboard defined by the user or the default one.
     """
-    app_title = app_label.title()
 
-    # try to discover corresponding app dashboard module
-    mod_name = getattr(settings, 'ADMIN_TOOLS_APP_INDEX_DASHBOARD_MODULE', 'dashboard')
-    mod_class = getattr(settings, 'ADMIN_TOOLS_APP_INDEX_DASHBOARD_CLASS', '%sDashboard' % capfirst(app_label))
+    # if an app has registered its own dashboard, use it
+    if app_label is not None and app_label in Registry.registry:
+        return Registry.registry[app_label](app_title, model_list)
+
+    # try to discover a general app_index dashboard (with fallback to the 
+    # default dashboard)
+    dashboard_cls = getattr(
+        settings,
+        'ADMIN_TOOLS_APP_INDEX_DASHBOARD',
+        'admin_tools.dashboard.models.DefaultAppIndexDashboard'
+    )
     try:
-        mod = import_module('%s.%s' % (app_label, mod_name))
-        return getattr(mod, mod_class)(app_title, model_list)
+        mod, inst = dashboard_cls.rsplit('.', 1)
+        mod = import_module(mod)
     except:
-        pass
-
-    # try to discover a general app_index dashboard
-    dashboard_cls = getattr(settings, 'ADMIN_TOOLS_APP_INDEX_DASHBOARD', False)
-    if dashboard_cls:
-        try:
-            mod, inst = dashboard_cls.rsplit('.', 1)
-            mod = import_module(mod)
-            return getattr(mod, inst)(app_title, model_list)
-        except:
-            raise ImproperlyConfigured((
-                'The class pointed by your ADMIN_TOOLS_APP_INDEX_DASHBOARD '
-                'setting variable cannot be imported'
-            ))
-
-    # fallback to default dashboard
-    return DefaultAppIndexDashboard(app_title, model_list)
+        raise ImproperlyConfigured((
+            'The class pointed by your ADMIN_TOOLS_APP_INDEX_DASHBOARD '
+            'setting variable cannot be imported'
+        ))
+    return getattr(mod, inst)(app_title, model_list)

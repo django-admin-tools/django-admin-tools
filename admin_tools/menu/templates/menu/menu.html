@@ -11,7 +11,7 @@ var hover_ie6 = function() {
 window.onload = hover_ie6;
 </script>
 <![endif]-->
-{% if not menu.is_empty %}
+{% if menu %}
 <ul id="navigation-menu">
     {% for item in menu %}{% render_menu_item item forloop.counter %}{% endfor %}
 </div>

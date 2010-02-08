@@ -17,15 +17,16 @@ class CustomMenu(Menu):
     """
     Returns the admin menu defined by the user or the default one.
     """
-    def __init__(self, *args, **kwargs):
-        super(CustomMenu, self).__init__(*args, **kwargs)
-
-        # append your menu items here, for example:
+    def render(self, request):
         self.append(MenuItem(
-            title=_('Home'),
+            title=_('Dashboard'),
             url=reverse('admin:index')
         ))
-        self.append(MenuItem(
-            title=_('Some link'),
-            url='http://example.com'
+        self.append(AppListMenuItem(
+            title=_('Applications'),
+            exclude_list=('django.contrib',),
+        ))
+        self.append(AppListMenuItem(
+            title=_('Administration'),
+            include_list=('django.contrib',),
         ))

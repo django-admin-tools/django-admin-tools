@@ -34,19 +34,8 @@ Using ``pip``, type::
 Basic configuration
 -------------------
 
-Once installed, you can add django-admin-tools to any Django-based
-project you're developing.
-
-django-admin-tools is composed of several modules:
-
-* admin_tools.theming: an app that makes it easy to customize the look 
-  and feel of the admin interface;
-
-* admin_tools.menu: a customizable navigation menu that sits on top of 
-  every django administration index page;
-
-* admin_tools.dashboard: a customizable dashboard that replaces the django 
-  administration index page.
+For a more detailed guide on how to configure django-admin-tools, please
+consult :ref:`the configuration section <configuration>`.
 
 Required settings
 ~~~~~~~~~~~~~~~~~
@@ -72,7 +61,7 @@ this::
         # ...other installed applications...
     )
 
-.. note::
+.. important::
     it is very important that you put the admin_tools modules **before** 
     the ``django.contrib.admin module``, because django-admin-tools
     overrides the default django admin templates, and this will not work 
@@ -80,16 +69,6 @@ this::
 
 django-admin-tools is modular, so if you want to disable a particular 
 module, just remove or comment it in your ``INSTALLED_APPS``. 
-For example, if you just want to use the dashboard::
-
-    INSTALLED_APPS = (
-        'admin_tools.dashboard',
-        'django.contrib.auth',
-        'django.contrib.sites',
-        'django.contrib.admin'
-        # ...other installed applications...
-    )
-
 
 Setting up the django-admin-tools media files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -4,10 +4,7 @@
     {% spaceless %}
     {% for entry in module.entries %}
     <li class="{% cycle 'odd' 'even' %}">
-        <a{% if entry.external %} class="external-link"{% endif %} href="{{ entry.url }}">{{ entry.title }}</a>
-        {% if entry.description %}
-        <p class="linklist-description">{{ entry.description }}</p>
-        {% endif %}
+    <a{% if entry.external %} class="external-link"{% endif %} href="{{ entry.url }}" {% if entry.description %} title="{{ entry.description }}"{% endif %}>{{ entry.title }}</a> 
     </li>
     {% endfor %}
     {% endspaceless %}

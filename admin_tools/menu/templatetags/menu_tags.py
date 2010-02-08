@@ -23,6 +23,7 @@ def render_menu(context, menu=None):
     """
     if menu is None:
         menu = get_admin_menu(context['request'])
+    menu.render(context['request'])
     context.update({
         'template': menu.template,
         'menu': menu,
