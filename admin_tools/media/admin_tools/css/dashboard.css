@@ -16,16 +16,30 @@
     clear: both;
 }
 
+h1.dashboard-title {
+    float: left;
+}
+
 #dashboard-panel {
+    margin: 0 10px 0 0;
     float: right;
-    margin-top: -35px;
+}
+
+#dashboard-panel h3 a {
+    padding: 5px;
+    min-width: 100px;
+    display: block;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
 }
 
 #dashboard-panel ul {
     display: none;
     position: absolute;
     top: auto;
-    left: auto;
+    right: 25px;
     margin-top: -1px;
 }
 

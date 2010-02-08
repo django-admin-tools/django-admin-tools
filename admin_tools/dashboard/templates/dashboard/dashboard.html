@@ -1,6 +1,6 @@
 {% load i18n dashboard_tags %}
 {% if dashboard.title %}
-<h1>{{ dashboard.title }}</h1>
+<h1 class="dashboard-title">{{ dashboard.title }}</h1>
 {% endif %}
 
 <!-- javascript code related to the admin_tools dashboard -->
@@ -17,7 +17,7 @@ $(document).ready(function() {
 <!-- admin_tools dashboard -->
 <!-- todo: refactor the panel and style it -->
 <div id="dashboard-panel">
-    <h3><a href="#">{% trans "Add modules to the dashboard" %}</a></h3>
+    <h3><a href="#">{% trans "Modules" %}</a></h3>
     <ul>
         {% spaceless %}
         {% for module in dashboard %}
