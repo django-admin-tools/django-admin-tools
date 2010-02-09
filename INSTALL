@@ -1,8 +1,8 @@
 Thanks for downloading django-admin-tools.
 
 This application requires Python 2.4 or later and Django 1.1.0 or newer.
-Optionally the following dependencies can be installed:
-* feedparser:http://www.feedparser.org/ 
+It is also recommended that you install the FeedParser module 
+(http://www.feedparser.org/) if you want to use the feed dashboard module.
 
 To install django-admin-tools, run the following command inside this directory::
 

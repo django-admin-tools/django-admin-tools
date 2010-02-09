@@ -5,13 +5,17 @@ django-admin-tools
 django-admin-tools is a collection of extensions/tools for the default django 
 administration interface, it includes:
 
-* a full featured and customizable dashboard,
-* a customizable menu bar,
-* tools to make admin theming easier.
+ * a full featured and customizable dashboard,
+ * a customizable menu bar,
+ * tools to make admin theming easier.
 
-It was originally developed for django-cms, and then extracted to this 
-pluggable app.
+The project code and bugtracker is hosted on 
+`Bitbucket <http://bitbucket.org/izi/django-admin-tools/>`_. 
 
-For installation instructions, see the file "INSTALL" in this directory; for 
-instructions on how to use this application, and on what it provides, see the 
-file "quickstart.rst" in the "docs/" directory.
+Django-admin-tools is generously documented, you can 
+`browse the documentation online 
+<http://izimobil.org/django-admin-tools/docs/>`_,
+a good start is to read `the quickstart guide 
+<http://www.izimobil.org/django-admin-tools/docs/quickstart.html>`_.
+
+Thanks for downloading django-admin-tools.

@@ -30,10 +30,8 @@ bitbucket_url = 'http://www.bitbucket.org/izi/django-admin-tools/'
 setup(
     name='django-admin-tools',
     version=VERSION.replace(' ', '-'),
-    description=('django-admin-tools is a collection of tools for the django '
-                 'administration interface, it includes a full featured and '
-                 'customizable dashboard, a customizable menu bar and tools '
-                 'to make admin ui theming easier.'),
+    description=('A collection of tools for the django administration '
+                 'interface'),
     author='David Jean Louis',
     author_email='izimobil@gmail.com',
     url=bitbucket_url,
