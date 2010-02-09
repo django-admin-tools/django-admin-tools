@@ -15,12 +15,13 @@ from admin_tools.dashboard.models import *
 
 
 def get_dashboard_from_context(context):
-    try:
-        request = context['request']
-    except KeyError:
-        request = HttpRequest()
+    """
+    Return the dashboard instance given the context.
+    """
+    request = context['request']
     if request.META.get('REQUEST_URI') == reverse('admin:index'):
-        return get_index_dashboard(request)
+        return get_index_dashboard()
+    # this is a mess, needs cleanup !
     app = context['app_list'][0]
     models = []
     app_label = None
@@ -34,10 +35,10 @@ def get_dashboard_from_context(context):
                 if m['name'] == capfirst(model._meta.verbose_name_plural):
                     mod = '%s.%s' % (model.__module__, model.__name__)
                     models.append(mod)
-    return get_app_index_dashboard(request, app_label, app_title, models)
+    return get_app_index_dashboard(app_label, app_title, models)
 
 
-def get_index_dashboard(request):
+def get_index_dashboard():
     """
     Returns the admin dashboard defined by the user or the default one.
     """
@@ -57,8 +58,7 @@ def get_index_dashboard(request):
     return getattr(mod, inst)()
 
 
-def get_app_index_dashboard(request, app_label=None, app_title='',
-                            model_list=[]):
+def get_app_index_dashboard(app_label=None, app_title='', model_list=[]):
     """
     Returns the admin dashboard defined by the user or the default one.
     """

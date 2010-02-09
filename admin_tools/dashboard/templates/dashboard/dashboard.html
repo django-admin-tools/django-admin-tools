@@ -44,7 +44,7 @@ $(document).ready(function() {
     {% if has_disabled_modules %}
     <ul>
         {% spaceless %}
-        {% for module in dashboard %}
+        {% for module in dashboard.children %}
         {% if not module.enabled %}
         <li><a href="#" rel="module_{{ forloop.counter }}" class="addlink add-dashboard-module">{{ module.title }}</a></li>
         {% endif %}
@@ -54,6 +54,6 @@ $(document).ready(function() {
     {% endif %}
 </div>
 <div id="{{ dashboard.get_id }}" class="dashboard-container">
-    {% for module in dashboard %}
+    {% for module in dashboard.children %}
 {% render_dashboard_module module forloop.counter %}{% endfor %}
 </div>

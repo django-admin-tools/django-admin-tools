@@ -2,31 +2,31 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.menu.models import *
 
-# create your custom menu items here if you want:
-#
-# class CustomMenuItem(MenuItem):
-#     pass
-#
-
-
-# to activate your custom menu you must add the following to your 
-# project's settings.py file:
+# to activate your custom menu add the following to your settings.py:
 #
 # ADMIN_TOOLS_MENU = '{{ project }}.{{ file }}.CustomMenu'
+
 class CustomMenu(Menu):
     """
-    Returns the admin menu defined by the user or the default one.
+    Custom Menu for {{ project }} admin site.
     """
-    def render(self, request):
-        self.append(MenuItem(
+    def __init__(self, **kwargs):
+        Menu.__init__(self, **kwargs)
+        self.children.append(MenuItem(
             title=_('Dashboard'),
             url=reverse('admin:index')
         ))
-        self.append(AppListMenuItem(
+        self.children.append(AppListMenuItem(
             title=_('Applications'),
-            exclude_list=('django.contrib',),
+            exclude_list=('django.contrib',)
         ))
-        self.append(AppListMenuItem(
+        self.children.append(AppListMenuItem(
             title=_('Administration'),
-            include_list=('django.contrib',),
+            include_list=('django.contrib',)
         ))
+
+    def init_with_context(self, context):
+        """
+        Use this method if you need to access the request context.
+        """
+        pass

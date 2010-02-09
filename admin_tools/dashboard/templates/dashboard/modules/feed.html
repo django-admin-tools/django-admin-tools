@@ -2,10 +2,10 @@
 {% block module_content %}
 <ul>
     {% spaceless %}
-    {% for entry in module.entries %}
+    {% for child in module.children %}
     <li class="{% cycle 'odd' 'even' %}">
-        {% if entry.date %}<span class="float-right">{{ entry.date|date }}&nbsp;</span>{% endif %}
-        <a class="external-link" href="{{ entry.url }}">{{ entry.title }}</a>
+        {% if child.date %}<span class="float-right">{{ child.date|date }}&nbsp;</span>{% endif %}
+        <a class="external-link" href="{{ child.url }}">{{ child.title }}</a>
     </li>
     {% endfor %}
     {% endspaceless %}

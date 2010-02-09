@@ -7,8 +7,8 @@
             <p>{{ module.pre_content }}</p>
             {% endif %}
             {% block module_content %}
-            {% for entry in module.entries %}
-            {{ entry }}
+            {% for child in module.children %}
+            {{ child }}
             {% endfor %}
             {% endblock %}
             {% if module.post_content %}

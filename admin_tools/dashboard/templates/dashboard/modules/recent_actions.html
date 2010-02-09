@@ -3,13 +3,13 @@
 {% block module_content %}
 <ul>
     {% spaceless %}
-    {% for entry in module.entries %}
+    {% for child in module.children %}
     <li class="{% cycle 'odd' 'even' %}">
-        <span class="float-right">{{ entry.action_time|date }}</span>
-        {% if entry.is_deletion %}
-        <span class="deletelink">{% if entry.content_type %}{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ entry.object_repr }}</span>
+        <span class="float-right">{{ child.action_time|date }}</span>
+        {% if child.is_deletion %}
+        <span class="deletelink">{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ child.object_repr }}</span>
         {% else %}
-        <a href="{{ entry.get_admin_url }}" class="{% if entry.is_addition %} addlink{% endif %}{% if entry.is_change %} changelink{% endif %}">{% if entry.content_type %}{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ entry.object_repr }}</a>
+        <a href="{{ child.get_admin_url }}" class="{% if child.is_addition %} addlink{% endif %}{% if child.is_change %} changelink{% endif %}">{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ child.object_repr }}</a>
         {% endif %}
     </li>
     {% endfor %}

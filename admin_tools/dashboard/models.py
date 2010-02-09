@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
 
 
-class Dashboard(list):
+class Dashboard(object):
     """
     Base class for dashboards.
     The Dashboard class is a simple python list that has three additional
@@ -48,24 +48,24 @@ class Dashboard(list):
         from admin_tools.dashboard.models import *
 
         class MyDashboard(Dashboard):
-            def render(self, request):
+            def __init__(self, **kwargs):
                 # we want a 3 columns layout
                 self.columns = 3
 
                 # append an app list module for "Applications"
-                self.append(AppListDashboardModule(
+                self.children.append(AppListDashboardModule(
                     title=_('Applications'),
                     exclude_list=('django.contrib',),
                 ))
         
                 # append an app list module for "Administration"
-                self.append(AppListDashboardModule(
+                self.children.append(AppListDashboardModule(
                     title=_('Administration'),
                     include_list=('django.contrib',),
                 ))
         
                 # append a recent actions module
-                self.append(RecentActionsDashboardModule(
+                self.children.append(RecentActionsDashboardModule(
                     enabled=False,
                     title=_('Recent Actions'),
                     limit=5
@@ -79,21 +79,22 @@ class Dashboard(list):
         css = ()
         js  = ()
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, **kwargs):
         """
         Dashboard constructor.
         """
-        super(Dashboard, self).__init__()
         self.title = kwargs.get('title', _('Dashboard'))
         self.template = kwargs.get('template', 'dashboard/dashboard.html')
         self.columns = kwargs.get('columns', 2)
+        self.children = kwargs.get('children', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
         """
-        The ``Dashboard.render()`` method is called just before the display
-        with a ``django.http.HttpRequest`` as unique argument.
-        Override this method to build your dashboard if you need to access to
-        the request instance.
+        Sometimes you may need to access context or request variables to build
+        your dashboard, this is what the ``init_with_context()`` method is for.
+        This method is called just before the display with a 
+        ``django.template.RequestContext`` as unique argument, so you can 
+        access to all context variables and to the ``django.http.HttpRequest``.
         """
         pass
 
@@ -138,19 +139,20 @@ class AppIndexDashboard(Dashboard):
         from admin_tools.dashboard.models import *
 
         class MyAppIndexDashboard(AppIndexDashboard):
-            def render(self, request):
+            def __init__(self, **kwargs):
+                AppIndexDashboard.__init__(self, **kwargs)
                 # we don't want a title, it's redundant
                 self.title = ''
 
                 # append a model list module that lists all models 
                 # for the app
-                self.append(ModelListDashboardModule(
+                self.children.append(ModelListDashboardModule(
                     title=self.app_title,
                     include_list=self.models,
                 ))
         
                 # append a recent actions module for the current app
-                self.append(RecentActionsDashboardModule(
+                self.children.append(RecentActionsDashboardModule(
                     title=_('Recent Actions'),
                     include_list=self.models,
                     limit=5
@@ -160,8 +162,8 @@ class AppIndexDashboard(Dashboard):
 
     .. image:: images/dashboard_app_index_example.png
     """
-    def __init__(self, app_title, models, *args, **kwargs):
-        super(AppIndexDashboard, self).__init__(*args, **kwargs)
+    def __init__(self, app_title, models, **kwargs):
+        super(AppIndexDashboard, self).__init__(**kwargs)
         self.app_title = app_title
         self.models = models
     
@@ -239,7 +241,7 @@ class DashboardModule(object):
         The template to use to render the module.
         Default value: 'dashboard/module.html'.
     """
-    def __init__(self, *args, **kwargs):
+    def __init__(self, **kwargs):
         self.enabled = kwargs.get('enabled', True)
         self.draggable = kwargs.get('draggable', True)
         self.collapsible = kwargs.get('collapsible', True)
@@ -250,9 +252,39 @@ class DashboardModule(object):
         self.pre_content = kwargs.get('pre_content')
         self.post_content = kwargs.get('post_content')
         self.template = kwargs.get('template', 'dashboard/module.html')
-        self.entries = kwargs.get('entries', [])
+        self.children = kwargs.get('children', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
+        """
+        Like for the ``Dashboard`` class, dashboard modules have a 
+        ``init_with_context`` method that is called with a 
+        ``django.template.RequestContext`` instance as unique argument.
+
+        This gives you enough flexibility to build complex modules, for 
+        example, let's build a "history" dashboard module, that will list the 
+        last ten visited pages::
+
+            class HistoryDashboardModule(LinkListDashboardModule):
+                def init_with_context(self, context):
+                    self.title = 'History'
+                    request = context['request']
+                    # we use sessions to store the visited pages stack
+                    history = request.session.get('history', [])
+                    for item in history:
+                        self.children.append(item)
+                    # add the current page to the history
+                    history.insert(0, {
+                        'title': context['title'],
+                        'url': request.META['PATH_INFO']
+                    })
+                    if len(history) > 10:
+                        history = history[:10]
+                    request.session['history'] = history
+
+        Here's a screenshot of our history item:
+
+        .. image:: images/history_dashboard_module.png
+        """
         pass
 
     def is_empty(self):
@@ -268,16 +300,16 @@ class DashboardModule(object):
         >>> mod.pre_content = None
         >>> mod.is_empty()
         True
-        >>> mod.entries.append('foo')
+        >>> mod.children.append('foo')
         >>> mod.is_empty()
         False
-        >>> mod.entries = []
+        >>> mod.children = []
         >>> mod.is_empty()
         True
         """
         return self.pre_content is None and \
                self.post_content is None and \
-               len(self.entries) == 0
+               len(self.children) == 0
 
     def render_css_classes(self):
         """
@@ -317,7 +349,7 @@ class LinkListDashboardModule(DashboardModule):
         The layout of the list, possible values are ``stacked`` and ``inline``.
         The default value is ``stacked``.
 
-    Link list modules entries are simple python dictionaries that can have the
+    Link list modules children are simple python dictionaries that can have the
     following keys:
 
     ``title``
@@ -336,37 +368,40 @@ class LinkListDashboardModule(DashboardModule):
     Here's a small example of building a link list module::
         
         from admin_tools.dashboard.models import *
-        
-        mydashboard = Dashboard()
-        mydashboard.append(LinkListDashboardModule(
-            layout='inline',
-            entries=(
-                {
-                    'title': 'Python website',
-                    'url': 'http://www.python.org',
-                    'external': True,
-                    'title': 'Python programming language rocks !',
-                },
-                {
-                    'title': 'Django website',
-                    'url': 'http://www.djangoproject.com',
-                    'external': True
-                },
-                {
-                    'title': 'Some internal link',
-                    'url': '/some/internal/link/',
-                    'external': False
-                },
-            )
-        ))
+
+        class MyDashboard(Dashboard):
+            def __init__(self, **kwargs): 
+                Dashboard.__init__(self, **kwargs)
+
+                self.children.append(LinkListDashboardModule(
+                    layout='inline',
+                    children=(
+                        {
+                            'title': 'Python website',
+                            'url': 'http://www.python.org',
+                            'external': True,
+                            'title': 'Python programming language rocks !',
+                        },
+                        {
+                            'title': 'Django website',
+                            'url': 'http://www.djangoproject.com',
+                            'external': True
+                        },
+                        {
+                            'title': 'Some internal link',
+                            'url': '/some/internal/link/',
+                            'external': False
+                        },
+                    )
+                ))
 
     The screenshot of what this code produces:
 
     .. image:: images/linklist_dashboard_module.png
     """
 
-    def __init__(self, *args, **kwargs):
-        super(LinkListDashboardModule, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super(LinkListDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Links'))
         self.template = kwargs.get('template',
                                    'dashboard/modules/link_list.html')
@@ -394,19 +429,21 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
     Here's a small example of building an app list module::
  
         from admin_tools.dashboard.models import *
-     
-        mydashboard = Dashboard()
 
-        # will only list the django.contrib apps
-        mydashboard.append(AppListDashboardModule(
-            title='Administration',
-            include_list=('django.contrib',)
-        )) 
-        # will list all apps except the django.contrib ones
-        mydashboard.append(AppListDashboardModule(
-            title='Applications',
-            exclude_list=('django.contrib',)
-        )) 
+        class MyDashboard(Dashboard):
+            def __init__(self, **kwargs): 
+                Dashboard.__init__(self, **kwargs)
+
+                # will only list the django.contrib apps
+                self.children.append(AppListDashboardModule(
+                    title='Administration',
+                    include_list=('django.contrib',)
+                ))
+                # will list all apps except the django.contrib ones
+                self.children.append(AppListDashboardModule(
+                    title='Applications',
+                    exclude_list=('django.contrib',)
+                ))
 
     The screenshot of what this code produces:
 
@@ -419,15 +456,16 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
         the django.contrib.auth.Group model line will not be displayed.
     """
 
-    def __init__(self, *args, **kwargs):
-        super(AppListDashboardModule, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super(AppListDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Applications'))
         self.template = kwargs.get('template',
                                    'dashboard/modules/app_list.html')
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
+        request = context['request']
         apps = {}
         for model, model_admin in admin.site._registry.items():
             perms = self._check_perms(request, model, model_admin)
@@ -453,7 +491,7 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
         for app in apps_sorted:
             # sort model list alphabetically
             apps[app]['models'].sort(lambda x, y: cmp(x['title'], y['title']))
-            self.entries.append(apps[app])
+            self.children.append(apps[app])
 
 
 class ModelListDashboardModule(DashboardModule, AppListElementMixin):
@@ -475,13 +513,16 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
     Here's a small example of building a model list module::
         
         from admin_tools.dashboard.models import *
+
+        class MyDashboard(Dashboard):
+            def __init__(self, **kwargs): 
+                Dashboard.__init__(self, **kwargs)
         
-        mydashboard = Dashboard()
-        # will only list the django.contrib.auth models
-        mydashboard.append(ModelListDashboardModule(
-            title='Authentication',
-            include_list=('django.contrib.auth',)
-        )) 
+                # will only list the django.contrib.auth models
+                self.children.append(ModelListDashboardModule(
+                    title='Authentication',
+                    include_list=('django.contrib.auth',)
+                ))
 
     The screenshot of what this code produces:
 
@@ -494,15 +535,16 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
         the django.contrib.auth.Group model line will not be displayed.
     """
 
-    def __init__(self, *args, **kwargs):
-        super(ModelListDashboardModule, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super(ModelListDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', '')
         self.template = kwargs.get('template',
                                    'dashboard/modules/model_list.html')
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
+        request = context['request']
         for model, model_admin in admin.site._registry.items():
             perms = self._check_perms(request, model, model_admin)
             if not perms:
@@ -513,10 +555,10 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
                 model_dict['change_url'] = self._get_admin_change_url(model)
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model)
-            self.entries.append(model_dict)
+            self.children.append(model_dict)
 
         # sort model list alphabetically
-        self.entries.sort(lambda x, y: cmp(x['title'], y['title']))
+        self.children.sort(lambda x, y: cmp(x['title'], y['title']))
 
 
 class RecentActionsDashboardModule(DashboardModule):
@@ -536,26 +578,29 @@ class RecentActionsDashboardModule(DashboardModule):
         displayed.
 
     ``limit``
-        The maximum number of entries to display. Default value: 10.
+        The maximum number of children to display. Default value: 10.
 
     Here's a small example of building a recent actions module::
         
         from admin_tools.dashboard.models import *
         
-        mydashboard = Dashboard()
-        # will only list the django.contrib apps
-        mydashboard.append(RecentActionsDashboardModule(
-            title='Django CMS recent actions',
-            include_list=('cms.page', 'cms.cmsplugin',)
-        ))
+        class MyDashboard(Dashboard):
+            def __init__(self, **kwargs): 
+                Dashboard.__init__(self, **kwargs)
+
+                # will only list the django.contrib apps
+                self.children.append(RecentActionsDashboardModule(
+                    title='Django CMS recent actions',
+                    include_list=('cms.page', 'cms.cmsplugin',)
+                ))
 
     The screenshot of what this code produces:
 
     .. image:: images/recentactions_dashboard_module.png
     """
 
-    def __init__(self, *args, **kwargs):
-        super(RecentActionsDashboardModule, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super(RecentActionsDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Recent Actions'))
         self.template = kwargs.get('template',
                                    'dashboard/modules/recent_actions.html')
@@ -563,9 +608,11 @@ class RecentActionsDashboardModule(DashboardModule):
         self.exclude_list = kwargs.get('exclude_list', [])
         self.limit = kwargs.get('limit', 10)
 
-    def render(self, request):
+    def init_with_context(self, context):
         from django.db.models import Q
         from django.contrib.admin.models import LogEntry
+
+        request = context['request']
 
         def get_qset(list):
             qset = None
@@ -597,8 +644,8 @@ class RecentActionsDashboardModule(DashboardModule):
         if self.exclude_list:
             qs = qs.exclude(get_qset(self.exclude_list))
 
-        self.entries = qs.select_related('content_type', 'user')[:self.limit]
-        if not len(self.entries):
+        self.children = qs.select_related('content_type', 'user')[:self.limit]
+        if not len(self.children):
             self.pre_content = _('No recent actions.')
 
 
@@ -620,33 +667,36 @@ class FeedDashboardModule(DashboardModule):
         The URL of the feed.
 
     ``limit``
-        The maximum number of feed entries to display. Default value: None, 
-        which means that all entries are displayed.
+        The maximum number of feed children to display. Default value: None, 
+        which means that all children are displayed.
 
     Here's a small example of building a recent actions module::
         
         from admin_tools.dashboard.models import *
         
-        mydashboard = Dashboard()
-        # will only list the django.contrib apps
-        mydashboard.append(FeedDashboardModule(
-            title=_('Latest Django News'),
-            feed_url='http://www.djangoproject.com/rss/weblog/',
-            limit=5
-        ))
+        class MyDashboard(Dashboard):
+            def __init__(self, **kwargs): 
+                Dashboard.__init__(self, **kwargs)
+ 
+                # will only list the django.contrib apps
+                self.children.append(FeedDashboardModule(
+                    title=_('Latest Django News'),
+                    feed_url='http://www.djangoproject.com/rss/weblog/',
+                    limit=5
+                ))
 
     The screenshot of what this code produces:
 
     .. image:: images/feed_dashboard_module.png
     """
-    def __init__(self, *args, **kwargs):
-        super(FeedDashboardModule, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super(FeedDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('RSS Feed'))
         self.template = kwargs.get('template', 'dashboard/modules/feed.html')
         self.feed_url = kwargs.get('feed_url')
         self.limit = kwargs.get('limit')
 
-    def render(self, request):
+    def init_with_context(self, context):
         import datetime
         if self.feed_url is None:
             raise ValueError('You must provide a valid feed URL')
@@ -667,7 +717,7 @@ class FeedDashboardModule(DashboardModule):
             except:
                 # no date for certain feeds
                 pass
-            self.entries.append(entry)
+            self.children.append(entry)
 
 
 class DefaultIndexDashboard(Dashboard):
@@ -681,17 +731,17 @@ class DefaultIndexDashboard(Dashboard):
     And then set the ``ADMIN_TOOLS_INDEX_DASHBOARD`` settings variable to 
     point to your custom index dashboard class.
     """ 
-    def __init__(self, *args, **kwargs):
-        super(DefaultIndexDashboard, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        Dashboard.__init__(self, **kwargs)
 
         # append a link list module for "quick links"
-        self.append(LinkListDashboardModule(
+        self.children.append(LinkListDashboardModule(
             title=_('Quick links'),
             layout='inline',
             draggable=False,
             deletable=False,
             collapsible=False,
-            entries=[
+            children=[
                 {
                     'title': _('Return to site'),
                     'url': '/',
@@ -708,26 +758,26 @@ class DefaultIndexDashboard(Dashboard):
         ))
 
         # append an app list module for "Applications"
-        self.append(AppListDashboardModule(
+        self.children.append(AppListDashboardModule(
             title=_('Applications'),
             exclude_list=('django.contrib',),
         ))
 
         # append an app list module for "Administration"
-        self.append(AppListDashboardModule(
+        self.children.append(AppListDashboardModule(
             title=_('Administration'),
             include_list=('django.contrib',),
         ))
 
         # append a recent actions module
-        self.append(RecentActionsDashboardModule(
+        self.children.append(RecentActionsDashboardModule(
             enabled=False,
             title=_('Recent Actions'),
             limit=5
         ))
 
         # append a feed module
-        self.append(FeedDashboardModule(
+        self.children.append(FeedDashboardModule(
             enabled=False,
             title=_('Latest Django News'),
             feed_url='http://www.djangoproject.com/rss/weblog/',
@@ -735,9 +785,9 @@ class DefaultIndexDashboard(Dashboard):
         ))
 
         # append another link list module for "support". 
-        self.append(LinkListDashboardModule(
+        self.children.append(LinkListDashboardModule(
             title=_('Support'),
-            entries=[
+            children=[
                 {
                     'title': _('Django documentation'),
                     'url': 'http://docs.djangoproject.com/',
@@ -768,19 +818,20 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
     And then set the ``ADMIN_TOOLS_APP_INDEX_DASHBOARD`` settings variable to 
     point to your custom app index dashboard class.
     """
-    def render(self, request):
+    def __init__(self, **kwargs):
+        AppIndexDashboard.__init__(self, **kwargs)
 
         # we disable title because its redundant with the model list module
         self.title = ''
 
         # append a model list module
-        self.append(ModelListDashboardModule(
+        self.children.append(ModelListDashboardModule(
             title=self.app_title,
             include_list=self.models,
         ))
 
         # append a recent actions module
-        self.append(RecentActionsDashboardModule(
+        self.children.append(RecentActionsDashboardModule(
             title=_('Recent Actions'),
             include_list=self.get_app_content_types(),
             limit=5

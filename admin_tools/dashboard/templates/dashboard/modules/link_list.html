@@ -2,9 +2,9 @@
 {% block module_content %}
 <ul class="{{ module.layout }}">
     {% spaceless %}
-    {% for entry in module.entries %}
+    {% for child in module.children %}
     <li class="{% cycle 'odd' 'even' %}">
-    <a{% if entry.external %} class="external-link"{% endif %} href="{{ entry.url }}" {% if entry.description %} title="{{ entry.description }}"{% endif %}>{{ entry.title }}</a> 
+    <a{% if child.external %} class="external-link"{% endif %} href="{{ child.url }}" {% if child.description %} title="{{ child.description }}"{% endif %}>{{ child.title }}</a> 
     </li>
     {% endfor %}
     {% endspaceless %}

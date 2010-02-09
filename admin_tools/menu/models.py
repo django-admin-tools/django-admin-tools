@@ -9,14 +9,20 @@ from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
 
 
-class Menu(list):
+class Menu(object):
     """
-    Base class for menus.
-    The Menu class is a simple python list that has an extra property:
+    This is the base class for creating custom navigation menus.
+    A menu can have the following properties:
     
     ``template``
-        The template to use to render the menu.
+        A string representing the path to template to use to render the menu.
+        As for any other template, the path must be relative to one of the 
+        directories of your ``TEMPLATE_DIRS`` setting.
         Default value: "menu/menu.html".
+    
+    ``children``
+        A list of children menu items. All children items mus be instances of
+        the ``MenuItem`` class.
 
     If you want to customize the look of your menu and it's menu items, you
     can declare css stylesheets and/or javascript files to include when 
@@ -29,18 +35,29 @@ class Menu(list):
                 css = ('/media/css/mymenu.css',)
                 js = ('/media/js/mymenu.js',)
 
-    Here's an example of a custom menu::
+    Here's a concrete example of a custom menu::
 
+        from django.core.urlresolvers import reverse
         from admin_tools.menu.models import *
 
         class MyMenu(Menu):
-            def render(self, request):
-                self.append(MenuItem(title='Home', url=reverse('admin:index')))
-                self.append(AppListMenuItem(title='Applications'))
-                item = MenuItem('Multi level menu item')
-                item.append(MenuItem('Child 1'))
-                item.append(MenuItem('Child 2'))
-                self.append(item)
+            def __init__(self, **kwargs):
+                super(MyMenu, self).__init__(**kwargs)
+                self.children.append(
+                    MenuItem(title='Home', url=reverse('admin:index'))
+                )
+                self.children.append(
+                    AppListMenuItem(title='Applications')
+                )
+                self.children.append(
+                    MenuItem(
+                        title='Multi level menu item',
+                        children=[
+                            MenuItem('Child 1'),
+                            MenuItem('Child 2'),
+                        ]
+                    ),
+                )
 
     Below is a screenshot of the resulting menu:
 
@@ -51,28 +68,28 @@ class Menu(list):
         css = ()
         js  = ()
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, **kwargs):
         """
-        Manu constructor, keyword argument:
-        * ``template``: the path to the menu template (optional)
+        Menu constructor.
         """
-        super(Menu, self).__init__()
         self.template = kwargs.get('template', 'menu/menu.html')
+        self.children = kwargs.get('children', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
         """
-        The ``Menu.render()`` method is called just before the display with a 
-        ``django.http.HttpRequest`` as unique argument.
-        Override this method to build your menu if you need to access to the
-        request instance.
+        Sometimes you may need to access context or request variables to build
+        your menu, this is what the ``init_with_context()`` method is for.
+        This method is called just before the display with a 
+        ``django.template.RequestContext`` as unique argument, so you can 
+        access to all context variables and to the ``django.http.HttpRequest``.
         """
         pass
 
 
-class MenuItem(list):
+class MenuItem(object):
     """
-    Base class for menu items.
-    A menu item is a simple python list that has some additional properties:
+    This is the base class for custom menu items.
+    A menu item can have the following properties:
 
     ``title``
         String that contains the menu item title, make sure you use the
@@ -85,7 +102,7 @@ class MenuItem(list):
 
     ``css_classes``
         A list of css classes to be added to the menu item ``li`` class 
-        attribute. Default value: None.
+        attribute. Default value: [].
 
     ``accesskey``
         The menu item accesskey. Default value: None.
@@ -98,43 +115,57 @@ class MenuItem(list):
         The template to use to render the menu item.
         Default value: 'menu/item.html'.
 
-    Menu items can be nested so for example you can do the following::
-
-        from admin_tools.menu.models import *
-
-        mymenu = Menu()
-        item = MenuItem(title='Foo')
-        item.append(MenuItem(title='Bar'))
-        mymenu.append(item)
+    ``children``
+        A list of children menu items. All children items must be instances of
+        the ``MenuItem`` class.
     """
 
-    def __init__(self, *args, **kwargs):
-        super(MenuItem, self).__init__()
+    def __init__(self, **kwargs):
+        """
+        ``MenuItem`` constructor.
+        """
         self.title = kwargs.get('title', 'Untitled menu item')
         self.url = kwargs.get('url', '#')
         self.css_classes = kwargs.get('css_classes', [])
         self.accesskey = kwargs.get('accesskey')
         self.description = kwargs.get('description')
         self.template = kwargs.get('template', 'menu/item.html')
+        self.children = kwargs.get('children', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
         """
-        The ``MenuItem.render()`` is called just before the display with a 
-        ``django.http.HttpRequest`` as unique argument.
-        You can use it to build your item when you need to access the request
-        instance, for example::
-
+        Like for menus, menu items have a ``init_with_context`` method that is
+        called with a ``django.template.RequestContext`` instance as unique 
+        argument.
+        This gives you enough flexibility to build complex items, for example,
+        let's build a "history" menu item, that will list the last ten visited
+        pages::
+            
             from admin_tools.menu.models import *
-        
-            class MyMenuItem(MenuItem):
-                def render(self, request):
-                    if request.user.username == 'foo':
-                        self.title = 'Foo'
-                    else:
-                        self.title = 'Bar'
 
-            mymenu = Menu()
-            mymenu.append(MyMenuItem())
+            class HistoryMenuItem(MenuItem):
+                def init_with_context(self, context):
+                    self.title = 'History'
+                    request = context['request']
+                    # we use sessions to store the visited pages stack
+                    history = request.session.get('history', [])
+                    for item in history:
+                        self.children.append(MenuItem(
+                            title=item['title'],
+                            url=item['url']
+                        ))
+                    # add the current page to the history
+                    history.insert(0, {
+                        'title': context['title'],
+                        'url': request.META['PATH_INFO']
+                    })
+                    if len(history) > 10:
+                        history = history[:10]
+                    request.session['history'] = history
+
+        Here's a screenshot of our history item:
+
+        .. image:: images/history_menu_item.png
         """
         pass
 
@@ -142,8 +173,8 @@ class MenuItem(list):
 class AppListMenuItem(MenuItem, AppListElementMixin):
     """
     A menu item that lists installed apps an their models.
-    As well as the ``MenuItem`` properties, the ``AppListMenuItem`` has two
-    extra properties:
+    In addition to the parent ``MenuItem`` properties, the ``AppListMenuItem``
+    has two extra properties:
 
     ``exclude_list``
         A list of apps to exclude, if an app name (e.g. "django.contrib.auth"
@@ -160,14 +191,14 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
     Here's a small example of building an app list menu item::
  
         from admin_tools.menu.models import *
-     
-        mymenu = Menu()
-
-        # will list all apps except the django.contrib ones
-        mymenu.append(AppListMenuItem(
-            title='Applications',
-            exclude_list=('django.contrib',)
-        ))   
+         
+        class MyMenu(Menu):
+            def __init__(self, **kwargs):
+                super(MyMenu, self).__init__(**kwargs)
+                self.children.append(AppListMenuItem(
+                    title='Applications',
+                    exclude_list=('django.contrib',)
+                )
 
     The screenshot of what this code produces:
 
@@ -175,17 +206,25 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
 
     .. note::
 
-        Note that this module takes into account user permissions, for 
-        example, if a user has no rights to change or add a ``Group``, then
-        the django.contrib.auth.Group model child item will not be displayed.
+        Note that this module takes into account user permissions, as a
+        consequence, if a user has no rights to change or add a ``Group`` for
+        example, the ``django.contrib.auth.Group model`` child item won't be 
+        displayed in the menu item.
     """
 
-    def __init__(self, *args, **kwargs):
-        super(AppListMenuItem, self).__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        """
+        ``AppListMenuItem`` constructor.
+        """
+        super(AppListMenuItem, self).__init__(**kwargs)
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
-    def render(self, request):
+    def init_with_context(self, context):
+        """
+        Please refer to the ``MenuItem::init_with_context()`` documentation.
+        """
+        request = context['request']
         apps = {}
         for model, model_admin in admin.site._registry.items():
             perms = self._check_perms(request, model, model_admin)
@@ -211,13 +250,13 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
             # sort model list alphabetically
             apps[app]['models'].sort(lambda x, y: cmp(x['title'], y['title']))
             for model_dict in apps[app]['models']:
-                item.append(MenuItem(**model_dict))
-            self.append(item)
+                item.children.append(MenuItem(**model_dict))
+            self.children.append(item)
 
 
 class DefaultMenu(Menu):
     """
-    The default menu displayed by default by django-admin-tools.
+    The default menu displayed by django-admin-tools.
     To change the default menu you'll have to type the following from the
     commandline in your project root directory::
 
@@ -226,16 +265,17 @@ class DefaultMenu(Menu):
     And then set the ``ADMIN_TOOLS_MENU`` settings variable to point to your
     custom menu class.
     """
-    def render(self, request):
-        self.append(MenuItem(
+    def __init__(self, **kwargs):
+        super(DefaultMenu, self).__init__(**kwargs)
+        self.children.append(MenuItem(
             title=_('Dashboard'),
             url=reverse('admin:index')
         ))
-        self.append(AppListMenuItem(
+        self.children.append(AppListMenuItem(
             title=_('Applications'),
-            exclude_list=('django.contrib',),
+            exclude_list=('django.contrib',)
         ))
-        self.append(AppListMenuItem(
+        self.children.append(AppListMenuItem(
             title=_('Administration'),
-            include_list=('django.contrib',),
+            include_list=('django.contrib',)
         ))

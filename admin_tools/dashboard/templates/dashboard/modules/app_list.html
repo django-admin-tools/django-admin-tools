@@ -1,10 +1,10 @@
 {% extends "dashboard/module.html" %}
 {% load i18n %}
 {% block module_content %}
-        {% for entry in module.entries %}
-        <h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+        {% for child in module.children %}
+        <h3><a href="{{ child.url }}">{{ child.title }}</a></h3>
         <ul>
-            {% for model in entry.models %}
+            {% for model in child.models %}
             {% spaceless %}
             <li>
                 {% if model.change_url %}<a href="{{ model.change_url }}">{{ model.title }}</a>{% else %}{{ model.title }}{% endif %}
