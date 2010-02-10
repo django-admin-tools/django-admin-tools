@@ -818,8 +818,8 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
     And then set the ``ADMIN_TOOLS_APP_INDEX_DASHBOARD`` settings variable to 
     point to your custom app index dashboard class.
     """
-    def __init__(self, **kwargs):
-        AppIndexDashboard.__init__(self, **kwargs)
+    def __init__(self, *args, **kwargs):
+        AppIndexDashboard.__init__(self, *args, **kwargs)
 
         # we disable title because its redundant with the model list module
         self.title = ''

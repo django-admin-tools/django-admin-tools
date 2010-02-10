@@ -99,8 +99,8 @@ class CustomAppIndexDashboard(AppIndexDashboard):
     """
     Custom app index dashboard for {{ project }}.
     """ 
-    def __init__(self, **kwargs):
-        AppIndexDashboard.__init__(self, **kwargs)
+    def __init__(self, *args, **kwargs):
+        AppIndexDashboard.__init__(self, *args, **kwargs)
 
         # we disable title because its redundant with the model list module
         self.title = ''
