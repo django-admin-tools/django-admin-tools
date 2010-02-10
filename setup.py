@@ -26,12 +26,18 @@ for dirpath, dirnames, filenames in os.walk('admin_tools'):
             data_files.append(os.path.join(prefix, f))
 
 bitbucket_url = 'http://www.bitbucket.org/izi/django-admin-tools/'
+long_desc = '''
+%s
+
+%s
+''' % (open('README').read(), open('CHANGELOG').read())
 
 setup(
     name='django-admin-tools',
     version=VERSION.replace(' ', '-'),
     description=('A collection of tools for the django administration '
                  'interface'),
+    long_description=long_desc,
     author='David Jean Louis',
     author_email='izimobil@gmail.com',
     url=bitbucket_url,
@@ -39,6 +45,7 @@ setup(
     package_dir={'admin_tools': 'admin_tools'},
     packages=packages,
     package_data={'admin_tools': data_files},
+    license='MIT License',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
