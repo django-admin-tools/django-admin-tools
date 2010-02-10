@@ -1,4 +1,4 @@
-{% load i18n dashboard_tags %}
+{% load i18n admin_tools_dashboard_tags %}
 
 <script type="text/javascript" charset="utf-8">
     // When jQuery is sourced, it's going to overwrite whatever might be in the
@@ -55,5 +55,5 @@ $(document).ready(function() {
 </div>
 <div id="{{ dashboard.get_id }}" class="dashboard-container">
     {% for module in dashboard.children %}
-{% render_dashboard_module module forloop.counter %}{% endfor %}
+{% admin_tools_render_dashboard_module module forloop.counter %}{% endfor %}
 </div>

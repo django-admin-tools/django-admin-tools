@@ -1,10 +1,10 @@
 {% extends "admin/base.html" %}
-{% load i18n menu_tags %}
+{% load i18n admin_tools_menu_tags %}
 {% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
 {% block extrastyle %}
 {{ block.super }}
-{% render_menu_css %}
+{% admin_tools_render_menu_css %}
 {% endblock %}
 
 {% block branding %}
@@ -13,6 +13,6 @@
 
 {% block nav-global %}
 {% if user and user.is_authenticated %}
-{% render_menu %}
+{% admin_tools_render_menu %}
 {% endif %}
 {% endblock %}

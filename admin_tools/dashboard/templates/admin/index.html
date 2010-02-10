@@ -1,9 +1,9 @@
 {% extends "admin/base_site.html" %}
-{% load i18n dashboard_tags %}
+{% load i18n admin_tools_dashboard_tags %}
 
 {% block extrastyle %}
 {{ block.super }}
-{% block dashboard_css %}{% render_dashboard_css %}{% endblock %}
+{% block dashboard_css %}{% admin_tools_render_dashboard_css %}{% endblock %}
 {% endblock %}
 
 {% block bodyclass %}dashboard{% endblock %}
@@ -11,5 +11,5 @@
 {% block breadcrumbs %}{% endblock %}
 {% block content_title %}{% endblock %}
 {% block content %}
-{% render_dashboard %}
+{% admin_tools_render_dashboard %}
 {% endblock %}

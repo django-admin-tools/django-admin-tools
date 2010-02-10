@@ -1,9 +1,9 @@
 {% extends "admin/index.html" %} 
-{% load i18n dashboard_tags %} 
+{% load i18n admin_tools_dashboard_tags %} 
 
 {% if not is_popup %}
 
-{% block dashboard_css %}{% render_dashboard_css 'app_index' %}{% endblock %}
+{% block dashboard_css %}{% admin_tools_render_dashboard_css 'app_index' %}{% endblock %}
 {% block breadcrumbs %}
 <div class="breadcrumbs"><a href="../">
 {% trans "Home" %}</a> &rsaquo; 
@@ -14,6 +14,6 @@
 {% endif %} 
 
 {% block content %}
-{% render_dashboard 'app_index' %}
+{% admin_tools_render_dashboard 'app_index' %}
 {% endblock %}
 {% block sidebar %}{% endblock %}

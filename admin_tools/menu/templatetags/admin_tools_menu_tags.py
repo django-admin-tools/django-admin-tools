@@ -1,11 +1,11 @@
 """
 Menu template tags, the following menu tags are available:
 
- * ``{% render_menu %}``
- * ``{% render_menu_item %}``
- * ``{% render_menu_css %}``
+ * ``{% admin_tools_render_menu %}``
+ * ``{% admin_tools_render_menu_item %}``
+ * ``{% admin_tools_render_menu_css %}``
 
-To load the menu tags in your templates: ``{% load menu_tags %}``.
+To load the menu tags in your templates: ``{% load admin_tools_menu_tags %}``.
 """
 
 from django import template
@@ -16,7 +16,7 @@ from admin_tools.menu.utils import get_admin_menu
 register = template.Library()
 tag_func = register.inclusion_tag('menu/dummy.html', takes_context=True)
 
-def render_menu(context, menu=None):
+def admin_tools_render_menu(context, menu=None):
     """
     Template tag that renders the menu, it takes an optional ``Menu`` instance
     as unique argument, if not given, the menu will be retrieved with the
@@ -33,10 +33,10 @@ def render_menu(context, menu=None):
         'media_url': settings.MEDIA_URL.rstrip('/'),
     })
     return context
-render_menu = tag_func(render_menu)
+admin_tools_render_menu = tag_func(admin_tools_render_menu)
 
 
-def render_menu_item(context, item, index=None):
+def admin_tools_render_menu_item(context, item, index=None):
     """
     Template tag that renders a given menu item, it takes a ``MenuItem``
     instance as unique parameter.
@@ -49,10 +49,10 @@ def render_menu_item(context, item, index=None):
         'index': index,
     })
     return context
-render_menu_item = tag_func(render_menu_item)
+admin_tools_render_menu_item = tag_func(admin_tools_render_menu_item)
 
 
-def render_menu_css(context, menu=None):
+def admin_tools_render_menu_css(context, menu=None):
     """
     Template tag that renders the menu css files,, it takes an optional 
     ``Menu`` instance as unique argument, if not given, the menu will be
@@ -67,4 +67,4 @@ def render_menu_css(context, menu=None):
         'media_url': settings.MEDIA_URL.rstrip('/'),
     })
     return context
-render_menu_css = tag_func(render_menu_css)
+admin_tools_render_menu_css = tag_func(admin_tools_render_menu_css)

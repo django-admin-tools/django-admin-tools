@@ -1,4 +1,4 @@
-{% load menu_tags %}
+{% load admin_tools_menu_tags %}
 {% if menu.children %}
 <!--[if IE 6]>
 <script type="text/javascript">
@@ -14,6 +14,6 @@ window.onload = hover_ie6;
 <![endif]-->
 
 <ul id="navigation-menu">
-    {% for item in menu.children %}{% render_menu_item item forloop.counter %}{% endfor %}
+    {% for item in menu.children %}{% admin_tools_render_menu_item item forloop.counter %}{% endfor %}
 </ul>
 {% endif %}

@@ -1,10 +1,10 @@
 """
 Dashboard template tags, the following dashboard tags are available:
- * ``{% render_dashboard %}``
- * ``{% render_dashboard_module %}``
- * ``{% render_dashboard_css %}``
+ * ``{% admin_tools_render_dashboard %}``
+ * ``{% admin_tools_render_dashboard_module %}``
+ * ``{% admin_tools_render_dashboard_css %}``
 
-To load the dashboard tags: ``{% load dashboard_tags %}``.
+To load the dashboard tags: ``{% load admin_tools_dashboard_tags %}``.
 """
 
 import math
@@ -16,7 +16,7 @@ register = template.Library()
 tag_func = register.inclusion_tag('dashboard/dummy.html', takes_context=True)
 
 
-def render_dashboard(context, location='index', dashboard=None):
+def admin_tools_render_dashboard(context, location='index', dashboard=None):
     """
     Template tag that renders the dashboard, it takes two optional arguments:
     
@@ -43,10 +43,10 @@ def render_dashboard(context, location='index', dashboard=None):
                                 if not m.enabled]) > 0,
     })
     return context
-render_dashboard = tag_func(render_dashboard)
+admin_tools_render_dashboard = tag_func(admin_tools_render_dashboard)
 
 
-def render_dashboard_module(context, module, index=None):
+def admin_tools_render_dashboard_module(context, module, index=None):
     """
     Template tag that renders a given dashboard module, it takes a
     ``DashboardModule`` instance as first parameter and an integer ``index`` as
@@ -59,10 +59,10 @@ def render_dashboard_module(context, module, index=None):
         'index': index,
     })
     return context
-render_dashboard_module = tag_func(render_dashboard_module)
+admin_tools_render_dashboard_module = tag_func(admin_tools_render_dashboard_module)
 
 
-def render_dashboard_css(context, location='index', dashboard=None):
+def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
     """
     Template tag that renders the dashboard css files, it takes two optional
     arguments:
@@ -86,4 +86,4 @@ def render_dashboard_css(context, location='index', dashboard=None):
         'media_url': settings.MEDIA_URL.rstrip('/'),
     })
     return context
-render_dashboard_css = tag_func(render_dashboard_css)
+admin_tools_render_dashboard_css = tag_func(admin_tools_render_dashboard_css)
