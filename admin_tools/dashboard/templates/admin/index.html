@@ -3,7 +3,7 @@
 
 {% block extrastyle %}
 {{ block.super }}
-{% render_dashboard_css %}
+{% block dashboard_css %}{% render_dashboard_css %}{% endblock %}
 {% endblock %}
 
 {% block bodyclass %}dashboard{% endblock %}

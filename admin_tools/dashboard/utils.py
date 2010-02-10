@@ -13,32 +13,18 @@ from admin_tools.dashboard import Registry
 from admin_tools.dashboard.models import *
 
 
-
-def get_dashboard_from_context(context):
+def get_dashboard(context, location):
     """
-    Return the dashboard instance given the context.
+    Returns the dashboard that match the given ``location``
+    (index or app_index).
     """
-    request = context['request']
-    if request.META.get('REQUEST_URI') == reverse('admin:index'):
-        return get_index_dashboard()
-    # this is a mess, needs cleanup !
-    app = context['app_list'][0]
-    models = []
-    app_label = None
-    app_title = app['name']
-    for model, model_admin in admin.site._registry.items():
-        if app['name'] == model._meta.app_label.title():
-            split = model.__module__.find(model._meta.app_label)
-            app_label = model.__module__[0:split] + model._meta.app_label
-            app_title = model._meta.app_label.title
-            for m in app['models']:
-                if m['name'] == capfirst(model._meta.verbose_name_plural):
-                    mod = '%s.%s' % (model.__module__, model.__name__)
-                    models.append(mod)
-    return get_app_index_dashboard(app_label, app_title, models)
+    if location == 'index':
+        return get_index_dashboard(context)
+    elif location == 'app_index':
+        return get_app_index_dashboard(context)
+    raise ValueError('Invalid dashboard location: "%s"' % location)
 
-
-def get_index_dashboard():
+def get_index_dashboard(context):
     """
     Returns the admin dashboard defined by the user or the default one.
     """
@@ -58,10 +44,24 @@ def get_index_dashboard():
     return getattr(mod, inst)()
 
 
-def get_app_index_dashboard(app_label=None, app_title='', model_list=[]):
+def get_app_index_dashboard(context):
     """
     Returns the admin dashboard defined by the user or the default one.
     """
+    # this is a mess, needs cleanup !
+    app = context['app_list'][0]
+    model_list = []
+    app_label = None
+    app_title = app['name']
+    for model, model_admin in admin.site._registry.items():
+        if app['name'] == model._meta.app_label.title():
+            split = model.__module__.find(model._meta.app_label)
+            app_label = model.__module__[0:split] + model._meta.app_label
+            app_title = model._meta.app_label.title()
+            for m in app['models']:
+                if m['name'] == capfirst(model._meta.verbose_name_plural):
+                    mod = '%s.%s' % (model.__module__, model.__name__)
+                    model_list.append(mod)
 
     # if an app has registered its own dashboard, use it
     if app_label is not None and app_label in Registry.registry:

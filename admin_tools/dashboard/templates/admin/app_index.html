@@ -3,6 +3,7 @@
 
 {% if not is_popup %}
 
+{% block dashboard_css %}{% render_dashboard_css 'app_index' %}{% endblock %}
 {% block breadcrumbs %}
 <div class="breadcrumbs"><a href="../">
 {% trans "Home" %}</a> &rsaquo; 
@@ -13,6 +14,6 @@
 {% endif %} 
 
 {% block content %}
-{% render_dashboard %}
+{% render_dashboard 'app_index' %}
 {% endblock %}
 {% block sidebar %}{% endblock %}

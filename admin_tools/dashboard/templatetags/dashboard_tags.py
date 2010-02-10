@@ -10,20 +10,29 @@ To load the dashboard tags: ``{% load dashboard_tags %}``.
 import math
 from django import template
 from django.conf import settings
-from admin_tools.dashboard.utils import get_dashboard_from_context
+from admin_tools.dashboard.utils import get_dashboard
 
 register = template.Library()
 tag_func = register.inclusion_tag('dashboard/dummy.html', takes_context=True)
 
 
-def render_dashboard(context, dashboard=None):
+def render_dashboard(context, location='index', dashboard=None):
     """
-    Template tag that renders the dashboard, it takes an optional ``Dashboard``
-    instance as unique argument, if not given, the dashboard is retrieved with
-    the ``get_dashboard_from_context`` function.
+    Template tag that renders the dashboard, it takes two optional arguments:
+    
+    ``location``
+        The location of the dashboard, it can be 'index' (for the admin index
+        dashboard) or 'app_index' (for the app index dashboard), the default
+        value is 'index'.
+
+    ``dashboard``
+        An instance of ``Dashboard``, if not given, the dashboard is retrieved
+        with the ``get_index_dashboard`` or ``get_app_index_dashboard``
+        functions, depending on the ``location`` argument.
     """
-    if not dashboard:
-        dashboard = get_dashboard_from_context(context)
+    if dashboard is None:
+        dashboard = get_dashboard(context, location)
+
     dashboard.init_with_context(context)
     context.update({
         'template': dashboard.template,
@@ -53,12 +62,23 @@ def render_dashboard_module(context, module, index=None):
 render_dashboard_module = tag_func(render_dashboard_module)
 
 
-def render_dashboard_css(context, dashboard=None):
+def render_dashboard_css(context, location='index', dashboard=None):
     """
-    Template tag that renders the dashboard css files.
+    Template tag that renders the dashboard css files, it takes two optional
+    arguments:
+    
+    ``location``
+        The location of the dashboard, it can be 'index' (for the admin index
+        dashboard) or 'app_index' (for the app index dashboard), the default
+        value is 'index'.
+
+    ``dashboard``
+        An instance of ``Dashboard``, if not given, the dashboard is retrieved
+        with the ``get_index_dashboard`` or ``get_app_index_dashboard``
+        functions, depending on the ``location`` argument.
     """
     if dashboard is None:
-        dashboard = get_dashboard_from_context(context)
+        dashboard = get_dashboard(context, location)
 
     context.update({
         'template' : 'dashboard/css.html',
