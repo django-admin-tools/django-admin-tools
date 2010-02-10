@@ -1,10 +1,19 @@
-=========================
+============================
 django-admin-tools changelog
-=========================
+============================
 
 
-Version 0.1.0, 30 January 2010:
--------------------------------
+Version 0.1.1, 10 February 2010:
+--------------------------------
 
-* Initial import of the project to Bitbucket:
-  http://bitbucket.org/izi/django-admin-tools/
+* fixed issue #2: template tag libraries have generic names;
+* changed the way dashboards are selected, don't rely on request variables but 
+  pass an extra argument to the template tag instead (fixes issue #3);
+* fixed MANIFEST.in (fixes issue #1);
+* better setup.py file.
+
+
+Version 0.1.0, 10 February 2010:
+--------------------------------
+
+* Initial release
