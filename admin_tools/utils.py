@@ -11,7 +11,6 @@ class AppListElementMixin(object):
     Mixin class used by both the AppListDashboardModule and the 
     AppListMenuItem (to honor the DRY concept).
     """
-
     def _check_perms(self, request, model, model_admin):
         mod = '%s.%s' % (model.__module__, model.__name__)
 
@@ -38,13 +37,6 @@ class AppListElementMixin(object):
         if True not in perms.values():
             return False
         return perms
-
-    def _get_app_title(self, model):
-        app_name = model._meta.app_label.title()
-        model_name = unicode(model._meta.verbose_name_plural)
-        if app_name.rstrip('s').lower() == model_name.rstrip('s').lower():
-            return capfirst(model_name)
-        return '%s > %s' % (app_name, capfirst(model_name))
 
     def _get_admin_change_url(self, model):
         app_label = model._meta.app_label
