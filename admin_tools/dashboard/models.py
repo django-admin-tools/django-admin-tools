@@ -380,7 +380,7 @@ class LinkListDashboardModule(DashboardModule):
                             'title': 'Python website',
                             'url': 'http://www.python.org',
                             'external': True,
-                            'title': 'Python programming language rocks !',
+                            'description': 'Python programming language rocks !',
                         },
                         {
                             'title': 'Django website',

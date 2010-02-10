@@ -20,6 +20,23 @@ django-admin-tools is composed of several modules:
 * admin_tools.dashboard: a customizable dashboard that replaces the django 
   administration index page.
 
+Prerequisite
+~~~~~~~~~~~~
+
+In order to use django-admin-tools you obviously need to have configured
+your django admin site, if you didn't, please refer to the 
+`relevant django documentation <http://docs.djangoproject.com/en/1.1/intro/tutorial02/#activate-the-admin-site>`_.
+
+.. important::
+    It is required that you use the django 1.1 syntax to declare the 
+    django admin urls, e.g.::
+
+        urlpatterns = patterns('',
+            (r'^admin/', include(admin.site.urls)),
+        )
+
+    The old url style ``(r'^admin/(.*)', admin.site.root)`` won't work.
+
 Required settings
 ~~~~~~~~~~~~~~~~~
 
@@ -62,7 +79,6 @@ For example, if you just want to use the dashboard::
         # ...other installed applications...
     )
 
-
 Setting up the django-admin-tools media files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -77,7 +93,6 @@ To do this you have two options:
   for example::
   
       cp -r /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
-
 
 Available settings variables
 ----------------------------

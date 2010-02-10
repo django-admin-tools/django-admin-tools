@@ -37,6 +37,23 @@ Basic configuration
 For a more detailed guide on how to configure django-admin-tools, please
 consult :ref:`the configuration section <configuration>`.
 
+Prerequisite
+~~~~~~~~~~~~
+
+In order to use django-admin-tools you obviously need to have configured
+your django admin site, if you didn't, please refer to the 
+`relevant django documentation <http://docs.djangoproject.com/en/1.1/intro/tutorial02/#activate-the-admin-site>`_.
+
+.. important::
+    It is required that you use the django 1.1 syntax to declare the 
+    django admin urls, e.g.::
+
+        urlpatterns = patterns('',
+            (r'^admin/', include(admin.site.urls)),
+        )
+
+    The old url style ``(r'^admin/(.*)', admin.site.root)`` won't work.
+
 Required settings
 ~~~~~~~~~~~~~~~~~
 
