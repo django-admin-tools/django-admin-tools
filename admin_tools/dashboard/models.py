@@ -703,7 +703,11 @@ class FeedDashboardModule(DashboardModule):
         try:
             import feedparser
         except ImportError:
-            raise ImportError('You must install the feedparser python module')
+            self.children.append({
+                'title': ('You must install the FeedParser python module'),
+                'warning': True,
+            })
+            return
 
         feed = feedparser.parse(self.feed_url)
         if self.limit is not None:
