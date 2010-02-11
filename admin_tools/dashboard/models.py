@@ -66,7 +66,6 @@ class Dashboard(object):
         
                 # append a recent actions module
                 self.children.append(RecentActionsDashboardModule(
-                    enabled=False,
                     title=_('Recent Actions'),
                     limit=5
                 ))
@@ -775,14 +774,12 @@ class DefaultIndexDashboard(Dashboard):
 
         # append a recent actions module
         self.children.append(RecentActionsDashboardModule(
-            enabled=False,
             title=_('Recent Actions'),
             limit=5
         ))
 
         # append a feed module
         self.children.append(FeedDashboardModule(
-            enabled=False,
             title=_('Latest Django News'),
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
