@@ -109,7 +109,6 @@ msgid "Django site admin"
 msgstr "Administracja stroną Django"
 
 #: menu/templates/admin/base_site.html:11
-#, fuzzy
 msgid "Django administration"
 msgstr "Administracja Django"
 
