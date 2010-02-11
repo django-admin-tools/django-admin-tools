@@ -11,6 +11,10 @@ Before installing django-admin-tools, you'll need to have a copy of
 Installing django-admin-tools
 -----------------------------
 
+django-admin-tools requires django version 1.1 or superior, optionally, 
+if you want to display feed modules, you'll also need the 
+`Universal Feed Parser module <http://www.feedparser.org/>`_.
+
 There are several ways to install django-admin-tools, this is explained 
 in :ref:`the installation section <installation>`.
 
