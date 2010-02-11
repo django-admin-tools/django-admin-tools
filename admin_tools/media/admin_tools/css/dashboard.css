@@ -9,9 +9,8 @@
 
 .warning {
     color: red;
-    background: transparent url(../images/admin-tools.png) 0 -410px no-repeat;
+    background: transparent url(../images/admin-tools.png) 0 -417px no-repeat;
     padding-left: 25px;
-    height: 25px;
 }
 
 .dashboard #content {
