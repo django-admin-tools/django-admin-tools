@@ -61,10 +61,14 @@
     });
 
     var preferences = false;
+    var cookie_name = false;
 
     var _initialize = function(elt, options) {
+        if (cookie_name === false) {
+            cookie_name = 'admin-tools.' + options.dashboard_id;
+        }
         if (preferences === false) {
-            var json_str = $.cookie('admin-tools.' + options.dashboard_id);
+            var json_str = $.cookie(cookie_name);
             preferences = json_str ? JSON.parse(json_str) : {};
         }
         // set ids if not set
@@ -268,7 +272,7 @@
             }
         } catch (e) {
         }
-        $.cookie('admin-tools.dashboard', JSON.stringify(preferences), {expires: 1825});
+        $.cookie(cookie_name, JSON.stringify(preferences), {expires: 1825});
     };
 
     var _get_positions = function(elt, options) {
