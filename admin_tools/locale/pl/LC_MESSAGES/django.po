@@ -37,7 +37,6 @@ msgid "No recent actions."
 msgstr "Brak ostatnio wykonywanych akcji"
 
 #: dashboard/models.py:694
-#, fuzzy
 msgid "RSS Feed"
 msgstr "Kanał RSS"
 
@@ -66,19 +65,16 @@ msgid "Latest Django News"
 msgstr "Najnowsze wiadomości o Django"
 
 #: dashboard/models.py:789
-#, fuzzy
 msgid "Support"
-msgstr "Wsparcie"
+msgstr "Pomoc"
 
 #: dashboard/models.py:792
-#, fuzzy
 msgid "Django documentation"
 msgstr "Dokumentacja Django"
 
 #: dashboard/models.py:797
-#, fuzzy
 msgid "Django \"django-users\" mailing list"
-msgstr "Lista\\ \"django-users \" "
+msgstr "Lista \"django-users \" "
 
 #: dashboard/models.py:802
 msgid "Django irc channel"
@@ -90,9 +86,9 @@ msgid "Home"
 msgstr "Początek"
 
 #: dashboard/templates/admin/app_index.html:11
-#, python-format
+#, python-format, fuzzy
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:43
 msgid "Modules"
@@ -109,9 +105,8 @@ msgid "Change"
 msgstr "Zmień"
 
 #: menu/templates/admin/base_site.html:3
-#, fuzzy
 msgid "Django site admin"
-msgstr "Administracja strony Django"
+msgstr "Administracja stroną Django"
 
 #: menu/templates/admin/base_site.html:11
 #, fuzzy
