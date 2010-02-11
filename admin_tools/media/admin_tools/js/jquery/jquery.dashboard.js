@@ -41,7 +41,9 @@
 
             return this.each(function() {
                 // set ids for dashboard modules
-                _set_ids($(this), options);
+                _initialize($(this), options);
+                // restore positions, must be done *before* columnize
+                _restore_positions($(this), options);
                 // columnize the dashboard modules
                 _columnize($(this), options);
                 // add draggable behaviour
@@ -58,8 +60,14 @@
         }
     });
 
+    var preferences = false;
 
-    var _set_ids = function(elt, options) {
+    var _initialize = function(elt, options) {
+        if (preferences === false) {
+            var json_str = $.cookie('admin-tools.' + options.dashboard_id);
+            preferences = json_str ? JSON.parse(json_str) : {};
+        }
+        // set ids if not set
         elt.children('div[id!=' + options.panel_id +']').each(function(index) {
             if (!$(this).attr('id')) {
                 $(this).attr('id', 'module_' + index);
@@ -67,25 +75,56 @@
         });
     };
 
+    var _restore_positions = function(elt, options) {
+        // restore positions
+        try {
+            var saved_positions = _get_preference('positions');
+        } catch (e) {
+            return;
+        }
+        var current_positions = _get_positions(elt, options);
+        var new_positions = [];
+
+        for(var v = 0; v < current_positions.length; v++) {
+            new_positions[current_positions[v]] = current_positions[v];
+        }
+
+        for(var i = 0; i < saved_positions.length; i++) {
+            // item id from saved order
+            var id = saved_positions[i];
+            if (id in new_positions) {
+                var item = new_positions[id];
+                var child = elt.children('#'+item);
+                // select the item according to the saved order
+                var saved = elt.children('#'+item);
+                child.remove();
+                elt.append(saved);
+            }
+        }
+    };
+
     var _columnize = function(elt, options) {
         var elts = elt.children('div[id!=' + options.panel_id +']');
         var size = Math.ceil(elts.length / options.columns);
+        var sizes = _get_preference('columns');
         var percent = Math.floor(100 / options.columns);
+        var start = 0;
+        var stop = 0;
         for (i = 0; i < options.columns; i++) {
-            start = i * size;
-            elts.slice(start, start+size).wrapAll(
+            if (!sizes[i]) {
+                start = i * size;
+                stop  = start + size;
+            } else {
+                start = (i == 0) ? 0 : sizes[i-1];
+                stop  = start + sizes[i];
+            }
+            elts.slice(start, stop).wrapAll(
                 '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>'
             );
         }
     };
 
-    var preferences = false;
-
     var _restore_preferences = function(elt, options) {
-        if (preferences === false) {
-            var json_str = $.cookie('admin-tools.' + options.dashboard_id);
-            preferences = json_str ? JSON.parse(json_str) : {};
-        }
         elt.children().children('.disabled').each(function() {
             _delete_element($(this), options);
         });
@@ -116,7 +155,15 @@
             placeholder: 'dashboard-placeholder',
             forcePlaceholderSize: true,
             cursor: 'crosshair',
-            opacity: 0.7
+            opacity: 0.7,
+            update: function() {
+                _set_preference('positions', false, _get_positions(elt, options));
+                var columns = [];
+                elt.children('.dashboard-column').each(function() {
+                    columns.push($(this).children().length);
+                });
+                _set_preference('columns', false, columns);
+            }
         });
     };
 
@@ -200,7 +247,10 @@
             if (preferences[cat] == undefined) {
                 preferences[cat] = {};
             }
-            return preferences[cat][id];
+            if (id) {
+                return preferences[cat][id];
+            }
+            return preferences[cat];
         } catch (e) {
             return defaultval ? defaultval : null;
         }
@@ -211,10 +261,30 @@
             if (preferences[cat] == undefined) {
                 preferences[cat] = {};
             }
-            preferences[cat][id] = val;
+            if (id) {
+                preferences[cat][id] = val;
+            } else {
+                preferences[cat] = val;
+            }
         } catch (e) {
         }
         $.cookie('admin-tools.dashboard', JSON.stringify(preferences), {expires: 1825});
     };
+
+    var _get_positions = function(elt, options) {
+        var modules = [];
+        if (!elt.children('.dashboard-column').length) {
+            elt.children('div[id!=' + options.panel_id +']').each(function() {
+                modules.push($(this).attr('id'));
+            });
+        } else {
+            elt.children('.dashboard-column').each(function() {
+                $.each($(this).sortable('toArray'), function(index, item) {
+                    modules.push(item);
+                });
+            });
+        }
+        return modules;
+    }
 
 })(jQuery);
