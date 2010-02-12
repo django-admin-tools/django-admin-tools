@@ -25,9 +25,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-(function(jQuery) {
+(function($) {
 
-    jQuery.fn.extend({
+    $.fn.extend({
         //pass the options variable to the function
         dashboard: function(options) {
             //Set the default values, use comma to separate the settings, example:
@@ -37,25 +37,25 @@
                 dashboard_module_class: 'dashboard-module',
                 columns: 2
             }    
-            var options = jQuery.extend(defaults, options);
+            var options = $.extend(defaults, options);
 
             return this.each(function() {
                 // set ids for dashboard modules
-                _initialize(jQuery(this), options);
+                _initialize($(this), options);
                 // restore positions, must be done *before* columnize
-                _restore_positions(jQuery(this), options);
+                _restore_positions($(this), options);
                 // columnize the dashboard modules
-                _columnize(jQuery(this), options);
+                _columnize($(this), options);
                 // add draggable behaviour
-                _set_draggable(jQuery(this), options);
+                _set_draggable($(this), options);
                 // add collapsible behaviour
-                _set_collapsible(jQuery(this), options);
+                _set_collapsible($(this), options);
                 // add deletable behaviour
-                _set_deletable(jQuery(this), options);
+                _set_deletable($(this), options);
                 // add addable behaviour to dashboard panel items
-                _set_addable(jQuery(this), options);
+                _set_addable($(this), options);
                 // restore user preferences
-                _restore_preferences(jQuery(this), options);
+                _restore_preferences($(this), options);
             });
         }
     });
@@ -68,13 +68,13 @@
             cookie_name = 'admin-tools.' + options.dashboard_id;
         }
         if (preferences === false) {
-            var json_str = jQuery.cookie(cookie_name);
+            var json_str = $.cookie(cookie_name);
             preferences = json_str ? JSON.parse(json_str) : {};
         }
         // set ids if not set
         elt.children('div[id!=' + options.panel_id +']').each(function(index) {
-            if (!jQuery(this).attr('id')) {
-                jQuery(this).attr('id', 'module_' + index);
+            if (!$(this).attr('id')) {
+                $(this).attr('id', 'module_' + index);
             }
         });
     };
@@ -130,23 +130,23 @@
 
     var _restore_preferences = function(elt, options) {
         elt.children().children('.disabled').each(function() {
-            _delete_element(jQuery(this), options);
+            _delete_element($(this), options);
         });
         if (preferences['disabled']) {
-            jQuery.each(preferences['disabled'], function(k, v) {
-                v ? _delete_element(jQuery('#'+k), options) : _add_element(jQuery('#'+k), options);
+            $.each(preferences['disabled'], function(k, v) {
+                v ? _delete_element($('#'+k), options) : _add_element($('#'+k), options);
             });
         }
         if (preferences['collapsed']) {
-            jQuery.each(preferences['collapsed'], function(k, v) {
+            $.each(preferences['collapsed'], function(k, v) {
                 if (v) {
-                    _toggle_element(jQuery('#'+k), options);
+                    _toggle_element($('#'+k), options);
                 }
             });
         }
         // if there's no element in the panel, hide it
-        if (!jQuery('#' + options.panel_id).find('li').length) {
-            jQuery('#' + options.panel_id).hide();
+        if (!$('#' + options.panel_id).find('li').length) {
+            $('#' + options.panel_id).hide();
         }
     };
 
@@ -164,7 +164,7 @@
                 _set_preference('positions', false, _get_positions(elt, options));
                 var columns = [];
                 elt.children('.dashboard-column').each(function() {
-                    columns.push(jQuery(this).children().length);
+                    columns.push($(this).children().length);
                 });
                 _set_preference('columns', false, columns);
             }
@@ -173,8 +173,8 @@
 
     var _set_collapsible = function(elt, options) {
         elt.find('.collapsible h2').each(function() {
-            jQuery(this).append('<a href="#" class="toggle-icon">Toggle</a>').find('a.toggle-icon').click(function() {
-                var prnt = jQuery(this).parent().parent();
+            $(this).append('<a href="#" class="toggle-icon">Toggle</a>').find('a.toggle-icon').click(function() {
+                var prnt = $(this).parent().parent();
                 _toggle_element(prnt, options, true);
             });
         });
@@ -190,20 +190,20 @@
 
     var _set_deletable = function(elt, options) {
         elt.find('.deletable h2').each(function() {
-            jQuery(this).append('<a href="#" class="close-icon">Close</a>').find('a.close-icon').click(function() {
-                var prnt = jQuery(this).parent().parent();
+            $(this).append('<a href="#" class="close-icon">Close</a>').find('a.close-icon').click(function() {
+                var prnt = $(this).parent().parent();
                 _delete_element(prnt, options, true);
             });
         });
     };
 
     var _delete_element = function(elt, options, save_preference) {
-        var existing = jQuery('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
+        var existing = $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
         if (!existing.length) {
-            var panel_ul = jQuery('#' + options.panel_id).find('ul');
+            var panel_ul = $('#' + options.panel_id).find('ul');
             if (!panel_ul.length) {
-                jQuery('#' + options.panel_id).append('<ul/>');
-                panel_ul = jQuery('#' + options.panel_id).find('ul');
+                $('#' + options.panel_id).append('<ul/>');
+                panel_ul = $('#' + options.panel_id).find('ul');
             }
             panel_ul.append(
                 '<li><a href="#" rel="' 
@@ -212,12 +212,12 @@
                 + elt.find('h2').contents().first().text() 
                 + '</a></li>'
             );
-            _set_addable(elt, options, jQuery('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']'));
+            _set_addable(elt, options, $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']'));
         } else {
             existing.parent().show();
         }
         elt.fadeOut('fast');
-        jQuery('#' + options.panel_id).show();
+        $('#' + options.panel_id).show();
         if (save_preference) {
             _set_preference('disabled', elt.attr('id'), true);
         }
@@ -225,15 +225,15 @@
 
     var _set_addable = function(elt, options, elts) {
         if (!elts) {
-            elts = jQuery('#'+options.panel_id).find('li a');
+            elts = $('#'+options.panel_id).find('li a');
         }
         elts.click(function() {
-            _add_element(jQuery('#'+jQuery(this).attr('rel')), options, true);
+            _add_element($('#'+$(this).attr('rel')), options, true);
         });
     };
 
     var _add_element = function(elt, options, save_preference) {
-        panel_elt = jQuery('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
+        panel_elt = $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
         panel_elt.parent().remove();
         elt.removeClass('disabled');
         elt.fadeIn('fast');
@@ -241,8 +241,8 @@
             _set_preference('disabled', elt.attr('id'), false);
         }
         // if there's no element in the panel, hide it
-        if (!jQuery('#' + options.panel_id).find('li').length) {
-            jQuery('#' + options.panel_id).hide();
+        if (!$('#' + options.panel_id).find('li').length) {
+            $('#' + options.panel_id).hide();
         }
     };
 
@@ -272,18 +272,18 @@
             }
         } catch (e) {
         }
-        jQuery.cookie(cookie_name, JSON.stringify(preferences), {expires: 1825});
+        $.cookie(cookie_name, JSON.stringify(preferences), {expires: 1825});
     };
 
     var _get_positions = function(elt, options) {
         var modules = [];
         if (!elt.children('.dashboard-column').length) {
             elt.children('div[id!=' + options.panel_id +']').each(function() {
-                modules.push(jQuery(this).attr('id'));
+                modules.push($(this).attr('id'));
             });
         } else {
             elt.children('.dashboard-column').each(function() {
-                jQuery.each(jQuery(this).sortable('toArray'), function(index, item) {
+                $.each($(this).sortable('toArray'), function(index, item) {
                     modules.push(item);
                 });
             });
