@@ -4,9 +4,11 @@ This module contains the base classes for menu and menu items.
 
 from django.contrib import admin
 from django.core.urlresolvers import reverse
+from django.utils.safestring import mark_safe
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
+from admin_tools.menu.utils import get_menu_bookmarks
 
 
 class Menu(object):
@@ -84,7 +86,7 @@ class Menu(object):
         access to all context variables and to the ``django.http.HttpRequest``.
         """
         pass
-
+    
 
 class MenuItem(object):
     """
@@ -111,6 +113,11 @@ class MenuItem(object):
         An optional string that will be used as the ``title`` attribute of 
         the menu-item ``a`` tag. Default value: None.
 
+    ``enabled``
+        Boolean that determines whether the menu item is enabled or not.
+        Disabled items are displayed but are not clickable.
+        Default value: True.
+
     ``template``
         The template to use to render the menu item.
         Default value: 'menu/item.html'.
@@ -129,6 +136,7 @@ class MenuItem(object):
         self.css_classes = kwargs.get('css_classes', [])
         self.accesskey = kwargs.get('accesskey')
         self.description = kwargs.get('description')
+        self.enabled = kwargs.get('enabled', True)
         self.template = kwargs.get('template', 'menu/item.html')
         self.children = kwargs.get('children', [])
 
@@ -254,6 +262,55 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
             self.children.append(item)
 
 
+class BookmarkMenuItem(MenuItem, AppListElementMixin):
+    """
+    A menu item that lists pages bookmarked by the user. This menu item also 
+    adds an extra button to the menu that allows the user to bookmark or
+    un-bookmark the current page.
+
+    Here's a small example of adding a bookmark menu item::
+ 
+        from admin_tools.menu.models import *
+         
+        class MyMenu(Menu):
+            def __init__(self, **kwargs):
+                super(MyMenu, self).__init__(**kwargs)
+                self.children.append(BookmarkMenuItem(title='My bookmarks'))
+
+    The screenshot of what this code produces:
+
+    .. image:: images/bookmark_menu_item.png
+    """
+
+    def __init__(self, **kwargs):
+        super(BookmarkMenuItem, self).__init__(**kwargs)
+        self.title = kwargs.get('title', _('Bookmarks'))
+
+    def init_with_context(self, context):
+        """
+        Please refer to the ``MenuItem::init_with_context()`` documentation.
+        """
+        try:
+            bookmarks = get_menu_bookmarks(context['request'])
+        except Exception, exc:
+            warning_item = MenuItem(
+                title='Bookmark menu item requires the simplejson module'
+            )
+            warning_item.css_classes.append('warning')
+            self.children.append(warning_item)
+            return
+
+        for b in bookmarks:
+            self.children.append(MenuItem(
+                url=b['url'],
+                title=mark_safe(b['title'])
+            ))
+        if not len(self.children):
+            self.enabled = False
+        if 'bookmark' not in self.css_classes:
+            self.css_classes.append('bookmark')
+
+
 class DefaultMenu(Menu):
     """
     The default menu displayed by django-admin-tools.
@@ -271,6 +328,7 @@ class DefaultMenu(Menu):
             title=_('Dashboard'),
             url=reverse('admin:index')
         ))
+        self.children.append(BookmarkMenuItem())
         self.children.append(AppListMenuItem(
             title=_('Applications'),
             exclude_list=('django.contrib',)

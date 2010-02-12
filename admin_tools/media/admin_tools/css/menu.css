@@ -1,6 +1,5 @@
 /* menu styles */
 
-
 #header {
     overflow: visible;
 }
@@ -23,10 +22,28 @@
     list-style: none;
 }
 
+#header ul li a {
+    white-space: nowrap;
+}
+
 #header #navigation-menu {
-    background: transparent url(../images/admin-tools.png) 0 -205px repeat-x;
     height: 35px;
     z-index: 9999;
+    background: transparent url(../images/admin-tools.png) repeat-x 0 -205px;
+}
+
+#header #bookmark-button {
+    position: absolute;
+    top: auto;
+    right: 15px;
+    height: 25px;
+    width: 24px;
+    margin-top: 4px;
+    background: transparent url(../images/admin-tools.png) no-repeat 0 -425px;
+}
+
+#header #bookmark-button.bookmarked {
+    background-position: 0 -445px;
 }
 
 #header ul#navigation-menu li {
@@ -42,11 +59,16 @@
     color: #555;
 }
 
+#header ul#navigation-menu li.disabled a {
+    color: #bbb;
+    cursor: default;
+}
 
 #header ul#navigation-menu li.first a {
-    margin-left: 12px;
-    background: transparent url(../images/admin-tools.png) 0 -380px no-repeat;
+    margin: 5px 0 0 12px;
+    padding-top: 4px;
     text-indent: 14px;
+    background: transparent url(../images/admin-tools.png) no-repeat 0 -385px;
 }
 
 #header ul#navigation-menu li span {
@@ -124,4 +146,9 @@
 #header ul#navigation-menu li ul li ul li:hover,
 #header ul#navigation-menu li ul li ul li.over {
     background: transparent url(../images/admin-tools.png) repeat-x 0 -245px;
+}
+
+#header ul#navigation-menu li.disabled:hover,
+#header ul#navigation-menu li.disabled .hover {
+    background: none;
 }

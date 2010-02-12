@@ -11,7 +11,8 @@ To load the menu tags in your templates: ``{% load admin_tools_menu_tags %}``.
 from django import template
 from django.conf import settings
 from django.http import HttpRequest
-from admin_tools.menu.utils import get_admin_menu
+from admin_tools.menu.models import BookmarkMenuItem
+from admin_tools.menu.utils import get_admin_menu, get_menu_bookmarks
 
 register = template.Library()
 tag_func = register.inclusion_tag('menu/dummy.html', takes_context=True)
@@ -26,11 +27,23 @@ def admin_tools_render_menu(context, menu=None):
         menu = get_admin_menu()
 
     menu.init_with_context(context)
+    has_bookmark_item = False
+    page_is_bookmarked = False
+    if len([c for c in menu.children if isinstance(c, BookmarkMenuItem)]) > 0:
+        has_bookmark_item = True
+        try:
+            request = context['request']
+            page_is_bookmarked = len([b for b in get_menu_bookmarks(request) \
+                if b['url'] == request.get_full_path()]) > 0
+        except Exception, exc:
+            pass
 
     context.update({
         'template': menu.template,
         'menu': menu,
         'media_url': settings.MEDIA_URL.rstrip('/'),
+        'has_bookmark_item': has_bookmark_item,
+        'page_is_bookmarked': page_is_bookmarked,
     })
     return context
 admin_tools_render_menu = tag_func(admin_tools_render_menu)
