@@ -7,21 +7,21 @@
  * @return void
  */
 var process_bookmarks = function(url, title, prompt_msg) {
-    var json_str = $.cookie('menu.bookmarks');
+    var json_str = jQuery.cookie('menu.bookmarks');
     var bookmarks = json_str ? JSON.parse(json_str) : [];
-    $('#bookmark-button').click(function() {
-        if ($(this).hasClass('bookmarked')) {
-            $(this).removeClass('bookmarked');
-            $('#navigation-menu li.bookmark ul li a[href="' + url + '"]').parent().remove();
-            if (!$('#navigation-menu li.bookmark ul li').length) {
-                $('#navigation-menu li.bookmark ul').remove();
-                $('#navigation-menu li.bookmark a span').remove();
-                $('#navigation-menu li.bookmark').addClass('disabled');
+    jQuery('#bookmark-button').click(function() {
+        if (jQuery(this).hasClass('bookmarked')) {
+            jQuery(this).removeClass('bookmarked');
+            jQuery('#navigation-menu li.bookmark ul li a[href="' + url + '"]').parent().remove();
+            if (!jQuery('#navigation-menu li.bookmark ul li').length) {
+                jQuery('#navigation-menu li.bookmark ul').remove();
+                jQuery('#navigation-menu li.bookmark a span').remove();
+                jQuery('#navigation-menu li.bookmark').addClass('disabled');
             }
             for (var i=0; i < bookmarks.length; i++) {
                 if (bookmarks[i].url == url) {
                     bookmarks.splice(i, 1);
-                    $.cookie('menu.bookmarks', JSON.stringify(bookmarks), {
+                    jQuery.cookie('menu.bookmarks', JSON.stringify(bookmarks), {
                         expires: 1825,
                         path: '/admin/' // harcode path to have a unique cookie across pages
                     });
@@ -33,15 +33,15 @@ var process_bookmarks = function(url, title, prompt_msg) {
             if (!title) {
                 return;
             }
-            $(this).addClass('bookmarked');
-            if (!$('#navigation-menu li.bookmark ul').length) {
-                $('#navigation-menu li.bookmark a').prepend('<span class="icon"/>');
-                $('#navigation-menu li.bookmark').append('<ul/>');
+            jQuery(this).addClass('bookmarked');
+            if (!jQuery('#navigation-menu li.bookmark ul').length) {
+                jQuery('#navigation-menu li.bookmark a').prepend('<span class="icon"/>');
+                jQuery('#navigation-menu li.bookmark').append('<ul/>');
             }
-            $('#navigation-menu li.bookmark ul').append(
+            jQuery('#navigation-menu li.bookmark ul').append(
                 '<li><a href="' + url + '">' + title + '</a></li>'
             );
-            $('#navigation-menu li.bookmark').removeClass('disabled');
+            jQuery('#navigation-menu li.bookmark').removeClass('disabled');
             var already_bookmarked = false;
             for (var i=0; i < bookmarks.length; i++) {
                 if (bookmarks[i].url == url) {
@@ -50,7 +50,7 @@ var process_bookmarks = function(url, title, prompt_msg) {
             }
             if (!already_bookmarked) {
                 bookmarks.push({url: url, title: title});
-                $.cookie('menu.bookmarks', JSON.stringify(bookmarks), {
+                jQuery.cookie('menu.bookmarks', JSON.stringify(bookmarks), {
                     expires: 1825,
                     path: '/admin/' // harcode path to have a unique cookie across pages
                 });
