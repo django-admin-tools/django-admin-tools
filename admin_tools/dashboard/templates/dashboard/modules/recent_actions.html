@@ -9,7 +9,7 @@
         {% if child.is_deletion %}
         <span class="deletelink">{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ child.object_repr }}</span>
         {% else %}
-        <a href="{{ child.get_admin_url }}" class="{% if child.is_addition %} addlink{% endif %}{% if child.is_change %} changelink{% endif %}">{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ child.object_repr }}</a>
+        <a href="{% url admin:index %}{{ child.get_admin_url }}" class="{% if child.is_addition %} addlink{% endif %}{% if child.is_change %} changelink{% endif %}">{% if child.content_type %}{% filter capfirst %}{% trans child.content_type.name %}{% endfilter %}&nbsp;{% endif %}{{ child.object_repr }}</a>
         {% endif %}
     </li>
     {% endfor %}
