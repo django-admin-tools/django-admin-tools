@@ -2,9 +2,11 @@
 Menu utilities.
 """
 
+import urllib
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
+from django.utils import simplejson
 
 
 def get_admin_menu():
@@ -31,13 +33,7 @@ def get_menu_bookmarks(request):
     """
     Returns the bookmarked items or raise an exception.
     """
-    import urllib
-    try:
-        import json
-    except ImportError:
-        # python < 2.6 
-        import simplejson as json
     json_str = urllib.unquote(request.COOKIES.get('menu.bookmarks'))
     if json_str is not None:
-        return json.loads(json_str)
+        return simplejson.loads(json_str)
     return []

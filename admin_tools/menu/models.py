@@ -285,30 +285,20 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
     def __init__(self, **kwargs):
         super(BookmarkMenuItem, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Bookmarks'))
+        if 'bookmark' not in self.css_classes:
+            self.css_classes.append('bookmark')
 
     def init_with_context(self, context):
         """
         Please refer to the ``MenuItem::init_with_context()`` documentation.
         """
-        try:
-            bookmarks = get_menu_bookmarks(context['request'])
-        except Exception, exc:
-            warning_item = MenuItem(
-                title='Bookmark menu item requires the simplejson module'
-            )
-            warning_item.css_classes.append('warning')
-            self.children.append(warning_item)
-            return
-
-        for b in bookmarks:
+        for b in get_menu_bookmarks(context['request']):
             self.children.append(MenuItem(
                 url=b['url'],
                 title=mark_safe(b['title'])
             ))
         if not len(self.children):
             self.enabled = False
-        if 'bookmark' not in self.css_classes:
-            self.css_classes.append('bookmark')
 
 
 class DefaultMenu(Menu):
