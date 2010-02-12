@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-11 15:46+0100\n"
+"POT-Creation-Date: 2010-02-12 14:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,67 +16,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dashboard/models.py:86 menu/models.py:271
+#: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
 msgstr ""
 
-#: dashboard/models.py:405
+#: dashboard/models.py:404
 msgid "Links"
 msgstr ""
 
-#: dashboard/models.py:461 dashboard/models.py:762 menu/models.py:275
+#: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
 msgstr ""
 
-#: dashboard/models.py:604 dashboard/models.py:775 dashboard/models.py:835
+#: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
 msgstr ""
 
-#: dashboard/models.py:649
+#: dashboard/models.py:648
 msgid "No recent actions."
 msgstr ""
 
-#: dashboard/models.py:694
+#: dashboard/models.py:693
 msgid "RSS Feed"
 msgstr ""
 
-#: dashboard/models.py:739
+#: dashboard/models.py:742
 msgid "Quick links"
 msgstr ""
 
-#: dashboard/models.py:746
+#: dashboard/models.py:749
 msgid "Return to site"
 msgstr ""
 
-#: dashboard/models.py:750 theming/templates/admin/base.html:42
+#: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
 msgstr ""
 
-#: dashboard/models.py:754 theming/templates/admin/base.html:49
+#: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
 msgstr ""
 
-#: dashboard/models.py:768 menu/models.py:279
+#: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
 msgstr ""
 
-#: dashboard/models.py:782
+#: dashboard/models.py:783
 msgid "Latest Django News"
 msgstr ""
 
-#: dashboard/models.py:789
+#: dashboard/models.py:790
 msgid "Support"
 msgstr ""
 
-#: dashboard/models.py:792
+#: dashboard/models.py:793
 msgid "Django documentation"
 msgstr ""
 
-#: dashboard/models.py:797
+#: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
 msgstr ""
 
-#: dashboard/models.py:802
+#: dashboard/models.py:803
 msgid "Django irc channel"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 msgid "%(name)s"
 msgstr ""
 
-#: dashboard/templates/dashboard/dashboard.html:43
+#: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
 msgstr ""
 
@@ -104,12 +104,24 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
+#: menu/models.py:287
+msgid "Bookmarks"
+msgstr ""
+
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
 msgstr ""
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
+msgstr ""
+
+#: menu/templates/menu/menu.html:38
+msgid "Please enter a name for the bookmark"
+msgstr ""
+
+#: menu/templates/menu/menu.html:41
+msgid "Bookmark this page"
 msgstr ""
 
 #: theming/templates/admin/base.html:29

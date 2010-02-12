@@ -2,12 +2,12 @@
 # Copyright (C) 2010 David Jean Louis <izimobil@gmail.com>
 # This file is distributed under the same license as the django-admin-tools package.
 # FIRST AUTHOR <izimobil@gmail.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-08 16:57+0100\n"
+"POT-Creation-Date: 2010-02-12 14:59+0100\n"
 "PO-Revision-Date: 2010-02-08\n"
 "Last-Translator: David Jean Louis <izimobil@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -15,81 +15,81 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dashboard/models.py:96 menu/models.py:234
+#: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: dashboard/models.py:379
+#: dashboard/models.py:404
 msgid "Links"
 msgstr "Liens"
 
-#: dashboard/models.py:433 dashboard/models.py:721 menu/models.py:238
+#: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
 msgstr "Applications"
 
-#: dashboard/models.py:568 dashboard/models.py:734 dashboard/models.py:793
+#: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
 msgstr "Actions Récentes"
 
-#: dashboard/models.py:611
+#: dashboard/models.py:648
 msgid "No recent actions."
 msgstr "Aucune action récente"
 
-#: dashboard/models.py:653
+#: dashboard/models.py:693
 msgid "RSS Feed"
 msgstr "Flux RSS"
 
-#: dashboard/models.py:698
+#: dashboard/models.py:742
 msgid "Quick links"
 msgstr "Liens rapides"
 
-#: dashboard/models.py:705
+#: dashboard/models.py:749
 msgid "Return to site"
 msgstr "Retour au site"
 
-#: dashboard/models.py:709 theming/templates/admin/base.html:42
+#: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
 msgstr "Modifier votre mot de passe"
 
-#: dashboard/models.py:713 theming/templates/admin/base.html:49
+#: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
 msgstr "Se déconnecter"
 
-#: dashboard/models.py:727 menu/models.py:242
+#: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
 msgstr "Administration"
 
-#: dashboard/models.py:741
+#: dashboard/models.py:783
 msgid "Latest Django News"
 msgstr "Les dernières nouvelles de Django"
 
-#: dashboard/models.py:748
+#: dashboard/models.py:790
 msgid "Support"
 msgstr "Aide"
 
-#: dashboard/models.py:751
+#: dashboard/models.py:793
 msgid "Django documentation"
 msgstr "Documentation de Django"
 
-#: dashboard/models.py:756
+#: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
 msgstr "Liste de diffusion \"django-users\""
 
-#: dashboard/models.py:761
+#: dashboard/models.py:803
 msgid "Django irc channel"
 msgstr "Canal IRC Django"
 
-#: dashboard/templates/admin/app_index.html:8
+#: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
 msgstr "Accueil"
 
-#: dashboard/templates/admin/app_index.html:10
+#: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
 msgstr "%(name)s"
 
-#: dashboard/templates/dashboard/dashboard.html:17
+#: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
 msgstr "Modules"
 
@@ -103,13 +103,25 @@ msgstr "Ajouter"
 msgid "Change"
 msgstr "Modifier"
 
-#: menu/templates/admin/base_site.html:6
+#: menu/models.py:287
+msgid "Bookmarks"
+msgstr ""
+
+#: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
 msgstr "Administration de Django"
 
-#: menu/templates/admin/base_site.html:9
+#: menu/templates/admin/base_site.html:11
 msgid "Django administration"
 msgstr "Administration de Django"
+
+#: menu/templates/menu/menu.html:38
+msgid "Please enter a name for the bookmark"
+msgstr ""
+
+#: menu/templates/menu/menu.html:41
+msgid "Bookmark this page"
+msgstr ""
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
