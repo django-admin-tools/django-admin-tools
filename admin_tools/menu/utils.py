@@ -33,7 +33,7 @@ def get_menu_bookmarks(request):
     """
     Returns the bookmarked items or raise an exception.
     """
-    json_str = urllib.unquote(request.COOKIES.get('menu.bookmarks'))
-    if json_str is not None:
+    json_str = urllib.unquote(request.COOKIES.get('menu.bookmarks', ''))
+    if json_str:
         return simplejson.loads(json_str)
     return []
