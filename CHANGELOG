@@ -2,6 +2,15 @@
 django-admin-tools changelog
 ============================
 
+Version 0.1.2, 12 February 2010:
+--------------------------------
+
+* fixed documentation issues;
+* added locales;
+* fixed issue #9: don't fail when feedparser is not installed;
+* fixed issue #5: implemented dashboard layout persistence in cookies;
+* enable all modules by default in the default dashboard;
+* added a "bookmarks" menu item and the code to manage bookmarks (fixes issue #10);
 
 Version 0.1.1, 10 February 2010:
 --------------------------------
