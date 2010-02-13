@@ -277,9 +277,6 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
                 super(MyMenu, self).__init__(**kwargs)
                 self.children.append(BookmarkMenuItem(title='My bookmarks'))
 
-    The screenshot of what this code produces:
-
-    .. image:: images/bookmark_menu_item.png
     """
 
     def __init__(self, **kwargs):
