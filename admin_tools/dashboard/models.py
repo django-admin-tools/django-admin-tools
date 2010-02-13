@@ -525,7 +525,7 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
 
     The screenshot of what this code produces:
 
-    .. image:: images/recentactions_dashboard_module.png
+    .. image:: images/modellist_dashboard_module.png
 
     .. note::
 
