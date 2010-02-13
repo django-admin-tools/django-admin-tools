@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,104 +17,105 @@ msgstr ""
 
 #: dashboard/models.py:86 menu/models.py:271
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: dashboard/models.py:405
 msgid "Links"
-msgstr ""
+msgstr "Links"
 
 #: dashboard/models.py:461 dashboard/models.py:762 menu/models.py:275
 msgid "Applications"
-msgstr ""
+msgstr "Applicazioni"
 
 #: dashboard/models.py:604 dashboard/models.py:775 dashboard/models.py:835
 msgid "Recent Actions"
-msgstr ""
+msgstr "Azioni Recenti"
 
 #: dashboard/models.py:649
 msgid "No recent actions."
-msgstr ""
+msgstr "Nessuna azione recente."
 
 #: dashboard/models.py:694
 msgid "RSS Feed"
-msgstr ""
+msgstr "Feed RSS"
 
 #: dashboard/models.py:739
+#, fuzzy
 msgid "Quick links"
-msgstr ""
+msgstr "Quick links"
 
 #: dashboard/models.py:746
 msgid "Return to site"
-msgstr ""
+msgstr "Ritorna al sito"
 
 #: dashboard/models.py:750 theming/templates/admin/base.html:42
 msgid "Change password"
-msgstr ""
+msgstr "Cambia password"
 
 #: dashboard/models.py:754 theming/templates/admin/base.html:49
 msgid "Log out"
-msgstr ""
+msgstr "Log out"
 
 #: dashboard/models.py:768 menu/models.py:279
 msgid "Administration"
-msgstr ""
+msgstr "Amministrazione"
 
 #: dashboard/models.py:782
 msgid "Latest Django News"
-msgstr ""
+msgstr "Ultime news su Django"
 
 #: dashboard/models.py:789
 msgid "Support"
-msgstr ""
+msgstr "Assistenza"
 
 #: dashboard/models.py:792
 msgid "Django documentation"
-msgstr ""
+msgstr "Documentazione su Django"
 
 #: dashboard/models.py:797
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Mailing list Django \\ \"django-users \""
 
 #: dashboard/models.py:802
 msgid "Django irc channel"
-msgstr ""
+msgstr "Canale IRC Django"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr " %(name)s "
 
 #: dashboard/templates/dashboard/dashboard.html:43
 msgid "Modules"
-msgstr ""
+msgstr "Moduli"
 
 #: dashboard/templates/dashboard/modules/app_list.html:13
 #: dashboard/templates/dashboard/modules/model_list.html:11
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr ""
+msgstr "Modifica"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr ""
+msgstr "Amministrazione sito Django"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr ""
+msgstr "Amministrazione Django"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr ""
+msgstr "Benvenuto,"
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr ""
+msgstr "Documentazione"
