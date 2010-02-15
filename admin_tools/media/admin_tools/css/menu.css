@@ -33,12 +33,15 @@
 }
 
 #header #bookmark-button {
+    cursor: pointer;
     position: absolute;
     top: auto;
     right: 15px;
     height: 25px;
     width: 24px;
     margin-top: 4px;
+    border: none;
+    text-indent: -40000px;
     background: transparent url(../images/admin-tools.png) no-repeat 0 -425px;
 }
 

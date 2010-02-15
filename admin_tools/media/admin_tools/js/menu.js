@@ -1,5 +1,5 @@
 /**
- * Save/remove bookmarks to/from the bookmark menu item and the cookie.
+ * Save/remove bookmarks to/from the bookmark menu item and the database
  *
  * @param string url        The current page url path (request.get_full_path)
  * @param string title      The current page title
@@ -7,8 +7,8 @@
  * @return void
  */
 var process_bookmarks = function(url, title, prompt_msg) {
-    var json_str = jQuery.cookie('menu.bookmarks');
-    var bookmarks = json_str ? JSON.parse(json_str) : [];
+    //var json_str = jQuery.cookie('menu.bookmarks');
+    //var bookmarks = json_str ? JSON.parse(json_str) : [];
     jQuery('#bookmark-button').click(function() {
         if (jQuery(this).hasClass('bookmarked')) {
             jQuery(this).removeClass('bookmarked');
@@ -18,16 +18,18 @@ var process_bookmarks = function(url, title, prompt_msg) {
                 jQuery('#navigation-menu li.bookmark a span').remove();
                 jQuery('#navigation-menu li.bookmark').addClass('disabled');
             }
-            for (var i=0; i < bookmarks.length; i++) {
-                if (bookmarks[i].url == url) {
-                    bookmarks.splice(i, 1);
-                    jQuery.cookie('menu.bookmarks', JSON.stringify(bookmarks), {
-                        expires: 1825,
-                        path: '/admin/' // harcode path to have a unique cookie across pages
-                    });
-                    break;
-                }
-            }
+            //Save bookmark
+            //
+            //for (var i=0; i < bookmarks.length; i++) {
+            //    if (bookmarks[i].url == url) {
+            //        bookmarks.splice(i, 1);
+            //        jQuery.cookie('menu.bookmarks', JSON.stringify(bookmarks), {
+            //            expires: 1825,
+            //            path: '/admin/' // harcode path to have a unique cookie across pages
+            //        });
+            //        break;
+            //    }
+            //}
         } else {
             title = prompt(prompt_msg, title);
             if (!title) {

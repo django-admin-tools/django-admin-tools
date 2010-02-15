@@ -6,7 +6,6 @@ import urllib
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
-from django.utils import simplejson
 
 
 def get_admin_menu():
@@ -27,13 +26,3 @@ def get_admin_menu():
             'cannot be imported: %s' % exc.message
         ))
     return getattr(mod, inst)()
-
-
-def get_menu_bookmarks(request):
-    """
-    Returns the bookmarked items or raise an exception.
-    """
-    json_str = urllib.unquote(request.COOKIES.get('menu.bookmarks', ''))
-    if json_str:
-        return simplejson.loads(json_str)
-    return []

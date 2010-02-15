@@ -8,7 +8,6 @@
 }
 
 #header #navigation-menu li span {
-    /* fuck you ie */
     display: none;
 }
 

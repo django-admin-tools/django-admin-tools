@@ -2,13 +2,22 @@
 This module contains the base classes for menu and menu items.
 """
 
+from django.db import models
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
-from admin_tools.menu.utils import get_menu_bookmarks
+
+
+class Bookmark(models.Model):
+    """
+    This model represents a user created bookmark.
+    """
+    user = models.ForeignKey('auth.User')
+    url = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
 
 
 class Menu(object):
@@ -289,10 +298,10 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
         """
         Please refer to the ``MenuItem::init_with_context()`` documentation.
         """
-        for b in get_menu_bookmarks(context['request']):
+        for b in Bookmark.objects.filter(user=context['request'].user):
             self.children.append(MenuItem(
-                url=b['url'],
-                title=mark_safe(b['title'])
+                url=b.url,
+                title=mark_safe(b.title)
             ))
         if not len(self.children):
             self.enabled = False
