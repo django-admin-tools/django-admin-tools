@@ -41,7 +41,8 @@
     width: 24px;
     margin-top: 4px;
     border: none;
-    text-indent: -40000px;
+    text-indent: -5000px;
+    overflow: hidden;
     background: transparent url(../images/admin-tools.png) no-repeat 0 -425px;
 }
 

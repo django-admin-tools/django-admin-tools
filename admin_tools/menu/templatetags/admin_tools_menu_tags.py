@@ -32,8 +32,8 @@ def admin_tools_render_menu(context, menu=None):
         has_bookmark_item = True
         url = context['request'].get_full_path()
         try:
-            bookmark = Bookmark.objects.get(user=context['request'].user, url=url)
-        except Bookmark.DoesNotExist:
+            bookmark = Bookmark.objects.filter(user=context['request'].user, url=url)[0]
+        except IndexError:
             bookmark = None
 
     context.update({

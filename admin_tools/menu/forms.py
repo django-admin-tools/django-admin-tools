@@ -16,7 +16,8 @@ class BookmarkForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         bookmark = super(BookmarkForm, self).save(*args, commit=False, **kwargs)
         bookmark.user = self.user
-        return bookmark.save()
+        bookmark.save()
+        return bookmark
 
     class Meta:
         fields = ('url', 'title')

@@ -26,32 +26,17 @@ jQuery(document).ready(function() {
 </script>
 <![endif]-->
 {% if has_bookmark_item %}
-{% comment %}
 <script type="text/javascript">
 jQuery(function($) {
-        process_bookmarks("{{ request.get_full_path }}", "{{ title }}", "{% trans 'Please enter a name for the bookmark' %}", "{% url add_bookmark %}", "{% url delete_bookmark bookmark.id %}");
+        process_bookmarks("{{ request.get_full_path }}", "{{ title }}", "{% trans 'Please enter a name for the bookmark' %}");
 });
 </script>
-{% endcomment %}
 
 {% if bookmark %}
-<form action="{% url remove-bookmark bookmark.id %}" method="POST">
-    <input type="hidden" name="next" value="{{ request.get_full_path|urlencode }}" />
-    <button id="bookmark-button" class="bookmarked" type="submit">Remove</button>
-</form>
+{% include "menu/remove_bookmark_form.html" %}
 {% else %}
-<form action="{% url add-bookmark %}" method="POST">
-    <input type="hidden" name="next" value="{{ request.get_full_path|urlencode }}" />
-    <input type="hidden" name="url" value="{{ request.get_full_path|urlencode }}" />
-    <input type="hidden" name="title" value="{{ title }}" />
-    <button id="bookmark-button" type="submit">Add</button>
-</form>
+{% include "menu/add_bookmark_form.html" %}
 {% endif %}
-
-{% comment %}
-This is the old button
-<a id="bookmark-button" href="#" title="{% trans "Bookmark this page" %}"{% if page_is_bookmarked %} class="bookmarked"{% endif %}></a>
-{% endcomment %}
 
 {% endif %}
 <ul id="navigation-menu">
