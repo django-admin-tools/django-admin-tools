@@ -23,6 +23,7 @@ class Bookmark(models.Model):
         return "%s - %s" % (self.title, self.url)
 
     class Meta:
+        db_table = 'admin_tools_menu_bookmark'
         ordering = ('id',)
 
 
