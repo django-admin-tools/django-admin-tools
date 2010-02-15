@@ -19,6 +19,12 @@ class Bookmark(models.Model):
     url = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return "%s - %s" % (self.title, self.url)
+
+    class Meta:
+        ordering = ('id',)
+
 
 class Menu(object):
     """

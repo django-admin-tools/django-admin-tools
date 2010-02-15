@@ -8,6 +8,7 @@
  */
 var process_bookmarks = function(url, title, prompt_msg) {
     var $ = jQuery;
+    var new_title;
     $('#bookmark-button').live('click', function(e) {
         var submit_url = $("#bookmark-form").attr('action');
         e.preventDefault();
@@ -24,8 +25,8 @@ var process_bookmarks = function(url, title, prompt_msg) {
                 $("#bookmark-form").replaceWith(data.replace('**title**', title));
             }, 'html');
         } else {
-            title = prompt(prompt_msg, title);
-            if (!title) {
+            new_title = prompt(prompt_msg, title);
+            if (!new_title) {
                 return;
             }
             $(this).addClass('bookmarked');
@@ -35,8 +36,9 @@ var process_bookmarks = function(url, title, prompt_msg) {
                 $('#navigation-menu li.bookmark').removeClass('disabled');
             }
             $('#navigation-menu li.bookmark ul').append(
-                '<li><a href="' + url + '">' + title + '</a></li>'
+                '<li><a href="' + url + '">' + new_title + '</a></li>'
             );
+            $('#bookmark-form input[name=title]').attr('value', new_title);
             // Save bookmark and switch form
             $.post(submit_url, $("#bookmark-form").serialize(), function(data) {
                 $("#bookmark-form").replaceWith(data);
