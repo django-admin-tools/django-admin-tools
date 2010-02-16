@@ -79,6 +79,23 @@ For example, if you just want to use the dashboard::
         # ...other installed applications...
     )
 
+Setting up the database
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To set up the tables that django-admin-tools uses you'll need to type::
+
+    python manage.py syncdb
+
+Adding django-admin-tools to your urls.py file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You'll need to add django-admin-tools to your urls.py file::
+
+    urlpatterns = patterns('',
+        url(r'^admin_tools/', include('admin_tools.urls')),
+        #...other url patterns...
+    )
+
 Setting up the django-admin-tools media files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -11,14 +11,14 @@ Before installing django-admin-tools, you'll need to have a copy of
 Installing django-admin-tools
 -----------------------------
 
-django-admin-tools requires django version 1.1 or superior, optionally, 
+django-admin-tools requires Django version 1.1 or superior, optionally, 
 if you want to display feed modules, you'll also need the 
 `Universal Feed Parser module <http://www.feedparser.org/>`_.
 
 There are several ways to install django-admin-tools, this is explained 
 in :ref:`the installation section <installation>`.
 
-For the impatient, the easier method is to install django-admin-tools via  
+For the impatient, the easiest method is to install django-admin-tools via  
 `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall>`_ 
 or `pip <http://pip.openplans.org/>`_. 
 
@@ -45,12 +45,12 @@ Prerequisite
 ~~~~~~~~~~~~
 
 In order to use django-admin-tools you obviously need to have configured
-your django admin site, if you didn't, please refer to the 
-`relevant django documentation <http://docs.djangoproject.com/en/1.1/intro/tutorial02/#activate-the-admin-site>`_.
+your Django admin site. If you didn't, please refer to the 
+`relevant Django documentation <http://docs.djangoproject.com/en/1.1/intro/tutorial02/#activate-the-admin-site>`_.
 
 .. important::
-    It is required that you use the django 1.1 syntax to declare the 
-    django admin urls, e.g.::
+    It is required that you use the Django 1.1 syntax to declare the 
+    Django admin urls, e.g.::
 
         urlpatterns = patterns('',
             (r'^admin/', include(admin.site.urls)),
@@ -85,11 +85,29 @@ this::
 .. important::
     it is very important that you put the admin_tools modules **before** 
     the ``django.contrib.admin module``, because django-admin-tools
-    overrides the default django admin templates, and this will not work 
+    overrides the default Django admin templates, and this will not work 
     otherwise.
 
 django-admin-tools is modular, so if you want to disable a particular 
-module, just remove or comment it in your ``INSTALLED_APPS``. 
+module, just remove or comment it out in your ``INSTALLED_APPS``. 
+
+
+Setting up the database
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To set up the tables that django-admin-tools uses you'll need to type::
+
+    python manage.py syncdb
+
+Adding django-admin-tools to your urls.py file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You'll need to add django-admin-tools to your urls.py file::
+
+    urlpatterns = patterns('',
+        url(r'^admin_tools/', include('admin_tools.urls')),
+        #...other url patterns...
+    )
 
 Setting up the django-admin-tools media files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,11 +128,11 @@ To do this you have two options:
 Testing your new shiny admin interface
 --------------------------------------
 
-Congrats ! at this point you should have a working installation of 
-django-admin-tools, now you can just login to your admin site and see what 
+Congrats! At this point you should have a working installation of 
+django-admin-tools. Now you can just login to your admin site and see what 
 changed.
 
-django-admin-tools if fully customizable, but this is out of the scope of 
-this quickstart, to learn how to customize django-admin-tools modules 
+django-admin-tools is fully customizable, but this is out of the scope of 
+this quickstart. To learn how to customize django-admin-tools modules 
 please read :ref:`the customization section<customization>`.
 
