@@ -39,7 +39,7 @@ The ``AppListDashboardModule`` class
     :members:
 
 The ``ModelListDashboardModule`` class
-------------------------------------
+--------------------------------------
 
 .. autoclass:: admin_tools.dashboard.models.ModelListDashboardModule
     :members:

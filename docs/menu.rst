@@ -25,7 +25,7 @@ The ``AppListMenuItem`` class
     :members:
 
 The ``BookmarkMenuItem`` class
------------------------------
+------------------------------
 
 .. autoclass:: admin_tools.menu.models.BookmarkMenuItem
     :members:
