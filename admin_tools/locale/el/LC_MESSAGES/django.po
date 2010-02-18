@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,91 +17,91 @@ msgstr ""
 
 #: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "Ταμπλό"
 
 #: dashboard/models.py:404
 msgid "Links"
-msgstr ""
+msgstr "Σύνδεσμοι"
 
 #: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
-msgstr ""
+msgstr "Εφαρμογές"
 
 #: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
-msgstr ""
+msgstr "Πρόσφατες ενέργειες"
 
 #: dashboard/models.py:648
 msgid "No recent actions."
-msgstr ""
+msgstr "Δεν υπάρχουν πρόσφατες ενέργειες."
 
 #: dashboard/models.py:693
 msgid "RSS Feed"
-msgstr ""
+msgstr "Ροή RSS"
 
 #: dashboard/models.py:742
 msgid "Quick links"
-msgstr ""
+msgstr "Γρήγοροι σύνδεσμοι"
 
 #: dashboard/models.py:749
 msgid "Return to site"
-msgstr ""
+msgstr "Επιστροφή στον ιστότοπο"
 
 #: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
-msgstr ""
+msgstr "Αλλαγή συνθηματικού"
 
 #: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
-msgstr ""
+msgstr "Αποσύνδεση"
 
 #: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
-msgstr ""
+msgstr "Διαχείριση"
 
 #: dashboard/models.py:783
 msgid "Latest Django News"
-msgstr ""
+msgstr "Τελευταία νέα του Django"
 
 #: dashboard/models.py:790
 msgid "Support"
-msgstr ""
+msgstr "Υποστήριξη"
 
 #: dashboard/models.py:793
 msgid "Django documentation"
-msgstr ""
+msgstr "Τεκμηρίωση Django"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Ομάδα συζήτησης Django \"django-users\""
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
-msgstr ""
+msgstr "Κανάλι irc Django"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
-msgstr ""
+msgstr "Αρχική"
 
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
-msgstr ""
+msgstr "Αρθρώματα"
 
 #: dashboard/templates/dashboard/modules/app_list.html:13
 #: dashboard/templates/dashboard/modules/model_list.html:11
 msgid "Add"
-msgstr ""
+msgstr "Προσθήκη"
 
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr ""
+msgstr "Αλλαγή"
 
 #: menu/models.py:287
 msgid "Bookmarks"
@@ -110,11 +109,11 @@ msgstr ""
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr ""
+msgstr "Ιστότοπος διαχείρισης Django"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr ""
+msgstr "Διαχείριση Django"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
@@ -126,8 +125,8 @@ msgstr ""
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr ""
+msgstr "Καλώς ήρθατε,"
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr ""
+msgstr "Τεκμηρίωση"
