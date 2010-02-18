@@ -14,7 +14,7 @@ class BookmarkForm(forms.ModelForm):
         self.user = user
 
     def save(self, *args, **kwargs):
-        bookmark = super(BookmarkForm, self).save(*args, commit=False, **kwargs)
+        bookmark = super(BookmarkForm, self).save(commit=False, *args, **kwargs)
         bookmark.user = self.user
         bookmark.save()
         return bookmark
