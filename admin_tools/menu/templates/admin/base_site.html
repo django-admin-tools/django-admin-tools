@@ -13,7 +13,7 @@
 
 {% block nav-global %}
 {% if user and user.is_authenticated %}
-{% if is_popup %}
+{% if not is_popup %}
 {% admin_tools_render_menu %}
 {% endif %}
 {% endif %}
