@@ -86,9 +86,8 @@ msgid "Home"
 msgstr "Początek"
 
 #: dashboard/templates/admin/app_index.html:11
-#, python-format, fuzzy
 msgid "%(name)s"
-msgstr "%(name)s"
+msgstr ""
 
 #: dashboard/templates/dashboard/dashboard.html:43
 msgid "Modules"
