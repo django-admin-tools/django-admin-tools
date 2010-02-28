@@ -46,3 +46,14 @@ class AppListElementMixin(object):
     def _get_admin_add_url(self, model):
         app_label = model._meta.app_label
         return reverse('admin:%s_%s_add' % (app_label, model.__name__.lower()))
+
+
+def get_media_url():
+    """
+    Returns the django admin tools media URL.
+    """
+    return getattr(
+        settings,
+        'ADMIN_TOOLS_MEDIA_URL',
+        getattr(settings, 'STATIC_URL', settings.MEDIA_URL)
+    ).rstrip('/')
