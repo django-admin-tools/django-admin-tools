@@ -26,6 +26,11 @@ def admin_tools_render_menu(context, menu=None):
     if menu is None:
         menu = get_admin_menu()
 
+    try:
+        media_url = settings.STATIC_URL
+    except AttributeError:
+        media_url = settings.MEDIA_URL
+
     menu.init_with_context(context)
     has_bookmark_item = False
     bookmark = None
@@ -40,7 +45,7 @@ def admin_tools_render_menu(context, menu=None):
     context.update({
         'template': menu.template,
         'menu': menu,
-        'media_url': settings.MEDIA_URL.rstrip('/'),
+        'media_url': media_url.rstrip('/'),
         'has_bookmark_item': has_bookmark_item,
         'bookmark': bookmark,
     })
@@ -73,10 +78,15 @@ def admin_tools_render_menu_css(context, menu=None):
     if menu is None:
         menu = get_admin_menu()
 
+    try:
+        media_url = settings.STATIC_URL
+    except AttributeError:
+        media_url = settings.MEDIA_URL
+
     context.update({
         'template': 'menu/css.html',
         'css_files': menu.Media.css,
-        'media_url': settings.MEDIA_URL.rstrip('/'),
+        'media_url': media_url.rstrip('/'),
     })
     return context
 admin_tools_render_menu_css = tag_func(admin_tools_render_menu_css)

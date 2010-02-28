@@ -33,12 +33,17 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
     if dashboard is None:
         dashboard = get_dashboard(context, location)
 
+    try:
+        media_url = settings.STATIC_URL
+    except AttributeError:
+        media_url = settings.MEDIA_URL
+
     dashboard.init_with_context(context)
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,
         'split_at': math.ceil(float(len(dashboard.children))/float(dashboard.columns)),
-        'media_url': settings.MEDIA_URL.rstrip('/'),
+        'media_url': media_url.rstrip('/'),
         'has_disabled_modules': len([m for m in dashboard.children \
                                 if not m.enabled]) > 0,
     })
@@ -80,10 +85,15 @@ def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
     if dashboard is None:
         dashboard = get_dashboard(context, location)
 
+    try:
+        media_url = settings.STATIC_URL
+    except AttributeError:
+        media_url = settings.MEDIA_URL
+
     context.update({
         'template' : 'dashboard/css.html',
         'css_files': dashboard.Media.css,
-        'media_url': settings.MEDIA_URL.rstrip('/'),
+        'media_url': media_url.rstrip('/'),
     })
     return context
 admin_tools_render_dashboard_css = tag_func(admin_tools_render_dashboard_css)
