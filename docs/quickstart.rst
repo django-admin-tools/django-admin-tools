@@ -69,10 +69,11 @@ installed::
         'django.core.context_processors.request',
     )
 
-Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like 
+Then, add admin_tools and its modules to the ``INSTALLED_APPS`` like 
 this::
 
     INSTALLED_APPS = (
+        'admin_tools',
         'admin_tools.theming',
         'admin_tools.menu',
         'admin_tools.dashboard',
@@ -89,7 +90,8 @@ this::
     otherwise.
 
 django-admin-tools is modular, so if you want to disable a particular 
-module, just remove or comment it out in your ``INSTALLED_APPS``. 
+module, just remove or comment it out in your ``INSTALLED_APPS``, note 
+that ``admin_tools`` is required for i18n.
 
 
 Setting up the database
