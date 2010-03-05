@@ -2,6 +2,24 @@
 django-admin-tools changelog
 ============================
 
+Version 0.2.0, 29 February 2010:
+--------------------------------
+
+* bookmarks are now being saved in the database (thanks @alexrobbins); 
+* dashboard preferences are also saved in the database;
+* added support for django-staticfiles STATIC_URL settings (thanks @dstufft);
+* added polish, italian, greek and brazilian locales;
+* updated docs.
+
+Backwards incompatible changes in 0.2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Now, django-admin-tools stores menu and dashboard preferences in the database, 
+so you'll need to run syncdb and to add the django-admin-tools urls to your 
+urlconf. These steps are described in details in the documentation.
+You'll also need to add ``admin_tools`` to your ``INSTALLED_APPS`` for the 
+locales to work (this was not documented in previous versions).
+
+
 Version 0.1.2, 13 February 2010:
 --------------------------------
 
@@ -13,6 +31,7 @@ Version 0.1.2, 13 February 2010:
 * fixed recent actions log entry urls when displayed in app_index;
 * added a "bookmarks" menu item and the code to manage bookmarks;
 * fixed jquery issues with django 1.2.
+
 
 Version 0.1.1, 10 February 2010:
 --------------------------------
