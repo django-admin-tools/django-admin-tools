@@ -2,6 +2,7 @@
 This module contains the base classes for the dashboard and dashboard modules.
 """
 
+from django.db import models
 from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
@@ -11,6 +12,21 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
 
+
+class DashboardPreferences(models.Model):
+    """
+    This model represents the dashboard preferences for a user.
+    """
+    user = models.ForeignKey('auth.User')
+    data = models.TextField()
+
+    def __unicode__(self):
+        return "%s dashboard preferences" % self.user.username
+
+    class Meta:
+        db_table = 'admin_tools_dashboard_preferences'
+        ordering = ('user',)
+    
 
 class Dashboard(object):
     """
