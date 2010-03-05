@@ -1,4 +1,4 @@
-<form id="bookmark-form" action="{% url remove-bookmark bookmark.id %}" method="POST">
+<form id="bookmark-form" action="{% url admin-tools-menu-remove-bookmark bookmark.id %}" method="POST">
     <input type="hidden" name="next" value="{% firstof url request.get_full_path|urlencode %}" />
     <button id="bookmark-button" class="bookmarked" type="submit">Remove</button>
 </form>
