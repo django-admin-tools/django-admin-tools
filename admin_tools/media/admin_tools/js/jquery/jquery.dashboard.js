@@ -35,7 +35,9 @@
                 panel_id: 'dashboard-panel',
                 dashboard_id: this.attr('id'),
                 dashboard_module_class: 'dashboard-module',
-                columns: 2
+                columns: 2,
+                load_preferences_function: false,
+                save_preferences_function: false
             }    
             var options = $.extend(defaults, options);
 
@@ -61,15 +63,16 @@
     });
 
     var preferences = false;
-    var cookie_name = false;
 
     var _initialize = function(elt, options) {
-        if (cookie_name === false) {
-            cookie_name = 'admin-tools.' + options.dashboard_id;
-        }
+        // load preferences
         if (preferences === false) {
-            var json_str = $.cookie(cookie_name);
-            preferences = json_str ? JSON.parse(json_str) : {};
+            if (options.load_preferences_function) {
+                preferences = options.load_preferences_function(options);
+            } else {
+                var json_str = $.cookie('admin-tools.' + options.dashboard_id);
+                preferences = json_str ? JSON.parse(json_str) : {};
+            }
         }
         // set ids if not set
         elt.children('div[id!=' + options.panel_id +']').each(function(index) {
@@ -82,7 +85,7 @@
     var _restore_positions = function(elt, options) {
         // restore positions
         try {
-            var saved_positions = _get_preference('positions');
+            var saved_positions = _get_preference(options, 'positions');
         } catch (e) {
             return;
         }
@@ -110,7 +113,7 @@
     var _columnize = function(elt, options) {
         var elts = elt.children('div[id!=' + options.panel_id +']');
         var size = Math.ceil(elts.length / options.columns);
-        var sizes = _get_preference('columns');
+        var sizes = _get_preference(options, 'columns');
         var percent = Math.floor(100 / options.columns);
         var start = 0;
         var stop = 0;
@@ -132,13 +135,13 @@
         elt.children().children('.disabled').each(function() {
             _delete_element($(this), options);
         });
-        if (preferences['disabled']) {
-            $.each(preferences['disabled'], function(k, v) {
+        if (_get_preference(options, 'disabled')) {
+            $.each(_get_preference(options, 'disabled'), function(k, v) {
                 v ? _delete_element($('#'+k), options) : _add_element($('#'+k), options);
             });
         }
-        if (preferences['collapsed']) {
-            $.each(preferences['collapsed'], function(k, v) {
+        if (_get_preference(options, 'collapsed')) {
+            $.each(_get_preference(options, 'collapsed'), function(k, v) {
                 if (v) {
                     _toggle_element($('#'+k), options);
                 }
@@ -161,12 +164,12 @@
             cursor: 'crosshair',
             opacity: 0.7,
             update: function() {
-                _set_preference('positions', false, _get_positions(elt, options));
+                _set_preference(options, 'positions', false, _get_positions(elt, options));
                 var columns = [];
                 elt.children('.dashboard-column').each(function() {
                     columns.push($(this).children().length);
                 });
-                _set_preference('columns', false, columns);
+                _set_preference(options, 'columns', false, columns, true);
             }
         });
     };
@@ -184,7 +187,7 @@
         elt.find('h2 a.toggle-icon').toggleClass('collapsed');
         elt.children('div').slideToggle();
         if (save_preference) {
-            _set_preference('collapsed', elt.attr('id'), elt.find('h2 a.toggle-icon').hasClass('collapsed'));
+            _set_preference(options, 'collapsed', elt.attr('id'), elt.find('h2 a.toggle-icon').hasClass('collapsed'), true);
         }
     };
 
@@ -219,7 +222,7 @@
         elt.fadeOut('fast');
         $('#' + options.panel_id).show();
         if (save_preference) {
-            _set_preference('disabled', elt.attr('id'), true);
+            _set_preference(options, 'disabled', elt.attr('id'), true, true);
         }
     };
 
@@ -238,7 +241,7 @@
         elt.removeClass('disabled');
         elt.fadeIn('fast');
         if (save_preference) {
-            _set_preference('disabled', elt.attr('id'), false);
+            _set_preference(options, 'disabled', elt.attr('id'), false, true);
         }
         // if there's no element in the panel, hide it
         if (!$('#' + options.panel_id).find('li').length) {
@@ -246,7 +249,18 @@
         }
     };
 
-    var _get_preference = function(cat, id, defaultval) {
+    var load_preferences = function(options) {
+        if (options.load_preferences_function) {
+            return options.load_preferences_function(options);
+        }
+        if (preferences === false) {
+            var json_str = $.cookie('admin-tools.' + options.dashboard_id);
+            preferences = json_str ? JSON.parse(json_str) : {};
+        }
+        return preferences;
+    }
+
+    var _get_preference = function(options, cat, id, defaultval) {
         try {
             if (preferences[cat] == undefined) {
                 preferences[cat] = {};
@@ -260,7 +274,11 @@
         }
     };
 
-    var _set_preference = function(cat, id, val) {
+    // quick hack to ensure that we do not save preferences if they are 
+    // not modified...
+    var last_saved_preferences = null;
+
+    var _set_preference = function(options, cat, id, val, save) {
         try {
             if (preferences[cat] == undefined) {
                 preferences[cat] = {};
@@ -272,7 +290,15 @@
             }
         } catch (e) {
         }
-        $.cookie(cookie_name, JSON.stringify(preferences), {expires: 1825});
+        // save preferences
+        if (save && JSON.stringify(preferences) != last_saved_preferences) {
+            if (options.save_preferences_function) {
+                options.save_preferences_function(options, preferences);
+            } else {
+                $.cookie(cookie_name, JSON.stringify(preferences), {expires: 1825});
+            }
+            last_saved_preferences = JSON.stringify(preferences);
+        }
     };
 
     var _get_positions = function(elt, options) {

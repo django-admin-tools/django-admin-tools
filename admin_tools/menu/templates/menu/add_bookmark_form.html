@@ -1,4 +1,4 @@
-<form id="bookmark-form" action="{% url add-bookmark %}" method="POST">
+<form id="bookmark-form" action="{% url admin-tools-menu-add-bookmark %}" method="POST">
     <input type="hidden" name="next" value="{% firstof url request.get_full_path|urlencode %}" />
     <input type="hidden" name="url" value="{% firstof url request.get_full_path|urlencode %}" />
     <input type="hidden" name="title" value="{{ title }}" />

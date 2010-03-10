@@ -111,8 +111,32 @@ To do this you have two options:
   
       cp -r /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
 
+django-admin-tools will look for the media directory in the following 
+settings variables (and in this order):
+
+* ``ADMIN_TOOLS_MEDIA_URL``;
+* ``STATIC_URL``: use this if you are using django-staticfiles;
+* ``MEDIA_URL``.
+
+
+Here's an example config if you are using django development server:
+
+``urls.py``::
+
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': '/path/to/media'}),
+
+``settings.py``::
+
+    MEDIA_URL = '/site_media/'
+
+
 Available settings variables
 ----------------------------
+
+``ADMIN_TOOLS_MEDIA_URL``
+    You can use this variable if you want to set the media url for 
+    django-admin-tools to something different from your ``MEDIA_URL``.
 
 ``ADMIN_TOOLS_MENU``
     The path to your custom menu class, for example 
