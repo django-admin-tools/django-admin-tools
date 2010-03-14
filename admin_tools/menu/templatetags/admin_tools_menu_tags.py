@@ -9,8 +9,6 @@ To load the menu tags in your templates: ``{% load admin_tools_menu_tags %}``.
 """
 
 from django import template
-from django.conf import settings
-from django.http import HttpRequest
 from admin_tools.utils import get_media_url
 from admin_tools.menu.models import Bookmark, BookmarkMenuItem
 from admin_tools.menu.utils import get_admin_menu

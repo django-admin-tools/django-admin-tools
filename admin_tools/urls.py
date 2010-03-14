@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, url, include
 
 urlpatterns = patterns('',
     url(r'^menu/', include('admin_tools.menu.urls')),

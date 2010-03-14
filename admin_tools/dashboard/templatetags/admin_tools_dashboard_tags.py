@@ -9,7 +9,6 @@ To load the dashboard tags: ``{% load admin_tools_dashboard_tags %}``.
 
 import math
 from django import template
-from django.conf import settings
 from admin_tools.utils import get_media_url
 from admin_tools.dashboard.utils import get_dashboard
 
