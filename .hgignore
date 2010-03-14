@@ -1,4 +1,5 @@
 syntax: glob
+*.egg-info
 *.pyc
 *.*~
 *.orig
