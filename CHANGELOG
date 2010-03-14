@@ -2,12 +2,15 @@
 django-admin-tools changelog
 ============================
 
-Version 0.2.0, 29 February 2010:
---------------------------------
+Version 0.2.0, 15 March 2010:
+-----------------------------
 
-* bookmarks are now being saved in the database (thanks @alexrobbins); 
+* bookmarks are now being saved in the database 
+  (fixes issue #20, thanks @alexrobbins); 
 * dashboard preferences are also saved in the database;
-* added support for django-staticfiles STATIC_URL settings (thanks @dstufft);
+* added support for django-staticfiles STATIC_URL settings
+  (fixes issue #21, thanks @dstufft);
+* fixed issue #23: render_theming_css tag does not work on windows;
 * added polish, italian, greek and brazilian locales;
 * updated docs.
 
