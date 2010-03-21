@@ -25,11 +25,11 @@ msgstr "Links"
 
 #: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
-msgstr ""
+msgstr "Applikationer"
 
 #: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
-msgstr ""
+msgstr "Nyeste handlinger"
 
 #: dashboard/models.py:648
 msgid "No recent actions."
