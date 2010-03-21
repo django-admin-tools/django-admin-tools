@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,15 +17,15 @@ msgstr ""
 
 #: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "Oversigtsside"
 
 #: dashboard/models.py:404
 msgid "Links"
-msgstr ""
+msgstr "Links"
 
 #: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
-msgstr ""
+msgstr "Applikationer"
 
 #: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
