@@ -17,7 +17,7 @@ msgstr ""
 
 #: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: dashboard/models.py:404
 msgid "Links"
@@ -41,7 +41,7 @@ msgstr "RSS Feed"
 
 #: dashboard/models.py:742
 msgid "Quick links"
-msgstr ""
+msgstr "Hurtige links"
 
 #: dashboard/models.py:749
 msgid "Return to site"
