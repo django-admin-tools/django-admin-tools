@@ -53,11 +53,11 @@ msgstr ""
 
 #: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
-msgstr ""
+msgstr "Log ud"
 
 #: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
-msgstr ""
+msgstr "Administration"
 
 #: dashboard/models.py:783
 msgid "Latest Django News"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: dashboard/models.py:793
 msgid "Django documentation"
-msgstr ""
+msgstr "Django dokumentationen"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
@@ -87,25 +87,25 @@ msgstr ""
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
-msgstr ""
+msgstr "Moduler"
 
 #: dashboard/templates/dashboard/modules/app_list.html:13
 #: dashboard/templates/dashboard/modules/model_list.html:11
 msgid "Add"
-msgstr ""
+msgstr "Tilføj"
 
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr ""
+msgstr "Skift"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bogmærker"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
