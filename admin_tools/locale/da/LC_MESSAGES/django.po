@@ -82,7 +82,7 @@ msgstr ""
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
-msgstr ""
+msgstr "Hjem"
 
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
@@ -109,24 +109,24 @@ msgstr "Bogmærker"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr ""
+msgstr "Django admin"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr ""
+msgstr "Djangoadministration"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "Skriv venligst et navn for bogmærket"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr ""
+msgstr "Tilføj bogmærke for denne side"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr ""
+msgstr "Velkommen, "
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr ""
+msgstr "Doumentation"
