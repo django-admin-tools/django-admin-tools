@@ -17,7 +17,7 @@ msgstr ""
 
 #: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr "Oversigtsside"
+msgstr ""
 
 #: dashboard/models.py:404
 msgid "Links"
@@ -25,7 +25,7 @@ msgstr "Links"
 
 #: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
-msgstr "Applikationer"
+msgstr ""
 
 #: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
