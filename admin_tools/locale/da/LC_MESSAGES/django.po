@@ -33,11 +33,11 @@ msgstr "Nyeste handlinger"
 
 #: dashboard/models.py:648
 msgid "No recent actions."
-msgstr ""
+msgstr "Ingen nylige handlinger"
 
 #: dashboard/models.py:693
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS Feed"
 
 #: dashboard/models.py:742
 msgid "Quick links"
@@ -45,11 +45,11 @@ msgstr ""
 
 #: dashboard/models.py:749
 msgid "Return to site"
-msgstr ""
+msgstr "Returner til sitet"
 
 #: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
-msgstr ""
+msgstr "Skift password"
 
 #: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
@@ -61,11 +61,11 @@ msgstr "Administration"
 
 #: dashboard/models.py:783
 msgid "Latest Django News"
-msgstr ""
+msgstr "Nyeste Django nyheder"
 
 #: dashboard/models.py:790
 msgid "Support"
-msgstr ""
+msgstr "Support"
 
 #: dashboard/models.py:793
 msgid "Django documentation"
@@ -73,11 +73,11 @@ msgstr "Django dokumentationen"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Django \"django-users\" mailinglist"
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
-msgstr ""
+msgstr "Django irc kanal "
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
