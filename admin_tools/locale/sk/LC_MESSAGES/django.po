@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -13,25 +14,20 @@ msgstr ""
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#: dashboard/models.py:85
-#: menu/models.py:328
+# 
+#: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: dashboard/models.py:404
 msgid "Links"
 msgstr "Linky"
 
-#: dashboard/models.py:460
-#: dashboard/models.py:765
-#: menu/models.py:333
+#: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
 msgstr "Aplikácie"
 
-#: dashboard/models.py:603
-#: dashboard/models.py:777
-#: dashboard/models.py:836
+#: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
 msgstr "Posledné akcie"
 
@@ -51,18 +47,15 @@ msgstr "Rýchle voľby"
 msgid "Return to site"
 msgstr "Návrat na stránku"
 
-#: dashboard/models.py:753
-#: theming/templates/admin/base.html:42
+#: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
 msgstr "Zmeniť heslo"
 
-#: dashboard/models.py:757
-#: theming/templates/admin/base.html:49
+#: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
 msgstr "Odhlásiť"
 
-#: dashboard/models.py:771
-#: menu/models.py:337
+#: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
 msgstr "Administrácia"
 
@@ -80,7 +73,7 @@ msgstr "Django dokumentácia"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Django \"django-users\" mailing list"
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
@@ -137,4 +130,3 @@ msgstr "Vitajte,"
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
 msgstr "Dokumentácia"
-
