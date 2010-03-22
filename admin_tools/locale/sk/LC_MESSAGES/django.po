@@ -87,7 +87,7 @@ msgstr "Domov"
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
