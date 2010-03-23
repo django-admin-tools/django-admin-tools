@@ -2,8 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,116 +17,116 @@ msgstr ""
 
 #: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "管理面板"
 
 #: dashboard/models.py:404
 msgid "Links"
-msgstr ""
+msgstr "链接"
 
 #: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
-msgstr ""
+msgstr "应用"
 
 #: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
-msgstr ""
+msgstr "最近的操作"
 
 #: dashboard/models.py:648
 msgid "No recent actions."
-msgstr ""
+msgstr "最近没有操作"
 
 #: dashboard/models.py:693
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS种子"
 
 #: dashboard/models.py:742
 msgid "Quick links"
-msgstr ""
+msgstr "快捷链接"
 
 #: dashboard/models.py:749
 msgid "Return to site"
-msgstr ""
+msgstr "返回主站"
 
 #: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
-msgstr ""
+msgstr "更改密码"
 
 #: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
-msgstr ""
+msgstr "注销"
 
 #: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
-msgstr ""
+msgstr "管理"
 
 #: dashboard/models.py:783
 msgid "Latest Django News"
-msgstr ""
+msgstr "Django最新消息"
 
 #: dashboard/models.py:790
 msgid "Support"
-msgstr ""
+msgstr "支持"
 
 #: dashboard/models.py:793
 msgid "Django documentation"
-msgstr ""
+msgstr "Django文档"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Django用户邮件列表"
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
-msgstr ""
+msgstr "Django IRCp频道"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
-msgstr ""
+msgstr "主页"
 
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
-msgstr ""
+msgstr "模块"
 
 #: dashboard/templates/dashboard/modules/app_list.html:13
 #: dashboard/templates/dashboard/modules/model_list.html:11
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr ""
+msgstr "管理面板"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr ""
+msgstr "链接"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr ""
+msgstr "应用"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr ""
+msgstr "最近的操作"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "最近没有操作"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr ""
+msgstr "RSS种子"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr ""
+msgstr "快捷链接"
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr ""
+msgstr "返回主站"
