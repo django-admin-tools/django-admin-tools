@@ -77,7 +77,7 @@ msgstr "Django用户邮件列表"
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
-msgstr "Django IRCp频道"
+msgstr "Django IRC频道"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
@@ -101,32 +101,32 @@ msgstr "添加"
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr "管理面板"
+msgstr "更改"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr "链接"
+msgstr "书签"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr "应用"
+msgstr "Django站点管理"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr "最近的操作"
+msgstr "Django管理"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr "最近没有操作"
+msgstr "请输入书签名字"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr "RSS种子"
+msgstr "收藏本页"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr "快捷链接"
+msgstr "欢迎"
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr "返回主站"
+msgstr "文档"
