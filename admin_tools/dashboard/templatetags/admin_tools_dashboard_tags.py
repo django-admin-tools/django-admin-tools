@@ -13,7 +13,7 @@ from admin_tools.utils import get_media_url
 from admin_tools.dashboard.utils import get_dashboard
 
 register = template.Library()
-tag_func = register.inclusion_tag('dashboard/dummy.html', takes_context=True)
+tag_func = register.inclusion_tag('admin_tools/dashboard/dummy.html', takes_context=True)
 
 
 def admin_tools_render_dashboard(context, location='index', dashboard=None):
@@ -81,7 +81,7 @@ def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
         dashboard = get_dashboard(context, location)
 
     context.update({
-        'template' : 'dashboard/css.html',
+        'template' : 'admin_tools/dashboard/css.html',
         'css_files': dashboard.Media.css,
         'media_url': get_media_url(),
     })

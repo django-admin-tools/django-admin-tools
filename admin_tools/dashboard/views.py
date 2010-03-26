@@ -36,7 +36,7 @@ def set_preferences(request):
             return HttpResponse('false')
     else:
         form = DashboardPreferencesForm(user=request.user, instance=preferences)
-    return direct_to_template(request, 'dashboard/preferences_form.html', {
+    return direct_to_template(request, 'admin_tools/dashboard/preferences_form.html', {
         'form': form,   
     })
 

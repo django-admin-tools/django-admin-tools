@@ -14,7 +14,7 @@ from admin_tools.menu.models import Bookmark, BookmarkMenuItem
 from admin_tools.menu.utils import get_admin_menu
 
 register = template.Library()
-tag_func = register.inclusion_tag('menu/dummy.html', takes_context=True)
+tag_func = register.inclusion_tag('admin_tools/menu/dummy.html', takes_context=True)
 
 def admin_tools_render_menu(context, menu=None):
     """
@@ -73,7 +73,7 @@ def admin_tools_render_menu_css(context, menu=None):
         menu = get_admin_menu()
 
     context.update({
-        'template': 'menu/css.html',
+        'template': 'admin_tools/menu/css.html',
         'css_files': menu.Media.css,
         'media_url': get_media_url(),
     })

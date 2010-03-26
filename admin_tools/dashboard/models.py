@@ -40,7 +40,7 @@ class Dashboard(object):
 
     ``template``
         The template to use to render the dashboard.
-        Default value: 'dashboard/dashboard.html'
+        Default value: 'admin_tools/dashboard/dashboard.html'
 
     ``columns``
         An integer that represents the number of columns for the dashboard.
@@ -99,7 +99,7 @@ class Dashboard(object):
         Dashboard constructor.
         """
         self.title = kwargs.get('title', _('Dashboard'))
-        self.template = kwargs.get('template', 'dashboard/dashboard.html')
+        self.template = kwargs.get('template', 'admin_tools/dashboard/dashboard.html')
         self.columns = kwargs.get('columns', 2)
         self.children = kwargs.get('children', [])
 
@@ -254,7 +254,7 @@ class DashboardModule(object):
 
     ``template``
         The template to use to render the module.
-        Default value: 'dashboard/module.html'.
+        Default value: 'admin_tools/dashboard/module.html'.
     """
     def __init__(self, **kwargs):
         self.enabled = kwargs.get('enabled', True)
@@ -266,7 +266,7 @@ class DashboardModule(object):
         self.css_classes = kwargs.get('css_classes', [])
         self.pre_content = kwargs.get('pre_content')
         self.post_content = kwargs.get('post_content')
-        self.template = kwargs.get('template', 'dashboard/module.html')
+        self.template = kwargs.get('template', 'admin_tools/dashboard/module.html')
         self.children = kwargs.get('children', [])
 
     def init_with_context(self, context):
@@ -419,7 +419,7 @@ class LinkListDashboardModule(DashboardModule):
         super(LinkListDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Links'))
         self.template = kwargs.get('template',
-                                   'dashboard/modules/link_list.html')
+                                   'admin_tools/dashboard/modules/link_list.html')
         self.layout = kwargs.get('layout', 'stacked')
 
 
@@ -475,7 +475,7 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
         super(AppListDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Applications'))
         self.template = kwargs.get('template',
-                                   'dashboard/modules/app_list.html')
+                                   'admin_tools/dashboard/modules/app_list.html')
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
@@ -554,7 +554,7 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
         super(ModelListDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', '')
         self.template = kwargs.get('template',
-                                   'dashboard/modules/model_list.html')
+                                   'admin_tools/dashboard/modules/model_list.html')
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
@@ -618,7 +618,7 @@ class RecentActionsDashboardModule(DashboardModule):
         super(RecentActionsDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Recent Actions'))
         self.template = kwargs.get('template',
-                                   'dashboard/modules/recent_actions.html')
+                                   'admin_tools/dashboard/modules/recent_actions.html')
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
         self.limit = kwargs.get('limit', 10)
@@ -707,7 +707,7 @@ class FeedDashboardModule(DashboardModule):
     def __init__(self, **kwargs):
         super(FeedDashboardModule, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('RSS Feed'))
-        self.template = kwargs.get('template', 'dashboard/modules/feed.html')
+        self.template = kwargs.get('template', 'admin_tools/dashboard/modules/feed.html')
         self.feed_url = kwargs.get('feed_url')
         self.limit = kwargs.get('limit')
 
