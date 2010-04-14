@@ -5,22 +5,16 @@
         var script_url = '{{ media_url }}/admin_tools/js/jquery/jquery.min.js';
         document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
     }
-</script>
-<script type="text/javascript" charset="utf-8">
     // load jquery ui if it's not loaded yet
     if (typeof jQuery.ui == 'undefined') {
         var script_url = '{{ media_url }}/admin_tools/js/jquery/jquery-ui.min.js';
         document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
     }
-</script>
-<script type="text/javascript" charset="utf-8">
     // load json if it's not loaded yet
     if (typeof JSON == 'undefined') {
         var script_url = '{{ media_url }}/admin_tools/js/json.min.js';
         document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
     }
-</script>
-<script type="text/javascript" charset="utf-8">
     // load jquery cookie if it's not loaded yet
     if (typeof jQuery.cookie == 'undefined') {
         var script_url = '{{ media_url }}/admin_tools/js/jquery/jquery.cookie.min.js';
