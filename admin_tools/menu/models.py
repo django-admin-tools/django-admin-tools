@@ -193,6 +193,16 @@ class MenuItem(object):
         """
         pass
 
+    def is_selected(self, request):
+        """
+        Helper method that returns ``True`` if the menu item is active. 
+        A menu item is considered as active if it's URL or one of its 
+        descendants URL is equals to the current URL.
+        """
+        current_url = request.get_full_path()
+        return self.url == current_url or \
+            len([c for c in self.children if c.is_selected(request)]) > 0
+
 
 class AppListMenuItem(MenuItem, AppListElementMixin):
     """
@@ -312,6 +322,12 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
             ))
         if not len(self.children):
             self.enabled = False
+
+    def is_selected(self, request):
+        """
+        A bookmark menu item is never considered as active, the real item is.
+        """
+        return False
 
 
 class DefaultMenu(Menu):

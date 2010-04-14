@@ -58,6 +58,7 @@ def admin_tools_render_menu_item(context, item, index=None):
         'template': item.template,
         'item': item,
         'index': index,
+        'selected': item.is_selected(context['request'])
     })
     return context
 admin_tools_render_menu_item = tag_func(admin_tools_render_menu_item)
