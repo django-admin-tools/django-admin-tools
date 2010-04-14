@@ -40,23 +40,18 @@
 <script type="text/javascript">
 // <![CDATA[
 jQuery(function($) {
-    jQuery.getJSON(
-        '{% url admin-tools-dashboard-get-preferences %}',
-        function(data) {
-            $('#{{ dashboard.get_id }}').dashboard({
-                'columns': {{ dashboard.columns }},
-                'load_preferences_function': function(options) {
-                    return data;
-                },
-                'save_preferences_function': function(options, preferences) {
-                    jQuery.post(
-                        '{% url admin-tools-dashboard-set-preferences %}',
-                        { data: JSON.stringify(preferences) }
-                    );
-                }
-            });
-         }
-    );
+    $('#{{ dashboard.get_id }}').dashboard({
+        'columns': {{ dashboard.columns }},
+        'load_preferences_function': function(options) {
+            return {% autoescape off %}{{ dashboard_preferences }}{% endautoescape %};
+        },
+        'save_preferences_function': function(options, preferences) {
+            jQuery.post(
+                '{% url admin-tools-dashboard-set-preferences %}',
+                { data: JSON.stringify(preferences) }
+            );
+        }
+    });
 });
 //]]>
 </script>

@@ -11,6 +11,7 @@ import math
 from django import template
 from admin_tools.utils import get_media_url
 from admin_tools.dashboard.utils import get_dashboard
+from admin_tools.dashboard.models import DashboardPreferences
 
 register = template.Library()
 tag_func = register.inclusion_tag('admin_tools/dashboard/dummy.html', takes_context=True)
@@ -34,9 +35,16 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         dashboard = get_dashboard(context, location)
 
     dashboard.init_with_context(context)
+
+    try:
+        preferences = DashboardPreferences.objects.get(user=context['request'].user).data
+    except DashboardPreferences.DoesNotExist:
+        preferences = '{}'
+
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,
+        'dashboard_preferences': preferences,
         'split_at': math.ceil(float(len(dashboard.children))/float(dashboard.columns)),
         'media_url': get_media_url(),
         'has_disabled_modules': len([m for m in dashboard.children \

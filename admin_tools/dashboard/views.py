@@ -39,19 +39,3 @@ def set_preferences(request):
     return direct_to_template(request, 'admin_tools/dashboard/preferences_form.html', {
         'form': form,   
     })
-
-
-@login_required
-@csrf_exempt
-def get_preferences(request):
-    """
-    Returns the dashboard preferences for the current user in json format.
-    If no preferences are found, the return value is an empty json object.
-    """
-    try:
-        preferences = DashboardPreferences.objects.get(user=request.user)
-        data = preferences.data
-    except DashboardPreferences.DoesNotExist:
-        data = '{}'
-    return HttpResponse(data, mimetype='application/json')
-
