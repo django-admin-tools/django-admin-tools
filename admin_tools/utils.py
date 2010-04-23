@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 class AppListElementMixin(object):
     """
-    Mixin class used by both the AppListDashboardModule and the 
+    Mixin class used by both the AppListDashboardModule and the
     AppListMenuItem (to honor the DRY concept).
     """
     def _check_perms(self, request, model, model_admin):
