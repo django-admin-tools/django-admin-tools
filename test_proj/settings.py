@@ -28,6 +28,9 @@ TEMPLATE_DIRS = (
     PROJECT_PATH + '/templates',
 )
 
+FIXTURE_DIRS = ['fixtures']
+
+
 INSTALLED_APPS = [
     'admin_tools.theming',
     'admin_tools.menu',
