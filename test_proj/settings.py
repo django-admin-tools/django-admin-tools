@@ -1,7 +1,8 @@
 # settings for django-admin-tools test project.
 import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'static')
+MEDIA_URL = '/static/'
 DATABASE_ENGINE = 'sqlite3'
 DATABASE_NAME = ':memory:'
 SITE_ID = 1
