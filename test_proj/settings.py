@@ -4,7 +4,7 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'static')
 MEDIA_URL = '/static/'
 DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = ':memory:'
+DATABASE_NAME = 'testdb.sqlite'
 SITE_ID = 1
 
 TEMPLATE_LOADERS = (
