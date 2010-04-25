@@ -64,7 +64,7 @@ def get_app_index_dashboard(context):
     if app_label is not None and app_label in Registry.registry:
         return Registry.registry[app_label](app_title, model_list)
 
-    # try to discover a general app_index dashboard (with fallback to the 
+    # try to discover a general app_index dashboard (with fallback to the
     # default dashboard)
     dashboard_cls = getattr(
         settings,
