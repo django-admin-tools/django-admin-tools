@@ -1,9 +1,7 @@
 Running tests
 =============
-::
 
-    $ cd test_proj
-    $ ./test.sh
+Run 'runtests.sh' script.
 
 
 Code coverage report

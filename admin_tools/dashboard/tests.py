@@ -1,23 +1,16 @@
-"""
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
-
-Replace these with more appropriate tests for your application.
-"""
-
+from tempfile import mkstemp, mktemp
 from django.test import TestCase
+from django.core import management
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
-
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
+class ManagementCommandTest(TestCase):
+    def test_customdashboard(self):
+        # check that customdashboard command don't raise exceptions
+        file_name = mktemp()
+        management.call_command('customdashboard', file=file_name)
+        # and fails if file is already here
+        try:
+            management.call_command('customdashboard', file=file_name)
+            assert False
+        except:
+            pass
 
