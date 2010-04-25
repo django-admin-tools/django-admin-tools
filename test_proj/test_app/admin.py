@@ -1,4 +1,5 @@
 from django.contrib import admin
-from test_app.models import MyModel
+from test_app.models import Foo, Bar
 
-admin.site.register(MyModel)
+admin.site.register(Foo)
+admin.site.register(Bar)

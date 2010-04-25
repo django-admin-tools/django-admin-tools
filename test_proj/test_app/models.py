@@ -1,4 +1,7 @@
 from django.db import models
 
-class MyModel(models.Model):
+class Foo(models.Model):
+    pass
+
+class Bar(models.Model):
     pass
