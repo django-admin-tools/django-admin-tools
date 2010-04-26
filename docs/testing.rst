@@ -1,9 +1,14 @@
+.. _testing:
+
 Testing of django-admin-tools
 =============================
 
+This is information for developers of django-admin-tools itself.
+
 Running tests
-~~~~~~~~~~~~~
-Run 'runtests.sh' script.
+-------------
+Run the `runtests.sh` script which is situated at the root dir of
+django-admin-tools project.
 
 Run all tests::
 
@@ -27,7 +32,7 @@ Run only one test::
 
 
 Code coverage report
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 Install django-coverage app::
 
     $ pip install django-coverage
@@ -36,6 +41,6 @@ Then run tests and open test_proj/_coverage/index.html file in browser.
 
 
 Where tests live
-~~~~~~~~~~~~~~~~
+----------------
 Unit tests should be put into appropriate module's tests.py.
 Functional/integration tests should be put somewhere into test_proj.
