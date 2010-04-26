@@ -9,23 +9,23 @@ Make sure you read this before creating your custom menu.
 The ``Menu`` class
 ------------------
 
-.. autoclass:: admin_tools.menu.models.Menu
+.. autoclass:: admin_tools.menu.Menu
     :members:
 
 The ``MenuItem`` class
 ----------------------
 
-.. autoclass:: admin_tools.menu.models.MenuItem
+.. autoclass:: admin_tools.menu.items.MenuItem
     :members:
 
 The ``AppListMenuItem`` class
 -----------------------------
 
-.. autoclass:: admin_tools.menu.models.AppListMenuItem
+.. autoclass:: admin_tools.menu.items.AppListMenuItem
     :members:
 
 The ``BookmarkMenuItem`` class
 ------------------------------
 
-.. autoclass:: admin_tools.menu.models.BookmarkMenuItem
+.. autoclass:: admin_tools.menu.items.BookmarkMenuItem
     :members:

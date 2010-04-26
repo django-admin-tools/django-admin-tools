@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from admin_tools.dashboard.models import *
+from admin_tools.dashboard import Dashboard, AppIndexDashboard
+from admin_tools.dashboard import modules
 
 
 # to activate your index dashboard add the following to your settings.py:
@@ -10,12 +11,12 @@ from admin_tools.dashboard.models import *
 class CustomIndexDashboard(Dashboard):
     """
     Custom index dashboard for {{ project }}.
-    """ 
+    """
     def __init__(self, **kwargs):
         Dashboard.__init__(self, **kwargs)
 
         # append a link list module for "quick links"
-        self.children.append(LinkListDashboardModule(
+        self.children.append(modules.LinkListDashboardModule(
             title=_('Quick links'),
             layout='inline',
             draggable=False,
@@ -38,32 +39,32 @@ class CustomIndexDashboard(Dashboard):
         ))
 
         # append an app list module for "Applications"
-        self.children.append(AppListDashboardModule(
+        self.children.append(modules.AppListDashboardModule(
             title=_('Applications'),
             exclude_list=('django.contrib',),
         ))
 
         # append an app list module for "Administration"
-        self.children.append(AppListDashboardModule(
+        self.children.append(modules.AppListDashboardModule(
             title=_('Administration'),
             include_list=('django.contrib',),
         ))
 
         # append a recent actions module
-        self.children.append(RecentActionsDashboardModule(
+        self.children.append(modules.RecentActionsDashboardModule(
             title=_('Recent Actions'),
             limit=5
         ))
 
         # append a feed module
-        self.children.append(FeedDashboardModule(
+        self.children.append(modules.FeedDashboardModule(
             title=_('Latest Django News'),
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
         ))
 
-        # append another link list module for "support". 
-        self.children.append(LinkListDashboardModule(
+        # append another link list module for "support".
+        self.children.append(modules.LinkListDashboardModule(
             title=_('Support'),
             children=[
                 {
@@ -98,7 +99,7 @@ class CustomIndexDashboard(Dashboard):
 class CustomAppIndexDashboard(AppIndexDashboard):
     """
     Custom app index dashboard for {{ project }}.
-    """ 
+    """
     def __init__(self, *args, **kwargs):
         AppIndexDashboard.__init__(self, *args, **kwargs)
 
@@ -106,13 +107,13 @@ class CustomAppIndexDashboard(AppIndexDashboard):
         self.title = ''
 
         # append a model list module
-        self.children.append(ModelListDashboardModule(
+        self.children.append(modules.ModelListDashboardModule(
             title=self.app_title,
             include_list=self.models,
         ))
 
         # append a recent actions module
-        self.children.append(RecentActionsDashboardModule(
+        self.children.append(modules.RecentActionsDashboardModule(
             title=_('Recent Actions'),
             include_list=self.get_app_content_types(),
         ))
