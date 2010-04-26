@@ -1,5 +1,5 @@
 #!/bin/sh
-default_unit='dashboard theming menu'
+default_unit='admin_tools dashboard theming menu'
 default_all="$default_unit test_app"
 if [ $# -eq 0 ]
 then

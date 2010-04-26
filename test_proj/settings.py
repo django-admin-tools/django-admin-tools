@@ -6,7 +6,7 @@ MEDIA_URL = '/static/'
 DATABASE_ENGINE = 'sqlite3'
 DATABASE_NAME = 'testdb.sqlite'
 SITE_ID = 1
-#DEBUG = True
+DEBUG = True
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -34,6 +34,7 @@ FIXTURE_DIRS = ['fixtures']
 
 
 INSTALLED_APPS = [
+    'admin_tools',
     'admin_tools.theming',
     'admin_tools.menu',
     'admin_tools.dashboard',
