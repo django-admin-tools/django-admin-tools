@@ -24,7 +24,7 @@ class Menu(object):
     can declare css stylesheets and/or javascript files to include when
     rendering the menu, for example::
 
-        from admin_tools.menu.models import *
+        from admin_tools.menu import Menu
 
         class MyMenu(Menu):
             class Media:
@@ -34,23 +34,23 @@ class Menu(object):
     Here's a concrete example of a custom menu::
 
         from django.core.urlresolvers import reverse
-        from admin_tools.menu.models import *
+        from admin_tools.menu import items, Menu
 
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
                 self.children.append(
-                    MenuItem(title='Home', url=reverse('admin:index'))
+                    items.MenuItem(title='Home', url=reverse('admin:index'))
                 )
                 self.children.append(
-                    AppListMenuItem(title='Applications')
+                    items.AppListMenuItem(title='Applications')
                 )
                 self.children.append(
-                    MenuItem(
+                    items.MenuItem(
                         title='Multi level menu item',
                         children=[
-                            MenuItem('Child 1'),
-                            MenuItem('Child 2'),
+                            items.MenuItem('Child 1'),
+                            items.MenuItem('Child 2'),
                         ]
                     ),
                 )
