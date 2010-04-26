@@ -14,7 +14,7 @@ def get_admin_menu():
     menu_cls = getattr(
         settings,
         'ADMIN_TOOLS_MENU',
-        'admin_tools.menu.models.DefaultMenu'
+        'admin_tools.menu.DefaultMenu'
     )
     try:
         mod, inst = menu_cls.rsplit('.', 1)

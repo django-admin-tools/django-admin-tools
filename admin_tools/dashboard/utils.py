@@ -28,7 +28,7 @@ def get_index_dashboard(context):
     dashboard_cls = getattr(
         settings,
         'ADMIN_TOOLS_INDEX_DASHBOARD',
-        'admin_tools.dashboard.models.DefaultIndexDashboard'
+        'admin_tools.dashboard.DefaultIndexDashboard'
     )
     try:
         mod, inst = dashboard_cls.rsplit('.', 1)
@@ -69,7 +69,7 @@ def get_app_index_dashboard(context):
     dashboard_cls = getattr(
         settings,
         'ADMIN_TOOLS_APP_INDEX_DASHBOARD',
-        'admin_tools.dashboard.models.DefaultAppIndexDashboard'
+        'admin_tools.dashboard.DefaultAppIndexDashboard'
     )
     try:
         mod, inst = dashboard_cls.rsplit('.', 1)

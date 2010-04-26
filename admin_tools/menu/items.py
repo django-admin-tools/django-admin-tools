@@ -67,7 +67,7 @@ class MenuItem(object):
         let's build a "history" menu item, that will list the last ten visited
         pages::
 
-            from admin_tools.menu.models import *
+            from admin_tools.menu.items import MenuItem
 
             class HistoryMenuItem(MenuItem):
                 def init_with_context(self, context):
@@ -126,12 +126,12 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
 
     Here's a small example of building an app list menu item::
 
-        from admin_tools.menu.models import *
+        from admin_tools.menu import items, Menu
 
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(AppListMenuItem(
+                self.children.append(items.AppListMenuItem(
                     title='Applications',
                     exclude_list=('django.contrib',)
                 )
@@ -198,12 +198,12 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
 
     Here's a small example of adding a bookmark menu item::
 
-        from admin_tools.menu.models import *
+        from admin_tools.menu import items, Menu
 
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(BookmarkMenuItem(title='My bookmarks'))
+                self.children.append(items.BookmarkMenuItem(title='My bookmarks'))
 
     """
 

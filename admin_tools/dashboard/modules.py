@@ -181,13 +181,13 @@ class LinkListDashboardModule(DashboardModule):
 
     Here's a small example of building a link list module::
 
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
             def __init__(self, **kwargs):
                 Dashboard.__init__(self, **kwargs)
 
-                self.children.append(LinkListDashboardModule(
+                self.children.append(modules.LinkListDashboardModule(
                     layout='inline',
                     children=(
                         {
@@ -242,19 +242,19 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
 
     Here's a small example of building an app list module::
 
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
             def __init__(self, **kwargs):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib apps
-                self.children.append(AppListDashboardModule(
+                self.children.append(modules.AppListDashboardModule(
                     title='Administration',
                     include_list=('django.contrib',)
                 ))
                 # will list all apps except the django.contrib ones
-                self.children.append(AppListDashboardModule(
+                self.children.append(modules.AppListDashboardModule(
                     title='Applications',
                     exclude_list=('django.contrib',)
                 ))
@@ -326,14 +326,14 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
 
     Here's a small example of building a model list module::
 
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
             def __init__(self, **kwargs):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib.auth models
-                self.children.append(ModelListDashboardModule(
+                self.children.append(modules.ModelListDashboardModule(
                     title='Authentication',
                     include_list=('django.contrib.auth',)
                 ))
@@ -396,14 +396,14 @@ class RecentActionsDashboardModule(DashboardModule):
 
     Here's a small example of building a recent actions module::
 
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
             def __init__(self, **kwargs):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib apps
-                self.children.append(RecentActionsDashboardModule(
+                self.children.append(modules.RecentActionsDashboardModule(
                     title='Django CMS recent actions',
                     include_list=('cms.page', 'cms.cmsplugin',)
                 ))
@@ -486,14 +486,14 @@ class FeedDashboardModule(DashboardModule):
 
     Here's a small example of building a recent actions module::
 
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
             def __init__(self, **kwargs):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib apps
-                self.children.append(FeedDashboardModule(
+                self.children.append(modules.FeedDashboardModule(
                     title=_('Latest Django News'),
                     feed_url='http://www.djangoproject.com/rss/weblog/',
                     limit=5

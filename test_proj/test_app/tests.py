@@ -29,3 +29,4 @@ class AdminBasicTest(TestCase):
         self.assertContains(res, 'Foos')
         self.assertContains(res, 'Bars')
         self.assertContains(res, 'Users', 1) # only item from menu
+

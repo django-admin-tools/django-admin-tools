@@ -32,6 +32,7 @@ TEMPLATE_DIRS = (
 
 FIXTURE_DIRS = ['fixtures']
 
+ADMIN_TOOLS_INDEX_DASHBOARD = 'test_proj.dashboard.CustomIndexDashboard'
 
 INSTALLED_APPS = [
     'admin_tools',

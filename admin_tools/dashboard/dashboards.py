@@ -25,7 +25,7 @@ class Dashboard(object):
     can declare css stylesheets and/or javascript files to include when
     rendering the dashboard, for example::
 
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import Dashboard
 
         class MyDashboard(Dashboard):
             class Media:
@@ -36,7 +36,7 @@ class Dashboard(object):
 
         from django.core.urlresolvers import reverse
         from django.utils.translation import ugettext_lazy as _
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
             def __init__(self, **kwargs):
@@ -44,19 +44,19 @@ class Dashboard(object):
                 self.columns = 3
 
                 # append an app list module for "Applications"
-                self.children.append(AppListDashboardModule(
+                self.children.append(modules.AppListDashboardModule(
                     title=_('Applications'),
                     exclude_list=('django.contrib',),
                 ))
 
                 # append an app list module for "Administration"
-                self.children.append(AppListDashboardModule(
+                self.children.append(modules.AppListDashboardModule(
                     title=_('Administration'),
                     include_list=('django.contrib',),
                 ))
 
                 # append a recent actions module
-                self.children.append(RecentActionsDashboardModule(
+                self.children.append(modules.RecentActionsDashboardModule(
                     title=_('Recent Actions'),
                     limit=5
                 ))
@@ -126,7 +126,7 @@ class AppIndexDashboard(Dashboard):
 
         from django.core.urlresolvers import reverse
         from django.utils.translation import ugettext_lazy as _
-        from admin_tools.dashboard.models import *
+        from admin_tools.dashboard import modules, AppIndexDashboard
 
         class MyAppIndexDashboard(AppIndexDashboard):
             def __init__(self, **kwargs):
@@ -136,13 +136,13 @@ class AppIndexDashboard(Dashboard):
 
                 # append a model list module that lists all models
                 # for the app
-                self.children.append(ModelListDashboardModule(
+                self.children.append(modules.ModelListDashboardModule(
                     title=self.app_title,
                     include_list=self.models,
                 ))
 
                 # append a recent actions module for the current app
-                self.children.append(RecentActionsDashboardModule(
+                self.children.append(modules.RecentActionsDashboardModule(
                     title=_('Recent Actions'),
                     include_list=self.models,
                     limit=5
