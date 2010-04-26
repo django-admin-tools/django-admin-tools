@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from admin_tools.dashboard import AppIndexDashboard
-from admin_tools.dashboard import modules
+from admin_tools.dashboard import modules, AppIndexDashboard
 
 # create your custom modules here if you want, for example:
 #
