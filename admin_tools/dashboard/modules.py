@@ -71,7 +71,7 @@ class DashboardModule(object):
 
     def init_with_context(self, context):
         """
-        Like for the ``Dashboard`` class, dashboard modules have a
+        Like for the :class:`~admin_tools.dashboard.Dashboard` class, dashboard modules have a
         ``init_with_context`` method that is called with a
         ``django.template.RequestContext`` instance as unique argument.
 
@@ -158,8 +158,9 @@ class DashboardModule(object):
 class LinkList(DashboardModule):
     """
     A module that displays a list of links.
-    As well as the ``DashboardModule`` properties, the
-    ``LinkList`` takes an extra keyword argument:
+    As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
+    properties, the :class:`~admin_tools.dashboard.modules.LinkList` takes
+    an extra keyword argument:
 
     ``layout``
         The layout of the list, possible values are ``stacked`` and ``inline``.
@@ -227,8 +228,9 @@ class LinkList(DashboardModule):
 class AppList(DashboardModule, AppListElementMixin):
     """
     Module that lists installed apps and their models.
-    As well as the ``DashboardModule`` properties, the
-    ``AppList`` has two extra properties:
+    As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
+    properties, the :class:`~admin_tools.dashboard.modules.AppList`
+    has two extra properties:
 
     ``exclude_list``
         A list of apps to exclude, if an app name (e.g. "django.contrib.auth"
@@ -313,8 +315,9 @@ class AppList(DashboardModule, AppListElementMixin):
 class ModelList(DashboardModule, AppListElementMixin):
     """
     Module that lists a set of models.
-    As well as the ``DashboardModule`` properties, the
-    ``ModelList`` takes two extra keyword arguments:
+    As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
+    properties, the :class:`~admin_tools.dashboard.modules.ModelList` takes
+    two extra keyword arguments:
 
     ``include_list``
         A list of models to include, only models whose name (e.g.
@@ -380,8 +383,9 @@ class ModelList(DashboardModule, AppListElementMixin):
 class RecentActions(DashboardModule):
     """
     Module that lists the recent actions for the current user.
-    As well as the ``DashboardModule`` properties, the
-    ``RecentActions`` takes three extra keyword arguments:
+    As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
+    properties, the :class:`~admin_tools.dashboard.modules.RecentActions`
+    takes three extra keyword arguments:
 
     ``include_list``
         A list of contenttypes (e.g. "auth.group" or "sites.site") to include,
@@ -476,8 +480,9 @@ class Feed(DashboardModule):
         the feeds, so you'll need to install it, all feeds supported by
         FeedParser are thus supported by the Feed
 
-    As well as the ``DashboardModule`` properties, the ``Feed``
-    takes two extra keyword arguments:
+    As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
+    properties, the :class:`~admin_tools.dashboard.modules.Feed` takes two
+    extra keyword arguments:
 
     ``feed_url``
         The URL of the feed.

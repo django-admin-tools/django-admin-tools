@@ -109,8 +109,8 @@ class MenuItem(object):
 class AppList(MenuItem, AppListElementMixin):
     """
     A menu item that lists installed apps an their models.
-    In addition to the parent ``MenuItem`` properties, the ``AppList``
-    has two extra properties:
+    In addition to the parent :class:`~admin_tools.menu.items.MenuItem`
+    properties, the ``AppList`` has two extra properties:
 
     ``exclude_list``
         A list of apps to exclude, if an app name (e.g. "django.contrib.auth"
@@ -158,7 +158,8 @@ class AppList(MenuItem, AppListElementMixin):
 
     def init_with_context(self, context):
         """
-        Please refer to the ``MenuItem::init_with_context()`` documentation.
+        Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
+        documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         request = context['request']
         apps = {}
@@ -215,7 +216,8 @@ class Bookmarks(MenuItem, AppListElementMixin):
 
     def init_with_context(self, context):
         """
-        Please refer to the ``MenuItem::init_with_context()`` documentation.
+        Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
+        documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         from admin_tools.menu.models import Bookmark
         for b in Bookmark.objects.filter(user=context['request'].user):

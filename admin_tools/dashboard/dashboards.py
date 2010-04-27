@@ -101,7 +101,8 @@ class AppIndexDashboard(Dashboard):
     """
     Class that represents an app index dashboard, app index dashboards are
     displayed in the applications index page.
-    ``AppIndexDashboard`` is very similar to the ``Dashboard`` class except
+    :class:`~admin_tools.dashboard.AppIndexDashboard` is very similar to the
+    :class:`~admin_tools.dashboard.Dashboard` class except
     that its constructor receives two extra arguments:
 
     ``app_title``
@@ -122,7 +123,7 @@ class AppIndexDashboard(Dashboard):
         Method that returns the list of content types for the current app.
 
     If you want to provide custom app index dashboard, be sure to inherit from
-    this class instead of the ``Dashboard`` class.
+    this class instead of the :class:`~admin_tools.dashboard.Dashboard` class.
 
     Here's an example of a custom app index dashboard::
 

@@ -15,7 +15,7 @@ class Menu(object):
 
     ``children``
         A list of children menu items. All children items mus be instances of
-        the ``MenuItem`` class.
+        the :class:`~admin_tools.menu.items.MenuItem` class.
 
     If you want to customize the look of your menu and it's menu items, you
     can declare css stylesheets and/or javascript files to include when
