@@ -71,8 +71,8 @@ class DashboardModule(object):
 
     def init_with_context(self, context):
         """
-        Like for the :class:`~admin_tools.dashboard.Dashboard` class, dashboard modules have a
-        ``init_with_context`` method that is called with a
+        Like for the :class:`~admin_tools.dashboard.Dashboard` class, dashboard
+        modules have a ``init_with_context`` method that is called with a
         ``django.template.RequestContext`` instance as unique argument.
 
         This gives you enough flexibility to build complex modules, for
