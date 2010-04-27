@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 from django.utils.text import capfirst
@@ -155,17 +154,19 @@ class AppList(MenuItem, AppListElementMixin):
         super(AppList, self).__init__(**kwargs)
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
+        self.models = list(kwargs.get('models', []))
+        self.exclude = list(kwargs.get('exclude', []))
+
 
     def init_with_context(self, context):
         """
         Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
         documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
-        request = context['request']
+        items = self._visible_models(context['request'])
         apps = {}
-        for model, model_admin in admin.site._registry.items():
-            perms = self._check_perms(request, model, model_admin)
-            if not perms or not perms['change']:
+        for model, perms in items:
+            if not perms['change']:
                 continue
             app_label = model._meta.app_label
             if app_label not in apps:

@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.utils.text import capfirst
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
@@ -282,13 +281,14 @@ class AppList(DashboardModule, AppListElementMixin):
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
+        self.models = list(kwargs.get('models', []))
+        self.exclude = list(kwargs.get('exclude', []))
+
+
     def init_with_context(self, context):
-        request = context['request']
+        items = self._visible_models(context['request'])
         apps = {}
-        for model, model_admin in admin.site._registry.items():
-            perms = self._check_perms(request, model, model_admin)
-            if not perms or ('add' not in perms and 'change' not in perms):
-                continue
+        for model, perms in items:
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
@@ -361,13 +361,14 @@ class ModelList(DashboardModule, AppListElementMixin):
                                    'admin_tools/dashboard/modules/model_list.html')
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
+        self.models = list(kwargs.get('models', []))
+        self.exclude = list(kwargs.get('exclude', []))
 
     def init_with_context(self, context):
-        request = context['request']
-        for model, model_admin in admin.site._registry.items():
-            perms = self._check_perms(request, model, model_admin)
-            if not perms:
-                continue
+        items = self._visible_models(context['request'])
+        if not items:
+            return
+        for model, perms in items:
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
             if perms['change']:
@@ -375,9 +376,6 @@ class ModelList(DashboardModule, AppListElementMixin):
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model)
             self.children.append(model_dict)
-
-        # sort model list alphabetically
-        self.children.sort(lambda x, y: cmp(x['title'], y['title']))
 
 
 class RecentActions(DashboardModule):

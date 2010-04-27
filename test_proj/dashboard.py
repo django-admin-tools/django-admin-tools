@@ -50,6 +50,12 @@ class CustomIndexDashboard(Dashboard):
             include_list=('django.contrib',),
         ))
 
+        self.children.append(modules.ModelList(
+            title='Test1',
+            models = ['django.contrib.auth.*', '*.Site', '*.Foo'],
+            exclude = ['django.contrib.auth.models.User', 'test_app.*']
+        ))
+
         # append a recent actions module
         self.children.append(modules.RecentActions(
             title=_('Recent Actions'),
