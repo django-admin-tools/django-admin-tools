@@ -4,19 +4,22 @@ from unittest import TestCase
 class DeprecationTest(TestCase):
 
     def assertDeprecated(self, cls, *args, **kwargs):
-        with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("always")
-            obj = cls(*args, **kwargs)
+        if hasattr(warnings, 'catch_warnings'):
+            with warnings.catch_warnings(record=True) as w:
+                warnings.simplefilter("always")
+                obj = cls(*args, **kwargs)
 
-            assert len(w) == 1
-            assert issubclass(w[-1].category, DeprecationWarning)
-            assert "deprecated" in str(w[-1].message)
+                assert len(w) == 1
+                assert issubclass(w[-1].category, DeprecationWarning)
+                assert "deprecated" in str(w[-1].message)
+
 
     def assertNotDeprecated(self, cls, *args, **kwargs):
-        with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("always")
-            obj = cls(*args, **kwargs)
-            assert len(w) == 0
+        if hasattr(warnings, 'catch_warnings'):
+            with warnings.catch_warnings(record=True) as w:
+                warnings.simplefilter("always")
+                obj = cls(*args, **kwargs)
+                assert len(w) == 0
 
 
     def test_dashboard(self):
