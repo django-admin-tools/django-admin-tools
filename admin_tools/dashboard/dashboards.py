@@ -1,7 +1,9 @@
 from django.template.defaultfilters import slugify
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
-from admin_tools.dashboard.modules import *
+from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
+from admin_tools.dashboard import modules
 
 class Dashboard(object):
     """
@@ -44,19 +46,19 @@ class Dashboard(object):
                 self.columns = 3
 
                 # append an app list module for "Applications"
-                self.children.append(modules.AppListDashboardModule(
+                self.children.append(modules.AppList(
                     title=_('Applications'),
                     exclude_list=('django.contrib',),
                 ))
 
                 # append an app list module for "Administration"
-                self.children.append(modules.AppListDashboardModule(
+                self.children.append(modules.AppList(
                     title=_('Administration'),
                     include_list=('django.contrib',),
                 ))
 
                 # append a recent actions module
-                self.children.append(modules.RecentActionsDashboardModule(
+                self.children.append(modules.RecentActions(
                     title=_('Recent Actions'),
                     limit=5
                 ))
@@ -136,13 +138,13 @@ class AppIndexDashboard(Dashboard):
 
                 # append a model list module that lists all models
                 # for the app
-                self.children.append(modules.ModelListDashboardModule(
+                self.children.append(modules.ModelList(
                     title=self.app_title,
                     include_list=self.models,
                 ))
 
                 # append a recent actions module for the current app
-                self.children.append(modules.RecentActionsDashboardModule(
+                self.children.append(modules.RecentActions(
                     title=_('Recent Actions'),
                     include_list=self.models,
                     limit=5
@@ -200,7 +202,7 @@ class DefaultIndexDashboard(Dashboard):
         Dashboard.__init__(self, **kwargs)
 
         # append a link list module for "quick links"
-        self.children.append(LinkListDashboardModule(
+        self.children.append(modules.LinkList(
             title=_('Quick links'),
             layout='inline',
             draggable=False,
@@ -223,32 +225,32 @@ class DefaultIndexDashboard(Dashboard):
         ))
 
         # append an app list module for "Applications"
-        self.children.append(AppListDashboardModule(
+        self.children.append(modules.AppList(
             title=_('Applications'),
             exclude_list=('django.contrib',),
         ))
 
         # append an app list module for "Administration"
-        self.children.append(AppListDashboardModule(
+        self.children.append(modules.AppList(
             title=_('Administration'),
             include_list=('django.contrib',),
         ))
 
         # append a recent actions module
-        self.children.append(RecentActionsDashboardModule(
+        self.children.append(modules.RecentActions(
             title=_('Recent Actions'),
             limit=5
         ))
 
         # append a feed module
-        self.children.append(FeedDashboardModule(
+        self.children.append(modules.Feed(
             title=_('Latest Django News'),
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
         ))
 
         # append another link list module for "support".
-        self.children.append(LinkListDashboardModule(
+        self.children.append(modules.LinkList(
             title=_('Support'),
             children=[
                 {
@@ -288,13 +290,13 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
         self.title = ''
 
         # append a model list module
-        self.children.append(ModelListDashboardModule(
+        self.children.append(modules.ModelList(
             title=self.app_title,
             include_list=self.models,
         ))
 
         # append a recent actions module
-        self.children.append(RecentActionsDashboardModule(
+        self.children.append(modules.RecentActions(
             title=_('Recent Actions'),
             include_list=self.get_app_content_types(),
             limit=5

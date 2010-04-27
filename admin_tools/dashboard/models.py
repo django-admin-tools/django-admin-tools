@@ -67,31 +67,31 @@ class DashboardModule(
 class AppListDashboardModule(
           import_path_is_changed(
               'admin_tools.dashboard.models.AppListDashboardModule',
-              'admin_tools.dashboard.modules.AppListDashboardModule',
+              'admin_tools.dashboard.modules.AppList',
           ),
-          modules.AppListDashboardModule
+          modules.AppList
       ): pass
 
 class ModelListDashboardModule(
           import_path_is_changed(
               'admin_tools.dashboard.models.ModelListDashboardModule',
-              'admin_tools.dashboard.modules.ModelListDashboardModule',
+              'admin_tools.dashboard.modules.ModelList',
           ),
-          modules.ModelListDashboardModule
+          modules.ModelList
       ): pass
 
 class LinkListDashboardModule(
           import_path_is_changed(
               'admin_tools.dashboard.models.LinkListDashboardModule',
-              'admin_tools.dashboard.modules.LinkListDashboardModule',
+              'admin_tools.dashboard.modules.LinkList',
           ),
-          modules.LinkListDashboardModule
+          modules.LinkList
       ): pass
 
 class FeedDashboardModule(
           import_path_is_changed(
               'admin_tools.dashboard.models.FeedDashboardModule',
-              'admin_tools.dashboard.modules.FeedDashboardModule',
+              'admin_tools.dashboard.modules.Feed',
           ),
-          modules.FeedDashboardModule
+          modules.Feed
       ): pass

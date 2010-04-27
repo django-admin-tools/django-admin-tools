@@ -26,32 +26,32 @@ The ``DashboardModule`` class
 .. autoclass:: admin_tools.dashboard.modules.DashboardModule
     :members:
 
-The ``LinkListDashboardModule`` class
+The ``LinkList`` class
 -------------------------------------
 
-.. autoclass:: admin_tools.dashboard.modules.LinkListDashboardModule
+.. autoclass:: admin_tools.dashboard.modules.LinkList
     :members:
 
-The ``AppListDashboardModule`` class
+The ``AppList`` class
 ------------------------------------
 
-.. autoclass:: admin_tools.dashboard.modules.AppListDashboardModule
+.. autoclass:: admin_tools.dashboard.modules.AppList
     :members:
 
-The ``ModelListDashboardModule`` class
+The ``ModelList`` class
 --------------------------------------
 
-.. autoclass:: admin_tools.dashboard.modules.ModelListDashboardModule
+.. autoclass:: admin_tools.dashboard.modules.ModelList
     :members:
 
-The ``RecentActionsDashboardModule`` class
+The ``RecentActions`` class
 ------------------------------------------
 
-.. autoclass:: admin_tools.dashboard.modules.RecentActionsDashboardModule
+.. autoclass:: admin_tools.dashboard.modules.RecentActions
     :members:
 
-The ``FeedDashboardModule`` class
+The ``Feed`` class
 ---------------------------------
 
-.. autoclass:: admin_tools.dashboard.modules.FeedDashboardModule
+.. autoclass:: admin_tools.dashboard.modules.Feed
     :members:

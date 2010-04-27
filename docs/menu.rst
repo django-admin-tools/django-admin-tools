@@ -18,14 +18,14 @@ The ``MenuItem`` class
 .. autoclass:: admin_tools.menu.items.MenuItem
     :members:
 
-The ``AppListMenuItem`` class
+The ``AppList`` class
 -----------------------------
 
-.. autoclass:: admin_tools.menu.items.AppListMenuItem
+.. autoclass:: admin_tools.menu.items.AppList
     :members:
 
-The ``BookmarkMenuItem`` class
+The ``Bookmarks`` class
 ------------------------------
 
-.. autoclass:: admin_tools.menu.items.BookmarkMenuItem
+.. autoclass:: admin_tools.menu.items.Bookmarks
     :members:

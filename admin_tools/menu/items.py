@@ -106,10 +106,10 @@ class MenuItem(object):
             len([c for c in self.children if c.is_selected(request)]) > 0
 
 
-class AppListMenuItem(MenuItem, AppListElementMixin):
+class AppList(MenuItem, AppListElementMixin):
     """
     A menu item that lists installed apps an their models.
-    In addition to the parent ``MenuItem`` properties, the ``AppListMenuItem``
+    In addition to the parent ``MenuItem`` properties, the ``AppList``
     has two extra properties:
 
     ``exclude_list``
@@ -131,7 +131,7 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(items.AppListMenuItem(
+                self.children.append(items.AppList(
                     title='Applications',
                     exclude_list=('django.contrib',)
                 )
@@ -152,7 +152,7 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
         """
         ``AppListMenuItem`` constructor.
         """
-        super(AppListMenuItem, self).__init__(**kwargs)
+        super(AppList, self).__init__(**kwargs)
         self.include_list = kwargs.get('include_list', [])
         self.exclude_list = kwargs.get('exclude_list', [])
 
@@ -190,7 +190,7 @@ class AppListMenuItem(MenuItem, AppListElementMixin):
             self.children.append(item)
 
 
-class BookmarkMenuItem(MenuItem, AppListElementMixin):
+class Bookmarks(MenuItem, AppListElementMixin):
     """
     A menu item that lists pages bookmarked by the user. This menu item also
     adds an extra button to the menu that allows the user to bookmark or
@@ -203,12 +203,12 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(items.BookmarkMenuItem(title='My bookmarks'))
+                self.children.append(items.Bookmarks(title='My bookmarks'))
 
     """
 
     def __init__(self, **kwargs):
-        super(BookmarkMenuItem, self).__init__(**kwargs)
+        super(Bookmarks, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Bookmarks'))
         if 'bookmark' not in self.css_classes:
             self.css_classes.append('bookmark')

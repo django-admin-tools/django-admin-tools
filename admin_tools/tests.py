@@ -46,10 +46,10 @@ class DeprecationTest(TestCase):
 
         from admin_tools.dashboard import modules
         self.assertNotDeprecated(modules.DashboardModule)
-        self.assertNotDeprecated(modules.AppListDashboardModule)
-        self.assertNotDeprecated(modules.ModelListDashboardModule)
-        self.assertNotDeprecated(modules.LinkListDashboardModule)
-        self.assertNotDeprecated(modules.FeedDashboardModule)
+        self.assertNotDeprecated(modules.AppList)
+        self.assertNotDeprecated(modules.ModelList)
+        self.assertNotDeprecated(modules.LinkList)
+        self.assertNotDeprecated(modules.Feed)
 
 
     def test_menu(self):
@@ -67,5 +67,5 @@ class DeprecationTest(TestCase):
 
         from admin_tools.menu import items
         self.assertNotDeprecated(items.MenuItem)
-        self.assertNotDeprecated(items.AppListMenuItem)
-        self.assertNotDeprecated(items.BookmarkMenuItem)
+        self.assertNotDeprecated(items.AppList)
+        self.assertNotDeprecated(items.Bookmarks)

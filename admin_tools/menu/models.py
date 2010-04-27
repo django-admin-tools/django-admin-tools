@@ -25,7 +25,7 @@ from admin_tools.deprecate_utils import import_path_is_changed
 
 class Menu(
           import_path_is_changed(
-              'admin_tools.menu.models',
+              'admin_tools.menu.models.Menu',
               'admin_tools.menu.Menu'
           ),
           menu.Menu
@@ -49,16 +49,16 @@ class MenuItem(
 
 class AppListMenuItem(
           import_path_is_changed(
-              'admin_tools.menu.models.BookmarkMenuItem',
-              'admin_tools.menu.items.AppListMenuItem'
+              'admin_tools.menu.models.AppListMenuItem',
+              'admin_tools.menu.items.AppList'
           ),
-          items.AppListMenuItem
+          items.AppList
       ): pass
 
 class BookmarkMenuItem(
           import_path_is_changed(
               'admin_tools.menu.models.BookmarkMenuItem',
-              'admin_tools.menu.items.BookmarkMenuItem'
+              'admin_tools.menu.items.Bookmarks'
           ),
-          items.BookmarkMenuItem
+          items.Bookmarks
       ): pass

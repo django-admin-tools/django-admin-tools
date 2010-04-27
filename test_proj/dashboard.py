@@ -16,7 +16,7 @@ class CustomIndexDashboard(Dashboard):
         Dashboard.__init__(self, **kwargs)
 
         # append a link list module for "quick links"
-        self.children.append(modules.LinkListDashboardModule(
+        self.children.append(modules.LinkList(
             title=_('Quick links'),
             layout='inline',
             draggable=False,
@@ -39,25 +39,25 @@ class CustomIndexDashboard(Dashboard):
         ))
 
         # append an app list module for "Applications"
-        self.children.append(modules.AppListDashboardModule(
+        self.children.append(modules.AppList(
             title=_('Applications'),
             exclude_list=('django.contrib',),
         ))
 
         # append an app list module for "Administration"
-        self.children.append(modules.AppListDashboardModule(
+        self.children.append(modules.AppList(
             title=_('Administration'),
             include_list=('django.contrib',),
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActionsDashboardModule(
+        self.children.append(modules.RecentActions(
             title=_('Recent Actions'),
             limit=5
         ))
 
         # append another link list module for "support".
-        self.children.append(modules.LinkListDashboardModule(
+        self.children.append(modules.LinkList(
             title=_('Support'),
             children=[
                 {
@@ -100,13 +100,13 @@ class CustomAppIndexDashboard(AppIndexDashboard):
         self.title = ''
 
         # append a model list module
-        self.children.append(modules.ModelListDashboardModule(
+        self.children.append(modules.ModelList(
             title=self.app_title,
             include_list=self.models,
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActionsDashboardModule(
+        self.children.append(modules.RecentActions(
             title=_('Recent Actions'),
             include_list=self.get_app_content_types(),
         ))

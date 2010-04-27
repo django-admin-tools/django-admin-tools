@@ -79,7 +79,9 @@ class DashboardModule(object):
         example, let's build a "history" dashboard module, that will list the
         last ten visited pages::
 
-            class HistoryDashboardModule(LinkListDashboardModule):
+            from admin_tools.dashboard import modules
+
+            class HistoryDashboardModule(modules.LinkList):
                 def init_with_context(self, context):
                     self.title = 'History'
                     request = context['request']
@@ -153,11 +155,11 @@ class DashboardModule(object):
         ret += self.css_classes
         return ' '.join(ret)
 
-class LinkListDashboardModule(DashboardModule):
+class LinkList(DashboardModule):
     """
     A module that displays a list of links.
     As well as the ``DashboardModule`` properties, the
-    ``LinkListDashboardModule`` takes an extra keyword argument:
+    ``LinkList`` takes an extra keyword argument:
 
     ``layout``
         The layout of the list, possible values are ``stacked`` and ``inline``.
@@ -187,7 +189,7 @@ class LinkListDashboardModule(DashboardModule):
             def __init__(self, **kwargs):
                 Dashboard.__init__(self, **kwargs)
 
-                self.children.append(modules.LinkListDashboardModule(
+                self.children.append(modules.LinkList(
                     layout='inline',
                     children=(
                         {
@@ -215,18 +217,18 @@ class LinkListDashboardModule(DashboardModule):
     """
 
     def __init__(self, **kwargs):
-        super(LinkListDashboardModule, self).__init__(**kwargs)
+        super(LinkList, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Links'))
         self.template = kwargs.get('template',
                                    'admin_tools/dashboard/modules/link_list.html')
         self.layout = kwargs.get('layout', 'stacked')
 
 
-class AppListDashboardModule(DashboardModule, AppListElementMixin):
+class AppList(DashboardModule, AppListElementMixin):
     """
     Module that lists installed apps and their models.
     As well as the ``DashboardModule`` properties, the
-    ``AppListDashboardModule`` has two extra properties:
+    ``AppList`` has two extra properties:
 
     ``exclude_list``
         A list of apps to exclude, if an app name (e.g. "django.contrib.auth"
@@ -249,12 +251,12 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib apps
-                self.children.append(modules.AppListDashboardModule(
+                self.children.append(modules.AppList(
                     title='Administration',
                     include_list=('django.contrib',)
                 ))
                 # will list all apps except the django.contrib ones
-                self.children.append(modules.AppListDashboardModule(
+                self.children.append(modules.AppList(
                     title='Applications',
                     exclude_list=('django.contrib',)
                 ))
@@ -271,7 +273,7 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
     """
 
     def __init__(self, **kwargs):
-        super(AppListDashboardModule, self).__init__(**kwargs)
+        super(AppList, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Applications'))
         self.template = kwargs.get('template',
                                    'admin_tools/dashboard/modules/app_list.html')
@@ -308,11 +310,11 @@ class AppListDashboardModule(DashboardModule, AppListElementMixin):
             self.children.append(apps[app])
 
 
-class ModelListDashboardModule(DashboardModule, AppListElementMixin):
+class ModelList(DashboardModule, AppListElementMixin):
     """
     Module that lists a set of models.
     As well as the ``DashboardModule`` properties, the
-    ``ModelListDashboardModule`` takes two extra keyword arguments:
+    ``ModelList`` takes two extra keyword arguments:
 
     ``include_list``
         A list of models to include, only models whose name (e.g.
@@ -333,7 +335,7 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib.auth models
-                self.children.append(modules.ModelListDashboardModule(
+                self.children.append(modules.ModelList(
                     title='Authentication',
                     include_list=('django.contrib.auth',)
                 ))
@@ -350,7 +352,7 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
     """
 
     def __init__(self, **kwargs):
-        super(ModelListDashboardModule, self).__init__(**kwargs)
+        super(ModelList, self).__init__(**kwargs)
         self.title = kwargs.get('title', '')
         self.template = kwargs.get('template',
                                    'admin_tools/dashboard/modules/model_list.html')
@@ -375,11 +377,11 @@ class ModelListDashboardModule(DashboardModule, AppListElementMixin):
         self.children.sort(lambda x, y: cmp(x['title'], y['title']))
 
 
-class RecentActionsDashboardModule(DashboardModule):
+class RecentActions(DashboardModule):
     """
     Module that lists the recent actions for the current user.
     As well as the ``DashboardModule`` properties, the
-    ``RecentActionsDashboardModule`` takes three extra keyword arguments:
+    ``RecentActions`` takes three extra keyword arguments:
 
     ``include_list``
         A list of contenttypes (e.g. "auth.group" or "sites.site") to include,
@@ -403,7 +405,7 @@ class RecentActionsDashboardModule(DashboardModule):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib apps
-                self.children.append(modules.RecentActionsDashboardModule(
+                self.children.append(modules.RecentActions(
                     title='Django CMS recent actions',
                     include_list=('cms.page', 'cms.cmsplugin',)
                 ))
@@ -414,7 +416,7 @@ class RecentActionsDashboardModule(DashboardModule):
     """
 
     def __init__(self, **kwargs):
-        super(RecentActionsDashboardModule, self).__init__(**kwargs)
+        super(RecentActions, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('Recent Actions'))
         self.template = kwargs.get('template',
                                    'admin_tools/dashboard/modules/recent_actions.html')
@@ -463,7 +465,7 @@ class RecentActionsDashboardModule(DashboardModule):
             self.pre_content = _('No recent actions.')
 
 
-class FeedDashboardModule(DashboardModule):
+class Feed(DashboardModule):
     """
     Class that represents a feed dashboard module.
 
@@ -472,9 +474,9 @@ class FeedDashboardModule(DashboardModule):
         This class uses the
         `Universal Feed Parser module <http://www.feedparser.org/>`_ to parse
         the feeds, so you'll need to install it, all feeds supported by
-        FeedParser are thus supported by the FeedDashboardModule.
+        FeedParser are thus supported by the Feed
 
-    As well as the ``DashboardModule`` properties, the ``FeedDashboardModule``
+    As well as the ``DashboardModule`` properties, the ``Feed``
     takes two extra keyword arguments:
 
     ``feed_url``
@@ -493,7 +495,7 @@ class FeedDashboardModule(DashboardModule):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib apps
-                self.children.append(modules.FeedDashboardModule(
+                self.children.append(modules.Feed(
                     title=_('Latest Django News'),
                     feed_url='http://www.djangoproject.com/rss/weblog/',
                     limit=5
@@ -504,7 +506,7 @@ class FeedDashboardModule(DashboardModule):
     .. image:: images/feed_dashboard_module.png
     """
     def __init__(self, **kwargs):
-        super(FeedDashboardModule, self).__init__(**kwargs)
+        super(Feed, self).__init__(**kwargs)
         self.title = kwargs.get('title', _('RSS Feed'))
         self.template = kwargs.get('template', 'admin_tools/dashboard/modules/feed.html')
         self.feed_url = kwargs.get('feed_url')

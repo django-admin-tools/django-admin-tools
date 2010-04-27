@@ -16,11 +16,11 @@ class CustomMenu(Menu):
             title=_('Dashboard'),
             url=reverse('admin:index')
         ))
-        self.children.append(items.AppListMenuItem(
+        self.children.append(items.AppList(
             title=_('Applications'),
             exclude_list=('django.contrib',)
         ))
-        self.children.append(items.AppListMenuItem(
+        self.children.append(items.AppList(
             title=_('Administration'),
             include_list=('django.contrib',)
         ))

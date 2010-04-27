@@ -1,9 +1,6 @@
 from django.core.urlresolvers import reverse
-from django.utils.safestring import mark_safe
-from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
-from admin_tools.utils import AppListElementMixin
-from admin_tools.menu.items import MenuItem, BookmarkMenuItem, AppListMenuItem
+from admin_tools.menu import items
 
 class Menu(object):
     """
@@ -43,7 +40,7 @@ class Menu(object):
                     items.MenuItem(title='Home', url=reverse('admin:index'))
                 )
                 self.children.append(
-                    items.AppListMenuItem(title='Applications')
+                    items.AppList(title='Applications')
                 )
                 self.children.append(
                     items.MenuItem(
@@ -95,16 +92,16 @@ class DefaultMenu(Menu):
     """
     def __init__(self, **kwargs):
         super(DefaultMenu, self).__init__(**kwargs)
-        self.children.append(MenuItem(
+        self.children.append(items.MenuItem(
             title=_('Dashboard'),
             url=reverse('admin:index')
         ))
-        self.children.append(BookmarkMenuItem())
-        self.children.append(AppListMenuItem(
+        self.children.append(items.Bookmarks())
+        self.children.append(items.AppList(
             title=_('Applications'),
             exclude_list=('django.contrib',)
         ))
-        self.children.append(AppListMenuItem(
+        self.children.append(items.AppList(
             title=_('Administration'),
             include_list=('django.contrib',)
         ))
