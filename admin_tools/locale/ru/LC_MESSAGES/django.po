@@ -3,131 +3,130 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-12 14:59+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: django-admin-tools\n"
+"Report-Msgid-Bugs-To: Pavel Kiper <iwtbarh@gmail.com>\n"
+"POT-Creation-Date: 2010-04-20 11:21+0300\n"
+"PO-Revision-Date:  2010-04-20 11:21+0300\n"
+"Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; "
+"plural=n%10==1 && n%100!=11 ? 0 "
+": n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: dashboard/models.py:85 menu/models.py:328
+#: .\dashboard\models.py:101 .\menu\models.py:347
 msgid "Dashboard"
-msgstr ""
+msgstr "Панель управления"
 
-#: dashboard/models.py:404
+#: .\dashboard\models.py:420
 msgid "Links"
-msgstr ""
+msgstr "Ссылки"
 
-#: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
+#: .\dashboard\models.py:476 .\dashboard\models.py:781 .\menu\models.py:352
 msgid "Applications"
-msgstr ""
+msgstr "Приложения"
 
-#: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
+#: .\dashboard\models.py:619 .\dashboard\models.py:793
+#: .\dashboard\models.py:852
 msgid "Recent Actions"
-msgstr ""
+msgstr "Недавние действия"
 
-#: dashboard/models.py:648
+#: .\dashboard\models.py:664
 msgid "No recent actions."
-msgstr ""
+msgstr "Нет действия"
 
-#: dashboard/models.py:693
+#: .\dashboard\models.py:709
 msgid "RSS Feed"
-msgstr ""
+msgstr "Канл RSS"
 
-#: dashboard/models.py:742
+#: .\dashboard\models.py:758
 msgid "Quick links"
-msgstr ""
+msgstr "Быстрые ссылки"
 
-#: dashboard/models.py:749
+#: .\dashboard\models.py:765
 msgid "Return to site"
-msgstr ""
+msgstr "Вернуться на сайт"
 
-#: dashboard/models.py:753 theming/templates/admin/base.html:42
+#: .\dashboard\models.py:769 .\theming\templates\admin\base.html.py:42
 msgid "Change password"
-msgstr ""
+msgstr "Изменить пароль"
 
-#: dashboard/models.py:757 theming/templates/admin/base.html:49
+#: .\dashboard\models.py:773 .\theming\templates\admin\base.html.py:49
 msgid "Log out"
-msgstr ""
+msgstr "Выйти"
 
-#: dashboard/models.py:771 menu/models.py:337
+#: .\dashboard\models.py:787 .\menu\models.py:356
 msgid "Administration"
-msgstr ""
+msgstr "Администрирование"
 
-#: dashboard/models.py:783
+#: .\dashboard\models.py:799
 msgid "Latest Django News"
-msgstr ""
+msgstr "Новости от Django"
 
-#: dashboard/models.py:790
+#: .\dashboard\models.py:806
 msgid "Support"
-msgstr ""
+msgstr "Поддержка"
 
-#: dashboard/models.py:793
+#: .\dashboard\models.py:809
 msgid "Django documentation"
-msgstr ""
+msgstr "Документация по Django"
 
-#: dashboard/models.py:798
+#: .\dashboard\models.py:814
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Гугл-группа \"django-users\""
 
-#: dashboard/models.py:803
+#: .\dashboard\models.py:819
 msgid "Django irc channel"
-msgstr ""
+msgstr "IRC канал Django"
 
-#: dashboard/templates/admin/app_index.html:9
-#: theming/templates/admin/base.html:56
+#: .\dashboard\templates\admin\app_index.html.py:9
+#: .\theming\templates\admin\base.html.py:56
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
-#: dashboard/templates/admin/app_index.html:11
+#: .\dashboard\templates\admin\app_index.html.py:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
-#: dashboard/templates/dashboard/dashboard.html:51
+#: .\dashboard\templates\admin_tools\dashboard\dashboard.html.py:54
 msgid "Modules"
-msgstr ""
+msgstr "Модули"
 
-#: dashboard/templates/dashboard/modules/app_list.html:13
-#: dashboard/templates/dashboard/modules/model_list.html:11
+#: .\dashboard\templates\admin_tools\dashboard\modules\app_list.html.py:13
+#: .\dashboard\templates\admin_tools\dashboard\modules\model_list.html.py:11
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
 
-#: dashboard/templates/dashboard/modules/app_list.html:14
-#: dashboard/templates/dashboard/modules/model_list.html:12
+#: .\dashboard\templates\admin_tools\dashboard\modules\app_list.html.py:14
+#: .\dashboard\templates\admin_tools\dashboard\modules\model_list.html.py:12
 msgid "Change"
-msgstr ""
+msgstr "Изменить"
 
-#: menu/models.py:287
+#: .\menu\models.py:310
 msgid "Bookmarks"
-msgstr ""
+msgstr "Закладки"
 
-#: menu/templates/admin/base_site.html:3
+#: .\menu\templates\admin\base_site.html.py:3
 msgid "Django site admin"
-msgstr ""
+msgstr "Панель управления"
 
-#: menu/templates/admin/base_site.html:11
+#: .\menu\templates\admin\base_site.html.py:11
 msgid "Django administration"
-msgstr ""
+msgstr "Панель управления Django"
 
-#: menu/templates/menu/menu.html:38
+#: .\menu\templates\admin_tools\menu\menu.html.py:29
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "Введите название закладки"
 
-#: menu/templates/menu/menu.html:41
-msgid "Bookmark this page"
-msgstr ""
-
-#: theming/templates/admin/base.html:29
+#: .\theming\templates\admin\base.html.py:29
 msgid "Welcome,"
-msgstr ""
+msgstr "Добро пожаловать,"
 
-#: theming/templates/admin/base.html:34
+#: .\theming\templates\admin\base.html.py:34
 msgid "Documentation"
-msgstr ""
+msgstr "Документация"

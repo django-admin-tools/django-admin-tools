@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.utils import simplejson
 from django.views.generic.simple import direct_to_template
 
 try:
@@ -30,13 +29,13 @@ def add_bookmark(request):
                 if request.POST.get('next'):
                     return HttpResponseRedirect(request.POST.get('next'))
                 return HttpResponse('Added')
-            return direct_to_template(request, 'menu/remove_bookmark_form.html', {
+            return direct_to_template(request, 'admin_tools/menu/remove_bookmark_form.html', {
                 'bookmark': bookmark,
                 'url': bookmark.url,
             });
     else:
         form = BookmarkForm(user=request.user)
-    return direct_to_template(request, 'menu/form.html', {
+    return direct_to_template(request, 'admin_tools/menu/form.html', {
         'form': form,   
         'title': 'Add Bookmark',
     })
@@ -57,7 +56,7 @@ def edit_bookmark(request, id):
             return HttpResponse('Saved')
     else:
         form = BookmarkForm(user=request.user, instance=bookmark)
-    return direct_to_template(request, 'menu/form.html', {
+    return direct_to_template(request, 'admin_tools/menu/form.html', {
         'form': form,   
         'title': 'Edit Bookmark',
     })
@@ -79,11 +78,11 @@ def remove_bookmark(request, id):
             if request.POST.get('next'):
                 return HttpResponseRedirect(request.POST.get('next'))
             return HttpResponse('Deleted')
-        return direct_to_template(request, 'menu/add_bookmark_form.html', {
+        return direct_to_template(request, 'admin_tools/menu/add_bookmark_form.html', {
             'url': request.POST.get('next'),
             'title': '**title**' #This gets replaced on the javascript side
         });
-    return direct_to_template(request, 'menu/delete_confirm.html', {
+    return direct_to_template(request, 'admin_tools/menu/delete_confirm.html', {
         'bookmark': bookmark,
         'title': 'Delete Bookmark',
     })

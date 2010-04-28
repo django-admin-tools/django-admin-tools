@@ -4,7 +4,6 @@ Admin ui common utilities.
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.utils.text import capfirst
 
 class AppListElementMixin(object):
     """
@@ -12,6 +11,9 @@ class AppListElementMixin(object):
     AppListMenuItem (to honor the DRY concept).
     """
     def _check_perms(self, request, model, model_admin):
+        """
+        Checks that the current user can view the given model in the admin.
+        """
         mod = '%s.%s' % (model.__module__, model.__name__)
 
         # check that the app is not in the exclude list
@@ -39,11 +41,17 @@ class AppListElementMixin(object):
         return perms
 
     def _get_admin_change_url(self, model):
+        """
+        Returns the admin change url.
+        """
         app_label = model._meta.app_label
         return reverse('admin:%s_%s_changelist' % (app_label,
                                                    model.__name__.lower()))
 
     def _get_admin_add_url(self, model):
+        """
+        Returns the admin add url.
+        """
         app_label = model._meta.app_label
         return reverse('admin:%s_%s_add' % (app_label, model.__name__.lower()))
 

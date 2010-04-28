@@ -5,12 +5,9 @@ Dashboard utilities.
 from django.conf import settings
 from django.contrib import admin
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse
-from django.http import HttpRequest
 from django.utils.importlib import import_module
 from django.utils.text import capfirst
 from admin_tools.dashboard import Registry
-from admin_tools.dashboard.models import *
 
 
 def get_dashboard(context, location):

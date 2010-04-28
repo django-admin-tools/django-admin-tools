@@ -4,7 +4,6 @@ Theming template tags.
 To load the theming tags just do: ``{% load theming_tags %}``.
 """
 
-import os.path
 from django import template
 from django.conf import settings
 from admin_tools.utils import get_media_url
@@ -17,8 +16,8 @@ def render_theming_css():
     """
     css = getattr(settings, 'ADMIN_TOOLS_THEMING_CSS', False)
     if css:
-        css = os.path.join(get_media_url(), css)
+        css = '/'.join([get_media_url(), css])
     else:
-        css = os.path.join(get_media_url(), 'admin_tools', 'css', 'theming.css')
+        css = '/'.join([get_media_url(), 'admin_tools', 'css', 'theming.css'])
     return '<link rel="stylesheet" type="text/css" media="screen" href="%s" />' % css
 register.simple_tag(render_theming_css)

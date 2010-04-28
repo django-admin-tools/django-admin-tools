@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('admin_tools.menu.views',
     url(r'^add_bookmark/$', 'add_bookmark', name='admin-tools-menu-add-bookmark'),

@@ -1,133 +1,132 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Martin Sabo\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-12 14:59+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-
+# 
 #: dashboard/models.py:85 menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: dashboard/models.py:404
 msgid "Links"
-msgstr ""
+msgstr "Linky"
 
 #: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
 msgid "Applications"
-msgstr ""
+msgstr "Aplikácie"
 
 #: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
 msgid "Recent Actions"
-msgstr ""
+msgstr "Posledné akcie"
 
 #: dashboard/models.py:648
 msgid "No recent actions."
-msgstr ""
+msgstr "Žiadne posledné akcie"
 
 #: dashboard/models.py:693
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS správy"
 
 #: dashboard/models.py:742
 msgid "Quick links"
-msgstr ""
+msgstr "Rýchle voľby"
 
 #: dashboard/models.py:749
 msgid "Return to site"
-msgstr ""
+msgstr "Návrat na stránku"
 
 #: dashboard/models.py:753 theming/templates/admin/base.html:42
 msgid "Change password"
-msgstr ""
+msgstr "Zmeniť heslo"
 
 #: dashboard/models.py:757 theming/templates/admin/base.html:49
 msgid "Log out"
-msgstr ""
+msgstr "Odhlásiť"
 
 #: dashboard/models.py:771 menu/models.py:337
 msgid "Administration"
-msgstr ""
+msgstr "Administrácia"
 
 #: dashboard/models.py:783
 msgid "Latest Django News"
-msgstr ""
+msgstr "Posledné Django Novinky"
 
 #: dashboard/models.py:790
 msgid "Support"
-msgstr ""
+msgstr "Podpora"
 
 #: dashboard/models.py:793
 msgid "Django documentation"
-msgstr ""
+msgstr "Django dokumentácia"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Django \"django-users\" mailing list"
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
-msgstr ""
+msgstr "Django irc kanál"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
-msgstr ""
+msgstr "Domov"
 
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
-msgstr ""
+msgstr "Moduly"
 
 #: dashboard/templates/dashboard/modules/app_list.html:13
 #: dashboard/templates/dashboard/modules/model_list.html:11
 msgid "Add"
-msgstr ""
+msgstr "Pridať"
 
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr ""
+msgstr "Zmeniť"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr ""
+msgstr "Záložky"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr ""
+msgstr "Django admin stránky"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr ""
+msgstr "Django administrácia"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "Vložte prosím meno pre záložku"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr ""
+msgstr "Pridať stránku do záložiek"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr ""
+msgstr "Vitajte,"
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentácia"

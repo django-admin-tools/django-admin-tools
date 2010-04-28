@@ -105,7 +105,7 @@ msgstr "Modifier"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr ""
+msgstr "Marque-pages"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
@@ -117,11 +117,11 @@ msgstr "Administration de Django"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "Veuillez fournir un nom pour le marque-page"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr ""
+msgstr "Marquer cette page"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"

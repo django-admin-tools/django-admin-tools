@@ -87,7 +87,7 @@ msgstr "Inicio"
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
@@ -105,7 +105,7 @@ msgstr "Cambiar"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr ""
+msgstr "Marcadores"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
@@ -117,11 +117,11 @@ msgstr "Administración de Django"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "Ingrese un nombre para el marcador"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr ""
+msgstr "Marcar esta página"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"

@@ -36,7 +36,7 @@ class Menu(object):
         A string representing the path to template to use to render the menu.
         As for any other template, the path must be relative to one of the 
         directories of your ``TEMPLATE_DIRS`` setting.
-        Default value: "menu/menu.html".
+        Default value: "admin_tools/menu/menu.html".
     
     ``children``
         A list of children menu items. All children items mus be instances of
@@ -90,7 +90,7 @@ class Menu(object):
         """
         Menu constructor.
         """
-        self.template = kwargs.get('template', 'menu/menu.html')
+        self.template = kwargs.get('template', 'admin_tools/menu/menu.html')
         self.children = kwargs.get('children', [])
 
     def init_with_context(self, context):
@@ -136,7 +136,7 @@ class MenuItem(object):
 
     ``template``
         The template to use to render the menu item.
-        Default value: 'menu/item.html'.
+        Default value: 'admin_tools/menu/item.html'.
 
     ``children``
         A list of children menu items. All children items must be instances of
@@ -153,7 +153,7 @@ class MenuItem(object):
         self.accesskey = kwargs.get('accesskey')
         self.description = kwargs.get('description')
         self.enabled = kwargs.get('enabled', True)
-        self.template = kwargs.get('template', 'menu/item.html')
+        self.template = kwargs.get('template', 'admin_tools/menu/item.html')
         self.children = kwargs.get('children', [])
 
     def init_with_context(self, context):
@@ -192,6 +192,16 @@ class MenuItem(object):
         .. image:: images/history_menu_item.png
         """
         pass
+
+    def is_selected(self, request):
+        """
+        Helper method that returns ``True`` if the menu item is active. 
+        A menu item is considered as active if it's URL or one of its 
+        descendants URL is equals to the current URL.
+        """
+        current_url = request.get_full_path()
+        return self.url == current_url or \
+            len([c for c in self.children if c.is_selected(request)]) > 0
 
 
 class AppListMenuItem(MenuItem, AppListElementMixin):
@@ -312,6 +322,12 @@ class BookmarkMenuItem(MenuItem, AppListElementMixin):
             ))
         if not len(self.children):
             self.enabled = False
+
+    def is_selected(self, request):
+        """
+        A bookmark menu item is never considered as active, the real item is.
+        """
+        return False
 
 
 class DefaultMenu(Menu):

@@ -1,7 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
-from django.utils import simplejson
+from django.http import HttpResponse
 from django.views.generic.simple import direct_to_template
 
 try:
@@ -38,22 +36,6 @@ def set_preferences(request):
             return HttpResponse('false')
     else:
         form = DashboardPreferencesForm(user=request.user, instance=preferences)
-    return direct_to_template(request, 'dashboard/preferences_form.html', {
+    return direct_to_template(request, 'admin_tools/dashboard/preferences_form.html', {
         'form': form,   
     })
-
-
-@login_required
-@csrf_exempt
-def get_preferences(request):
-    """
-    Returns the dashboard preferences for the current user in json format.
-    If no preferences are found, the return value is an empty json object.
-    """
-    try:
-        preferences = DashboardPreferences.objects.get(user=request.user)
-        data = preferences.data
-    except DashboardPreferences.DoesNotExist:
-        data = '{}'
-    return HttpResponse(data, mimetype='application/json')
-
