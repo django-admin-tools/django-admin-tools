@@ -24,10 +24,10 @@
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
-        {% if user.is_authenticated and user.is_staff %}
+        {% if user.is_active and user.is_staff %}
         <div id="user-tools">
             {% trans 'Welcome,' %}
-            <strong>{% firstof user.first_name user.username %}</strong>.
+            <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
             {% block userlinks %}
                 {% url django-admindocs-docroot as docsroot %}
                 {% if docsroot %}
