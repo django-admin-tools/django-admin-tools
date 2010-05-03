@@ -10,7 +10,8 @@ To load the menu tags in your templates: ``{% load admin_tools_menu_tags %}``.
 
 from django import template
 from admin_tools.utils import get_media_url
-from admin_tools.menu.models import Bookmark, BookmarkMenuItem
+from admin_tools.menu import items
+from admin_tools.menu.models import Bookmark
 from admin_tools.menu.utils import get_admin_menu
 
 register = template.Library()
@@ -28,7 +29,7 @@ def admin_tools_render_menu(context, menu=None):
     menu.init_with_context(context)
     has_bookmark_item = False
     bookmark = None
-    if len([c for c in menu.children if isinstance(c, BookmarkMenuItem)]) > 0:
+    if len([c for c in menu.children if isinstance(c, items.Bookmarks)]) > 0:
         has_bookmark_item = True
         url = context['request'].get_full_path()
         try:
