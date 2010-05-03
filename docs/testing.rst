@@ -33,9 +33,9 @@ Run only one test::
 
 Code coverage report
 --------------------
-Install django-coverage app::
+Install the coverage.py library and the django-coverage app::
 
-    $ pip install django-coverage
+    $ pip install coverage django-coverage
 
 Then run tests and open test_proj/_coverage/index.html file in browser.
 
