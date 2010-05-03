@@ -1,14 +1,16 @@
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from admin_tools.dashboard import modules, Dashboard, AppIndexDashboard
+from admin_tools.dashboard import Dashboard, AppIndexDashboard
+from admin_tools.dashboard import modules
+
 
 # to activate your index dashboard add the following to your settings.py:
 #
-# ADMIN_TOOLS_INDEX_DASHBOARD = '{{ project }}.{{ file }}.CustomIndexDashboard'
+# ADMIN_TOOLS_INDEX_DASHBOARD = 'test_proj.dashboard.CustomIndexDashboard'
 
 class CustomIndexDashboard(Dashboard):
     """
-    Custom index dashboard for {{ project }}.
+    Custom index dashboard for test_proj.
     """
     def __init__(self, **kwargs):
         Dashboard.__init__(self, **kwargs)
@@ -48,16 +50,15 @@ class CustomIndexDashboard(Dashboard):
             include_list=('django.contrib',),
         ))
 
+        self.children.append(modules.ModelList(
+            title='Test1',
+            models = ['django.contrib.auth.*', '*.Site', '*.Foo'],
+            exclude = ['django.contrib.auth.models.User', 'test_app.*']
+        ))
+
         # append a recent actions module
         self.children.append(modules.RecentActions(
             title=_('Recent Actions'),
-            limit=5
-        ))
-
-        # append a feed module
-        self.children.append(modules.Feed(
-            title=_('Latest Django News'),
-            feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
         ))
 
@@ -92,11 +93,11 @@ class CustomIndexDashboard(Dashboard):
 
 # to activate your app index dashboard add the following to your settings.py:
 #
-# ADMIN_TOOLS_APP_INDEX_DASHBOARD = '{{ project }}.{{ file }}.CustomAppIndexDashboard'
+# ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'test_proj.dashboard.CustomAppIndexDashboard'
 
 class CustomAppIndexDashboard(AppIndexDashboard):
     """
-    Custom app index dashboard for {{ project }}.
+    Custom app index dashboard for test_proj.
     """
     def __init__(self, *args, **kwargs):
         AppIndexDashboard.__init__(self, *args, **kwargs)

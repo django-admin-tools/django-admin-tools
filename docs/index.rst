@@ -7,8 +7,8 @@ Welcome to django-admin-tools's documentation!
 ==============================================
 
 This documentation covers the latest release of django-admin-tools, a
-collection of extensions and tools for the 
-`Django <http://www.djangoproject.com>`_ administration interface, 
+collection of extensions and tools for the
+`Django <http://www.djangoproject.com>`_ administration interface,
 django-admin-tools includes:
 
  * a full featured and customizable dashboard (for the admin index page
@@ -16,13 +16,13 @@ django-admin-tools includes:
  * a customizable menu bar,
  * tools to make admin theming easier.
 
-It was originally developed for django-cms, and then extracted to this 
+It was originally developed for django-cms, and then extracted to this
 pluggable app.
 
 To get up and running quickly, consult the :ref:`quick-start guide
 <quickstart>`, which describes all the necessary steps to install
 django-admin-tools and configure it for the default setup.
-For more detailed information about how to install and how to customize 
+For more detailed information about how to install and how to customize
 django-admin-tools, read through the documentation listed below.
 
 Contents:
@@ -37,3 +37,4 @@ Contents:
    menu
    dashboard
    integration
+   testing

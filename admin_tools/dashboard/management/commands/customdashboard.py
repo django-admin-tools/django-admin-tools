@@ -2,7 +2,6 @@ import os
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 
-
 DEFAULT_FILE = 'dashboard.py'
 
 class Command(BaseCommand):
@@ -14,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, file=None, **options):
         context = {}
         context['project'] = os.path.basename(os.getcwd())
-        tpl = 'dashboard/dashboard.txt'
+        tpl = ['dashboard/dashboard.txt', 'admin_tools/dashboard/dashboard.txt']
         dst = file is not None and file or DEFAULT_FILE
         if os.path.exists(dst):
             raise CommandError('file "%s" already exists' % dst)

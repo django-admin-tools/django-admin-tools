@@ -1,8 +1,7 @@
 """
 Dashboard registry.
 """
-
-from admin_tools.dashboard.models import Dashboard
+from admin_tools.dashboard.dashboards import *
 
 class Registry(object):
     """
@@ -30,7 +29,7 @@ def register(cls, *args, **kwargs):
 def autodiscover(blacklist=[]):
     """
     Automagically discover custom dashboards and menus for installed apps.
-    Optionally you can pass a ``blacklist`` of apps that you don't want to 
+    Optionally you can pass a ``blacklist`` of apps that you don't want to
     provide their own app index dashboard.
     """
     import imp

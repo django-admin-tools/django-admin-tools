@@ -10,3 +10,10 @@ dist
 MANIFEST
 _build
 _static
+.project
+.pydevproject
+.settings
+
+syntax: regexp
+^test_proj/_coverage/(?!noremove)
+^test_proj/testdb.sqlite$

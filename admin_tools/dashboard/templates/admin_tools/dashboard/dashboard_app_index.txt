@@ -1,10 +1,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from admin_tools.dashboard.models import *
+from admin_tools.dashboard import modules, AppIndexDashboard
 
 # create your custom modules here if you want, for example:
 #
-# class CustomDashboardModule(DashboardModule):
+# class CustomDashboardModule(modules.DashboardModule):
 #     pass
 #
 {% if warning %}
@@ -17,12 +17,12 @@ from admin_tools.dashboard.models import *
 class {{ app|capfirst }}Dashboard(AppIndexDashboard):
     """
     Document your custom app index dashboard.
-    """ 
+    """
     def __init__(self, app_title, models, *args, **kwargs):
         super(CustomAppIndexDashboard, self).__init__(*args, **kwargs)
 
         # append your modules here, example:
-        # self.append(RecentActionsDashboardModule(
+        # self.append(modules.RecentActionsDashboardModule(
         #     title=_('Recent Actions'),
         #     limit=5,
         #     include_list=models,

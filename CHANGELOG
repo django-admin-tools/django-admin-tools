@@ -2,11 +2,46 @@
 django-admin-tools changelog
 ============================
 
+tip
+---
+
+* import paths and class names are changed. Old class names and paths are
+  deprecated but still work.
+
+* dashboard.modules.AppList, dashboard.modules.ModelList and menu.items.AppList
+  now have ability to display any models from different apps
+  (using glob syntax) via `models` and `exclude` parameters.
+  The order is now preserved. See #15.
+
+
+New class names and paths
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    admin_tools.dashboard.
+        models.Dashboard                    Dashboard
+        models.DefaultIndexDashboard        DefaultIndexDashboard
+        models.DefaultAppIndexDashboard     DefaultAppIndexDashboard
+        models.AppIndexDashboard            AppIndexDashboard
+        models.DashboardModule              modules.DashboardModule
+        models.AppListDashboardModule       modules.AppList
+        models.ModelListDashboardModule     modules.ModelList
+        models.LinkListDashboardModule      modules.LinkList
+        models.FeedDashboardModule          modules.Feed
+
+    admin_tools.menu.
+        models.Menu                         Menu
+        models.DefaultMenu                  DefaultMenu
+        models.MenuItem                     items.MenuItem
+        models.AppListMenuItem              items.AppList
+        models.BookmarkMenuItem             items.Bookmarks
+
+
+
 Version 0.2.0, 15 March 2010:
 -----------------------------
 
-* bookmarks are now being saved in the database 
-  (fixes issue #20, thanks @alexrobbins); 
+* bookmarks are now being saved in the database
+  (fixes issue #20, thanks @alexrobbins);
 * dashboard preferences are also saved in the database;
 * added support for django-staticfiles STATIC_URL settings
   (fixes issue #21, thanks @dstufft);
@@ -16,10 +51,10 @@ Version 0.2.0, 15 March 2010:
 
 Backwards incompatible changes in 0.2.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Now, django-admin-tools stores menu and dashboard preferences in the database, 
-so you'll need to run syncdb and to add the django-admin-tools urls to your 
+Now, django-admin-tools stores menu and dashboard preferences in the database,
+so you'll need to run syncdb and to add the django-admin-tools urls to your
 urlconf. These steps are described in details in the documentation.
-You'll also need to add ``admin_tools`` to your ``INSTALLED_APPS`` for the 
+You'll also need to add ``admin_tools`` to your ``INSTALLED_APPS`` for the
 locales to work (this was not documented in previous versions).
 
 
@@ -40,7 +75,7 @@ Version 0.1.1, 10 February 2010:
 --------------------------------
 
 * fixed issue #2: template tag libraries have generic names;
-* changed the way dashboards are selected, don't rely on request variables but 
+* changed the way dashboards are selected, don't rely on request variables but
   pass an extra argument to the template tag instead (fixes issue #3);
 * fixed MANIFEST.in (fixes issue #1);
 * better setup.py file.

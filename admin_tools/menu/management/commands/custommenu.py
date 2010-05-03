@@ -15,7 +15,7 @@ class Command(BaseCommand):
         dst = file is not None and file or DEFAULT_FILE
         if os.path.exists(dst):
             raise CommandError('Error: file "%s" already exists' % dst)
-        open(dst, 'w').write(render_to_string('menu/menu.txt', {
+        open(dst, 'w').write(render_to_string('admin_tools/menu/menu.txt', {
             'project': project_name,
             'file': os.path.basename(dst).split('.')[0]
         }))
