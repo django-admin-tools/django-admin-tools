@@ -102,8 +102,8 @@ Customizing the theme
 ---------------------
 
 .. warning::
-    The theming support is still very basic and I'm still not sure it's
-    a good idea, so do not rely to much on it for the moment.
+    The theming support is still very basic, do not rely too much on it for
+    the moment.
 
 This is very simple, just configure the ``ADMIN_TOOLS_THEMING_CSS`` to
 point to your custom css file, for example::
