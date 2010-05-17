@@ -30,11 +30,14 @@ def filter_models(request, models, exclude):
     # performance is not a bottleneck. If it is not the case then the code
     # should be optimized.
 
-    for pattern in models:
-        for item in items:
-            model, perms = item
-            if fnmatch(full_name(model), pattern) and item not in included:
-                included.append(item)
+    if len(models) == 0:
+        included = items
+    else:
+        for pattern in models:
+            for item in items:
+                model, perms = item
+                if fnmatch(full_name(model), pattern) and item not in included:
+                    included.append(item)
 
     result = included[:]
     for pattern in exclude:
