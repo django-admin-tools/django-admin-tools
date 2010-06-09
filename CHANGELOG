@@ -5,36 +5,61 @@ django-admin-tools changelog
 tip
 ---
 
+Major changes
+~~~~~~~~~~~~~
+
+* added tests infrastructure, code coverage is around 70%;
 * import paths and class names are changed. Old class names and paths are
-  deprecated but still work.
+  deprecated but still work;
+* ``dashboard.modules.AppList``, ``dashboard.modules.ModelList`` and
+  ``menu.items.AppList`` now have ability to display any models from different
+  apps (using glob syntax) via ``models`` and ``exclude`` parameters.
+  The order is now preserved. See #15;
+* implemented dashboard module groups : you can now group modules in tabs,
+  accordion or in a stacked layout.
 
-* dashboard.modules.AppList, dashboard.modules.ModelList and menu.items.AppList
-  now have ability to display any models from different apps
-  (using glob syntax) via `models` and `exclude` parameters.
-  The order is now preserved. See #15.
+Bugfixes and minor changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+* moved the menu and dashboard template dirs in a "admin_tools" directory to
+  avoid name conflicts with other apps, for example: django-cms 
+  (see: http://github.com/digi604/django-cms-2.0/issues/issue/397/);
+* fixed bookmark bugs. The saved url was urlencoded, so we need to decode it
+  before we save it. Added a clean_url method to the ``BookmarkForm``.
+  Fixes #25;
+* build urlpatterns conditionally regarding the content of ``INSTALLED_APPS``;
+* better display of selected menu items;
+* avoid a useless ajax GET request for retrieving dashboard preferences;
+* upgraded jquery and jquery ui and renamed the files to more generic names;
+* don't show bookmark form if ``NoReverseError``. This was breaking the 
+  ``django.contrib.auth`` unit tests;
+* fixed url lookup for remove bookmark form;
+* fixed issue #26 (menu bar showing for non-staff users) and also updated
+  templates to match the django 1.2 templates;
+* fixed issue #29 : Django 1.2 admin base template change;
+  
 New class names and paths
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    admin_tools.dashboard.
-        models.Dashboard                    Dashboard
-        models.DefaultIndexDashboard        DefaultIndexDashboard
-        models.DefaultAppIndexDashboard     DefaultAppIndexDashboard
-        models.AppIndexDashboard            AppIndexDashboard
-        models.DashboardModule              modules.DashboardModule
-        models.AppListDashboardModule       modules.AppList
-        models.ModelListDashboardModule     modules.ModelList
-        models.LinkListDashboardModule      modules.LinkList
-        models.FeedDashboardModule          modules.Feed
+**admin_tools.dashboard**:
 
-    admin_tools.menu.
-        models.Menu                         Menu
-        models.DefaultMenu                  DefaultMenu
-        models.MenuItem                     items.MenuItem
-        models.AppListMenuItem              items.AppList
-        models.BookmarkMenuItem             items.Bookmarks
+- admin_tools.dashboard.models.Dashboard => admin_tools.dashboard.Dashboard
+- admin_tools.dashboard.models.DefaultIndexDashboard => admin_tools.dashboard.DefaultIndexDashboard
+- admin_tools.dashboard.models.DefaultAppIndexDashboard => admin_tools.dashboard.DefaultAppIndexDashboard
+- admin_tools.dashboard.models.AppIndexDashboard => admin_tools.dashboard.AppIndexDashboard
+- admin_tools.dashboard.models.DashboardModule => admin_tools.dashboard.modules.DashboardModule
+- admin_tools.dashboard.models.AppListDashboardModule => admin_tools.dashboard.modules.AppList
+- admin_tools.dashboard.models.ModelListDashboardModule => admin_tools.dashboard.modules.ModelList
+- admin_tools.dashboard.models.LinkListDashboardModule => admin_tools.dashboard.modules.LinkList
+- admin_tools.dashboard.models.FeedDashboardModule => admin_tools.dashboard.modules.Feed
 
+**admin_tools.menu**:
+
+- admin_tools.menu.models.Menu => admin_tools.menu.Menu
+- admin_tools.menu.models.DefaultMenu => admin_tools.menu.DefaultMenu
+- admin_tools.menu.models.MenuItem => admin_tools.menu.items.MenuItem
+- admin_tools.menu.models.AppListMenuItem => admin_tools.menu.items.AppList
+- admin_tools.menu.models.BookmarkMenuItem => admin_tools.menu.items.Bookmarks
 
 
 Version 0.2.0, 15 March 2010:
