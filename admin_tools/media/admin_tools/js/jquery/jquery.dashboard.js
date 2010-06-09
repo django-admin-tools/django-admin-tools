@@ -175,7 +175,7 @@
     };
 
     var _set_collapsible = function(elt, options) {
-        elt.find('.collapsible h2').each(function() {
+        elt.find('> .dashboard-column > .collapsible > h2').each(function() {
             $(this).append('<a href="#" class="toggle-icon">Toggle</a>').find('a.toggle-icon').click(function() {
                 var prnt = $(this).parent().parent();
                 _toggle_element(prnt, options, true);
@@ -192,7 +192,7 @@
     };
 
     var _set_deletable = function(elt, options) {
-        elt.find('.deletable h2').each(function() {
+        elt.find('> .dashboard-column > .deletable > h2').each(function() {
             $(this).append('<a href="#" class="close-icon">Close</a>').find('a.close-icon').click(function() {
                 var prnt = $(this).parent().parent();
                 _delete_element(prnt, options, true);

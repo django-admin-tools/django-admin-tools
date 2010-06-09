@@ -60,6 +60,7 @@ class DashboardModule(object):
         self.draggable = kwargs.get('draggable', True)
         self.collapsible = kwargs.get('collapsible', True)
         self.deletable = kwargs.get('deletable', True)
+        self.show_title = kwargs.get('show_title', True)
         self.title = kwargs.get('title', '')
         self.title_url = kwargs.get('title_url', None)
         self.css_classes = kwargs.get('css_classes', [])
@@ -153,6 +154,58 @@ class DashboardModule(object):
             ret.append('deletable')
         ret += self.css_classes
         return ' '.join(ret)
+
+
+class Group(DashboardModule):
+    """
+    Represents a group of modules, the group can be displayed in tabs,
+    accordion, or just stacked (default).
+    As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
+    properties, the :class:`~admin_tools.dashboard.modules.AppList`
+    has one extra property:
+
+    ``display``
+        A string determining how the group should be rendered, this can be one
+        of the following values: 'stacked' (default), 'tabs' or 'accordion'.
+
+    Here's an example of modules group::
+        
+        from admin_tools.dashboard import modules, Dashboard
+
+        class MyDashboard(Dashboard):
+            def __init__(self, **kwargs):
+                Dashboard.__init__(self, **kwargs)
+                self.children.append(modules.Group(
+                    title="My group",
+                    display="tabs",
+                    children=[
+                        modules.AppList(
+                            title='Administration',
+                            include_list=('django.contrib',)
+                        ),
+                        modules.AppList(
+                            title='Applications',
+                            exclude_list=('django.contrib',)
+                        )
+                    ]
+                )
+    """
+
+    def __init__(self, **kwargs):
+        super(Group, self).__init__(**kwargs)
+        self.template = kwargs.get('template',
+                                   'admin_tools/dashboard/modules/group.html')
+        self.display = kwargs.get('display', 'tabs')
+        
+    def init_with_context(self, context):
+        for module in self.children:
+            # to simplify the whole stuff, modules have some limitations, 
+            # they cannot be dragged, collapsed or closed
+            module.collapsible = False
+            module.draggable = False
+            module.deletable = False
+            module.show_title = (self.display == 'stacked')
+
 
 class LinkList(DashboardModule):
     """

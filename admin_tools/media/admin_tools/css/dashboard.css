@@ -1,4 +1,4 @@
-/* Utilities */
+/* Utilities {{{ */
 
 .float-right {
     float: right;
@@ -229,5 +229,61 @@ h1.dashboard-title {
 .dashboard-module ul.inline li.even {
     background: none;
 }
+
+/* }}} */
+/* Dashboard groups {{{ */
+
+.group {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.group ul {
+    background: none;
+    background-color: #fafafa;
+    border-width: 0 0 1px 0;
+    border-color: #d3d3d3;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+.group ul li.group-tabs-link {
+    margin-top: 7px;
+}
+
+.group ul li.group-tabs-link a:focus,
+.group ul li.group-tabs-link a:active {
+    border: none;
+    outline: none;
+}
+
+.group .dashboard-module {
+    padding: 5px;
+    margin: 0;
+}
+
+.group-accordion .group-accordion-header {
+    display: block;
+    clear: both;
+    border: none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #d3d3d3;
+    margin: 0;
+    background: none;
+    background-color: #f6f6f6;
+}
+
+.group-accordion .group-accordion-header.ui-state-default {
+    background-color: #f0f0f0;
+}
+
+.group-accordion .dashboard-module {
+    border: 0;
+}
+
 
 /* }}} */

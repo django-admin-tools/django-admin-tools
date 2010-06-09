@@ -1,6 +1,6 @@
 {% if not module.is_empty %}
-    <div{% if index %} id="module_{{ index }}"{% endif %} class="{{ module.render_css_classes }}">
-        <h2>{{ module.title }}</h2>
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{{ module.render_css_classes }}">
+        {% if module.show_title %}<h2>{{ module.title }}</h2>{% endif %}
         <div class="dashboard-module-content">
             {% spaceless %}
             {% if module.pre_content %}
