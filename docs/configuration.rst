@@ -44,7 +44,16 @@ First make sure you have the following template context processors
 installed::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
+        # default template context processors
         'django.core.context_processors.auth',
+        'django.core.context_processors.debug',
+        'django.core.context_processors.i18n',
+        'django.core.context_processors.media',
+
+        # django 1.2 only
+        'django.contrib.messages.context_processors.messages', 
+
+        # required by django-admin-tools
         'django.core.context_processors.request',
     )
 
