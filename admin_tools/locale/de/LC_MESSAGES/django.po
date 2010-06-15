@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-08 16:57+0100\n"
+"POT-Creation-Date: 2010-06-15 10:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,106 +15,115 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dashboard/models.py:96 menu/models.py:234
+#: dashboard/dashboards.py:78 menu/menus.py:96
 msgid "Dashboard"
 msgstr "Kontrollzentrum"
 
-#: dashboard/models.py:379
-msgid "Links"
-msgstr "Links"
-
-#: dashboard/models.py:433 dashboard/models.py:721 menu/models.py:238
-msgid "Applications"
-msgstr "Applikationen"
-
-#: dashboard/models.py:568 dashboard/models.py:734 dashboard/models.py:793
-msgid "Recent Actions"
-msgstr "Letzte Aktionen"
-
-#: dashboard/models.py:611
-msgid "No recent actions."
-msgstr "Noch keine Aktionen."
-
-#: dashboard/models.py:653
-msgid "RSS Feed"
-msgstr "RSS Feed"
-
-#: dashboard/models.py:698
+#: dashboard/dashboards.py:207
 msgid "Quick links"
 msgstr "Quick-Links"
 
-#: dashboard/models.py:705
+#: dashboard/dashboards.py:214
 msgid "Return to site"
 msgstr "Zurück zur Seite"
 
-#: dashboard/models.py:709 theming/templates/admin/base.html:42
+#: dashboard/dashboards.py:218 theming/templates/admin/base.html:43
 msgid "Change password"
 msgstr "Password ändern"
 
-#: dashboard/models.py:713 theming/templates/admin/base.html:49
+#: dashboard/dashboards.py:222 theming/templates/admin/base.html:50
 msgid "Log out"
 msgstr "Abmelden"
 
-#: dashboard/models.py:727 menu/models.py:242
+#: dashboard/dashboards.py:230 dashboard/modules.py:331 menu/menus.py:101
+msgid "Applications"
+msgstr "Applikationen"
+
+#: dashboard/dashboards.py:236 menu/menus.py:105
 msgid "Administration"
 msgstr "Administration"
 
-#: dashboard/models.py:741
+#: dashboard/dashboards.py:242 dashboard/dashboards.py:301
+#: dashboard/modules.py:475
+msgid "Recent Actions"
+msgstr "Letzte Aktionen"
+
+#: dashboard/dashboards.py:248
 msgid "Latest Django News"
 msgstr "Letzte Django News"
 
-#: dashboard/models.py:748
+#: dashboard/dashboards.py:255
 msgid "Support"
 msgstr "Support"
 
-#: dashboard/models.py:751
+#: dashboard/dashboards.py:258
 msgid "Django documentation"
 msgstr "Django Dokumentation"
 
-#: dashboard/models.py:756
+#: dashboard/dashboards.py:263
 msgid "Django \"django-users\" mailing list"
 msgstr " Django \"django-users\" Mailingliste"
 
-#: dashboard/models.py:761
+#: dashboard/dashboards.py:268
 msgid "Django irc channel"
 msgstr "Django IRC Kanal"
 
-#: dashboard/templates/admin/app_index.html:8
-#: theming/templates/admin/base.html:56
+#: dashboard/modules.py:274
+msgid "Links"
+msgstr "Links"
+
+#: dashboard/modules.py:520
+msgid "No recent actions."
+msgstr "Noch keine Aktionen."
+
+#: dashboard/modules.py:566
+msgid "RSS Feed"
+msgstr "RSS Feed"
+
+#: dashboard/templates/admin/app_index.html:9
+#: theming/templates/admin/base.html:57
 msgid "Home"
 msgstr "Start"
 
-#: dashboard/templates/admin/app_index.html:10
+#: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
-#: dashboard/templates/dashboard/dashboard.html:17
+#: dashboard/templates/admin_tools/dashboard/dashboard.html:56
 msgid "Modules"
 msgstr "Module"
 
-#: dashboard/templates/dashboard/modules/app_list.html:13
-#: dashboard/templates/dashboard/modules/model_list.html:11
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:13
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:11
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: dashboard/templates/dashboard/modules/app_list.html:14
-#: dashboard/templates/dashboard/modules/model_list.html:12
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:14
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:12
 msgid "Change"
 msgstr "Ändern"
 
-#: menu/templates/admin/base_site.html:6
+#: menu/items.py:214
+msgid "Bookmarks"
+msgstr ""
+
+#: menu/templates/admin/base_site.html:4
 msgid "Django site admin"
 msgstr "Django Seiten Administration"
 
-#: menu/templates/admin/base_site.html:9
+#: menu/templates/admin/base_site.html:16
 msgid "Django administration"
 msgstr "Django Administration"
 
-#: theming/templates/admin/base.html:29
+#: menu/templates/admin_tools/menu/menu.html:29
+msgid "Please enter a name for the bookmark"
+msgstr ""
+
+#: theming/templates/admin/base.html:30
 msgid "Welcome,"
 msgstr "Willkommen,"
 
-#: theming/templates/admin/base.html:34
+#: theming/templates/admin/base.html:35
 msgid "Documentation"
 msgstr "Dokumentation"

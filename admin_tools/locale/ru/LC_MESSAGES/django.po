@@ -6,127 +6,126 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: django-admin-tools\n"
-"Report-Msgid-Bugs-To: Pavel Kiper <iwtbarh@gmail.com>\n"
-"POT-Creation-Date: 2010-04-20 11:21+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-15 10:46+0200\n"
 "PO-Revision-Date:  2010-04-20 11:21+0300\n"
 "Last-Translator: Pavel Kiper <iwtbarh@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; "
-"plural=n%10==1 && n%100!=11 ? 0 "
-": n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: .\dashboard\models.py:101 .\menu\models.py:347
+#: dashboard/dashboards.py:78 menu/menus.py:96
 msgid "Dashboard"
 msgstr "Панель управления"
 
-#: .\dashboard\models.py:420
-msgid "Links"
-msgstr "Ссылки"
-
-#: .\dashboard\models.py:476 .\dashboard\models.py:781 .\menu\models.py:352
-msgid "Applications"
-msgstr "Приложения"
-
-#: .\dashboard\models.py:619 .\dashboard\models.py:793
-#: .\dashboard\models.py:852
-msgid "Recent Actions"
-msgstr "Недавние действия"
-
-#: .\dashboard\models.py:664
-msgid "No recent actions."
-msgstr "Нет действия"
-
-#: .\dashboard\models.py:709
-msgid "RSS Feed"
-msgstr "Канл RSS"
-
-#: .\dashboard\models.py:758
+#: dashboard/dashboards.py:207
 msgid "Quick links"
 msgstr "Быстрые ссылки"
 
-#: .\dashboard\models.py:765
+#: dashboard/dashboards.py:214
 msgid "Return to site"
 msgstr "Вернуться на сайт"
 
-#: .\dashboard\models.py:769 .\theming\templates\admin\base.html.py:42
+#: dashboard/dashboards.py:218 theming/templates/admin/base.html:43
 msgid "Change password"
 msgstr "Изменить пароль"
 
-#: .\dashboard\models.py:773 .\theming\templates\admin\base.html.py:49
+#: dashboard/dashboards.py:222 theming/templates/admin/base.html:50
 msgid "Log out"
 msgstr "Выйти"
 
-#: .\dashboard\models.py:787 .\menu\models.py:356
+#: dashboard/dashboards.py:230 dashboard/modules.py:331 menu/menus.py:101
+msgid "Applications"
+msgstr "Приложения"
+
+#: dashboard/dashboards.py:236 menu/menus.py:105
 msgid "Administration"
 msgstr "Администрирование"
 
-#: .\dashboard\models.py:799
+#: dashboard/dashboards.py:242 dashboard/dashboards.py:301
+#: dashboard/modules.py:475
+msgid "Recent Actions"
+msgstr "Недавние действия"
+
+#: dashboard/dashboards.py:248
 msgid "Latest Django News"
 msgstr "Новости от Django"
 
-#: .\dashboard\models.py:806
+#: dashboard/dashboards.py:255
 msgid "Support"
 msgstr "Поддержка"
 
-#: .\dashboard\models.py:809
+#: dashboard/dashboards.py:258
 msgid "Django documentation"
 msgstr "Документация по Django"
 
-#: .\dashboard\models.py:814
+#: dashboard/dashboards.py:263
 msgid "Django \"django-users\" mailing list"
 msgstr "Гугл-группа \"django-users\""
 
-#: .\dashboard\models.py:819
+#: dashboard/dashboards.py:268
 msgid "Django irc channel"
 msgstr "IRC канал Django"
 
-#: .\dashboard\templates\admin\app_index.html.py:9
-#: .\theming\templates\admin\base.html.py:56
+#: dashboard/modules.py:274
+msgid "Links"
+msgstr "Ссылки"
+
+#: dashboard/modules.py:520
+msgid "No recent actions."
+msgstr "Нет действия"
+
+#: dashboard/modules.py:566
+msgid "RSS Feed"
+msgstr "Канл RSS"
+
+#: dashboard/templates/admin/app_index.html:9
+#: theming/templates/admin/base.html:57
 msgid "Home"
 msgstr "Главная"
 
-#: .\dashboard\templates\admin\app_index.html.py:11
+#: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
 msgstr "%(name)s"
 
-#: .\dashboard\templates\admin_tools\dashboard\dashboard.html.py:54
+#: dashboard/templates/admin_tools/dashboard/dashboard.html:56
 msgid "Modules"
 msgstr "Модули"
 
-#: .\dashboard\templates\admin_tools\dashboard\modules\app_list.html.py:13
-#: .\dashboard\templates\admin_tools\dashboard\modules\model_list.html.py:11
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:13
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:11
 msgid "Add"
 msgstr "Добавить"
 
-#: .\dashboard\templates\admin_tools\dashboard\modules\app_list.html.py:14
-#: .\dashboard\templates\admin_tools\dashboard\modules\model_list.html.py:12
+#: dashboard/templates/admin_tools/dashboard/modules/app_list.html:14
+#: dashboard/templates/admin_tools/dashboard/modules/model_list.html:12
 msgid "Change"
 msgstr "Изменить"
 
-#: .\menu\models.py:310
+#: menu/items.py:214
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: .\menu\templates\admin\base_site.html.py:3
+#: menu/templates/admin/base_site.html:4
 msgid "Django site admin"
 msgstr "Панель управления"
 
-#: .\menu\templates\admin\base_site.html.py:11
+#: menu/templates/admin/base_site.html:16
 msgid "Django administration"
 msgstr "Панель управления Django"
 
-#: .\menu\templates\admin_tools\menu\menu.html.py:29
+#: menu/templates/admin_tools/menu/menu.html:29
 msgid "Please enter a name for the bookmark"
 msgstr "Введите название закладки"
 
-#: .\theming\templates\admin\base.html.py:29
+#: theming/templates/admin/base.html:30
 msgid "Welcome,"
 msgstr "Добро пожаловать,"
 
-#: .\theming\templates\admin\base.html.py:34
+#: theming/templates/admin/base.html:35
 msgid "Documentation"
 msgstr "Документация"
