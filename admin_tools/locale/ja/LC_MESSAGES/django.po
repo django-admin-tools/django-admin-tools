@@ -3,131 +3,139 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-12 14:59+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2010-06-14 14:32+0900\n"
+"Last-Translator: zundoya <zundoya@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dashboard/models.py:85 menu/models.py:328
+#: dashboard/models.py:85
+#: menu/models.py:328
 msgid "Dashboard"
-msgstr ""
+msgstr "ダッシュボード"
 
 #: dashboard/models.py:404
 msgid "Links"
-msgstr ""
+msgstr "リンク"
 
-#: dashboard/models.py:460 dashboard/models.py:765 menu/models.py:333
+#: dashboard/models.py:460
+#: dashboard/models.py:765
+#: menu/models.py:333
 msgid "Applications"
-msgstr ""
+msgstr "アプリケーション"
 
-#: dashboard/models.py:603 dashboard/models.py:777 dashboard/models.py:836
+#: dashboard/models.py:603
+#: dashboard/models.py:777
+#: dashboard/models.py:836
 msgid "Recent Actions"
-msgstr ""
+msgstr "最近行った操作"
 
 #: dashboard/models.py:648
 msgid "No recent actions."
-msgstr ""
+msgstr "最近行った操作がありません。"
 
 #: dashboard/models.py:693
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSSフィード"
 
 #: dashboard/models.py:742
 msgid "Quick links"
-msgstr ""
+msgstr "クイックリンク"
 
 #: dashboard/models.py:749
 msgid "Return to site"
-msgstr ""
+msgstr "サイトに戻る。"
 
-#: dashboard/models.py:753 theming/templates/admin/base.html:42
+#: dashboard/models.py:753
+#: theming/templates/admin/base.html:42
 msgid "Change password"
-msgstr ""
+msgstr "パスワードの変更"
 
-#: dashboard/models.py:757 theming/templates/admin/base.html:49
+#: dashboard/models.py:757
+#: theming/templates/admin/base.html:49
 msgid "Log out"
-msgstr ""
+msgstr "ログアウト"
 
-#: dashboard/models.py:771 menu/models.py:337
+#: dashboard/models.py:771
+#: menu/models.py:337
 msgid "Administration"
-msgstr ""
+msgstr "サイト管理"
 
 #: dashboard/models.py:783
 msgid "Latest Django News"
-msgstr ""
+msgstr "最新Djangoニュース"
 
 #: dashboard/models.py:790
 msgid "Support"
-msgstr ""
+msgstr "サポート"
 
 #: dashboard/models.py:793
 msgid "Django documentation"
-msgstr ""
+msgstr "Djangoドキュメント"
 
 #: dashboard/models.py:798
 msgid "Django \"django-users\" mailing list"
-msgstr ""
+msgstr "Django \"django-users\" メーリングリスト"
 
 #: dashboard/models.py:803
 msgid "Django irc channel"
-msgstr ""
+msgstr "Django irc チャンネル"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:56
 msgid "Home"
-msgstr ""
+msgstr "ホーム"
 
 #: dashboard/templates/admin/app_index.html:11
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: dashboard/templates/dashboard/dashboard.html:51
 msgid "Modules"
-msgstr ""
+msgstr "モジュール"
 
 #: dashboard/templates/dashboard/modules/app_list.html:13
 #: dashboard/templates/dashboard/modules/model_list.html:11
 msgid "Add"
-msgstr ""
+msgstr "追加"
 
 #: dashboard/templates/dashboard/modules/app_list.html:14
 #: dashboard/templates/dashboard/modules/model_list.html:12
 msgid "Change"
-msgstr ""
+msgstr "変更"
 
 #: menu/models.py:287
 msgid "Bookmarks"
-msgstr ""
+msgstr "ブックマーク"
 
 #: menu/templates/admin/base_site.html:3
 msgid "Django site admin"
-msgstr ""
+msgstr "Django サイト管理"
 
 #: menu/templates/admin/base_site.html:11
 msgid "Django administration"
-msgstr ""
+msgstr "Django 管理サイト"
 
 #: menu/templates/menu/menu.html:38
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "新しいブックマーク名をいれてください。"
 
 #: menu/templates/menu/menu.html:41
 msgid "Bookmark this page"
-msgstr ""
+msgstr "このページをブックマーク"
 
 #: theming/templates/admin/base.html:29
 msgid "Welcome,"
-msgstr ""
+msgstr "ようこそ"
 
 #: theming/templates/admin/base.html:34
 msgid "Documentation"
-msgstr ""
+msgstr "ドキュメント"
+
