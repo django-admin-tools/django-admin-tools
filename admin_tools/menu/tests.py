@@ -2,6 +2,7 @@ from tempfile import mktemp
 from django.test import TestCase
 from django.core import management
 
+from admin_tools.menu.items import AppList
 
 class ManagementCommandTest(TestCase):
 
@@ -15,3 +16,8 @@ class ManagementCommandTest(TestCase):
             assert False
         except:
             pass
+
+
+__test__ = {
+    'AppList.is_empty': AppList.is_empty,
+}
