@@ -1,18 +1,29 @@
 {% load i18n admin_tools_menu_tags %}
 {% if menu.children %}
+<script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
 <script type="text/javascript" charset="utf-8">
-    // load jquery if it's not loaded yet
-    if (typeof jQuery == 'undefined') {
-        var jquery_url = '{{ media_url }}/admin_tools/js/jquery/jquery.min.js';
-        document.write(unescape('%3Cscript src="' + jquery_url + '" type="text/javascript"%3E%3C/script%3E'));
-    }
-    // load json if it's not loaded yet
-    if (typeof JSON == 'undefined') {
-        var script_url = '{{ media_url }}/admin_tools/js/json.min.js';
-        document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
-    }
+    // Load js files syncronously and conditionally
+    var js_files = [
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.min.js',
+            test: function() { return typeof(jQuery) == 'undefined'; } 
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/json.min.js',
+            test: function() { return typeof(JSON.stringify) == 'undefined'; } 
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/menu.js',
+            test: function() { return true; }
+        },
+        {% for js in menu.Media.js %}
+        {
+            src : '{{ media_url }}/{{ js }}',
+            test: function() { return true; }
+        },{% endfor %}
+    ];
+    load_script(0, js_files);
 </script>
-<script type="text/javascript" charset="utf-8" src="{{ media_url }}/admin_tools/js/menu.js"></script>
 <!--[if IE 6]>
 <script type="text/javascript">
 jQuery(document).ready(function() {

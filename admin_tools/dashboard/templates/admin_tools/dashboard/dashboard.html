@@ -1,31 +1,40 @@
 {% load i18n admin_tools_dashboard_tags %}
+<script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
 <script type="text/javascript" charset="utf-8">
-    // load jquery if it's not loaded yet
-    if (typeof jQuery == 'undefined') {
-        var script_url = '{{ media_url }}/admin_tools/js/jquery/jquery.min.js';
-        document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
-    }
-    // load jquery ui if it's not loaded yet
-    if (typeof jQuery.ui == 'undefined') {
-        var script_url = '{{ media_url }}/admin_tools/js/jquery/jquery-ui.min.js';
-        document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
-    }
-    // load json if it's not loaded yet
-    if (typeof JSON == 'undefined') {
-        var script_url = '{{ media_url }}/admin_tools/js/json.min.js';
-        document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
-    }
-    // load jquery cookie if it's not loaded yet
-    if (typeof jQuery.cookie == 'undefined') {
-        var script_url = '{{ media_url }}/admin_tools/js/jquery/jquery.cookie.min.js';
-        document.write(unescape('%3Cscript src="' + script_url + '" type="text/javascript"%3E%3C/script%3E'));
-    }
+    // Load js files syncronously and conditionally
+    var js_files = [
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.min.js',
+            test: function() { return typeof(jQuery) == 'undefined'; } 
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery-ui.min.js',
+            test: function() { return typeof(jQuery.ui) == 'undefined'; } 
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/json.min.js',
+            test: function() { return typeof(JSON.stringify) == 'undefined'; } 
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.cookie.min.js',
+            test: function() { return typeof(jQuery.cookie) == 'undefined'; } 
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.dashboard.js',
+            test: function() { return true; }
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/dashboard.js',
+            test: function() { return true; }
+        },
+        {% for js in dashboard.Media.js %}
+        {
+            src : '{{ media_url }}/{{ js }}',
+            test: function() { return true; }
+        },{% endfor %}
+    ];
+    load_script(0, js_files);
 </script>
-<script type="text/javascript" src="{{ media_url }}/admin_tools/js/jquery/jquery.dashboard.js"></script>
-{% if dashboard.Media.js %}
-{% for js in dashboard.Media.js %}
-<script type="text/javascript" src="{{ media_url }}/{{ js }}"></script>{% endfor %}
-{% endif %}
 
 {% if dashboard.title %}
 <h1 class="dashboard-title">{{ dashboard.title }}</h1>
@@ -34,20 +43,13 @@
 <script type="text/javascript">
 // <![CDATA[
 jQuery(function($) {
-    $('#{{ dashboard.get_id }}').dashboard({
-        'columns': {{ dashboard.columns }},
-        'load_preferences_function': function(options) {
-            return {% autoescape off %}{{ dashboard_preferences }}{% endautoescape %};
-        },
-        'save_preferences_function': function(options, preferences) {
-            jQuery.post(
-                '{% url admin-tools-dashboard-set-preferences %}',
-                { data: JSON.stringify(preferences) }
-            );
-        }
-    });
-    $(".group-tabs").tabs();
-    $(".group-accordion").accordion({header: '.group-accordion-header'});
+
+    init_dashboard(
+        '{{ dashboard.get_id }}',
+        {{ dashboard.columns }},
+        {% autoescape off %}{{ dashboard_preferences }}{% endautoescape %},
+        '{% url admin-tools-dashboard-set-preferences %}'
+    );
 });
 //]]>
 </script>
