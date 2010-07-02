@@ -1,10 +1,11 @@
 from tempfile import mktemp
-from unittest import TestCase
-from django.test import TestCase as DjangoTestCase
+from django.test import TestCase
 from django.core import management
 
+
 class ManagementCommandTest(TestCase):
-    def test_customdashboard(self):
+
+    def test_custommenu(self):
         # check that customdashboard command doesn't raise exceptions
         file_name = mktemp()
         management.call_command('custommenu', file=file_name)
