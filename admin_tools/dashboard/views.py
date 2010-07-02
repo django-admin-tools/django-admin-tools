@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.generic.simple import direct_to_template
 
 try:
-    from django.views.decorators import csrf_exempt
+    from django.views.decorators.csrf import csrf_exempt
 except ImportError:
     from django.contrib.csrf.middleware import csrf_exempt
 
