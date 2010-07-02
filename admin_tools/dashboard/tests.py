@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, Group
 from admin_tools.dashboard import AppIndexDashboard
 from admin_tools.dashboard.modules import DashboardModule
 
-class ManagementCommandTest(TestCase):
+class ManagementCommandTest(DjangoTestCase):
     def test_customdashboard(self):
         # check that customdashboard command doesn't raise exceptions
         file_name = mktemp()
