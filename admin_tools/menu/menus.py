@@ -46,8 +46,8 @@ class Menu(object):
                     items.MenuItem(
                         title='Multi level menu item',
                         children=[
-                            items.MenuItem('Child 1'),
-                            items.MenuItem('Child 2'),
+                            items.MenuItem(title='Child 1', url='/foo/'),
+                            items.MenuItem(title='Child 2', url='/bar/'),
                         ]
                     ),
                 )
