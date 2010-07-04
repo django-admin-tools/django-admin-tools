@@ -2,27 +2,39 @@
 {% if menu.children %}
 <script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
 <script type="text/javascript" charset="utf-8">
+
     // Load js files syncronously and conditionally
     var js_files = [
         {
             src : '{{ media_url }}/admin_tools/js/jquery/jquery.min.js',
-            test: function() { return typeof(jQuery) == 'undefined'; } 
+            test: function() { return typeof(jQuery) == 'undefined'; }
         },
         {
             src : '{{ media_url }}/admin_tools/js/json.min.js',
-            test: function() { return typeof(JSON.stringify) == 'undefined'; } 
+            test: function() { return typeof(JSON.stringify) == 'undefined'; }
         },
         {
             src : '{{ media_url }}/admin_tools/js/menu.js',
             test: function() { return true; }
-        },
-        {% for js in menu.Media.js %}
+        }{% for js in menu.Media.js %},
         {
             src : '{{ media_url }}/{{ js }}',
             test: function() { return true; }
-        },{% endfor %}
+        }{% endfor %}
     ];
-    load_script(0, js_files);
+
+    loadScripts(js_files, function(){
+        jQuery(function($) {
+            {% if has_bookmark_item %}
+                process_bookmarks(
+                   "{{ request.get_full_path }}",
+                   "{{ title }}",
+                   "{% trans 'Please enter a name for the bookmark' %}"
+                );
+            {% endif %}
+        });
+    });
+
 </script>
 <!--[if IE 6]>
 <script type="text/javascript">
@@ -34,12 +46,8 @@ jQuery(document).ready(function() {
 });
 </script>
 <![endif]-->
+
 {% if has_bookmark_item %}
-<script type="text/javascript">
-jQuery(function($) {
-        process_bookmarks("{{ request.get_full_path }}", "{{ title }}", "{% trans 'Please enter a name for the bookmark' %}");
-});
-</script>
 
 {% if bookmark %}
 {% include "admin_tools/menu/remove_bookmark_form.html" %}
