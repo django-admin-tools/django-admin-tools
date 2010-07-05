@@ -3,15 +3,20 @@ var loadScripts = function(js_files, onComplete){
     var head = document.getElementsByTagName('head')[0];
 
     function loadScript(index){
-
         if (index >= len){
             onComplete();
             return;
         }
 
-        if (js_files[index].test()){
-//            console.log('Loading ' + js_files[index].src);
+        try {
+            testOk = js_files[index].test();
+        } catch (e) {
+            // with certain browsers like opera the above test can fail 
+            // because of undefined variables...
+            testOk = true;
+        }
 
+        if (testOk) {
             var s = document.createElement('script');
             s.src = js_files[index].src;
             s.type = 'text/javascript';
@@ -20,8 +25,7 @@ var loadScripts = function(js_files, onComplete){
             s.onload = function(){
                 loadScript(index+1);
             }
-        }
-        else{
+        } else {
             loadScript(index+1);
         }
     }
