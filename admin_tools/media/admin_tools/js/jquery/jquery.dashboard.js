@@ -118,9 +118,14 @@
         var start = 0;
         var stop = 0;
         for (i = 0; i < options.columns; i++) {
-            if (!sizes[i]) {
+            if (typeof(sizes[i]) == 'undefined') {
                 start = i * size;
                 stop  = start + size;
+            } else if (sizes[i] == 0) {
+                elt.append(
+                    '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>'
+                );
+                continue;
             } else {
                 start = (i == 0) ? 0 : sizes[i-1];
                 stop  = start + sizes[i];
