@@ -21,6 +21,7 @@ def get_dashboard(context, location):
         return get_app_index_dashboard(context)
     raise ValueError('Invalid dashboard location: "%s"' % location)
 
+
 def get_index_dashboard(context):
     """
     Returns the admin dashboard defined by the user or the default one.
@@ -30,14 +31,8 @@ def get_index_dashboard(context):
         'ADMIN_TOOLS_INDEX_DASHBOARD',
         'admin_tools.dashboard.DefaultIndexDashboard'
     )
-    try:
-        mod, inst = dashboard_cls.rsplit('.', 1)
-        mod = import_module(mod)
-    except:
-        raise ImproperlyConfigured((
-            'The class pointed by your ADMIN_TOOLS_INDEX_DASHBOARD '
-            'setting variable cannot be imported'
-        ))
+    mod, inst = dashboard_cls.rsplit('.', 1)
+    mod = import_module(mod)
     return getattr(mod, inst)()
 
 
@@ -71,12 +66,6 @@ def get_app_index_dashboard(context):
         'ADMIN_TOOLS_APP_INDEX_DASHBOARD',
         'admin_tools.dashboard.DefaultAppIndexDashboard'
     )
-    try:
-        mod, inst = dashboard_cls.rsplit('.', 1)
-        mod = import_module(mod)
-    except:
-        raise ImproperlyConfigured((
-            'The class pointed by your ADMIN_TOOLS_APP_INDEX_DASHBOARD '
-            'setting variable cannot be imported'
-        ))
+    mod, inst = dashboard_cls.rsplit('.', 1)
+    mod = import_module(mod)
     return getattr(mod, inst)(app_title, model_list)
