@@ -1,3 +1,7 @@
+"""
+Module where admin tools dashboard modules classes are defined.
+"""
+
 from django.utils.text import capfirst
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
@@ -188,7 +192,7 @@ class Group(DashboardModule):
                             exclude_list=('django.contrib',)
                         )
                     ]
-                )
+                ))
     """
 
     def __init__(self, **kwargs):
@@ -594,5 +598,3 @@ class Feed(DashboardModule):
                 # no date for certain feeds
                 pass
             self.children.append(entry)
-
-

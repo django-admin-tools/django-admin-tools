@@ -1,9 +1,14 @@
+"""
+Module where admin tools dashboard classes are defined.
+"""
+
 from django.template.defaultfilters import slugify
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from admin_tools.dashboard import modules
+
 
 class Dashboard(object):
     """
@@ -183,9 +188,6 @@ class AppIndexDashboard(Dashboard):
         Internal method used to distinguish different dashboards in js code.
         """
         return '%s-dashboard' % slugify(unicode(self.app_title))
-
-
-
 
 
 class DefaultIndexDashboard(Dashboard):
