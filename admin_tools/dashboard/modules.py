@@ -165,7 +165,7 @@ class Group(DashboardModule):
     Represents a group of modules, the group can be displayed in tabs,
     accordion, or just stacked (default).
     As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
-    properties, the :class:`~admin_tools.dashboard.modules.AppList`
+    properties, the :class:`~admin_tools.dashboard.modules.Group`
     has one extra property:
 
     ``display``
