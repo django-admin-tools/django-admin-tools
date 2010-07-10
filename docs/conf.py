@@ -18,7 +18,7 @@ import sys, os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.append(os.path.abspath('..'))
 # required for autodoc
-os.environ['DJANGO_SETTINGS_MODULE'] = 'django.conf.global_settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'test_proj.settings'
 
 # -- General configuration -----------------------------------------------------
 

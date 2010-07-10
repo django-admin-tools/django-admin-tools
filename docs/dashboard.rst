@@ -8,6 +8,8 @@ dashboard modules.
 Make sure you read this before creating your custom dashboard and
 custom modules.
 
+.. module:: admin_tools.dashboard
+
 The ``Dashboard`` class
 -----------------------
 
@@ -20,10 +22,18 @@ The ``AppIndexDashboard`` class
 .. autoclass:: admin_tools.dashboard.AppIndexDashboard
     :members:
 
+.. module:: admin_tools.dashboard.modules
+
 The ``DashboardModule`` class
 -----------------------------
 
 .. autoclass:: admin_tools.dashboard.modules.DashboardModule
+    :members:
+
+The ``Group`` class
+------------------------------------
+
+.. autoclass:: admin_tools.dashboard.modules.Group
     :members:
 
 The ``LinkList`` class

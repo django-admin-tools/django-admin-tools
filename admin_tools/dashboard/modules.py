@@ -170,7 +170,7 @@ class Group(DashboardModule):
 
     ``display``
         A string determining how the group should be rendered, this can be one
-        of the following values: 'stacked' (default), 'tabs' or 'accordion'.
+        of the following values: 'tabs' (default), 'accordion' or 'stacked'.
 
     Here's an example of modules group::
         
@@ -193,6 +193,10 @@ class Group(DashboardModule):
                         )
                     ]
                 ))
+
+    The screenshot of what this code produces:
+
+    .. image:: images/dashboard_module_group.png
     """
 
     def __init__(self, **kwargs):
