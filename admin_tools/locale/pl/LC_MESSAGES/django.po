@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -16,13 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: dashboard/dashboards.py:78 menu/menus.py:96
-#, fuzzy
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr "Panel"
 
 #: dashboard/dashboards.py:207
 msgid "Quick links"
-msgstr "Szybkie odnośniki"
+msgstr "Na skróty"
 
 #: dashboard/dashboards.py:214
 msgid "Return to site"
@@ -107,7 +106,7 @@ msgstr "Zmień"
 
 #: menu/items.py:214
 msgid "Bookmarks"
-msgstr ""
+msgstr "Zakładki"
 
 #: menu/templates/admin/base_site.html:4
 msgid "Django site admin"
@@ -119,7 +118,7 @@ msgstr "Administracja Django"
 
 #: menu/templates/admin_tools/menu/menu.html:29
 msgid "Please enter a name for the bookmark"
-msgstr ""
+msgstr "Wprowadź nazwę dla zakładki"
 
 #: theming/templates/admin/base.html:30
 msgid "Welcome,"
