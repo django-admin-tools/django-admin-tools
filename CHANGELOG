@@ -2,8 +2,8 @@
 django-admin-tools changelog
 ============================
 
-tip
----
+Version 0.3.0, 16 July 2010:
+----------------------------
 
 Major changes
 ~~~~~~~~~~~~~
@@ -37,6 +37,11 @@ Bugfixes and minor changes
 * fixed issue #26 (menu bar showing for non-staff users) and also updated
   templates to match the django 1.2 templates;
 * fixed issue #29 : Django 1.2 admin base template change;
+* changed the way js files are loaded, hopefully now they are loaded 
+  syncronously (fixes issue #32);
+* fixed issue #33: empty applist menu items should not be displayed;
+* fixed issue #34: can't drag modules into an empty column;  
+* fixed issue #35 (wrong docstring for menu).
   
 New class names and paths
 ~~~~~~~~~~~~~~~~~~~~~~~~~

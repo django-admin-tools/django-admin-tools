@@ -6,4 +6,4 @@ administration interface, it includes:
  * a customizable menu bar,
  * tools to make admin theming easier.
 """
-VERSION = '0.2.0'
+VERSION = '0.3.0'
