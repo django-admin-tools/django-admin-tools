@@ -56,16 +56,17 @@ class Menu(object):
 
     .. image:: images/menu_example.png
     """
+    template = 'admin_tools/menu/menu.html'
+    children = None
 
     class Media:
         css = ()
         js  = ()
 
     def __init__(self, **kwargs):
-        """
-        Menu constructor.
-        """
-        self.template = kwargs.get('template', 'admin_tools/menu/menu.html')
+        for key in kwargs:
+            if hasattr(self.__class__, key):
+                setattr(self, key, kwargs[key])
         self.children = kwargs.get('children', [])
 
     def init_with_context(self, context):

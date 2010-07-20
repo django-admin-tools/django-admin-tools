@@ -238,6 +238,7 @@ class Bookmarks(MenuItem, AppListElementMixin):
 
     """
     title = _('Bookmarks')
+
     def __init__(self, **kwargs):
         super(Bookmarks, self).__init__(**kwargs)
         if 'bookmark' not in self.css_classes:
