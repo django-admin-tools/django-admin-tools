@@ -59,19 +59,25 @@ class DashboardModule(object):
         The template to use to render the module.
         Default value: 'admin_tools/dashboard/module.html'.
     """
+
+    template = 'admin_tools/dashboard/module.html'
+    enabled = True
+    draggable = True
+    collapsible = True
+    deletable = True
+    show_title = True
+    title = ''
+    title_url = None
+    css_classes = None
+    pre_content = None
+    post_content = None
+    children = None
+
     def __init__(self, **kwargs):
-        self.enabled = kwargs.get('enabled', True)
-        self.draggable = kwargs.get('draggable', True)
-        self.collapsible = kwargs.get('collapsible', True)
-        self.deletable = kwargs.get('deletable', True)
-        self.show_title = kwargs.get('show_title', True)
-        self.title = kwargs.get('title', '')
-        self.title_url = kwargs.get('title_url', None)
-        self.css_classes = kwargs.get('css_classes', [])
-        self.pre_content = kwargs.get('pre_content')
-        self.post_content = kwargs.get('post_content')
-        self.template = kwargs.get('template', 'admin_tools/dashboard/module.html')
-        self.children = kwargs.get('children', [])
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+        self.children = self.children or []
+        self.css_classes = self.css_classes or []
 
     def init_with_context(self, context):
         """
@@ -173,7 +179,7 @@ class Group(DashboardModule):
         of the following values: 'tabs' (default), 'accordion' or 'stacked'.
 
     Here's an example of modules group::
-        
+
         from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
@@ -199,15 +205,12 @@ class Group(DashboardModule):
     .. image:: images/dashboard_module_group.png
     """
 
-    def __init__(self, **kwargs):
-        super(Group, self).__init__(**kwargs)
-        self.template = kwargs.get('template',
-                                   'admin_tools/dashboard/modules/group.html')
-        self.display = kwargs.get('display', 'tabs')
-        
+    template = 'admin_tools/dashboard/modules/group.html'
+    display = 'tabs'
+
     def init_with_context(self, context):
         for module in self.children:
-            # to simplify the whole stuff, modules have some limitations, 
+            # to simplify the whole stuff, modules have some limitations,
             # they cannot be dragged, collapsed or closed
             module.collapsible = False
             module.draggable = False
@@ -277,12 +280,9 @@ class LinkList(DashboardModule):
     .. image:: images/linklist_dashboard_module.png
     """
 
-    def __init__(self, **kwargs):
-        super(LinkList, self).__init__(**kwargs)
-        self.title = kwargs.get('title', _('Links'))
-        self.template = kwargs.get('template',
-                                   'admin_tools/dashboard/modules/link_list.html')
-        self.layout = kwargs.get('layout', 'stacked')
+    title = _('Links')
+    template = 'admin_tools/dashboard/modules/link_list.html'
+    layout = 'stacked'
 
 
 class AppList(DashboardModule, AppListElementMixin):
@@ -334,17 +334,19 @@ class AppList(DashboardModule, AppListElementMixin):
         the django.contrib.auth.Group model line will not be displayed.
     """
 
+    title = _('Applications')
+    template = 'admin_tools/dashboard/modules/app_list.html'
+    models = None
+    exclude = None
+    include_list = None
+    exclude_list = None
+
     def __init__(self, **kwargs):
+        self.include_list = kwargs.pop('include_list', [])
+        self.exclude_list = kwargs.pop('exclude_list', [])
+        self.models = list(kwargs.pop('models', []))
+        self.exclude = list(kwargs.pop('exclude', []))
         super(AppList, self).__init__(**kwargs)
-        self.title = kwargs.get('title', _('Applications'))
-        self.template = kwargs.get('template',
-                                   'admin_tools/dashboard/modules/app_list.html')
-        self.include_list = kwargs.get('include_list', [])
-        self.exclude_list = kwargs.get('exclude_list', [])
-
-        self.models = list(kwargs.get('models', []))
-        self.exclude = list(kwargs.get('exclude', []))
-
 
     def init_with_context(self, context):
         items = self._visible_models(context['request'])
@@ -415,15 +417,14 @@ class ModelList(DashboardModule, AppListElementMixin):
         the django.contrib.auth.Group model line will not be displayed.
     """
 
+    template = 'admin_tools/dashboard/modules/model_list.html'
+
     def __init__(self, **kwargs):
+        self.include_list = kwargs.pop('include_list', [])
+        self.exclude_list = kwargs.pop('exclude_list', [])
+        self.models = list(kwargs.pop('models', []))
+        self.exclude = list(kwargs.pop('exclude', []))
         super(ModelList, self).__init__(**kwargs)
-        self.title = kwargs.get('title', '')
-        self.template = kwargs.get('template',
-                                   'admin_tools/dashboard/modules/model_list.html')
-        self.include_list = kwargs.get('include_list', [])
-        self.exclude_list = kwargs.get('exclude_list', [])
-        self.models = list(kwargs.get('models', []))
-        self.exclude = list(kwargs.get('exclude', []))
 
     def init_with_context(self, context):
         items = self._visible_models(context['request'])
@@ -477,15 +478,14 @@ class RecentActions(DashboardModule):
 
     .. image:: images/recentactions_dashboard_module.png
     """
+    title = _('Recent Actions')
+    template = 'admin_tools/dashboard/modules/recent_actions.html'
+    limit = 10
 
     def __init__(self, **kwargs):
+        self.include_list = kwargs.pop('include_list', [])
+        self.exclude_list = kwargs.pop('exclude_list', [])
         super(RecentActions, self).__init__(**kwargs)
-        self.title = kwargs.get('title', _('Recent Actions'))
-        self.template = kwargs.get('template',
-                                   'admin_tools/dashboard/modules/recent_actions.html')
-        self.include_list = kwargs.get('include_list', [])
-        self.exclude_list = kwargs.get('exclude_list', [])
-        self.limit = kwargs.get('limit', 10)
 
     def init_with_context(self, context):
         from django.db.models import Q
@@ -569,12 +569,11 @@ class Feed(DashboardModule):
 
     .. image:: images/feed_dashboard_module.png
     """
-    def __init__(self, **kwargs):
-        super(Feed, self).__init__(**kwargs)
-        self.title = kwargs.get('title', _('RSS Feed'))
-        self.template = kwargs.get('template', 'admin_tools/dashboard/modules/feed.html')
-        self.feed_url = kwargs.get('feed_url')
-        self.limit = kwargs.get('limit')
+
+    title = _('RSS Feed')
+    template = 'admin_tools/dashboard/modules/feed.html'
+    feed_url = None
+    limit = None
 
     def init_with_context(self, context):
         import datetime
