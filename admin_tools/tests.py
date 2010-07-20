@@ -54,7 +54,6 @@ class DeprecationTest(TestCase):
         self.assertNotDeprecated(modules.LinkList)
         self.assertNotDeprecated(modules.Feed)
 
-
     def test_menu(self):
         from admin_tools.menu import models
         self.assertDeprecated(models.Menu)

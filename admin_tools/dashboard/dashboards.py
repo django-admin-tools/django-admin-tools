@@ -137,8 +137,8 @@ class AppIndexDashboard(Dashboard):
         from admin_tools.dashboard import modules, AppIndexDashboard
 
         class MyAppIndexDashboard(AppIndexDashboard):
-            def __init__(self, **kwargs):
-                AppIndexDashboard.__init__(self, **kwargs)
+            def __init__(self, app_title, models, **kwargs):
+                AppIndexDashboard.__init__(self, app_title, models, **kwargs)
                 # we don't want a title, it's redundant
                 self.title = ''
 
