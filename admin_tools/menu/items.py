@@ -44,18 +44,20 @@ class MenuItem(object):
         the ``MenuItem`` class.
     """
 
+    title = 'Untitled menu item'
+    url = '#'
+    css_classes = None
+    accesskey = None
+    description = None
+    enabled = True
+    template = 'admin_tools/menu/item.html'
+    children = None
+
     def __init__(self, **kwargs):
-        """
-        ``MenuItem`` constructor.
-        """
-        self.title = kwargs.get('title', 'Untitled menu item')
-        self.url = kwargs.get('url', '#')
-        self.css_classes = kwargs.get('css_classes', [])
-        self.accesskey = kwargs.get('accesskey')
-        self.description = kwargs.get('description')
-        self.enabled = kwargs.get('enabled', True)
-        self.template = kwargs.get('template', 'admin_tools/menu/item.html')
-        self.children = kwargs.get('children', [])
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+        self.children = self.children or []
+        self.css_classes = self.css_classes or []
 
     def init_with_context(self, context):
         """
@@ -107,7 +109,7 @@ class MenuItem(object):
     def is_empty(self):
         """
         Helper method that returns ``True`` if the menu item is empty.
-        This method always returns ``False`` for basic items, but can return 
+        This method always returns ``False`` for basic items, but can return
         ``True`` if the item is an AppList.
         """
         return False
@@ -159,11 +161,11 @@ class AppList(MenuItem, AppListElementMixin):
         """
         ``AppListMenuItem`` constructor.
         """
+        self.include_list = kwargs.pop('include_list', [])
+        self.exclude_list = kwargs.pop('exclude_list', [])
+        self.models = list(kwargs.pop('models', []))
+        self.exclude = list(kwargs.pop('exclude', []))
         super(AppList, self).__init__(**kwargs)
-        self.include_list = kwargs.get('include_list', [])
-        self.exclude_list = kwargs.get('exclude_list', [])
-        self.models = list(kwargs.get('models', []))
-        self.exclude = list(kwargs.get('exclude', []))
 
 
     def init_with_context(self, context):
@@ -201,7 +203,7 @@ class AppList(MenuItem, AppListElementMixin):
 
     def is_empty(self):
         """
-        Helper method that returns ``True`` if the applist menu item has no 
+        Helper method that returns ``True`` if the applist menu item has no
         children.
 
         >>> from admin_tools.menu.items import MenuItem, AppList
@@ -234,10 +236,9 @@ class Bookmarks(MenuItem, AppListElementMixin):
                 self.children.append(items.Bookmarks(title='My bookmarks'))
 
     """
-
+    title = _('Bookmarks')
     def __init__(self, **kwargs):
         super(Bookmarks, self).__init__(**kwargs)
-        self.title = kwargs.get('title', _('Bookmarks'))
         if 'bookmark' not in self.css_classes:
             self.css_classes.append('bookmark')
 

@@ -72,18 +72,20 @@ class Dashboard(object):
 
     .. image:: images/dashboard_example.png
     """
+
+    title = _('Dashboard')
+    template = 'admin_tools/dashboard/dashboard.html'
+    columns = 2
+    children = None
+
     class Media:
         css = ()
         js  = ()
 
     def __init__(self, **kwargs):
-        """
-        Dashboard constructor.
-        """
-        self.title = kwargs.get('title', _('Dashboard'))
-        self.template = kwargs.get('template', 'admin_tools/dashboard/dashboard.html')
-        self.columns = kwargs.get('columns', 2)
-        self.children = kwargs.get('children', [])
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+        self.children = self.children or []
 
     def init_with_context(self, context):
         """
@@ -161,9 +163,8 @@ class AppIndexDashboard(Dashboard):
     .. image:: images/dashboard_app_index_example.png
     """
     def __init__(self, app_title, models, **kwargs):
+        kwargs.update({'app_title': app_title, 'models': models})
         super(AppIndexDashboard, self).__init__(**kwargs)
-        self.app_title = app_title
-        self.models = models
 
     def get_app_model_classes(self):
         """
@@ -286,11 +287,12 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
     And then set the ``ADMIN_TOOLS_APP_INDEX_DASHBOARD`` settings variable to
     point to your custom app index dashboard class.
     """
+
+    # we disable title because its redundant with the model list module
+    title = ''
+
     def __init__(self, *args, **kwargs):
         AppIndexDashboard.__init__(self, *args, **kwargs)
-
-        # we disable title because its redundant with the model list module
-        self.title = ''
 
         # append a model list module
         self.children.append(modules.ModelList(
