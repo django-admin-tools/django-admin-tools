@@ -84,7 +84,8 @@ class Dashboard(object):
 
     def __init__(self, **kwargs):
         for key in kwargs:
-            setattr(self, key, kwargs[key])
+            if hasattr(self.__class__, key):
+                setattr(self, key, kwargs[key])
         self.children = self.children or []
 
     def init_with_context(self, context):
