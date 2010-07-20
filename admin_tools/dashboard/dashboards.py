@@ -163,6 +163,10 @@ class AppIndexDashboard(Dashboard):
 
     .. image:: images/dashboard_app_index_example.png
     """
+
+    models = None
+    app_title = None
+
     def __init__(self, app_title, models, **kwargs):
         kwargs.update({'app_title': app_title, 'models': models})
         super(AppIndexDashboard, self).__init__(**kwargs)
