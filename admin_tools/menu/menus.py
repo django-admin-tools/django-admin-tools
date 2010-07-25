@@ -93,16 +93,19 @@ class DefaultMenu(Menu):
     """
     def __init__(self, **kwargs):
         super(DefaultMenu, self).__init__(**kwargs)
-        self.children.append(items.MenuItem(
-            title=_('Dashboard'),
-            url=reverse('admin:index')
-        ))
-        self.children.append(items.Bookmarks())
-        self.children.append(items.AppList(
-            title=_('Applications'),
-            exclude_list=('django.contrib',)
-        ))
-        self.children.append(items.AppList(
-            title=_('Administration'),
-            include_list=('django.contrib',)
-        ))
+
+        self.children += [
+            items.MenuItem(
+                title=_('Dashboard'),
+                url=reverse('admin:index')
+            ),
+            items.Bookmarks(),
+            items.AppList(
+                title=_('Applications'),
+                exclude_list=('django.contrib',)
+            ),
+            items.AppList(
+                title=_('Administration'),
+                include_list=('django.contrib',)
+            )
+        ]
