@@ -381,17 +381,17 @@ class ModelList(DashboardModule, AppListElementMixin):
     Module that lists a set of models.
     As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
     properties, the :class:`~admin_tools.dashboard.modules.ModelList` takes
-    two extra keyword arguments:
+    two extra arguments:
 
-    ``include_list``
+    ``models``
         A list of models to include, only models whose name (e.g.
-        "blog.comments.Comment") starts with one of the strings (e.g. "blog")
+        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
         in the include list will appear in the dashboard module.
 
-    ``exclude_list``
+    ``exclude``
         A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment" starts with an element of this list (e.g.
-        "blog.comments") it won't appear in the dashboard module.
+        "blog.comments.Comment" match an element of this list (e.g.
+        "blog.comments.*") it won't appear in the dashboard module.
 
     Here's a small example of building a model list module::
 
@@ -402,10 +402,9 @@ class ModelList(DashboardModule, AppListElementMixin):
                 Dashboard.__init__(self, **kwargs)
 
                 # will only list the django.contrib.auth models
-                self.children.append(modules.ModelList(
-                    title='Authentication',
-                    include_list=('django.contrib.auth',)
-                ))
+                self.children += [
+                    modules.ModelList('Authentication', ['django.contrib.auth.*',])
+                ]
 
     The screenshot of what this code produces:
 
@@ -420,11 +419,11 @@ class ModelList(DashboardModule, AppListElementMixin):
 
     template = 'admin_tools/dashboard/modules/model_list.html'
 
-    def __init__(self, title=None, **kwargs):
-        self.include_list = kwargs.pop('include_list', [])
-        self.exclude_list = kwargs.pop('exclude_list', [])
-        self.models = list(kwargs.pop('models', []))
-        self.exclude = list(kwargs.pop('exclude', []))
+    def __init__(self, title=None, models=None, exclude=None, **kwargs):
+        self.models = list(models or [])
+        self.exclude = list(exclude or [])
+        self.include_list = kwargs.pop('include_list', []) # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
         super(ModelList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
