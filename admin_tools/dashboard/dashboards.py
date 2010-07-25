@@ -150,18 +150,14 @@ class AppIndexDashboard(Dashboard):
                 AppIndexDashboard.__init__(self, app_title, models, **kwargs)
 
                 # append a model list module that lists all models
-                # for the app
-                self.children.append(modules.ModelList(
-                    title=self.app_title,
-                    include_list=self.models,
-                ))
-
-                # append a recent actions module for the current app
-                self.children.append(modules.RecentActions(
-                    title=_('Recent Actions'),
-                    include_list=self.models,
-                    limit=5
-                ))
+                # for the app and a recent actions module for the current app
+                self.children += [
+                    modules.ModelList(self.app_title, include_list=self.models),
+                    modules.RecentActions(
+                        include_list=self.models,
+                        limit=5
+                    )
+                ]
 
     Below is a screenshot of the resulting dashboard:
 
