@@ -72,8 +72,9 @@ class MenuItem(object):
             from admin_tools.menu.items import MenuItem
 
             class HistoryMenuItem(MenuItem):
+                title = 'History'
+
                 def init_with_context(self, context):
-                    self.title = 'History'
                     request = context['request']
                     # we use sessions to store the visited pages stack
                     history = request.session.get('history', [])

@@ -46,9 +46,11 @@ class Dashboard(object):
         from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
+
+            # we want a 3 columns layout
+            columns = 3
+
             def __init__(self, **kwargs):
-                # we want a 3 columns layout
-                self.columns = 3
 
                 # append an app list module for "Applications"
                 self.children.append(modules.AppList(
@@ -140,10 +142,12 @@ class AppIndexDashboard(Dashboard):
         from admin_tools.dashboard import modules, AppIndexDashboard
 
         class MyAppIndexDashboard(AppIndexDashboard):
+
+            # we don't want a title, it's redundant
+            title = ''
+
             def __init__(self, app_title, models, **kwargs):
                 AppIndexDashboard.__init__(self, app_title, models, **kwargs)
-                # we don't want a title, it's redundant
-                self.title = ''
 
                 # append a model list module that lists all models
                 # for the app

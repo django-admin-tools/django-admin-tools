@@ -90,8 +90,9 @@ class DashboardModule(object):
             from admin_tools.dashboard import modules
 
             class HistoryDashboardModule(modules.LinkList):
+                title = 'History'
+
                 def init_with_context(self, context):
-                    self.title = 'History'
                     request = context['request']
                     # we use sessions to store the visited pages stack
                     history = request.session.get('history', [])
