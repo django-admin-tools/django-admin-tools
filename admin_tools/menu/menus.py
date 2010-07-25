@@ -36,21 +36,16 @@ class Menu(object):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(
-                    items.MenuItem('Home', reverse('admin:index'))
-                )
-                self.children.append(
-                    items.AppList('Applications')
-                )
-                self.children.append(
-                    items.MenuItem(
-                        title='Multi level menu item',
+                self.children += [
+                    items.MenuItem('Home', reverse('admin:index')),
+                    items.AppList('Applications'),
+                    items.MenuItem('Multi level menu item',
                         children=[
-                            items.MenuItem(title='Child 1', url='/foo/'),
-                            items.MenuItem(title='Child 2', url='/bar/'),
+                            items.MenuItem('Child 1', '/foo/'),
+                            items.MenuItem('Child 2', '/bar/'),
                         ]
                     ),
-                )
+                ]
 
     Below is a screenshot of the resulting menu:
 
