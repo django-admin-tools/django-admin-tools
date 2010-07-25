@@ -1,14 +1,11 @@
 """
 Module where admin tools dashboard modules classes are defined.
 """
-
 from django.utils.text import capfirst
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
-
 from admin_tools.utils import AppListElementMixin
-
 
 class DashboardModule(object):
     """
