@@ -70,7 +70,9 @@ class DashboardModule(object):
     post_content = None
     children = None
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, **kwargs):
+        if title is not None:
+            self.title = title
         for key in kwargs:
             if hasattr(self.__class__, key):
                 setattr(self, key, kwargs[key])
@@ -340,12 +342,12 @@ class AppList(DashboardModule, AppListElementMixin):
     include_list = None
     exclude_list = None
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, **kwargs):
         self.include_list = kwargs.pop('include_list', [])
         self.exclude_list = kwargs.pop('exclude_list', [])
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        super(AppList, self).__init__(**kwargs)
+        super(AppList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
         items = self._visible_models(context['request'])
@@ -418,12 +420,12 @@ class ModelList(DashboardModule, AppListElementMixin):
 
     template = 'admin_tools/dashboard/modules/model_list.html'
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, **kwargs):
         self.include_list = kwargs.pop('include_list', [])
         self.exclude_list = kwargs.pop('exclude_list', [])
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        super(ModelList, self).__init__(**kwargs)
+        super(ModelList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
         items = self._visible_models(context['request'])
@@ -481,10 +483,10 @@ class RecentActions(DashboardModule):
     template = 'admin_tools/dashboard/modules/recent_actions.html'
     limit = 10
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, **kwargs):
         self.include_list = kwargs.pop('include_list', [])
         self.exclude_list = kwargs.pop('exclude_list', [])
-        super(RecentActions, self).__init__(**kwargs)
+        super(RecentActions, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
         from django.db.models import Q

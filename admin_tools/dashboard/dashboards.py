@@ -216,7 +216,7 @@ class DefaultIndexDashboard(Dashboard):
 
         # append a link list module for "quick links"
         self.children.append(modules.LinkList(
-            title=_('Quick links'),
+            _('Quick links'),
             layout='inline',
             draggable=False,
             deletable=False,
@@ -239,32 +239,32 @@ class DefaultIndexDashboard(Dashboard):
 
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
-            title=_('Applications'),
+            _('Applications'),
             exclude_list=('django.contrib',),
         ))
 
         # append an app list module for "Administration"
         self.children.append(modules.AppList(
-            title=_('Administration'),
+            _('Administration'),
             include_list=('django.contrib',),
         ))
 
         # append a recent actions module
         self.children.append(modules.RecentActions(
-            title=_('Recent Actions'),
+            _('Recent Actions'),
             limit=5
         ))
 
         # append a feed module
         self.children.append(modules.Feed(
-            title=_('Latest Django News'),
+            _('Latest Django News'),
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
         ))
 
         # append another link list module for "support".
         self.children.append(modules.LinkList(
-            title=_('Support'),
+            _('Support'),
             children=[
                 {
                     'title': _('Django documentation'),
@@ -305,13 +305,13 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
 
         # append a model list module
         self.children.append(modules.ModelList(
-            title=self.app_title,
+            self.app_title,
             include_list=self.models,
         ))
 
         # append a recent actions module
         self.children.append(modules.RecentActions(
-            title=_('Recent Actions'),
+            _('Recent Actions'),
             include_list=self.get_app_content_types(),
             limit=5
         ))
