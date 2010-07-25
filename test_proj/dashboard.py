@@ -23,18 +23,9 @@ class CustomIndexDashboard(Dashboard):
             deletable=False,
             collapsible=False,
             children=[
-                {
-                    'title': _('Return to site'),
-                    'url': '/',
-                },
-                {
-                    'title': _('Change password'),
-                    'url': reverse('admin:password_change'),
-                },
-                {
-                    'title': _('Log out'),
-                    'url': reverse('admin:logout')
-                },
+                [_('Return to site'), '/'],
+                [_('Change password'), reverse('admin:password_change')],
+                [_('Log out'), reverse('admin:logout')],
             ]
         ))
 
@@ -52,15 +43,14 @@ class CustomIndexDashboard(Dashboard):
 
         self.children.append(modules.ModelList(
             'Test1',
-            models = ['django.contrib.auth.*', '*.Site', '*.Foo'],
-            exclude = ['django.contrib.auth.models.User', 'test_app.*']
+            ['django.contrib.auth.*', '*.Site', '*.Foo'],
+            ['django.contrib.auth.models.User', 'test_app.*']
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions(
-            _('Recent Actions'),
-            limit=5
-        ))
+        self.children.append(
+             modules.RecentActions(_('Recent Actions'), 5)
+        )
 
         # append another link list module for "support".
         self.children.append(modules.LinkList(

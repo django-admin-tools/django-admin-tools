@@ -218,18 +218,9 @@ class DefaultIndexDashboard(Dashboard):
             deletable=False,
             collapsible=False,
             children=[
-                {
-                    'title': _('Return to site'),
-                    'url': '/',
-                },
-                {
-                    'title': _('Change password'),
-                    'url': reverse('admin:password_change'),
-                },
-                {
-                    'title': _('Log out'),
-                    'url': reverse('admin:logout')
-                },
+                [_('Return to site'), '/'],
+                [_('Change password'), reverse('admin:password_change')],
+                [_('Log out'), reverse('admin:logout')],
             ]
         ))
 
@@ -246,10 +237,7 @@ class DefaultIndexDashboard(Dashboard):
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions(
-            _('Recent Actions'),
-            limit=5
-        ))
+        self.children.append(modules.RecentActions(_('Recent Actions'), 5))
 
         # append a feed module
         self.children.append(modules.Feed(

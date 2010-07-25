@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
+from django.utils.itercompat import is_iterable
 
 class DashboardModule(object):
     """
@@ -246,6 +247,8 @@ class LinkList(DashboardModule):
         A string describing the link, it will be the ``title`` attribute of
         the html ``a`` tag.
 
+    Children can also be iterables (lists or tuples) of length 2, 3 or 4.
+
     Here's a small example of building a link list module::
 
         from admin_tools.dashboard import modules, Dashboard
@@ -263,16 +266,8 @@ class LinkList(DashboardModule):
                             'external': True,
                             'description': 'Python programming language rocks !',
                         },
-                        {
-                            'title': 'Django website',
-                            'url': 'http://www.djangoproject.com',
-                            'external': True
-                        },
-                        {
-                            'title': 'Some internal link',
-                            'url': '/some/internal/link/',
-                            'external': False
-                        },
+                        ['Django website', 'http://www.djangoproject.com', True],
+                        ['Some internal link', '/some/internal/link/'],
                     )
                 ))
 
@@ -284,6 +279,20 @@ class LinkList(DashboardModule):
     title = _('Links')
     template = 'admin_tools/dashboard/modules/link_list.html'
     layout = 'stacked'
+
+    def init_with_context(self, context):
+        new_children = []
+        for link in self.children:
+            if isinstance(link, (tuple, list,)):
+                link_dict = {'title': link[0], 'url': link[1]}
+                if len(link) >= 3:
+                    link_dict['external'] = link[3]
+                if len(link) >= 4:
+                    link_dict['description'] = link[4]
+                new_children.append(link_dict)
+            else:
+                new_children.append(link)
+        self.children = new_children
 
 
 class AppList(DashboardModule, AppListElementMixin):
@@ -482,9 +491,11 @@ class RecentActions(DashboardModule):
     template = 'admin_tools/dashboard/modules/recent_actions.html'
     limit = 10
 
-    def __init__(self, title=None, **kwargs):
-        self.include_list = kwargs.pop('include_list', [])
-        self.exclude_list = kwargs.pop('exclude_list', [])
+    def __init__(self, title=None, limit=None,
+                 include_list=None, exclude_list=None, **kwargs):
+        self.include_list = include_list or []
+        self.exclude_list = exclude_list or []
+        self.limit = self.__class__.limit or limit
         super(RecentActions, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
@@ -574,6 +585,10 @@ class Feed(DashboardModule):
     template = 'admin_tools/dashboard/modules/feed.html'
     feed_url = None
     limit = None
+
+    def __init__(self, title=None, feed_url=None, limit=None, **kwargs):
+        kwargs.update({'feed_url': feed_url, 'limit': limit})
+        super(Feed, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
         import datetime
