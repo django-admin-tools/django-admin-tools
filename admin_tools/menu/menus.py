@@ -37,10 +37,10 @@ class Menu(object):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
                 self.children.append(
-                    items.MenuItem(title='Home', url=reverse('admin:index'))
+                    items.MenuItem('Home', reverse('admin:index'))
                 )
                 self.children.append(
-                    items.AppList(title='Applications')
+                    items.AppList('Applications')
                 )
                 self.children.append(
                     items.MenuItem(
@@ -95,17 +95,14 @@ class DefaultMenu(Menu):
         super(DefaultMenu, self).__init__(**kwargs)
 
         self.children += [
-            items.MenuItem(
-                title=_('Dashboard'),
-                url=reverse('admin:index')
-            ),
+            items.MenuItem(_('Dashboard'), reverse('admin:index')),
             items.Bookmarks(),
             items.AppList(
-                title=_('Applications'),
+                _('Applications'),
                 exclude_list=('django.contrib',)
             ),
             items.AppList(
-                title=_('Administration'),
+                _('Administration'),
                 include_list=('django.contrib',)
             )
         ]

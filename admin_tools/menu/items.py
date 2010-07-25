@@ -53,7 +53,14 @@ class MenuItem(object):
     template = 'admin_tools/menu/item.html'
     children = None
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, url=None, **kwargs):
+
+        if title is not None:
+            self.title = title
+
+        if url is not None:
+            self.url = url
+
         for key in kwargs:
             if hasattr(self.__class__, key):
                 setattr(self, key, kwargs[key])
@@ -159,7 +166,7 @@ class AppList(MenuItem, AppListElementMixin):
         displayed in the menu item.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, url=None, **kwargs):
         """
         ``AppListMenuItem`` constructor.
         """
@@ -167,7 +174,7 @@ class AppList(MenuItem, AppListElementMixin):
         self.exclude_list = kwargs.pop('exclude_list', [])
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        super(AppList, self).__init__(**kwargs)
+        super(AppList, self).__init__(title, url, **kwargs)
 
 
     def init_with_context(self, context):
@@ -235,13 +242,13 @@ class Bookmarks(MenuItem, AppListElementMixin):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(items.Bookmarks(title='My bookmarks'))
+                self.children.append(items.Bookmarks('My bookmarks'))
 
     """
     title = _('Bookmarks')
 
-    def __init__(self, **kwargs):
-        super(Bookmarks, self).__init__(**kwargs)
+    def __init__(self, title=None, **kwargs):
+        super(Bookmarks, self).__init__(title, **kwargs)
         if 'bookmark' not in self.css_classes:
             self.css_classes.append('bookmark')
 
@@ -251,11 +258,10 @@ class Bookmarks(MenuItem, AppListElementMixin):
         documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         from admin_tools.menu.models import Bookmark
+
         for b in Bookmark.objects.filter(user=context['request'].user):
-            self.children.append(MenuItem(
-                url=b.url,
-                title=mark_safe(b.title)
-            ))
+            self.children.append(MenuItem(b.url, mark_safe(b.title)))
+
         if not len(self.children):
             self.enabled = False
 
