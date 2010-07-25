@@ -166,7 +166,7 @@ class AppList(MenuItem, AppListElementMixin):
         displayed in the menu item.
     """
 
-    def __init__(self, title=None, url=None, **kwargs):
+    def __init__(self, title=None, **kwargs):
         """
         ``AppListMenuItem`` constructor.
         """
@@ -174,7 +174,7 @@ class AppList(MenuItem, AppListElementMixin):
         self.exclude_list = kwargs.pop('exclude_list', [])
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        super(AppList, self).__init__(title, url, **kwargs)
+        super(AppList, self).__init__(title, **kwargs)
 
 
     def init_with_context(self, context):
