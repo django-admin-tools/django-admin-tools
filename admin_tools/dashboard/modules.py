@@ -286,9 +286,9 @@ class LinkList(DashboardModule):
             if isinstance(link, (tuple, list,)):
                 link_dict = {'title': link[0], 'url': link[1]}
                 if len(link) >= 3:
-                    link_dict['external'] = link[3]
+                    link_dict['external'] = link[2]
                 if len(link) >= 4:
-                    link_dict['description'] = link[4]
+                    link_dict['description'] = link[3]
                 new_children.append(link_dict)
             else:
                 new_children.append(link)
