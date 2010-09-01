@@ -149,10 +149,10 @@ class AppList(MenuItem, AppListElementMixin):
 
     .. note::
 
-        Note that this module takes into account user permissions, as a
+        Note that this menu takes into account user permissions, as a
         consequence, if a user has no rights to change or add a ``Group`` for
         example, the ``django.contrib.auth.Group model`` child item won't be
-        displayed in the menu item.
+        displayed in the menu.
     """
 
     def __init__(self, **kwargs):
@@ -217,6 +217,88 @@ class AppList(MenuItem, AppListElementMixin):
         """
         return len(self.children) == 0
 
+        
+        
+class ModelList(MenuItem, AppListElementMixin):
+    """
+    A menu item that lists a set of models.
+    In addition to the parent :class:`~admin_tools.menu.items.MenuItem`
+    properties, the ``ModelList`` has two extra properties:
+
+    ``include_list``
+        A list of models to include, only models whose name (e.g.
+        "blog.comments.Comment") starts with one of the strings (e.g. "blog")
+        in the include list will appear in the menu.
+
+    ``exclude_list``
+        A list of models to exclude, if a model name (e.g.
+        "blog.comments.Comment" starts with an element of this list (e.g.
+        "blog.comments") it won't appear in the menu.
+
+    If no include/exclude list is provided, **all models** are shown.
+
+    Here's a small example of building a model list menu item::
+
+        from admin_tools.menu import items, Menu
+
+        class MyMenu(Menu):
+            def __init__(self, **kwargs):
+                super(MyMenu, self).__init__(**kwargs)
+                self.children.append(items.ModelList(
+                    title='Applications',
+                    exclude_list=('django.contrib',)
+                )
+
+    .. note::
+
+        Note that this menu takes into account user permissions, as a
+        consequence, if a user has no rights to change or add a ``Group`` for
+        example, the ``django.contrib.auth.Group model`` item won't be
+        displayed in the menu.
+    """
+
+    def __init__(self, **kwargs):
+        """
+        ``ModelList`` constructor.
+        """
+        super(ModelList, self).__init__(**kwargs)
+        self.include_list = kwargs.get('include_list', [])
+        self.exclude_list = kwargs.get('exclude_list', [])
+        self.models = list(kwargs.get('models', []))
+        self.exclude = list(kwargs.get('exclude', []))
+
+    def init_with_context(self, context):
+        """
+        Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
+        documentation from :class:`~admin_tools.menu.items.MenuItem` class.
+        """
+        items = self._visible_models(context['request'])
+        for model, perms in items:
+            if not perms['change']:
+                continue
+            title = capfirst(model._meta.verbose_name_plural)
+            url = self._get_admin_change_url(model)
+            item = MenuItem(title=title, url=url)
+            self.children.append(item)
+                             
+    def is_empty(self):
+        """
+        Helper method that returns ``True`` if the modellist menu item has no 
+        children.
+
+        >>> from admin_tools.menu.items import MenuItem, ModelList
+        >>> item = ModelList(title='My menu item')
+        >>> item.is_empty()
+        True
+        >>> item.children.append(MenuItem(title='foo'))
+        >>> item.is_empty()
+        False
+        >>> item.children = []
+        >>> item.is_empty()
+        True
+        """
+        return len(self.children) == 0
+        
 
 class Bookmarks(MenuItem, AppListElementMixin):
     """
