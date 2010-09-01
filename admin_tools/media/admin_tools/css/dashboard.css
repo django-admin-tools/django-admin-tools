@@ -178,11 +178,11 @@ h1.dashboard-title {
 }
 
 .dashboard-module ul li.odd {
-    background: transparent url(../images/admin-tools.png) repeat-x 0 -325px;
+    background: #f5f5f5;
 }
 
 .dashboard-module ul li.even {
-    background: transparent url(../images/admin-tools.png) repeat-x 0 -285px;
+    background: #ffffff;
 }
 
 .dashboard-module ul li a.external-link {
