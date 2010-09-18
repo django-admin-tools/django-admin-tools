@@ -18,8 +18,7 @@ class AdminBasicTest(TestCase):
 
         super_index = self.index_page('superuser', '123')
         self.assertContains(super_index, 'Users', 3) # menu and dashboard items
-        self.assertContains(super_index)
-        self.assertNotContains(super_index, 'Test app menu')
+        self.assertContains(super_index, 'Test app menu')
 
     def test_app_index(self):
         self.client.login(username='staff', password='123')
