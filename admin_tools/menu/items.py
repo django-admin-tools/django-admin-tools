@@ -228,25 +228,23 @@ class AppList(MenuItem, AppListElementMixin):
         """
         return len(self.children) == 0
 
-        
-        
+
+
 class ModelList(MenuItem, AppListElementMixin):
     """
     A menu item that lists a set of models.
     In addition to the parent :class:`~admin_tools.menu.items.MenuItem`
     properties, the ``ModelList`` has two extra properties:
 
-    ``include_list``
+    ``models``
         A list of models to include, only models whose name (e.g.
-        "blog.comments.Comment") starts with one of the strings (e.g. "blog")
-        in the include list will appear in the menu.
+        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+        in the include list will appear in the dashboard module.
 
-    ``exclude_list``
+    ``exclude``
         A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment" starts with an element of this list (e.g.
-        "blog.comments") it won't appear in the menu.
-
-    If no include/exclude list is provided, **all models** are shown.
+        "blog.comments.Comment" match an element of this list (e.g.
+        "blog.comments.*") it won't appear in the dashboard module.
 
     Here's a small example of building a model list menu item::
 
@@ -255,10 +253,9 @@ class ModelList(MenuItem, AppListElementMixin):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(items.ModelList(
-                    title='Applications',
-                    exclude_list=('django.contrib',)
-                )
+                self.children += [
+                    items.ModelList('Authentication', ['django.contrib.auth.*',])
+                ]
 
     .. note::
 
@@ -268,15 +265,16 @@ class ModelList(MenuItem, AppListElementMixin):
         displayed in the menu.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, models=None, exclude=None, **kwargs):
         """
         ``ModelList`` constructor.
         """
-        super(ModelList, self).__init__(**kwargs)
-        self.include_list = kwargs.get('include_list', [])
-        self.exclude_list = kwargs.get('exclude_list', [])
-        self.models = list(kwargs.get('models', []))
-        self.exclude = list(kwargs.get('exclude', []))
+        self.models = list(models or [])
+        self.exclude = list(exclude or [])
+        self.include_list = kwargs.pop('include_list', []) # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
+
+        super(ModelList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
         """
@@ -291,10 +289,10 @@ class ModelList(MenuItem, AppListElementMixin):
             url = self._get_admin_change_url(model)
             item = MenuItem(title=title, url=url)
             self.children.append(item)
-                             
+
     def is_empty(self):
         """
-        Helper method that returns ``True`` if the modellist menu item has no 
+        Helper method that returns ``True`` if the modellist menu item has no
         children.
 
         >>> from admin_tools.menu.items import MenuItem, ModelList
@@ -309,7 +307,7 @@ class ModelList(MenuItem, AppListElementMixin):
         True
         """
         return len(self.children) == 0
-        
+
 
 class Bookmarks(MenuItem, AppListElementMixin):
     """
