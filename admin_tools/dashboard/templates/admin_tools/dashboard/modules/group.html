@@ -6,13 +6,13 @@
     {% ifequal module.display "tabs" %}
     <ul>
     {% for sub_module in module.children %}
-        <li class="group-tabs-link"><a href="#module_{{ index }}_{{ forloop.counter }}">{{ sub_module.title }}</a></li>
+        {% if not sub_module.is_empty %}<li class="group-tabs-link"><a href="#module_{{ index }}_{{ forloop.counter }}">{{ sub_module.title }}</a></li>{% endif %}
     {% endfor %}
     </ul>
     {% endifequal %}
     {% ifequal module.display "accordion" %}
     {% for sub_module in module.children %}
-        <span class="group-accordion-header"><a href="#">{{ sub_module.title }}</a></span>
+        {% if not sub_module.is_empty %}<span class="group-accordion-header"><a href="#">{{ sub_module.title }}</a></span>{% endif %}
         {% admin_tools_render_dashboard_module sub_module index forloop.counter %}
     {% endfor %}
     {% else %}

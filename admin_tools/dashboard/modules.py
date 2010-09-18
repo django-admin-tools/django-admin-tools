@@ -79,6 +79,8 @@ class DashboardModule(object):
                 setattr(self, key, kwargs[key])
         self.children = self.children or []
         self.css_classes = self.css_classes or []
+        # boolean flag to ensure that the module is initialized only once
+        self._initialized = False
 
     def init_with_context(self, context):
         """
@@ -211,6 +213,8 @@ class Group(DashboardModule):
     display = 'tabs'
 
     def init_with_context(self, context):
+        if self._initialized:
+            return
         for module in self.children:
             # to simplify the whole stuff, modules have some limitations,
             # they cannot be dragged, collapsed or closed
@@ -218,31 +222,34 @@ class Group(DashboardModule):
             module.draggable = False
             module.deletable = False
             module.show_title = (self.display == 'stacked')
+            module.init_with_context(context)
+        self._initialized = True
 
     def is_empty(self):
         """
         A group of modules is considered empty if it has no children or if 
         all its children are empty.
 
+        >>> from admin_tools.dashboard.modules import DashboardModule, LinkList
         >>> mod = Group()
         >>> mod.is_empty()
         True
         >>> mod.children.append(DashboardModule())
         >>> mod.is_empty()
         True
-        >>> mod.children.append(LinkList(title='links', children[
-            {'title': 'example1', 'url': 'http://example.com'},
-            {'title': 'example2', 'url': 'http://example.com'},
-        ]))
+        >>> mod.children.append(LinkList('links', children=[
+        ...    {'title': 'example1', 'url': 'http://example.com'},
+        ...    {'title': 'example2', 'url': 'http://example.com'},
+        ... ]))
         >>> mod.is_empty()
         False
         """
         if super(Group, self).is_empty():
             return True
         for child in self.children:
-            if child.is_empty():
-                return True
-        return False
+            if not child.is_empty():
+                return False
+        return True
 
 
 class LinkList(DashboardModule):
@@ -306,6 +313,8 @@ class LinkList(DashboardModule):
     layout = 'stacked'
 
     def init_with_context(self, context):
+        if self._initialized:
+            return
         new_children = []
         for link in self.children:
             if isinstance(link, (tuple, list,)):
@@ -318,6 +327,7 @@ class LinkList(DashboardModule):
             else:
                 new_children.append(link)
         self.children = new_children
+        self._initialized = True
 
 
 class AppList(DashboardModule, AppListElementMixin):
@@ -384,6 +394,8 @@ class AppList(DashboardModule, AppListElementMixin):
         super(AppList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
+        if self._initialized:
+            return
         items = self._visible_models(context['request'])
         apps = {}
         for model, perms in items:
@@ -408,6 +420,7 @@ class AppList(DashboardModule, AppListElementMixin):
             # sort model list alphabetically
             apps[app]['models'].sort(lambda x, y: cmp(x['title'], y['title']))
             self.children.append(apps[app])
+        self._initialized = True
 
 
 class ModelList(DashboardModule, AppListElementMixin):
@@ -461,6 +474,8 @@ class ModelList(DashboardModule, AppListElementMixin):
         super(ModelList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
+        if self._initialized:
+            return
         items = self._visible_models(context['request'])
         if not items:
             return
@@ -472,6 +487,7 @@ class ModelList(DashboardModule, AppListElementMixin):
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model)
             self.children.append(model_dict)
+        self._initialized = True
 
 
 class RecentActions(DashboardModule):
@@ -524,6 +540,8 @@ class RecentActions(DashboardModule):
         super(RecentActions, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
+        if self._initialized:
+            return
         from django.db.models import Q
         from django.contrib.admin.models import LogEntry
 
@@ -562,6 +580,7 @@ class RecentActions(DashboardModule):
         self.children = qs.select_related('content_type', 'user')[:self.limit]
         if not len(self.children):
             self.pre_content = _('No recent actions.')
+        self._initialized = True
 
 
 class Feed(DashboardModule):
@@ -616,6 +635,8 @@ class Feed(DashboardModule):
         super(Feed, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
+        if self._initialized:
+            return
         import datetime
         if self.feed_url is None:
             raise ValueError('You must provide a valid feed URL')
@@ -641,3 +662,4 @@ class Feed(DashboardModule):
                 # no date for certain feeds
                 pass
             self.children.append(entry)
+        self._initialized = True

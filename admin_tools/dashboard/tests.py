@@ -2,10 +2,10 @@ from tempfile import mktemp
 from unittest import TestCase
 from django.test import TestCase as DjangoTestCase
 from django.core import management
-from django.contrib.auth.models import User, Group
+from django.contrib.auth import models as auth_models
 
 from admin_tools.dashboard import AppIndexDashboard
-from admin_tools.dashboard.modules import DashboardModule
+from admin_tools.dashboard.modules import DashboardModule, Group
 
 class ManagementCommandTest(DjangoTestCase):
     def test_customdashboard(self):
@@ -24,9 +24,11 @@ class AppIndexDashboardTest(TestCase):
         models = ['django.contrib.auth.models.User',
                   'django.contrib.auth.models.Group']
         board = AppIndexDashboard('Auth', models)
-        self.assertEqual(board.get_app_model_classes(), [User, Group])
+        self.assertEqual(board.get_app_model_classes(),
+                         [auth_models.User, auth_models.Group])
 
 __test__ = {
     'DashboardModule.is_empty': DashboardModule.is_empty,
-    'DashboardModule.render_css_classes': DashboardModule.render_css_classes
+    'DashboardModule.render_css_classes': DashboardModule.render_css_classes,
+    'Group.is_empty': Group.is_empty,
 }
