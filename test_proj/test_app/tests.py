@@ -1,21 +1,25 @@
 from django.test import TestCase
 
 class AdminBasicTest(TestCase):
+
+    def index_page(self, username='staff', password='123'):
+        self.assertTrue(self.client.login(username=username, password=password))
+        return self.client.get('/admin/')
+
     def test_admin_loads(self):
-        self.assertTrue(self.client.login(username='staff', password='123'))
-        res = self.client.get('/admin/')
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(self.index_page().status_code, 200)
 
     def test_permissions(self):
-        self.assertTrue(self.client.login(username='staff', password='123'))
-        res = self.client.get('/admin/')
-        self.assertContains(res, 'Foos')
-        self.assertNotContains(res, 'Bars')
-        self.assertNotContains(res, 'Users')
+        index = self.index_page()
+        self.assertContains(index, 'Foos')
+        self.assertNotContains(index, 'Bars')
+        self.assertNotContains(index, 'Users')
+        self.assertNotContains(index, 'Test app menu')
 
-        self.assertTrue(self.client.login(username='superuser', password='123'))
-        res = self.client.get('/admin/')
-        self.assertContains(res, 'Users', 2) # menu and dashboard items
+        super_index = self.index_page('superuser', '123')
+        self.assertContains(super_index, 'Users', 3) # menu and dashboard items
+        self.assertContains(super_index)
+        self.assertNotContains(super_index, 'Test app menu')
 
     def test_app_index(self):
         self.client.login(username='staff', password='123')
@@ -28,5 +32,5 @@ class AdminBasicTest(TestCase):
         res = self.client.get('/admin/test_app/')
         self.assertContains(res, 'Foos')
         self.assertContains(res, 'Bars')
-        self.assertContains(res, 'Users', 1) # only item from menu
+        self.assertContains(res, 'Users', 2) # only items from menu
 

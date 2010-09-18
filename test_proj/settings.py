@@ -33,6 +33,7 @@ TEMPLATE_DIRS = (
 FIXTURE_DIRS = ['fixtures']
 
 ADMIN_TOOLS_INDEX_DASHBOARD = 'test_proj.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_MENU = 'test_proj.menu.CustomMenu'
 
 INSTALLED_APPS = [
     'admin_tools',
