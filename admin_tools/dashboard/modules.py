@@ -214,6 +214,31 @@ class Group(DashboardModule):
             module.deletable = False
             module.show_title = (self.display == 'stacked')
 
+    def is_empty(self):
+        """
+        A group of modules is considered empty if it has no children or if 
+        all its children are empty.
+
+        >>> mod = Group()
+        >>> mod.is_empty()
+        True
+        >>> mod.children.append(DashboardModule())
+        >>> mod.is_empty()
+        True
+        >>> mod.children.append(LinkList(title='links', children[
+            {'title': 'example1', 'url': 'http://example.com'},
+            {'title': 'example2', 'url': 'http://example.com'},
+        ]))
+        >>> mod.is_empty()
+        False
+        """
+        if super(Group, self).is_empty():
+            return True
+        for child in self.children:
+            if child.is_empty():
+                return True
+        return False
+
 
 class LinkList(DashboardModule):
     """
