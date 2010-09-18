@@ -44,18 +44,28 @@ class MenuItem(object):
         the ``MenuItem`` class.
     """
 
-    def __init__(self, **kwargs):
-        """
-        ``MenuItem`` constructor.
-        """
-        self.title = kwargs.get('title', 'Untitled menu item')
-        self.url = kwargs.get('url', '#')
-        self.css_classes = kwargs.get('css_classes', [])
-        self.accesskey = kwargs.get('accesskey')
-        self.description = kwargs.get('description')
-        self.enabled = kwargs.get('enabled', True)
-        self.template = kwargs.get('template', 'admin_tools/menu/item.html')
-        self.children = kwargs.get('children', [])
+    title = 'Untitled menu item'
+    url = '#'
+    css_classes = None
+    accesskey = None
+    description = None
+    enabled = True
+    template = 'admin_tools/menu/item.html'
+    children = None
+
+    def __init__(self, title=None, url=None, **kwargs):
+
+        if title is not None:
+            self.title = title
+
+        if url is not None:
+            self.url = url
+
+        for key in kwargs:
+            if hasattr(self.__class__, key):
+                setattr(self, key, kwargs[key])
+        self.children = self.children or []
+        self.css_classes = self.css_classes or []
 
     def init_with_context(self, context):
         """
@@ -69,8 +79,9 @@ class MenuItem(object):
             from admin_tools.menu.items import MenuItem
 
             class HistoryMenuItem(MenuItem):
+                title = 'History'
+
                 def init_with_context(self, context):
-                    self.title = 'History'
                     request = context['request']
                     # we use sessions to store the visited pages stack
                     history = request.session.get('history', [])
@@ -107,7 +118,7 @@ class MenuItem(object):
     def is_empty(self):
         """
         Helper method that returns ``True`` if the menu item is empty.
-        This method always returns ``False`` for basic items, but can return 
+        This method always returns ``False`` for basic items, but can return
         ``True`` if the item is an AppList.
         """
         return False
@@ -155,15 +166,15 @@ class AppList(MenuItem, AppListElementMixin):
         displayed in the menu.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, title=None, **kwargs):
         """
         ``AppListMenuItem`` constructor.
         """
-        super(AppList, self).__init__(**kwargs)
-        self.include_list = kwargs.get('include_list', [])
-        self.exclude_list = kwargs.get('exclude_list', [])
-        self.models = list(kwargs.get('models', []))
-        self.exclude = list(kwargs.get('exclude', []))
+        self.include_list = kwargs.pop('include_list', [])
+        self.exclude_list = kwargs.pop('exclude_list', [])
+        self.models = list(kwargs.pop('models', []))
+        self.exclude = list(kwargs.pop('exclude', []))
+        super(AppList, self).__init__(title, **kwargs)
 
 
     def init_with_context(self, context):
@@ -201,7 +212,7 @@ class AppList(MenuItem, AppListElementMixin):
 
     def is_empty(self):
         """
-        Helper method that returns ``True`` if the applist menu item has no 
+        Helper method that returns ``True`` if the applist menu item has no
         children.
 
         >>> from admin_tools.menu.items import MenuItem, AppList
@@ -313,13 +324,13 @@ class Bookmarks(MenuItem, AppListElementMixin):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(items.Bookmarks(title='My bookmarks'))
+                self.children.append(items.Bookmarks('My bookmarks'))
 
     """
+    title = _('Bookmarks')
 
-    def __init__(self, **kwargs):
-        super(Bookmarks, self).__init__(**kwargs)
-        self.title = kwargs.get('title', _('Bookmarks'))
+    def __init__(self, title=None, **kwargs):
+        super(Bookmarks, self).__init__(title, **kwargs)
         if 'bookmark' not in self.css_classes:
             self.css_classes.append('bookmark')
 
@@ -329,11 +340,10 @@ class Bookmarks(MenuItem, AppListElementMixin):
         documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         from admin_tools.menu.models import Bookmark
+
         for b in Bookmark.objects.filter(user=context['request'].user):
-            self.children.append(MenuItem(
-                url=b.url,
-                title=mark_safe(b.title)
-            ))
+            self.children.append(MenuItem(mark_safe(b.title), b.url))
+
         if not len(self.children):
             self.enabled = False
 

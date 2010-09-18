@@ -20,7 +20,7 @@ tag_func = register.inclusion_tag('admin_tools/dashboard/dummy.html', takes_cont
 def admin_tools_render_dashboard(context, location='index', dashboard=None):
     """
     Template tag that renders the dashboard, it takes two optional arguments:
-    
+
     ``location``
         The location of the dashboard, it can be 'index' (for the admin index
         dashboard) or 'app_index' (for the app index dashboard), the default
@@ -75,7 +75,7 @@ def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
     """
     Template tag that renders the dashboard css files, it takes two optional
     arguments:
-    
+
     ``location``
         The location of the dashboard, it can be 'index' (for the admin index
         dashboard) or 'app_index' (for the app index dashboard), the default

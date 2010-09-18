@@ -1,14 +1,11 @@
 """
 Dashboard utilities.
 """
-
 from django.conf import settings
 from django.contrib import admin
-from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
 from django.utils.text import capfirst
-from admin_tools.dashboard import Registry
-
+from admin_tools.dashboard.registry import Registry
 
 def get_dashboard(context, location):
     """
@@ -29,7 +26,7 @@ def get_index_dashboard(context):
     dashboard_cls = getattr(
         settings,
         'ADMIN_TOOLS_INDEX_DASHBOARD',
-        'admin_tools.dashboard.DefaultIndexDashboard'
+        'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
     )
     mod, inst = dashboard_cls.rsplit('.', 1)
     mod = import_module(mod)
@@ -64,7 +61,7 @@ def get_app_index_dashboard(context):
     dashboard_cls = getattr(
         settings,
         'ADMIN_TOOLS_APP_INDEX_DASHBOARD',
-        'admin_tools.dashboard.DefaultAppIndexDashboard'
+        'admin_tools.dashboard.dashboards.DefaultAppIndexDashboard'
     )
     mod, inst = dashboard_cls.rsplit('.', 1)
     mod = import_module(mod)

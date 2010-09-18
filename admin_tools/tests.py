@@ -40,12 +40,12 @@ class DeprecationTest(TestCase):
         self.assertDeprecated(models.FeedDashboardModule)
 
     def test_dashboard_new(self):
-        from admin_tools import dashboard
+        from admin_tools.dashboard import dashboards
 
-        self.assertNotDeprecated(dashboard.Dashboard)
-        self.assertNotDeprecated(dashboard.DefaultIndexDashboard)
-        self.assertNotDeprecated(dashboard.DefaultAppIndexDashboard, '', [])
-        self.assertNotDeprecated(dashboard.AppIndexDashboard, '', [])
+        self.assertNotDeprecated(dashboards.Dashboard)
+        self.assertNotDeprecated(dashboards.DefaultIndexDashboard)
+        self.assertNotDeprecated(dashboards.DefaultAppIndexDashboard, '', [])
+        self.assertNotDeprecated(dashboards.AppIndexDashboard, '', [])
 
         from admin_tools.dashboard import modules
         self.assertNotDeprecated(modules.DashboardModule)
@@ -53,7 +53,6 @@ class DeprecationTest(TestCase):
         self.assertNotDeprecated(modules.ModelList)
         self.assertNotDeprecated(modules.LinkList)
         self.assertNotDeprecated(modules.Feed)
-
 
     def test_menu(self):
         from admin_tools.menu import models

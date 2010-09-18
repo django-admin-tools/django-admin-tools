@@ -17,54 +17,44 @@ class CustomIndexDashboard(Dashboard):
 
         # append a link list module for "quick links"
         self.children.append(modules.LinkList(
-            title=_('Quick links'),
+            _('Quick links'),
             layout='inline',
             draggable=False,
             deletable=False,
             collapsible=False,
             children=[
-                {
-                    'title': _('Return to site'),
-                    'url': '/',
-                },
-                {
-                    'title': _('Change password'),
-                    'url': reverse('admin:password_change'),
-                },
-                {
-                    'title': _('Log out'),
-                    'url': reverse('admin:logout')
-                },
+                [_('Return to site'), '/'],
+                [_('Change password'), reverse('admin:password_change')],
+                [_('Log out'), reverse('admin:logout')],
             ]
         ))
 
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
-            title=_('Applications'),
+            _('Applications'),
             exclude_list=('django.contrib',),
         ))
 
         # append an app list module for "Administration"
         self.children.append(modules.AppList(
-            title=_('Administration'),
+            _('Administration'),
             include_list=('django.contrib',),
         ))
 
         self.children.append(modules.ModelList(
-            title='Test1',
-            models = ['django.contrib.auth.*', '*.Site', '*.Foo'],
-            exclude = ['django.contrib.auth.models.User', 'test_app.*']
+            'Test1',
+            ['django.contrib.auth.*', '*.Site', '*.Foo'],
+            ['django.contrib.auth.models.User', 'test_app.*']
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions(
-            title=_('Recent Actions'),
-            limit=5
-        ))
+        self.children.append(
+             modules.RecentActions(_('Recent Actions'), 5)
+        )
 
         # append another link list module for "support".
         self.children.append(modules.LinkList(
-            title=_('Support'),
+            _('Support'),
             children=[
                 {
                     'title': _('Django documentation'),
@@ -99,23 +89,17 @@ class CustomAppIndexDashboard(AppIndexDashboard):
     """
     Custom app index dashboard for test_proj.
     """
+
+    # we disable title because its redundant with the model list module
+    title = ''
+
     def __init__(self, *args, **kwargs):
         AppIndexDashboard.__init__(self, *args, **kwargs)
 
-        # we disable title because its redundant with the model list module
-        self.title = ''
-
-        # append a model list module
-        self.children.append(modules.ModelList(
-            title=self.app_title,
-            include_list=self.models,
-        ))
-
-        # append a recent actions module
-        self.children.append(modules.RecentActions(
-            title=_('Recent Actions'),
-            include_list=self.get_app_content_types(),
-        ))
+        self.children += [
+            modules.ModelList(self.app_title, include_list=self.models),
+            modules.RecentActions(include_list=self.get_app_content_types()),
+        ]
 
     def init_with_context(self, context):
         """

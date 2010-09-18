@@ -36,36 +36,32 @@ class Menu(object):
         class MyMenu(Menu):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
-                self.children.append(
-                    items.MenuItem(title='Home', url=reverse('admin:index'))
-                )
-                self.children.append(
-                    items.AppList(title='Applications')
-                )
-                self.children.append(
-                    items.MenuItem(
-                        title='Multi level menu item',
+                self.children += [
+                    items.MenuItem('Home', reverse('admin:index')),
+                    items.AppList('Applications'),
+                    items.MenuItem('Multi level menu item',
                         children=[
-                            items.MenuItem(title='Child 1', url='/foo/'),
-                            items.MenuItem(title='Child 2', url='/bar/'),
+                            items.MenuItem('Child 1', '/foo/'),
+                            items.MenuItem('Child 2', '/bar/'),
                         ]
                     ),
-                )
+                ]
 
     Below is a screenshot of the resulting menu:
 
     .. image:: images/menu_example.png
     """
+    template = 'admin_tools/menu/menu.html'
+    children = None
 
     class Media:
         css = ()
         js  = ()
 
     def __init__(self, **kwargs):
-        """
-        Menu constructor.
-        """
-        self.template = kwargs.get('template', 'admin_tools/menu/menu.html')
+        for key in kwargs:
+            if hasattr(self.__class__, key):
+                setattr(self, key, kwargs[key])
         self.children = kwargs.get('children', [])
 
     def init_with_context(self, context):
@@ -92,16 +88,16 @@ class DefaultMenu(Menu):
     """
     def __init__(self, **kwargs):
         super(DefaultMenu, self).__init__(**kwargs)
-        self.children.append(items.MenuItem(
-            title=_('Dashboard'),
-            url=reverse('admin:index')
-        ))
-        self.children.append(items.Bookmarks())
-        self.children.append(items.AppList(
-            title=_('Applications'),
-            exclude_list=('django.contrib',)
-        ))
-        self.children.append(items.AppList(
-            title=_('Administration'),
-            include_list=('django.contrib',)
-        ))
+
+        self.children += [
+            items.MenuItem(_('Dashboard'), reverse('admin:index')),
+            items.Bookmarks(),
+            items.AppList(
+                _('Applications'),
+                exclude_list=('django.contrib',)
+            ),
+            items.AppList(
+                _('Administration'),
+                include_list=('django.contrib',)
+            )
+        ]
