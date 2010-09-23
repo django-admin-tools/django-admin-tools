@@ -70,6 +70,8 @@ class DashboardModule(object):
     pre_content = None
     post_content = None
     children = None
+    # custom property for grappelli
+    grappelli_column = 1
 
     def __init__(self, title=None, **kwargs):
         if title is not None:
@@ -409,9 +411,9 @@ class AppList(DashboardModule, AppListElementMixin):
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
             if perms['change']:
-                model_dict['change_url'] = self._get_admin_change_url(model)
+                model_dict['change_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
-                model_dict['add_url'] = self._get_admin_add_url(model)
+                model_dict['add_url'] = self._get_admin_add_url(model, context)
             apps[app_label]['models'].append(model_dict)
 
         apps_sorted = apps.keys()
@@ -483,9 +485,9 @@ class ModelList(DashboardModule, AppListElementMixin):
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
             if perms['change']:
-                model_dict['change_url'] = self._get_admin_change_url(model)
+                model_dict['change_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
-                model_dict['add_url'] = self._get_admin_add_url(model)
+                model_dict['add_url'] = self._get_admin_add_url(model, context)
             self.children.append(model_dict)
         self._initialized = True
 

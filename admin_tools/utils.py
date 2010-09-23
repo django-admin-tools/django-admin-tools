@@ -5,11 +5,43 @@ from django.conf import settings
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from fnmatch import fnmatch
+from django.utils.importlib import import_module
+import types
+
+def get_admin_site(context=None, request=None):
+    dashboard_cls = getattr(
+        settings,
+        'ADMIN_TOOLS_INDEX_DASHBOARD',
+        'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
+    )
+    
+    if type(dashboard_cls) is types.DictType:
+        if context:
+            request = context.get('request')
+        
+        curr_url = request.META['PATH_INFO']
+        
+        for key in dashboard_cls:
+            mod, inst = key.rsplit('.', 1)
+            mod = import_module(mod)
+            admin_site = getattr(mod, inst)
+            admin_url = reverse('%s:index' % admin_site.name)
+            if curr_url.startswith(admin_url):
+                return admin_site
+    else:
+        return admin.site
+
+
+def get_admin_site_name(context):
+    return get_admin_site(context).name
 
 def get_avail_models(request):
     """ Returns (model, perm,) for all models user can possibly see """
     items = []
-    for model, model_admin in admin.site._registry.items():
+    
+    admin_site = get_admin_site(request=request)
+    
+    for model, model_admin in admin_site._registry.items():
         perms = model_admin.get_model_perms(request)
         if True not in perms.values():
             continue
@@ -65,22 +97,24 @@ class AppListElementMixin(object):
         if self.exclude_list and not included:
             included = ["*"]
         return filter_models(request, included, excluded)
-
-
-    def _get_admin_change_url(self, model):
+    
+    def _get_admin_change_url(self, model, context):
         """
         Returns the admin change url.
         """
         app_label = model._meta.app_label
-        return reverse('admin:%s_%s_changelist' % (app_label,
-                                                   model.__name__.lower()))
-
-    def _get_admin_add_url(self, model):
+        return reverse('%s:%s_%s_changelist' % (get_admin_site_name(context),
+                                                app_label,
+                                                model.__name__.lower()))
+    
+    def _get_admin_add_url(self, model, context):
         """
         Returns the admin add url.
         """
         app_label = model._meta.app_label
-        return reverse('admin:%s_%s_add' % (app_label, model.__name__.lower()))
+        return reverse('%s:%s_%s_add' % (get_admin_site_name(context),
+                                            app_label,
+                                            model.__name__.lower()))
 
 
 def get_media_url():

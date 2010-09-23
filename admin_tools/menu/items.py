@@ -196,7 +196,7 @@ class AppList(MenuItem, AppListElementMixin):
                 }
             apps[app_label]['models'].append({
                 'title': capfirst(model._meta.verbose_name_plural),
-                'url': self._get_admin_change_url(model)
+                'url': self._get_admin_change_url(model, context)
             })
 
         apps_sorted = apps.keys()
@@ -286,7 +286,7 @@ class ModelList(MenuItem, AppListElementMixin):
             if not perms['change']:
                 continue
             title = capfirst(model._meta.verbose_name_plural)
-            url = self._get_admin_change_url(model)
+            url = self._get_admin_change_url(model, context)
             item = MenuItem(title=title, url=url)
             self.children.append(item)
 
