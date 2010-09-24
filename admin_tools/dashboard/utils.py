@@ -25,7 +25,7 @@ def get_dashboard(context, location):
         return get_app_index_dashboard(context)
     raise ValueError('Invalid dashboard location: "%s"' % location)
 
-def _get_dashboard_cls(dashboard_cls):
+def _get_dashboard_cls(dashboard_cls, context):
     if type(dashboard_cls) is types.DictType:
         curr_url = context.get('request').META['PATH_INFO']
         for key in dashboard_cls:
@@ -51,7 +51,7 @@ def get_index_dashboard(context):
         settings,
         'ADMIN_TOOLS_INDEX_DASHBOARD',
         'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
-    ))()
+    ), context)()
 
 def get_app_index_dashboard(context):
     """
@@ -84,4 +84,4 @@ def get_app_index_dashboard(context):
         settings,
         'ADMIN_TOOLS_APP_INDEX_DASHBOARD',
         'admin_tools.dashboard.dashboards.DefaultAppIndexDashboard'
-    ))(app_title, model_list)
+    ), context)(app_title, model_list)
