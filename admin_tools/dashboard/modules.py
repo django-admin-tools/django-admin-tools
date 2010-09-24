@@ -73,8 +73,6 @@ class DashboardModule(object):
     pre_content = None
     post_content = None
     children = None
-    # custom property for grappelli
-    grappelli_column = 1
 
     def __init__(self, title=None, **kwargs):
         if title is not None:
