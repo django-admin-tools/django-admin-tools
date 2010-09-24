@@ -1,12 +1,14 @@
 """
 Admin ui common utilities.
 """
+import types
+from fnmatch import fnmatch
+
 from django.conf import settings
 from django.contrib import admin
 from django.core.urlresolvers import reverse
-from fnmatch import fnmatch
 from django.utils.importlib import import_module
-import types
+
 
 def get_admin_site(context=None, request=None):
     dashboard_cls = getattr(
@@ -18,9 +20,7 @@ def get_admin_site(context=None, request=None):
     if type(dashboard_cls) is types.DictType:
         if context:
             request = context.get('request')
-        
         curr_url = request.META['PATH_INFO']
-        
         for key in dashboard_cls:
             mod, inst = key.rsplit('.', 1)
             mod = import_module(mod)
@@ -30,7 +30,7 @@ def get_admin_site(context=None, request=None):
                 return admin_site
     else:
         return admin.site
-
+    raise ValueError('Admin site matching "%s" not found' % dashboard_cls)
 
 def get_admin_site_name(context):
     return get_admin_site(context).name
@@ -38,7 +38,6 @@ def get_admin_site_name(context):
 def get_avail_models(request):
     """ Returns (model, perm,) for all models user can possibly see """
     items = []
-    
     admin_site = get_admin_site(request=request)
     
     for model, model_admin in admin_site._registry.items():
@@ -49,8 +48,9 @@ def get_avail_models(request):
     return items
 
 def filter_models(request, models, exclude):
-    """ Returns (model, perm,) for all models that match
-        models/exclude patterns and are visible by current user.
+    """
+    Returns (model, perm,) for all models that match models/exclude patterns
+    and are visible by current user.
     """
     items = get_avail_models(request)
     included = []
@@ -115,7 +115,6 @@ class AppListElementMixin(object):
         return reverse('%s:%s_%s_add' % (get_admin_site_name(context),
                                             app_label,
                                             model.__name__.lower()))
-
 
 def get_media_url():
     """
