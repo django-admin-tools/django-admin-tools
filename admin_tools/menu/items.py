@@ -191,7 +191,7 @@ class AppList(MenuItem, AppListElementMixin):
             if app_label not in apps:
                 apps[app_label] = {
                     'title': capfirst(app_label.title()),
-                    'url': reverse('admin:app_list', args=(app_label,)),
+                    'url': self._get_admin_app_list_url(model, context),
                     'models': []
                 }
             apps[app_label]['models'].append({
@@ -227,7 +227,6 @@ class AppList(MenuItem, AppListElementMixin):
         True
         """
         return len(self.children) == 0
-
 
 
 class ModelList(MenuItem, AppListElementMixin):

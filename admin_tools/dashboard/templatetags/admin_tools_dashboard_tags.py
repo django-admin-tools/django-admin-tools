@@ -8,8 +8,11 @@ To load the dashboard tags: ``{% load admin_tools_dashboard_tags %}``.
 """
 
 import math
+
 from django import template
-from admin_tools.utils import get_media_url
+from django.core.urlresolvers import reverse
+
+from admin_tools.utils import get_media_url, get_admin_site_name
 from admin_tools.dashboard.utils import get_dashboard
 from admin_tools.dashboard.models import DashboardPreferences
 
@@ -49,6 +52,7 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         'media_url': get_media_url(),
         'has_disabled_modules': len([m for m in dashboard.children \
                                 if not m.enabled]) > 0,
+        'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
 admin_tools_render_dashboard = tag_func(admin_tools_render_dashboard)
@@ -66,6 +70,7 @@ def admin_tools_render_dashboard_module(context, module, index=None, subindex=No
         'module': module,
         'index': index,
         'subindex': subindex,
+        'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
 admin_tools_render_dashboard_module = tag_func(admin_tools_render_dashboard_module)

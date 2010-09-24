@@ -7,7 +7,9 @@ from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
+
 from admin_tools.dashboard import modules
+from admin_tools.utils import get_admin_site_name
 
 
 class Dashboard(object):
@@ -207,9 +209,8 @@ class DefaultIndexDashboard(Dashboard):
     And then set the ``ADMIN_TOOLS_INDEX_DASHBOARD`` settings variable to
     point to your custom index dashboard class.
     """
-    def __init__(self, **kwargs):
-        Dashboard.__init__(self, **kwargs)
-
+    def init_with_context(self, context):
+        site_name = get_admin_site_name(context)
         # append a link list module for "quick links"
         self.children.append(modules.LinkList(
             _('Quick links'),
@@ -219,8 +220,9 @@ class DefaultIndexDashboard(Dashboard):
             collapsible=False,
             children=[
                 [_('Return to site'), '/'],
-                [_('Change password'), reverse('admin:password_change')],
-                [_('Log out'), reverse('admin:logout')],
+                [_('Change password'),
+                 reverse('%s:password_change' % site_name)],
+                [_('Log out'), reverse('%s:logout' % site_name)],
             ]
         ))
 

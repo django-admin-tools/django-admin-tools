@@ -1,12 +1,15 @@
 """
 Module where admin tools dashboard modules classes are defined.
 """
+
 from django.utils.text import capfirst
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
-from admin_tools.utils import AppListElementMixin
 from django.utils.itercompat import is_iterable
+
+from admin_tools.utils import AppListElementMixin
+
 
 class DashboardModule(object):
     """
@@ -405,7 +408,7 @@ class AppList(DashboardModule, AppListElementMixin):
             if app_label not in apps:
                 apps[app_label] = {
                     'title': capfirst(app_label.title()),
-                    'url': reverse('admin:app_list', args=(app_label,)),
+                    'url': self._get_admin_app_list_url(model, context),
                     'models': []
                 }
             model_dict = {}

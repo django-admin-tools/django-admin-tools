@@ -1,6 +1,13 @@
+"""
+Module where admin tools menu classes are defined.
+"""
+
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+
 from admin_tools.menu import items
+from admin_tools.utils import get_admin_site_name
+
 
 class Menu(object):
     """
@@ -86,11 +93,11 @@ class DefaultMenu(Menu):
     And then set the ``ADMIN_TOOLS_MENU`` settings variable to point to your
     custom menu class.
     """
-    def __init__(self, **kwargs):
-        super(DefaultMenu, self).__init__(**kwargs)
+    def init_with_context(self, context):
+        site_name = get_admin_site_name(context)
 
         self.children += [
-            items.MenuItem(_('Dashboard'), reverse('admin:index')),
+            items.MenuItem(_('Dashboard'), reverse('%s:index' % site_name)),
             items.Bookmarks(),
             items.AppList(
                 _('Applications'),

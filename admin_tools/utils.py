@@ -98,6 +98,14 @@ class AppListElementMixin(object):
             included = ["*"]
         return filter_models(request, included, excluded)
     
+    def _get_admin_app_list_url(self, model, context):
+        """
+        Returns the admin change url.
+        """
+        app_label = model._meta.app_label
+        return reverse('%s:app_list' % get_admin_site_name(context),
+                       args=(app_label,))
+    
     def _get_admin_change_url(self, model, context):
         """
         Returns the admin change url.
@@ -113,8 +121,8 @@ class AppListElementMixin(object):
         """
         app_label = model._meta.app_label
         return reverse('%s:%s_%s_add' % (get_admin_site_name(context),
-                                            app_label,
-                                            model.__name__.lower()))
+                                         app_label,
+                                         model.__name__.lower()))
 
 def get_media_url():
     """

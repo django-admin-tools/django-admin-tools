@@ -9,7 +9,9 @@ To load the menu tags in your templates: ``{% load admin_tools_menu_tags %}``.
 """
 
 from django import template
-from admin_tools.utils import get_media_url
+from django.core.urlresolvers import reverse
+
+from admin_tools.utils import get_media_url, get_admin_site_name
 from admin_tools.menu import items
 from admin_tools.menu.models import Bookmark
 from admin_tools.menu.utils import get_admin_menu
@@ -43,6 +45,7 @@ def admin_tools_render_menu(context, menu=None):
         'media_url': get_media_url(),
         'has_bookmark_item': has_bookmark_item,
         'bookmark': bookmark,
+        'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
 admin_tools_render_menu = tag_func(admin_tools_render_menu)
@@ -59,7 +62,8 @@ def admin_tools_render_menu_item(context, item, index=None):
         'template': item.template,
         'item': item,
         'index': index,
-        'selected': item.is_selected(context['request'])
+        'selected': item.is_selected(context['request']),
+        'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
 admin_tools_render_menu_item = tag_func(admin_tools_render_menu_item)
