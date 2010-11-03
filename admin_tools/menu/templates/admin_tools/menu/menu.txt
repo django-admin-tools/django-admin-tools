@@ -1,10 +1,16 @@
+"""
+This file was generated with the custommenu management command, it contains 
+the classes for the admin menu, you can customize this class as you want.
+
+To activate your custom menu add the following to your settings.py::
+    ADMIN_TOOLS_MENU = '{{ project }}.{{ file }}.CustomMenu'
+"""
+
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+
 from admin_tools.menu import items, Menu
 
-# to activate your custom menu add the following to your settings.py:
-#
-# ADMIN_TOOLS_MENU = '{{ project }}.{{ file }}.CustomMenu'
 
 class CustomMenu(Menu):
     """
@@ -29,4 +35,4 @@ class CustomMenu(Menu):
         """
         Use this method if you need to access the request context.
         """
-        pass
+        return super(CustomMenu, self).init_with_context(context)
