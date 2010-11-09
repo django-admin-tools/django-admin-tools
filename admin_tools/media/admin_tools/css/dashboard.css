@@ -167,6 +167,10 @@ h1.dashboard-title {
     border-top: 1px solid #ececec;
 }
 
+.dashboard-module-content a {
+    color: #5B80B2;
+}
+
 .dashboard-module-content p {
     margin: 10px;
 }
