@@ -130,17 +130,18 @@ class AppList(MenuItem, AppListElementMixin):
     In addition to the parent :class:`~admin_tools.menu.items.MenuItem`
     properties, the ``AppList`` has two extra properties:
 
-    ``exclude_list``
-        A list of apps to exclude, if an app name (e.g. "django.contrib.auth"
-        starts with an element of this list (e.g. "django.contrib") it won't
-        appear in the menu item.
+    ``models``
+        A list of models to include, only models whose name (e.g.
+        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+        in the models list will appear in the menu item.
 
-    ``include_list``
-        A list of apps to include, only apps whose name (e.g.
-        "django.contrib.auth") starts with one of the strings (e.g.
-        "django.contrib") in the list will appear in the menu item.
+    ``exclude``
+        A list of models to exclude, if a model name (e.g.
+        "blog.comments.Comment") match an element of this list (e.g.
+        "blog.comments.*") it won't appear in the menu item.
 
-    If no include/exclude list is provided, **all apps** are shown.
+
+    If no models/exclude list is provided, **all apps** are shown.
 
     Here's a small example of building an app list menu item::
 
@@ -170,10 +171,10 @@ class AppList(MenuItem, AppListElementMixin):
         """
         ``AppListMenuItem`` constructor.
         """
-        self.include_list = kwargs.pop('include_list', [])
-        self.exclude_list = kwargs.pop('exclude_list', [])
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
+        self.include_list = kwargs.pop('include_list', []) # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
         super(AppList, self).__init__(title, **kwargs)
 
 

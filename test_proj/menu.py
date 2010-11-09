@@ -17,11 +17,11 @@ class CustomMenu(Menu):
             items.Bookmarks(),
             items.AppList(
                 _('Applications'),
-                exclude_list=('django.contrib',)
+                exclude=('django.contrib.*',)
             ),
             items.AppList(
                 _('Administration'),
-                include_list=('django.contrib',)
+                models=('django.contrib.*',)
             ),
             items.ModelList(
                 'Test app menu',

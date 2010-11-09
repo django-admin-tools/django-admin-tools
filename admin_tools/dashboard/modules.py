@@ -198,11 +198,11 @@ class Group(DashboardModule):
                     children=[
                         modules.AppList(
                             title='Administration',
-                            include_list=('django.contrib',)
+                            models=('django.contrib.*',)
                         ),
                         modules.AppList(
                             title='Applications',
-                            exclude_list=('django.contrib',)
+                            exclude=('django.contrib.*',)
                         )
                     ]
                 ))
@@ -230,7 +230,7 @@ class Group(DashboardModule):
 
     def is_empty(self):
         """
-        A group of modules is considered empty if it has no children or if 
+        A group of modules is considered empty if it has no children or if
         all its children are empty.
 
         >>> from admin_tools.dashboard.modules import DashboardModule, LinkList
@@ -340,17 +340,17 @@ class AppList(DashboardModule, AppListElementMixin):
     properties, the :class:`~admin_tools.dashboard.modules.AppList`
     has two extra properties:
 
-    ``exclude_list``
-        A list of apps to exclude, if an app name (e.g. "django.contrib.auth"
-        starts with an element of this list (e.g. "django.contrib") it won't
-        appear in the dashboard module.
+    ``models``
+        A list of models to include, only models whose name (e.g.
+        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+        in the models list will appear in the dashboard module.
 
-    ``include_list``
-        A list of apps to include, only apps whose name (e.g.
-        "django.contrib.auth") starts with one of the strings (e.g.
-        "django.contrib") in the list will appear in the dashboard module.
+    ``exclude``
+        A list of models to exclude, if a model name (e.g.
+        "blog.comments.Comment") match an element of this list (e.g.
+        "blog.comments.*") it won't appear in the dashboard module.
 
-    If no include/exclude list is provided, **all apps** are shown.
+    If no models/exclude list is provided, **all apps** are shown.
 
     Here's a small example of building an app list module::
 
@@ -363,12 +363,12 @@ class AppList(DashboardModule, AppListElementMixin):
                 # will only list the django.contrib apps
                 self.children.append(modules.AppList(
                     title='Administration',
-                    include_list=('django.contrib',)
+                    models=('django.contrib.*',)
                 ))
                 # will list all apps except the django.contrib ones
                 self.children.append(modules.AppList(
                     title='Applications',
-                    exclude_list=('django.contrib',)
+                    exclude=('django.contrib.*',)
                 ))
 
     The screenshot of what this code produces:
@@ -390,10 +390,10 @@ class AppList(DashboardModule, AppListElementMixin):
     exclude_list = None
 
     def __init__(self, title=None, **kwargs):
-        self.include_list = kwargs.pop('include_list', [])
-        self.exclude_list = kwargs.pop('exclude_list', [])
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
+        self.include_list = kwargs.pop('include_list', []) # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
         super(AppList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
@@ -436,11 +436,11 @@ class ModelList(DashboardModule, AppListElementMixin):
     ``models``
         A list of models to include, only models whose name (e.g.
         "blog.comments.Comment") match one of the strings (e.g. "blog.*")
-        in the include list will appear in the dashboard module.
+        in the models list will appear in the dashboard module.
 
     ``exclude``
         A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment" match an element of this list (e.g.
+        "blog.comments.Comment") match an element of this list (e.g.
         "blog.comments.*") it won't appear in the dashboard module.
 
     Here's a small example of building a model list module::

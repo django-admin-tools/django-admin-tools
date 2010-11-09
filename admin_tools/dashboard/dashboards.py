@@ -57,13 +57,13 @@ class Dashboard(object):
                 # append an app list module for "Applications"
                 self.children.append(modules.AppList(
                     title=_('Applications'),
-                    exclude_list=('django.contrib',),
+                    exclude=('django.contrib.*',),
                 ))
 
                 # append an app list module for "Administration"
                 self.children.append(modules.AppList(
                     title=_('Administration'),
-                    include_list=('django.contrib',),
+                    models=('django.contrib.*',),
                 ))
 
                 # append a recent actions module
@@ -154,7 +154,7 @@ class AppIndexDashboard(Dashboard):
                 # append a model list module that lists all models
                 # for the app and a recent actions module for the current app
                 self.children += [
-                    modules.ModelList(self.app_title, include_list=self.models),
+                    modules.ModelList(self.app_title, self.models),
                     modules.RecentActions(
                         include_list=self.models,
                         limit=5
@@ -229,13 +229,13 @@ class DefaultIndexDashboard(Dashboard):
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('Applications'),
-            exclude_list=('django.contrib',),
+            exclude=('django.contrib.*',),
         ))
 
         # append an app list module for "Administration"
         self.children.append(modules.AppList(
             _('Administration'),
-            include_list=('django.contrib',),
+            models=('django.contrib.*',),
         ))
 
         # append a recent actions module
@@ -289,15 +289,12 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
     def __init__(self, *args, **kwargs):
         AppIndexDashboard.__init__(self, *args, **kwargs)
 
-        # append a model list module
-        self.children.append(modules.ModelList(
-            self.app_title,
-            include_list=self.models,
-        ))
-
-        # append a recent actions module
-        self.children.append(modules.RecentActions(
-            _('Recent Actions'),
-            include_list=self.get_app_content_types(),
-            limit=5
-        ))
+        # append a model list module and a recent actions module
+        self.children += [
+            modules.ModelList( self.app_title,self.models),
+            modules.RecentActions(
+                _('Recent Actions'),
+                include_list=self.get_app_content_types(),
+                limit=5
+            )
+        ]

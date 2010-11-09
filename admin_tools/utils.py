@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.utils.importlib import import_module
+import warnings
 
 
 def get_admin_site(context=None, request=None):
@@ -16,7 +17,7 @@ def get_admin_site(context=None, request=None):
         'ADMIN_TOOLS_INDEX_DASHBOARD',
         'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
     )
-    
+
     if type(dashboard_cls) is types.DictType:
         if context:
             request = context.get('request')
@@ -39,7 +40,7 @@ def get_avail_models(request):
     """ Returns (model, perm,) for all models user can possibly see """
     items = []
     admin_site = get_admin_site(request=request)
-    
+
     for model, model_admin in admin_site._registry.items():
         perms = model_admin.get_model_perms(request)
         if True not in perms.values():
@@ -89,6 +90,21 @@ class AppListElementMixin(object):
     def _visible_models(self, request):
         # compatibility layer: generate models/exclude patterns
         # from include_list/exclude_list args
+
+        if self.include_list:
+            warnings.warn(
+               "`include_list` is deprecated for ModelList and AppList and "
+               "will be removed in future releases. Please use `models` instead.",
+               DeprecationWarning
+            )
+
+        if self.exclude_list:
+            warnings.warn(
+               "`exclude_list` is deprecated for ModelList and AppList and "
+               "will be removed in future releases. Please use `exclude` instead.",
+               DeprecationWarning
+            )
+
         included = self.models[:]
         included.extend([elem+"*" for elem in self.include_list])
 
@@ -97,7 +113,7 @@ class AppListElementMixin(object):
         if self.exclude_list and not included:
             included = ["*"]
         return filter_models(request, included, excluded)
-    
+
     def _get_admin_app_list_url(self, model, context):
         """
         Returns the admin change url.
@@ -105,7 +121,7 @@ class AppListElementMixin(object):
         app_label = model._meta.app_label
         return reverse('%s:app_list' % get_admin_site_name(context),
                        args=(app_label,))
-    
+
     def _get_admin_change_url(self, model, context):
         """
         Returns the admin change url.
@@ -114,7 +130,7 @@ class AppListElementMixin(object):
         return reverse('%s:%s_%s_changelist' % (get_admin_site_name(context),
                                                 app_label,
                                                 model.__name__.lower()))
-    
+
     def _get_admin_add_url(self, model, context):
         """
         Returns the admin add url.
