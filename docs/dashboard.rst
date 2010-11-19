@@ -8,6 +8,17 @@ dashboard modules.
 Make sure you read this before creating your custom dashboard and
 custom modules.
 
+..note::
+    If your layout seems to be broken or you have problems with
+    included javascript files, you should try to reset your dashboard
+    preferences (assuming a MySQL backend)::
+
+        python manage dbshell
+        mysql> truncate admin_tools_dashboard_preferences;
+
+    For more information see `this issue
+    <http://bitbucket.org/izi/django-admin-tools/issue/43/issues-with-dashboard-preferences-and/>`_.
+
 .. module:: admin_tools.dashboard
 
 The ``Dashboard`` class
