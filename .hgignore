@@ -14,6 +14,7 @@ _static
 .pydevproject
 .settings
 .DS_Store
+.svn
 
 syntax: regexp
 ^test_proj/_coverage/(?!noremove)
