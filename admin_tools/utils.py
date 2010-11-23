@@ -144,8 +144,9 @@ def get_media_url():
     """
     Returns the django admin tools media URL.
     """
-    return getattr(
-        settings,
-        'ADMIN_TOOLS_MEDIA_URL',
-        getattr(settings, 'STATIC_URL', settings.MEDIA_URL)
-    ).rstrip('/')
+    media_url = getattr(settings, 'ADMIN_TOOLS_MEDIA_URL', None)
+    if media_url == None:
+        media_url = getattr(settings, 'STATIC_URL', None)
+    if media_url == None:
+        media_url = getattr(settings, 'MEDIA_URL')
+    return media_url.rstrip('/')
