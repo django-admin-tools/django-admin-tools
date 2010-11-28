@@ -43,6 +43,7 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         preferences = DashboardPreferences.objects.get(user=context['request'].user).data
     except DashboardPreferences.DoesNotExist:
         preferences = '{}'
+        DashboardPreferences(user=context['request'].user, data=preferences).save()
 
     context.update({
         'template': dashboard.template,
