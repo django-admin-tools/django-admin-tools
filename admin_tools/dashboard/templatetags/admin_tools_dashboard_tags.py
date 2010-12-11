@@ -38,6 +38,7 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         dashboard = get_dashboard(context, location)
 
     dashboard.init_with_context(context)
+    dashboard._prepare_children()
 
     try:
         preferences = DashboardPreferences.objects.get(user=context['request'].user).data
@@ -59,18 +60,15 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
 admin_tools_render_dashboard = tag_func(admin_tools_render_dashboard)
 
 
-def admin_tools_render_dashboard_module(context, module, index=None, subindex=None):
+def admin_tools_render_dashboard_module(context, module):
     """
     Template tag that renders a given dashboard module, it takes a
-    ``DashboardModule`` instance as first parameter and an integer ``index`` as
-    second parameter, that is the index of the module in the dashboard.
+    ``DashboardModule`` instance as first parameter.
     """
     module.init_with_context(context)
     context.update({
         'template': module.template,
         'module': module,
-        'index': index,
-        'subindex': subindex,
         'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context

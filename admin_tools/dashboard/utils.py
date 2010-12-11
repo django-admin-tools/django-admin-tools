@@ -4,15 +4,12 @@ Dashboard utilities.
 import types
 
 from django.conf import settings
-from django.contrib import admin
 from django.utils.importlib import import_module
 from django.utils.text import capfirst
 from django.core.urlresolvers import reverse
 
 from admin_tools.dashboard.registry import Registry
-from admin_tools.dashboard import Registry
 from admin_tools.utils import get_admin_site
-
 
 def get_dashboard(context, location):
     """
@@ -63,7 +60,7 @@ def get_app_index_dashboard(context):
     app_label = None
     app_title = app['name']
     admin_site = get_admin_site(context=context)
-    
+
     for model, model_admin in admin_site._registry.items():
         if app['name'] == model._meta.app_label.title():
             split = model.__module__.find(model._meta.app_label)

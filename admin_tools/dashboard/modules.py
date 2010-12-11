@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from django.utils.itercompat import is_iterable
 
-from admin_tools.utils import AppListElementMixin
+from admin_tools.utils import AppListElementMixin, uniquify
 
 
 class DashboardModule(object):
@@ -73,13 +73,16 @@ class DashboardModule(object):
     pre_content = None
     post_content = None
     children = None
+    id = None
 
     def __init__(self, title=None, **kwargs):
         if title is not None:
             self.title = title
+
         for key in kwargs:
             if hasattr(self.__class__, key):
                 setattr(self, key, kwargs[key])
+
         self.children = self.children or []
         self.css_classes = self.css_classes or []
         # boolean flag to ensure that the module is initialized only once
@@ -172,6 +175,9 @@ class DashboardModule(object):
         ret += self.css_classes
         return ' '.join(ret)
 
+    def _prepare_children(self):
+        pass
+
 
 class Group(DashboardModule):
     """
@@ -253,6 +259,15 @@ class Group(DashboardModule):
             if not child.is_empty():
                 return False
         return True
+
+    def _prepare_children(self):
+        # computes ids for children: generates them if they are not set
+        # and then prepends them with this group's id
+        seen = set()
+        for id, module in enumerate(self.children):
+            proposed_id = "%s_%s" % (self.id, module.id or id+1)
+            module.id = uniquify(proposed_id, seen)
+            module._prepare_children()
 
 
 class LinkList(DashboardModule):
