@@ -5,23 +5,23 @@
  * This plugin is not yet released, but should be when it will be finished.
  *
  * copyright (c) 2010 David Jean Louis <izimobil@gmail.com>
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
 
@@ -38,7 +38,7 @@
                 columns: 2,
                 load_preferences_function: false,
                 save_preferences_function: false
-            }    
+            }
             var options = $.extend(defaults, options);
 
             return this.each(function() {
@@ -214,10 +214,10 @@
                 panel_ul = $('#' + options.panel_id).find('ul');
             }
             panel_ul.append(
-                '<li><a href="#" rel="' 
-                + elt.attr('id') 
+                '<li><a href="#" rel="'
+                + elt.attr('id')
                 + '" class="addlink dashboard-module-add">'
-                + elt.find('h2').contents().first().text() 
+                + elt.find('h2').contents().first().text()
                 + '</a></li>'
             );
             _set_addable(elt, options, $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']'));
@@ -241,7 +241,7 @@
     };
 
     var _add_element = function(elt, options, save_preference) {
-        panel_elt = $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
+        var panel_elt = $('#'+options.panel_id).find('li a[rel='+elt.attr('id')+']');
         panel_elt.parent().remove();
         elt.removeClass('disabled');
         elt.fadeIn('fast');
@@ -279,7 +279,7 @@
         }
     };
 
-    // quick hack to ensure that we do not save preferences if they are 
+    // quick hack to ensure that we do not save preferences if they are
     // not modified...
     var last_saved_preferences = null;
 
