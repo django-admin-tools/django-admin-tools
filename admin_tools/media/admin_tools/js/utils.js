@@ -3,6 +3,8 @@ var loadScripts = function(js_files, onComplete){
     var head = document.getElementsByTagName('head')[0];
 
     function loadScript(index){
+        var testOk;
+
         if (index >= len){
             onComplete();
             return;
@@ -11,7 +13,7 @@ var loadScripts = function(js_files, onComplete){
         try {
             testOk = js_files[index].test();
         } catch (e) {
-            // with certain browsers like opera the above test can fail 
+            // with certain browsers like opera the above test can fail
             // because of undefined variables...
             testOk = true;
         }
