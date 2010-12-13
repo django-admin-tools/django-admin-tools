@@ -2,6 +2,56 @@
 django-admin-tools changelog
 ============================
 
+Version 0.4.0, 13 December 2010:
+--------------------------------
+
+Important information if you are upgrading from a previous version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This release of django-admin-tools introduces support for south database
+migrations, if you are **not** using south you can skip this step.
+
+Existing django-admin-tools should do the following::
+
+    python manage.py migrate --fake admin_tools.dashboard
+    python manage.py migrate --fake admin_tools.menu
+
+New users should do::
+
+    python manage.py migrate admin_tools.dashboard
+    python manage.py migrate admin_tools.menu
+
+Major changes
+~~~~~~~~~~~~~
+
+* big improvements of the API (see the dashboard and menu documentation for
+  details), the old API is still supported but now deprecated;
+* added a ModelList menu item;
+* custom and multiple admin sites basic support;
+* better integration with django-grappelli;
+* django south support.
+
+Bugfixes and minor changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Fixed issue #40 (python 2.5 compatibility);
+* Fixed issue #49: disable rendering of empty group modules;
+* Fixed issue #51: more robust test runner;
+* Fixed issues #57 and #58: updated custom dashboard and menu template files
+  to reflect the current code;
+* Fixed issue #60: explicitely set color for links in module content;
+* Some fixes for the future django 1.3;
+* Fixes issue #61: Create empty preferences instance if user has no
+  preferences saved yet. 
+* Fixed issue #62: updated base template to reflect django 1.2 changes;
+* Fixed various js namespace pollutions;
+* Improved docs;
+* CZ locale support.
+
+For more informations please see:
+http://bitbucket.org/izi/django-admin-tools/changesets
+
+
 Version 0.3.0, 16 July 2010:
 ----------------------------
 
