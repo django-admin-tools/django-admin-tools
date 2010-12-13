@@ -34,6 +34,7 @@ Contents:
    installation
    configuration
    customization
+   multiple_admin_sites
    menu
    dashboard
    integration
