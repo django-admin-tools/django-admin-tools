@@ -127,7 +127,7 @@
                 );
                 continue;
             } else {
-                start = (i == 0) ? 0 : sizes[i-1];
+                start = (i == 0) ? 0 : start + sizes[i-1];
                 stop  = start + sizes[i];
             }
             elts.slice(start, stop).wrapAll(
