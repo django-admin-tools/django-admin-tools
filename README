@@ -16,6 +16,6 @@ Django-admin-tools is generously documented, you can
 `browse the documentation online 
 <http://packages.python.org/django-admin-tools/>`_.
 a good start is to read `the quickstart guide 
-<http://packages.python.org/django-admin-tools/quickstart.html>`_.
+<http://packages.python.org/django-admin-tools/0.4.0/quickstart.html>`_.
 
 Thanks for downloading django-admin-tools.
