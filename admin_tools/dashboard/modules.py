@@ -468,6 +468,10 @@ class ModelList(DashboardModule, AppListElementMixin):
     """
 
     template = 'admin_tools/dashboard/modules/model_list.html'
+    models = None
+    exclude = None
+    include_list = None
+    exclude_list = None
 
     def __init__(self, title=None, models=None, exclude=None, **kwargs):
         self.models = list(models or [])
@@ -534,12 +538,14 @@ class RecentActions(DashboardModule):
     title = _('Recent Actions')
     template = 'admin_tools/dashboard/modules/recent_actions.html'
     limit = 10
+    include_list = None
+    exclude_list = None
 
-    def __init__(self, title=None, limit=None,
-                 include_list=None, exclude_list=None, **kwargs):
+    def __init__(self, title=None, limit=10, include_list=None,
+                 exclude_list=None, **kwargs):
         self.include_list = include_list or []
         self.exclude_list = exclude_list or []
-        self.limit = self.__class__.limit or limit
+        kwargs.update({'limit': limit})
         super(RecentActions, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
