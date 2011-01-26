@@ -23,9 +23,15 @@ var loadScripts = function(js_files, onComplete){
             s.src = js_files[index].src;
             s.type = 'text/javascript';
             head.appendChild(s);
-
-            s.onload = function(){
-                loadScript(index+1);
+            if (/MSIE/.test(navigator.userAgent)) {
+                // Internet Explorer
+                s.onreadystatechange = function () {
+                    if (s.readyState == 'loaded' || s.readyState == 'complete') {
+                        loadScript(index+1);
+                    }
+                };
+            } else {
+                s.onload = function() { loadScript(index+1); };
             }
         } else {
             loadScript(index+1);

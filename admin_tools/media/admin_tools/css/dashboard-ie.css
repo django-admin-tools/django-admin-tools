@@ -6,7 +6,13 @@ html, body {
 }
 
 #content {
-    *min-width: 98%;
+    *width: 98% !important;
+    _width: 96% !important;
+    margin: 1%;
+}
+
+#container {
+    _margin: 0;
 }
 
 .dashboard-module h2 a.toggle-icon,
@@ -23,5 +29,4 @@ html, body {
 }
 
 .dashboard-column {
-    padding: 20px;
 }
