@@ -1,0 +1,20 @@
+#header #navigation-menu li {
+    height: 35px;
+    margin: 0;
+}
+
+#header #navigation-menu li a {
+    white-space: nowrap;
+}
+
+#header #navigation-menu li span {
+    display: none;
+}
+
+#header #navigation-menu li ul li {
+    _width: 220px;
+}
+
+#header #navigation-menu li ul li a {
+    height: 20px;
+}
