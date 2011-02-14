@@ -10,13 +10,15 @@ Before installing django-admin-tools, you'll need to have a copy of
 `Django <http://www.djangoproject.com>`_ already installed. For the
 |version| release, Django 1.1 or newer is required.
 
+Optionally install django-staticfiles when using Django 1.2 or lower.
+
 For further information, consult the `Django download page
 <http://www.djangoproject.com/download/>`_, which offers convenient
 packaged downloads and installation instructions.
 
 .. note::
-    If you want to display feeds in the admin dashboard, using the 
-    ``FeedDashboardModule`` you need to install the 
+    If you want to display feeds in the admin dashboard, using the
+    ``FeedDashboardModule`` you need to install the
     `Universal Feed Parser module <http://www.feedparser.org/>`_.
 
 
@@ -65,10 +67,10 @@ Using ``pip``, type::
     pip install django-admin-tools
 
 It is also possible that your operating system distributor provides a
-packaged version of django-admin-tools. Consult your operating system's 
-package list for details, but be aware that third-party distributions 
-may be providing older versions of django-admin-tools, and so you 
-should consult the documentation which comes with your operating 
+packaged version of django-admin-tools. Consult your operating system's
+package list for details, but be aware that third-party distributions
+may be providing older versions of django-admin-tools, and so you
+should consult the documentation which comes with your operating
 system's package.
 
 
@@ -91,7 +93,7 @@ installation script. From a command line in that directory, type::
     python setup.py install
 
 .. note::
-    On some systems you may need to execute this with administrative 
+    On some systems you may need to execute this with administrative
     privileges (e.g., ``sudo python setup.py install``).
 
 
@@ -107,7 +109,7 @@ Mercurial installed, at which point you can type::
 
     hg clone http://bitbucket.org/izi/django-admin-tools/
 
-This will create a copy of the django-admin-tools Mercurial repository 
-on your computer; you can then add the ``django-admin-tools`` directory 
-to your Python import path, or use the ``setup.py`` script to install 
+This will create a copy of the django-admin-tools Mercurial repository
+on your computer; you can then add the ``django-admin-tools`` directory
+to your Python import path, or use the ``setup.py`` script to install
 as a package.

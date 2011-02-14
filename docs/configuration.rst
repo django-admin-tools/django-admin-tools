@@ -11,24 +11,24 @@ project you're developing.
 
 django-admin-tools is composed of several modules:
 
-* admin_tools.theming: an app that makes it easy to customize the look 
+* admin_tools.theming: an app that makes it easy to customize the look
   and feel of the admin interface;
 
-* admin_tools.menu: a customizable navigation menu that sits on top of 
+* admin_tools.menu: a customizable navigation menu that sits on top of
   every django administration index page;
 
-* admin_tools.dashboard: a customizable dashboard that replaces the django 
+* admin_tools.dashboard: a customizable dashboard that replaces the django
   administration index page.
 
 Prerequisite
 ~~~~~~~~~~~~
 
 In order to use django-admin-tools you obviously need to have configured
-your django admin site, if you didn't, please refer to the 
+your django admin site, if you didn't, please refer to the
 `relevant django documentation <http://docs.djangoproject.com/en/1.1/intro/tutorial02/#activate-the-admin-site>`_.
 
 .. important::
-    It is required that you use the django 1.1 syntax to declare the 
+    It is required that you use the django 1.1 syntax to declare the
     django admin urls, e.g.::
 
         urlpatterns = patterns('',
@@ -40,7 +40,7 @@ your django admin site, if you didn't, please refer to the
 Required settings
 ~~~~~~~~~~~~~~~~~
 
-First make sure you have the following template context processors 
+First make sure you have the following template context processors
 installed::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -51,13 +51,13 @@ installed::
         'django.core.context_processors.media',
 
         # django 1.2 only
-        'django.contrib.messages.context_processors.messages', 
+        'django.contrib.messages.context_processors.messages',
 
         # required by django-admin-tools
         'django.core.context_processors.request',
     )
 
-Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like 
+Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
 this::
 
     INSTALLED_APPS = (
@@ -71,13 +71,13 @@ this::
     )
 
 .. note::
-    it is very important that you put the admin_tools modules **before** 
+    it is very important that you put the admin_tools modules **before**
     the ``django.contrib.admin module``, because django-admin-tools
-    overrides the default django admin templates, and this will not work 
+    overrides the default django admin templates, and this will not work
     otherwise.
 
-django-admin-tools is modular, so if you want to disable a particular 
-module, just remove or comment it in your ``INSTALLED_APPS``. 
+django-admin-tools is modular, so if you want to disable a particular
+module, just remove or comment it in your ``INSTALLED_APPS``.
 For example, if you just want to use the dashboard::
 
     INSTALLED_APPS = (
@@ -108,19 +108,23 @@ You'll need to add django-admin-tools to your urls.py file::
 Setting up the django-admin-tools media files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To do this you have two options:
+To do this you have three options:
 
-* create a symbolic link to the django-admin-tools media files to your 
+* the `staticfiles <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/`_
+  contrib application in Django 1.3. For Django 1.2 you'll have to install
+  django-staticfiles from PyPi.
+
+* create a symbolic link to the django-admin-tools media files to your
   ``MEDIA_ROOT`` directory, for example::
 
       ln -s /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
 
-* copy the django-admin-tools media files to your ``MEDIA_ROOT`` directory, 
+* copy the django-admin-tools media files to your ``MEDIA_ROOT`` directory,
   for example::
-  
+
       cp -r /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
 
-django-admin-tools will look for the media directory in the following 
+django-admin-tools will look for the media directory in the following
 settings variables (and in this order):
 
 * ``ADMIN_TOOLS_MEDIA_URL``;
@@ -144,19 +148,19 @@ Available settings variables
 ----------------------------
 
 ``ADMIN_TOOLS_MEDIA_URL``
-    You can use this variable if you want to set the media url for 
+    You can use this variable if you want to set the media url for
     django-admin-tools to something different from your ``MEDIA_URL``.
 
 ``ADMIN_TOOLS_MENU``
-    The path to your custom menu class, for example 
+    The path to your custom menu class, for example
     "yourproject.menu.CustomMenu".
 
 ``ADMIN_TOOLS_INDEX_DASHBOARD``
-    The path to your custom index dashboard, for example 
+    The path to your custom index dashboard, for example
     "yourproject.dashboard.CustomIndexDashboard".
 
 ``ADMIN_TOOLS_APP_INDEX_DASHBOARD``
-    The path to your custom app index dashboard, for example 
+    The path to your custom app index dashboard, for example
     "yourproject.dashboard.CustomAppIndexDashboard".
 
 ``ADMIN_TOOLS_THEMING_CSS``
