@@ -110,8 +110,8 @@ Setting up the django-admin-tools media files
 
 To do this you have three options:
 
-* the `staticfiles <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/`_
-  contrib application in Django 1.3. For Django 1.2 you'll have to install
+* use the `staticfiles <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/>`_
+  contrib application in Django 1.3. For Django 1.2 or lower you'll have to install
   django-staticfiles from PyPi.
 
 * create a symbolic link to the django-admin-tools media files to your
