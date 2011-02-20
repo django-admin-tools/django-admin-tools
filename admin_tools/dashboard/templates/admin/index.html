@@ -9,7 +9,7 @@
 {% block bodyclass %}dashboard{% endblock %}
 
 {% block breadcrumbs %}{% endblock %}
-{% block content_title %}{% endblock %}
+{% block content_title %}{{ block.super }}{% endblock %}
 {% block content %}
 {% admin_tools_render_dashboard %}
 {% endblock %}
