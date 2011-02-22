@@ -95,6 +95,12 @@ To set up the tables that django-admin-tools uses you'll need to type::
 
     python manage.py syncdb
 
+django-admin-tools supports `South <http://south.aeracode.org>`_, so if you
+have South installed, make sure you run the following commands::
+
+    python manage.py migrate admin_tools.dashboard
+    python manage.py migrate admin_tools.menu
+
 Adding django-admin-tools to your urls.py file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

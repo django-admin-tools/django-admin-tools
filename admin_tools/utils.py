@@ -10,6 +10,15 @@ from django.core.urlresolvers import reverse
 from django.utils.importlib import import_module
 import warnings
 
+def uniquify(value, seen_values):
+    """ Adds value to seen_values set and ensures it is unique """
+    id = 1
+    new_value = value
+    while new_value in seen_values:
+        new_value = "%s%s" % (value, id)
+        id += 1
+    seen_values.add(new_value)
+    return new_value
 
 def get_admin_site(context=None, request=None):
     dashboard_cls = getattr(

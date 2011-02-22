@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 
 from admin_tools.dashboard import modules
-from admin_tools.utils import get_admin_site_name
+from admin_tools.utils import get_admin_site_name, uniquify
 
 
 class Dashboard(object):
@@ -108,6 +108,13 @@ class Dashboard(object):
         Internal method used to distinguish different dashboards in js code.
         """
         return 'dashboard'
+
+    def _prepare_children(self):
+        """ Enumerates children without explicit id """
+        seen = set()
+        for id, module in enumerate(self.children):
+            module.id = uniquify(module.id or str(id+1), seen)
+            module._prepare_children()
 
 
 class AppIndexDashboard(Dashboard):
