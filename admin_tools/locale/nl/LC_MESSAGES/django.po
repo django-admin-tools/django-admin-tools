@@ -75,7 +75,7 @@ msgstr "Links"
 
 #: dashboard/modules.py:591
 msgid "No recent actions."
-msgstr "Geen recente acties"
+msgstr "Geen recente acties."
 
 #: dashboard/modules.py:637
 msgid "RSS Feed"
@@ -119,7 +119,7 @@ msgstr "Django administratie"
 
 #: menu/templates/admin_tools/menu/menu.html:32
 msgid "Please enter a name for the bookmark"
-msgstr "Vul a.u.b een naam in voor uw bookmark"
+msgstr "Vul een naam in voor de bookmark"
 
 #: theming/templates/admin/base.html:30
 msgid "Welcome,"

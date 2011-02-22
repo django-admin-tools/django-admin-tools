@@ -1,0 +1,32 @@
+/* todo: ie6 doesn't want the dashboard to take full width... */
+
+html, body {
+    _overflow: auto;
+    _width: 100%;
+}
+
+#content {
+    *width: 98% !important;
+    _width: 96% !important;
+    margin: 1%;
+}
+
+#container {
+    _margin: 0;
+}
+
+.dashboard-module h2 a.toggle-icon,
+.dashboard-module h2 a.close-icon {
+    margin-top: -16px;
+}
+
+.dashboard-module ul li ul {
+    margin-top: -25px;
+}
+
+.dashboard-module h3 {
+    clear: both;
+}
+
+.dashboard-column {
+}
