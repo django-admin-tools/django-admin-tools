@@ -129,16 +129,20 @@ You'll need to add django-admin-tools to your urls.py file::
 Setting up the django-admin-tools media files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To do this you have two options:
+To do this you have three options:
 
-* create a symbolic link to the django-admin-tools media files to your 
+* use the `staticfiles <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/>`_
+  contrib application in Django 1.3. For Django 1.2 or lower you'll have to install
+  django-staticfiles from PyPi.
+
+* create a symbolic link to the django-admin-tools media files to your
   ``MEDIA_ROOT`` directory, for example::
 
       ln -s /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
 
-* copy the django-admin-tools media files to your ``MEDIA_ROOT`` directory, 
+* copy the django-admin-tools media files to your ``MEDIA_ROOT`` directory,
   for example::
-  
+
       cp -r /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
 
 
