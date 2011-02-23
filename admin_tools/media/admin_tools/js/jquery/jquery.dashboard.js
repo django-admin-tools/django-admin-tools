@@ -117,18 +117,28 @@
         var percent = Math.floor(100 / options.columns);
         var start = 0;
         var stop = 0;
+        var last_stop = 0;
+        if (options.columns != sizes.length) {
+            // don't break layout if columns count changed
+            sizes = [];
+        }
         for (var i = 0; i < options.columns; i++) {
             if (typeof(sizes[i]) == 'undefined') {
                 start = i * size;
                 stop  = start + size;
+                last_stop = stop;
             } else if (sizes[i] == 0) {
-                elt.append(
-                    '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>'
-                );
+                var empty_col = '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>';
+                if ($('.dashboard-column').last().length) {
+                    $('.dashboard-column').last().after(empty_col);
+                } else {
+                    elt.prepend(empty_col);
+                }
                 continue;
             } else {
-                start = (i == 0) ? 0 : start + sizes[i-1];
+                start = (i == 0) ? 0 : start + last_stop;
                 stop  = start + sizes[i];
+                last_stop = sizes[i];
             }
             elts.slice(start, stop).wrapAll(
                 '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>'
