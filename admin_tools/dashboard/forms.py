@@ -24,5 +24,5 @@ class DashboardPreferencesForm(forms.ModelForm):
         return preferences
 
     class Meta:
-        fields = ('data',)
+        fields = ('data', 'dashboard_id',)
         model = DashboardPreferences
