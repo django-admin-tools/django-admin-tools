@@ -58,7 +58,7 @@
         {% spaceless %}
         {% for module in dashboard.children %}
         {% if not module.enabled %}
-        <li><a href="#" rel="module_{{ moudle.id }}" class="addlink add-dashboard-module">{{ module.title }}</a></li>
+        <li><a href="#" rel="module_{{ module.id }}" class="addlink add-dashboard-module">{{ module.title }}</a></li>
         {% endif %}
         {% endfor %}
         {% endspaceless %}
