@@ -27,6 +27,7 @@ def set_preferences(request, dashboard_id):
     if request.method == "POST":
         form = DashboardPreferencesForm(
             user=request.user,
+            dashboard_id=dashboard_id,
             data=request.POST,
             instance=preferences
         )
@@ -40,6 +41,7 @@ def set_preferences(request, dashboard_id):
     else:
         form = DashboardPreferencesForm(
             user=request.user,
+            dashboard_id=dashboard_id,
             instance=preferences
         )
     return direct_to_template(request, 'admin_tools/dashboard/preferences_form.html', {
