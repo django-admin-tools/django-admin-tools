@@ -19,5 +19,5 @@ class Command(BaseCommand):
             'project': project_name,
             'file': os.path.basename(dst).split('.')[0]
         }))
-        print '"%s" written.' % os.path.join(dst)
+        self.stdout.write('"%s" written.' % os.path.join(dst))
 
