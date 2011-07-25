@@ -1,5 +1,5 @@
 var init_dashboard = function(id, columns, preferences, url) {
-    $('#'+id).dashboard({
+    jQuery('#'+id).dashboard({
         'columns': columns,
         'load_preferences_function': function(options) {
             return preferences;
@@ -8,6 +8,6 @@ var init_dashboard = function(id, columns, preferences, url) {
             jQuery.post(url, { data: JSON.stringify(preferences) });
         }
     });
-    $(".group-tabs").tabs();
-    $(".group-accordion").accordion({header: '.group-accordion-header'});
+    jQuery(".group-tabs").tabs();
+    jQuery(".group-accordion").accordion({header: '.group-accordion-header'});
 };
