@@ -218,6 +218,7 @@ class Group(DashboardModule):
     .. image:: images/dashboard_module_group.png
     """
 
+    force_show_title = True
     template = 'admin_tools/dashboard/modules/group.html'
     display = 'tabs'
 
@@ -230,7 +231,8 @@ class Group(DashboardModule):
             module.collapsible = False
             module.draggable = False
             module.deletable = False
-            module.show_title = (self.display == 'stacked')
+            if self.force_show_title:
+                module.show_title = (self.display == 'stacked')
             module.init_with_context(context)
         self._initialized = True
 
