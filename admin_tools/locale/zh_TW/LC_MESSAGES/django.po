@@ -19,15 +19,15 @@ msgstr ""
 
 #: dashboard/dashboards.py:81 menu/menus.py:100
 msgid "Dashboard"
-msgstr ""
+msgstr "控制台"
 
 #: dashboard/dashboards.py:217
 msgid "Quick links"
-msgstr ""
+msgstr "捷徑"
 
 #: dashboard/dashboards.py:223
 msgid "Return to site"
-msgstr ""
+msgstr "首頁"
 
 #: dashboard/dashboards.py:224 theming/templates/admin/base.html:43
 msgid "Change password"
@@ -39,11 +39,11 @@ msgstr ""
 
 #: dashboard/dashboards.py:232 dashboard/modules.py:385 menu/menus.py:103
 msgid "Applications"
-msgstr ""
+msgstr "應用程序"
 
 #: dashboard/dashboards.py:238 menu/menus.py:107
 msgid "Administration"
-msgstr ""
+msgstr "管理"
 
 #: dashboard/dashboards.py:243 dashboard/dashboards.py:297
 #: dashboard/modules.py:538
@@ -52,11 +52,11 @@ msgstr ""
 
 #: dashboard/dashboards.py:247
 msgid "Latest Django News"
-msgstr ""
+msgstr "最新 Django 新聞"
 
 #: dashboard/dashboards.py:254
 msgid "Support"
-msgstr ""
+msgstr "支援"
 
 #: dashboard/dashboards.py:257
 msgid "Django documentation"

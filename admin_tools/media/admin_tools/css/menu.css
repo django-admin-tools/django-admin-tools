@@ -152,7 +152,7 @@
     background: transparent url(../images/admin-tools.png) repeat-x 0 -245px;
 }
 
-#header ul#navigation-menu li.disabled:hover,
-#header ul#navigation-menu li.disabled .over {
+#header ul#navigation-menu li.disabled a:hover,
+#header ul#navigation-menu li.disabled a.over {
     background: none;
 }
