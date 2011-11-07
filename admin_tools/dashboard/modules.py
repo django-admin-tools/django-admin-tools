@@ -185,11 +185,18 @@ class Group(DashboardModule):
     accordion, or just stacked (default).
     As well as the :class:`~admin_tools.dashboard.modules.DashboardModule`
     properties, the :class:`~admin_tools.dashboard.modules.Group`
-    has one extra property:
+    has two extra properties:
 
     ``display``
         A string determining how the group should be rendered, this can be one
         of the following values: 'tabs' (default), 'accordion' or 'stacked'.
+
+    ``force_show_title``
+        Default behaviour for Group module is to force children to always show
+        the title if Group has ``display`` = ``stacked``. If this flag is set
+        to ``False``, children title is shown according to their``show_title``
+        property. Note that in this case is children responsibility to have
+        meaningful content if no title is shown.
 
     Here's an example of modules group::
 
