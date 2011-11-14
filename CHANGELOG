@@ -2,6 +2,18 @@
 django-admin-tools changelog
 ============================
 
+Version 0.4.1, 15 November 2011:
+--------------------------------
+
+* Static files and django 1.3 support
+* Fixed modules instanciation issues (fixes #65)
+* Nested groups support & better html id generation (fixes issue #70)
+* Fixed various js and css problems
+* Added translation for Finnish + updates on other languages
+* More robust dashboard layout
+* Added force_show_title property to Group module
+
+
 Version 0.4.0, 13 December 2010:
 --------------------------------
 

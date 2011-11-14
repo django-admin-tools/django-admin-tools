@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: django-admin-tools 0.4.0\n"
+"Project-Id-Version: django-admin-tools 0.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-27 08:34+0100\n"
 "PO-Revision-Date: 2011-01-27 06:11+0200\n"

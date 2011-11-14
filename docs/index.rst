@@ -20,6 +20,7 @@ django-admin-tools includes:
     This documentation covers the latest version of django-admin-tools (tip).
     For older versions please follow the links below:
 
+    * `Version 0.4.0 <http://readthedocs.org/docs/django-admin-tools/v0.4.1/>`_
     * `Version 0.4.0 <http://readthedocs.org/docs/django-admin-tools/v0.4.0/>`_
     * `Version 0.3.0 <http://readthedocs.org/docs/django-admin-tools/v0.3.0/>`_
     * `Version 0.2.0 <http://readthedocs.org/docs/django-admin-tools/v0.2.0/>`_
