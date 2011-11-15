@@ -131,17 +131,17 @@
     display: none;
 }
 
-#header ul#navigation-menu li:hover ul,
-#header ul#navigation-menu li.over ul,
-#header ul#navigation-menu li ul li:hover ul,
-#header ul#navigation-menu li ul li.over ul {
+#header ul#navigation-menu li:hover>ul,
+#header ul#navigation-menu li.over>ul,
+#header ul#navigation-menu li ul li:hover>ul,
+#header ul#navigation-menu li ul li.over>ul {
     display: block;
 }
 
-#header ul#navigation-menu li:hover ul li,
-#header ul#navigation-menu li.over ul li,
-#header ul#navigation-menu li ul li:hover ul li,
-#header ul#navigation-menu li ul li.over ul li {
+#header ul#navigation-menu li:hover>ul li,
+#header ul#navigation-menu li.over>ul li,
+#header ul#navigation-menu li ul li:hover>ul li,
+#header ul#navigation-menu li ul li.over>ul li {
     background: transparent url(../images/admin-tools.png) repeat-x 0 -285px;
 }
 
