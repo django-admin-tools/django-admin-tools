@@ -30,7 +30,7 @@ def get_admin_site(context=None, request=None):
     if type(dashboard_cls) is types.DictType:
         if context:
             request = context.get('request')
-        curr_url = request.META['PATH_INFO']
+        curr_url = request.path
         for key in dashboard_cls:
             mod, inst = key.rsplit('.', 1)
             mod = import_module(mod)

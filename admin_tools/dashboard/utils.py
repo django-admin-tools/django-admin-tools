@@ -24,7 +24,7 @@ def get_dashboard(context, location):
 
 def _get_dashboard_cls(dashboard_cls, context):
     if type(dashboard_cls) is types.DictType:
-        curr_url = context.get('request').META['PATH_INFO']
+        curr_url = context.get('request').path
         for key in dashboard_cls:
             admin_site_mod, admin_site_inst = key.rsplit('.', 1)
             admin_site_mod = import_module(admin_site_mod)
