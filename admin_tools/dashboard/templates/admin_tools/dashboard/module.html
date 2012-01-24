@@ -1,6 +1,7 @@
+{% load i18n %}
 {% if not module.is_empty %}
     <div id="module_{{ module.id }}" class="{{ module.render_css_classes }}">
-        {% if module.show_title %}<h2>{{ module.title }}</h2>{% endif %}
+        {% if module.show_title %}<h2>{% trans module.title %}</h2>{% endif %}
         <div class="dashboard-module-content">
             {% spaceless %}
             {% if module.pre_content %}
