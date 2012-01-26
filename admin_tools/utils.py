@@ -86,7 +86,10 @@ def filter_models(request, models, exclude):
         for item in included:
             model, perms = item
             if fnmatch(full_name(model), pattern):
-                result.remove(item)
+                try:
+                    result.remove(item)
+                except ValueError:  # if the item was already removed skip
+                    pass
     return result
 
 
