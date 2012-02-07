@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
-from django.views.generic.simple import direct_to_template
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import RequestContext
 
 try:
     from django.views.decorators.csrf import csrf_exempt
@@ -29,16 +29,18 @@ def add_bookmark(request):
                 if request.POST.get('next'):
                     return HttpResponseRedirect(request.POST.get('next'))
                 return HttpResponse('Added')
-            return direct_to_template(request, 'admin_tools/menu/remove_bookmark_form.html', {
+            return render_to_response('admin_tools/menu/remove_bookmark_form.html',
+                       RequestContext(request, {
                 'bookmark': bookmark,
                 'url': bookmark.url,
-            });
+            }))
     else:
         form = BookmarkForm(user=request.user)
-    return direct_to_template(request, 'admin_tools/menu/form.html', {
-        'form': form,   
+    return render_to_response('admin_tools/menu/form.html',
+               RequestContext(request, {
+        'form': form,
         'title': 'Add Bookmark',
-    })
+    }))
 
 
 @login_required
@@ -56,10 +58,11 @@ def edit_bookmark(request, id):
             return HttpResponse('Saved')
     else:
         form = BookmarkForm(user=request.user, instance=bookmark)
-    return direct_to_template(request, 'admin_tools/menu/form.html', {
-        'form': form,   
+    return render_to_response('admin_tools/menu/form.html',
+               RequestContext(request, {
+        'form': form,
         'title': 'Edit Bookmark',
-    })
+    }))
 
 
 @login_required
@@ -78,11 +81,13 @@ def remove_bookmark(request, id):
             if request.POST.get('next'):
                 return HttpResponseRedirect(request.POST.get('next'))
             return HttpResponse('Deleted')
-        return direct_to_template(request, 'admin_tools/menu/add_bookmark_form.html', {
+        return render_to_response('admin_tools/menu/add_bookmark_form.html',
+                   RequestContext(request, {
             'url': request.POST.get('next'),
             'title': '**title**' #This gets replaced on the javascript side
-        });
-    return direct_to_template(request, 'admin_tools/menu/delete_confirm.html', {
+        }))
+    return render_to_response('admin_tools/menu/delete_confirm.html',
+               RequestContext(request, {
         'bookmark': bookmark,
         'title': 'Delete Bookmark',
-    })
+    }))
