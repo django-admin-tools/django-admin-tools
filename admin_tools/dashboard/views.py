@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.views.generic.simple import direct_to_template
+from django.template import RequestContext
+from django.shortcuts import render_to_responce
 
 try:
     from django.views.decorators.csrf import csrf_exempt
@@ -44,6 +45,5 @@ def set_preferences(request, dashboard_id):
             dashboard_id=dashboard_id,
             instance=preferences
         )
-    return direct_to_template(request, 'admin_tools/dashboard/preferences_form.html', {
-        'form': form,   
-    })
+    return render_to_response('personal/personal_contacts.html',
+                              RequestContext(request, {'form': form}))
