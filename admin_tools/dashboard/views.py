@@ -45,5 +45,5 @@ def set_preferences(request, dashboard_id):
             dashboard_id=dashboard_id,
             instance=preferences
         )
-    return render_to_response('personal/personal_contacts.html',
+    return render_to_response('admin_tools/dashboard/preferences_form.html',
                               RequestContext(request, {'form': form}))
