@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.contrib import messages
 
 try:
     from django.views.decorators.csrf import csrf_exempt
@@ -25,7 +26,7 @@ def add_bookmark(request):
         if form.is_valid():
             bookmark = form.save()
             if not request.is_ajax():
-                request.user.message_set.create(message='Bookmark added')
+                messages.success(request, 'Bookmark added')
                 if request.POST.get('next'):
                     return HttpResponseRedirect(request.POST.get('next'))
                 return HttpResponse('Added')
@@ -52,7 +53,7 @@ def edit_bookmark(request, id):
         if form.is_valid():
             form.save()
             if not request.is_ajax():
-                request.user.message_set.create(message='Bookmark updated')
+                messages.success(request, 'Bookmark updated')
                 if request.POST.get('next'):
                     return HttpResponseRedirect(request.POST.get('next'))
             return HttpResponse('Saved')
@@ -77,7 +78,7 @@ def remove_bookmark(request, id):
     if request.method == "POST":
         bookmark.delete()
         if not request.is_ajax():
-            request.user.message_set.create(message='Bookmark removed')
+            messages.success(request, 'Bookmark removed')
             if request.POST.get('next'):
                 return HttpResponseRedirect(request.POST.get('next'))
             return HttpResponse('Deleted')
