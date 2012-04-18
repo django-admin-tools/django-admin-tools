@@ -493,6 +493,10 @@ class ModelList(DashboardModule, AppListElementMixin):
         self.exclude = list(exclude or [])
         self.include_list = kwargs.pop('include_list', []) # deprecated
         self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
+        if 'extra' in kwargs:
+            self.extra = kwargs.pop('extra')
+        else:
+            self.extra = []
         super(ModelList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
@@ -509,6 +513,16 @@ class ModelList(DashboardModule, AppListElementMixin):
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             self.children.append(model_dict)
+        if self.extra:
+            # TODO - permissions support
+            for extra_url in self.extra:
+                model_dict = {}
+                model_dict['title'] = extra_url['title']
+                model_dict['change_url'] = extra_url['change_url']
+                model_dict['add_url'] = extra_url.get('add_url', None)
+                self.children.append(model_dict)
+
+
         self._initialized = True
 
 
@@ -687,3 +701,4 @@ class Feed(DashboardModule):
                 pass
             self.children.append(entry)
         self._initialized = True
+
