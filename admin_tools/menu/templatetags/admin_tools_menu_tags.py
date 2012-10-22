@@ -26,7 +26,7 @@ def admin_tools_render_menu(context, menu=None):
     ``get_admin_menu`` function.
     """
     if menu is None:
-        menu = get_admin_menu()
+        menu = get_admin_menu(context)
 
     menu.init_with_context(context)
     has_bookmark_item = False
@@ -76,7 +76,7 @@ def admin_tools_render_menu_css(context, menu=None):
     retrieved with the ``get_admin_menu`` function.
     """
     if menu is None:
-        menu = get_admin_menu()
+        menu = get_admin_menu(context)
 
     context.update({
         'template': 'admin_tools/menu/css.html',
