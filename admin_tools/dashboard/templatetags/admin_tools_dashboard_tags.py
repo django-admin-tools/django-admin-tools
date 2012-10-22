@@ -10,6 +10,7 @@ To load the dashboard tags: ``{% load admin_tools_dashboard_tags %}``.
 import math
 
 from django import template
+from django.db import IntegrityError
 from django.core.urlresolvers import reverse
 
 from admin_tools.utils import get_media_url, get_admin_site_name
@@ -47,11 +48,15 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         ).data
     except DashboardPreferences.DoesNotExist:
         preferences = '{}'
-        DashboardPreferences(
-            user=context['request'].user,
-            dashboard_id=dashboard.get_id(),
-            data=preferences
-        ).save()
+        try:
+            DashboardPreferences(
+                user=context['request'].user,
+                dashboard_id=dashboard.get_id(),
+                data=preferences
+            ).save()
+        except IntegrityError:
+            # dashboard already was saved for that (user, dashboard)
+            pass
 
     context.update({
         'template': dashboard.template,

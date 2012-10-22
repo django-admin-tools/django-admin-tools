@@ -16,6 +16,7 @@ class DashboardPreferences(models.Model):
 
     class Meta:
         db_table = 'admin_tools_dashboard_preferences'
+        unique_together = ('user', 'dashboard_id',)
         ordering = ('user',)
 
 
