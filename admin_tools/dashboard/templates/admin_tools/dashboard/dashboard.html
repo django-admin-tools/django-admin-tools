@@ -41,7 +41,7 @@
                 '{{ dashboard.get_id }}',
                 {{ dashboard.columns }},
                 {% autoescape off %}{{ dashboard_preferences }}{% endautoescape %},
-                '{% url admin-tools-dashboard-set-preferences dashboard.get_id %}'
+                '{% url 'admin-tools-dashboard-set-preferences' dashboard.get_id %}'
             );
         });
     });

@@ -1,4 +1,4 @@
-{% url admin-tools-menu-add-bookmark as form_url %}
+{% url 'admin-tools-menu-add-bookmark' as form_url %}
 {% if form_url %}
 <form id="bookmark-form" action="{{ form_url }}" method="POST">
     <input type="hidden" name="next" value="{% firstof url request.get_full_path|urlencode %}" />
