@@ -2,12 +2,18 @@
 This module contains the base classes for the dashboard and dashboard modules.
 """
 from django.db import models
+try:
+    from django.contrib.auth import get_user_model
+except ImportError: # django < 1.5
+    from django.contrib.auth.models import User
+else:
+    User = get_user_model()
 
 class DashboardPreferences(models.Model):
     """
     This model represents the dashboard preferences for a user.
     """
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(User)
     data = models.TextField()
     dashboard_id = models.CharField(max_length=100)
 

@@ -3,6 +3,14 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+try:
+    from django.contrib.auth import get_user_model
+except ImportError: # django < 1.5
+    from django.contrib.auth.models import User
+else:
+    User = get_user_model()
+
+user_model = '%s.%s' % (User._meta.app_label, User._meta.object_name)
 
 class Migration(SchemaMigration):
 
@@ -11,7 +19,7 @@ class Migration(SchemaMigration):
         # Adding model 'DashboardPreferences'
         db.create_table('admin_tools_dashboard_preferences', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm[user_model])),
             ('data', self.gf('django.db.models.fields.TextField')()),
         ))
         db.send_create_signal('dashboard', ['DashboardPreferences'])
@@ -37,7 +45,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
-        'auth.user': {
+        user_model: {
             'Meta': {'object_name': 'User'},
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
@@ -64,7 +72,7 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "('user',)", 'object_name': 'DashboardPreferences', 'db_table': "'admin_tools_dashboard_preferences'"},
             'data': ('django.db.models.fields.TextField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm[%s]" % user_model})
         }
     }
 

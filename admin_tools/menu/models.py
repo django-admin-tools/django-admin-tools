@@ -2,12 +2,18 @@
 This module contains the base classes for menu and menu items.
 """
 from django.db import models
+try:
+    from django.contrib.auth import get_user_model
+except ImportError: # django < 1.5
+    from django.contrib.auth.models import User
+else:
+    User = get_user_model()
 
 class Bookmark(models.Model):
     """
     This model represents a user created bookmark.
     """
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(User)
     url = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
 
