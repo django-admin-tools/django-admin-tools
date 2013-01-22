@@ -72,7 +72,7 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "('user',)", 'object_name': 'DashboardPreferences', 'db_table': "'admin_tools_dashboard_preferences'"},
             'data': ('django.db.models.fields.TextField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm[%s]" % user_model})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['%s']" % user_model})
         }
     }
 
