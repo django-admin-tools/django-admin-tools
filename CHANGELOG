@@ -2,6 +2,21 @@
 django-admin-tools changelog
 ============================
 
+Version 0.5.0, 26 February 2013:
+--------------------------------
+
+Important information if you are upgrading from a previous version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting from this version, django-admin-tools requires Django 1.3 or
+superior. If you're running Django < 1.3, DO NOT UPGRADE and stay with
+the 0.4.1 version.
+
+* Compatibility with Django 1.4 and Django 1.5
+* Upgraded to latest jQuery / jQuery-ui
+* Many bug fixes and small improvements
+
+
 Version 0.4.1, 15 November 2011:
 --------------------------------
 

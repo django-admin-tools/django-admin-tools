@@ -25,37 +25,13 @@ Prerequisite
 
 In order to use django-admin-tools you obviously need to have configured
 your django admin site, if you didn't, please refer to the
-`relevant django documentation <http://docs.djangoproject.com/en/1.1/intro/tutorial02/#activate-the-admin-site>`_.
-
-.. important::
-    It is required that you use the django 1.1 syntax to declare the
-    django admin urls, e.g.::
-
-        urlpatterns = patterns('',
-            (r'^admin/', include(admin.site.urls)),
-        )
-
-    The old url style ``(r'^admin/(.*)', admin.site.root)`` won't work.
+`relevant django documentation <https://docs.djangoproject.com/en/dev/intro/tutorial02/>`_.
 
 Required settings
 ~~~~~~~~~~~~~~~~~
 
-First make sure you have the following template context processors
-installed::
-
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        # default template context processors
-        'django.core.context_processors.auth',
-        'django.core.context_processors.debug',
-        'django.core.context_processors.i18n',
-        'django.core.context_processors.media',
-
-        # django 1.2 only
-        'django.contrib.messages.context_processors.messages',
-
-        # required by django-admin-tools
-        'django.core.context_processors.request',
-    )
+First make sure you have the ``django.core.context_processors.request``
+template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS``.
 
 Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
 this::
@@ -111,51 +87,8 @@ You'll need to add django-admin-tools to your urls.py file::
         #...other url patterns...
     )
 
-Setting up the django-admin-tools media files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To do this you have three options:
-
-* use the `staticfiles <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/>`_
-  contrib application in Django 1.3. For Django 1.2 or lower you'll have to install
-  django-staticfiles from PyPi.
-
-* create a symbolic link to the django-admin-tools media files to your
-  ``MEDIA_ROOT`` directory, for example::
-
-      ln -s /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
-
-* copy the django-admin-tools media files to your ``MEDIA_ROOT`` directory,
-  for example::
-
-      cp -r /usr/local/lib/python2.6/dist-packages/admin_tools/media/admin_tools /path/to/yourproject/media/
-
-django-admin-tools will look for the media directory in the following
-settings variables (and in this order):
-
-* ``ADMIN_TOOLS_MEDIA_URL``;
-* ``STATIC_URL``: use this if you are using django-staticfiles;
-* ``MEDIA_URL``.
-
-
-Here's an example config if you are using django development server:
-
-``urls.py``::
-
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': '/path/to/media'}),
-
-``settings.py``::
-
-    MEDIA_URL = '/site_media/'
-
-
 Available settings variables
 ----------------------------
-
-``ADMIN_TOOLS_MEDIA_URL``
-    You can use this variable if you want to set the media url for
-    django-admin-tools to something different from your ``MEDIA_URL``.
 
 ``ADMIN_TOOLS_MENU``
     The path to your custom menu class, for example

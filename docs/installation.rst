@@ -8,9 +8,7 @@ Requirements
 
 Before installing django-admin-tools, you'll need to have a copy of
 `Django <http://www.djangoproject.com>`_ already installed. For the
-|version| release, Django 1.1 or newer is required.
-
-Optionally install django-staticfiles when using Django 1.2 or lower.
+|version| release, Django 1.3 or newer is required.
 
 For further information, consult the `Django download page
 <http://www.djangoproject.com/download/>`_, which offers convenient
