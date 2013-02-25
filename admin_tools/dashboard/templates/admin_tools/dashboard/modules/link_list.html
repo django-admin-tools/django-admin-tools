@@ -4,7 +4,7 @@
     {% spaceless %}
     {% for child in module.children %}
     <li class="{% cycle 'odd' 'even' %}">
-    <a{% if child.external %} class="external-link"{% endif %} href="{{ child.url }}" {% if child.description %} title="{{ child.description }}"{% endif %}>{{ child.title }}</a> 
+    <a{{ child.attrs }}>{{ child.title }}</a> 
     </li>
     {% endfor %}
     {% endspaceless %}
