@@ -5,14 +5,13 @@ Menu utilities.
 import types
 
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse
 
 
 def _get_menu_cls(menu_cls, context):
     if type(menu_cls) is types.DictType:
-        curr_url = context.get('request').META['PATH_INFO']
+        curr_url = context.get('request').path
         for key in menu_cls:
             admin_site_mod, admin_site_inst = key.rsplit('.', 1)
             admin_site_mod = import_module(admin_site_mod)
