@@ -9,7 +9,7 @@
 var process_bookmarks = function(url, title, prompt_msg) {
     var $ = jQuery;
     var new_title;
-    $('#bookmark-button').live('click', function(e) {
+    $('#bookmark-button').click(function(e) {
         var submit_url = $("#bookmark-form").attr('action');
         e.preventDefault();
         if ($(this).hasClass('bookmarked')) {
