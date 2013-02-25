@@ -27,7 +27,7 @@ class AdminBasicTest(TestCase):
         self.assertContains(super_index, 'Bars')
         self.assertContains(super_index, 'Foos')
         self.assertContains(super_index, 'Test app menu')
-        self.assertContains(super_index, 'Users', 3) # menu and dashboard items
+        self.assertContains(super_index, 'Users', 4) # menu and dashboard items
         self.client.logout()
         self.client.logout()
 
