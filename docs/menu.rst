@@ -19,13 +19,19 @@ The ``MenuItem`` class
     :members:
 
 The ``AppList`` class
------------------------------
+---------------------
 
 .. autoclass:: admin_tools.menu.items.AppList
     :members:
 
+The ``ModelList`` class
+-----------------------
+
+.. autoclass:: admin_tools.menu.items.ModelList
+    :members:
+
 The ``Bookmarks`` class
-------------------------------
+-----------------------
 
 .. autoclass:: admin_tools.menu.items.Bookmarks
     :members:
