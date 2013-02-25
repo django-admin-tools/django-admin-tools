@@ -30,9 +30,9 @@
             "last_login": "2010-04-25 17:33:01",
             "groups": [],
             "user_permissions": [
-                28,
-                29,
-                30
+                ["add_bar", "test_app", "bar"],
+                ["change_bar", "test_app", "bar"],
+                ["delete_bar", "test_app", "bar"]
             ],
             "password": "sha1$a7681$6721778bb4a3aff4c7b0b47c20c72afc1adf493d",
             "email": "",
