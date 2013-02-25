@@ -73,6 +73,19 @@ class CustomIndexDashboard(Dashboard):
                 },
             ]
         ))
+        self.children.append(modules.Group(
+            title=u'Test group',
+            children=[
+                modules.ModelList(
+                    u'Tab 1',
+                    ['django.contrib.*']
+                ),
+                modules.ModelList(
+                    u'Tab 2',
+                    ['test_app.*']
+                ),
+            ]
+        ))
 
     def init_with_context(self, context):
         """
