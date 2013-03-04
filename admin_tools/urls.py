@@ -1,5 +1,8 @@
 from django.conf import settings
-from django.conf.urls.defaults import patterns, url, include
+try:
+    from django.conf.urls import patterns, url, include
+except ImportError: # django < 1.4
+    from django.conf.urls.defaults import patterns, url, include
 
 urls = []
 if 'admin_tools.menu' in settings.INSTALLED_APPS:
