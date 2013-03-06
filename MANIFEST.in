@@ -1,7 +1,6 @@
 include CHANGELOG INSTALL LICENSE MANIFEST.in README AUTHORS
 recursive-include docs *
 recursive-include admin_tools/locale *
-recursive-include admin_tools/media *
 recursive-include admin_tools/static *
 recursive-include admin_tools/dashboard/templates *
 recursive-include admin_tools/menu/templates *
