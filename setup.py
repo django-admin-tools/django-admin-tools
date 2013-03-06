@@ -26,7 +26,7 @@ for dirpath, dirnames, filenames in os.walk('admin_tools'):
         for f in filenames:
             data_files.append(os.path.join(prefix, f))
 
-bitbucket_url = 'http://www.bitbucket.org/izi/django-admin-tools/'
+bitbucket_url = 'http://bitbucket.org/izi/django-admin-tools/'
 long_desc = '''
 %s
 
