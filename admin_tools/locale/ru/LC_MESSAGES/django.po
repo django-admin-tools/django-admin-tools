@@ -81,7 +81,7 @@ msgstr "Нет действия"
 
 #: dashboard/modules.py:637
 msgid "RSS Feed"
-msgstr "Канл RSS"
+msgstr "Канал RSS"
 
 #: dashboard/templates/admin/app_index.html:9
 #: theming/templates/admin/base.html:57
