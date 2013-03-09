@@ -4,7 +4,7 @@
     {% spaceless %}
     {% for child in module.children %}
     <li class="{% cycle 'odd' 'even' %}">
-    <a{{ child.attrs }}>{{ child.title }}</a> 
+    <a{{ child.attrs|safe }}>{{ child.title }}</a> 
     </li>
     {% endfor %}
     {% endspaceless %}
