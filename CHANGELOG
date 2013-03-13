@@ -2,6 +2,16 @@
 django-admin-tools changelog
 ============================
 
+Version 0.5.1, 13 March 2013:
+-----------------------------
+
+Bugfix release, everyone using django < 1.5 should upgrade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This release fixes a bug that was breaking the LinkList dashboard module
+(thanks Iacopo Spalletti for the pull request).
+
+
 Version 0.5.0, 06 March 2013:
 -----------------------------
 
