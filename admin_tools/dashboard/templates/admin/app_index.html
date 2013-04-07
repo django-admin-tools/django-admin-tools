@@ -8,7 +8,7 @@
 <div class="breadcrumbs"><a href="../">
 {% trans "Home" %}</a> &rsaquo; 
 {% for app in app_list %}
-{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}
+{% trans app.name %}
 {% endfor %}</div>{% endblock %}
 
 {% endif %} 
