@@ -381,12 +381,12 @@ class AppList(DashboardModule, AppListElementMixin):
 
     ``models``
         A list of models to include, only models whose name (e.g.
-        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+        "blog.comments.models.Comment") match one of the strings (e.g. "blog.*")
         in the models list will appear in the dashboard module.
 
     ``exclude``
         A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment") match an element of this list (e.g.
+        "blog.comments.models.Comment") match an element of this list (e.g.
         "blog.comments.*") it won't appear in the dashboard module.
 
     If no models/exclude list is provided, **all apps** are shown.
@@ -474,12 +474,12 @@ class ModelList(DashboardModule, AppListElementMixin):
 
     ``models``
         A list of models to include, only models whose name (e.g.
-        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+        "blog.comments.models.Comment") match one of the strings (e.g. "blog.*")
         in the models list will appear in the dashboard module.
 
     ``exclude``
         A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment") match an element of this list (e.g.
+        "blog.comments.models.Comment") match an element of this list (e.g.
         "blog.comments.*") it won't appear in the dashboard module.
 
     Here's a small example of building a model list module::
@@ -492,7 +492,10 @@ class ModelList(DashboardModule, AppListElementMixin):
 
                 # will only list the django.contrib.auth models
                 self.children += [
-                    modules.ModelList('Authentication', ['django.contrib.auth.*',])
+                    modules.ModelList(
+                        title='Authentication',
+                        models=['django.contrib.auth.*',]
+                    )
                 ]
 
     The screenshot of what this code produces:
