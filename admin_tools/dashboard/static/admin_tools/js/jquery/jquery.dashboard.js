@@ -196,7 +196,8 @@
 
     var _set_collapsible = function(elt, options) {
         elt.find('> .dashboard-column > .collapsible > h2').each(function() {
-            $(this).append('<a href="#" class="toggle-icon">Toggle</a>').find('a.toggle-icon').click(function() {
+            $(this).append('<a href="#" class="toggle-icon">Toggle</a>').find('a.toggle-icon').click(function(ev) {
+                ev.preventDefault();
                 var prnt = $(this).parent().parent();
                 _toggle_element(prnt, options, true);
             });
@@ -213,7 +214,8 @@
 
     var _set_deletable = function(elt, options) {
         elt.find('> .dashboard-column > .deletable > h2').each(function() {
-            $(this).append('<a href="#" class="close-icon">Close</a>').find('a.close-icon').click(function() {
+            $(this).append('<a href="#" class="close-icon">Close</a>').find('a.close-icon').click(function(ev) {
+                ev.preventDefault();
                 var prnt = $(this).parent().parent();
                 _delete_element(prnt, options, true);
             });
@@ -250,7 +252,8 @@
         if (!elts) {
             elts = $('#'+options.panel_id).find('li a');
         }
-        elts.click(function() {
+        elts.click(function(ev) {
+            ev.preventDefault();
             _add_element($('#'+$(this).attr('rel')), options, true);
         });
     };
