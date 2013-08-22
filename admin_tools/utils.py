@@ -1,7 +1,6 @@
 """
 Admin ui common utilities.
 """
-import types
 from fnmatch import fnmatch
 
 from django.conf import settings
@@ -27,7 +26,7 @@ def get_admin_site(context=None, request=None):
         'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
     )
 
-    if type(dashboard_cls) is types.DictType:
+    if isinstance(dashboard_cls, dict):
         if context:
             request = context.get('request')
         curr_url = request.path

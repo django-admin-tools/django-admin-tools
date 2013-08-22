@@ -7,6 +7,11 @@ from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    # Django < 1.5
+    from django.utils.encoding import force_unicode as force_text
 
 from admin_tools.dashboard import modules
 from admin_tools.utils import get_admin_site_name, uniquify
@@ -203,7 +208,7 @@ class AppIndexDashboard(Dashboard):
         """
         Internal method used to distinguish different dashboards in js code.
         """
-        return '%s-dashboard' % slugify(unicode(self.app_title))
+        return '%s-dashboard' % slugify(force_text(self.app_title))
 
 
 class DefaultIndexDashboard(Dashboard):

@@ -2,15 +2,13 @@
 Menu utilities.
 """
 
-import types
-
 from django.conf import settings
 from django.utils.importlib import import_module
 from django.core.urlresolvers import reverse
 
 
 def _get_menu_cls(menu_cls, context):
-    if type(menu_cls) is types.DictType:
+    if isinstance(menu_cls, dict):
         curr_url = context.get('request').path
         for key in menu_cls:
             admin_site_mod, admin_site_inst = key.rsplit('.', 1)

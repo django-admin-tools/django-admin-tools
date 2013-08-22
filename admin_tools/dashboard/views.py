@@ -9,8 +9,8 @@ try:
 except ImportError:
     from django.contrib.csrf.middleware import csrf_exempt
 
-from forms import DashboardPreferencesForm
-from models import DashboardPreferences
+from .forms import DashboardPreferencesForm
+from .models import DashboardPreferences
 
 
 @login_required

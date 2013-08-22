@@ -9,8 +9,8 @@ try:
 except ImportError:
     from django.contrib.csrf.middleware import csrf_exempt
 
-from forms import BookmarkForm
-from models import Bookmark
+from .forms import BookmarkForm
+from .models import Bookmark
 
 
 @login_required

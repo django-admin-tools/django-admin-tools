@@ -200,13 +200,11 @@ class AppList(MenuItem, AppListElementMixin):
                 'url': self._get_admin_change_url(model, context)
             })
 
-        apps_sorted = apps.keys()
-        apps_sorted.sort()
-        for app in apps_sorted:
+        for app in sorted(apps.keys()):
             app_dict = apps[app]
             item = MenuItem(title=app_dict['title'], url=app_dict['url'])
             # sort model list alphabetically
-            apps[app]['models'].sort(lambda x, y: cmp(x['title'], y['title']))
+            apps[app]['models'].sort(key=lambda x: x['title'])
             for model_dict in apps[app]['models']:
                 item.children.append(MenuItem(**model_dict))
             self.children.append(item)

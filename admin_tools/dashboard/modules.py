@@ -456,11 +456,9 @@ class AppList(DashboardModule, AppListElementMixin):
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             apps[app_label]['models'].append(model_dict)
 
-        apps_sorted = apps.keys()
-        apps_sorted.sort()
-        for app in apps_sorted:
+        for app in sorted(apps.keys()):
             # sort model list alphabetically
-            apps[app]['models'].sort(lambda x, y: cmp(x['title'], y['title']))
+            apps[app]['models'].sort(key=lambda x: x['title'])
             self.children.append(apps[app])
         self._initialized = True
 

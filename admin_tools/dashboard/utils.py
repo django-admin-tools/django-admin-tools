@@ -1,8 +1,6 @@
 """
 Dashboard utilities.
 """
-import types
-
 from django.conf import settings
 from django.utils.importlib import import_module
 from django.utils.text import capfirst
@@ -23,7 +21,7 @@ def get_dashboard(context, location):
     raise ValueError('Invalid dashboard location: "%s"' % location)
 
 def _get_dashboard_cls(dashboard_cls, context):
-    if type(dashboard_cls) is types.DictType:
+    if isinstance(dashboard_cls, dict):
         curr_url = context.get('request').path
         for key in dashboard_cls:
             admin_site_mod, admin_site_inst = key.rsplit('.', 1)

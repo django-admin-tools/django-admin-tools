@@ -1,4 +1,8 @@
-import urllib
+try:
+    from urllib.parse import unquote
+except ImportError:
+    # Python 2 compatibility
+    from urllib import unquote
 
 from django import forms
 
@@ -16,7 +20,7 @@ class BookmarkForm(forms.ModelForm):
 
     def clean_url(self):
         url = self.cleaned_data['url']
-        return urllib.unquote(url)
+        return unquote(url)
 
     def save(self, *args, **kwargs):
         bookmark = super(BookmarkForm, self).save(commit=False, *args, **kwargs)

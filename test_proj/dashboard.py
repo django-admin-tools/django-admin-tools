@@ -74,14 +74,14 @@ class CustomIndexDashboard(Dashboard):
             ]
         ))
         self.children.append(modules.Group(
-            title=u'Test group',
+            title='Test group',
             children=[
                 modules.ModelList(
-                    u'Tab 1',
+                    'Tab 1',
                     ['django.contrib.*']
                 ),
                 modules.ModelList(
-                    u'Tab 2',
+                    'Tab 2',
                     ['test_app.*']
                 ),
             ]
