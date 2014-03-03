@@ -720,7 +720,7 @@ class Feed(DashboardModule):
         for entry in entries:
             entry.url = entry.link
             try:
-                entry.date = datetime.date(*entry.updated_parsed[0:3])
+                entry.date = datetime.date(*entry.published_parsed[0:3])
             except:
                 # no date for certain feeds
                 pass
