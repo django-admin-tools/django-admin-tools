@@ -1,5 +1,7 @@
 {% load i18n admin_tools_dashboard_tags %}
 {% load url from future %}
+
+{% block dashboard_scripts %}
 <script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
 
 <script type="text/javascript" charset="utf-8">
@@ -47,11 +49,15 @@
         });
     });
 </script>
+{% endblock %}
 
+{% block dashboard_title %}
 {% if dashboard.title %}
 <h1 class="dashboard-title">{{ dashboard.title }}</h1>
 {% endif %}
+{% endblock %}
 
+{% block dashboard_panel %}
 <div id="dashboard-panel">
     <h3><a href="#">{% trans "Modules" %}</a></h3>
     {% if has_disabled_modules %}
@@ -66,7 +72,11 @@
     </ul>
     {% endif %}
 </div>
+{% endblock %}
+
+{% block dashboard_container %}
 <div id="{{ dashboard.get_id }}" class="dashboard-container">
     {% for module in dashboard.children %}
 {% admin_tools_render_dashboard_module module %}{% endfor %}
 </div>
+{% endblock %}
