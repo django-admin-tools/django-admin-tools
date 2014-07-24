@@ -16,6 +16,10 @@
     width: 93px;
 }
 
+#bookmark-form {
+    clear: both;
+}
+
 div.breadcrumbs {
     display: block;
     padding: 10px 15px;
