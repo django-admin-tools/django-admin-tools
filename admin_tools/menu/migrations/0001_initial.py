@@ -4,6 +4,14 @@ from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 from django.conf import settings
+from south import modelsinspector
+
+try:
+    from django.contrib.auth import get_user_model
+    UserModel = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User as UserModel
+
 
 user_model = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -41,7 +49,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
         user_model: {
-            'Meta': {'object_name': user_model.split('.')[1]},
+            'Meta': modelsinspector.get_model_meta(UserModel),
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
