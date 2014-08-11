@@ -16,17 +16,6 @@ django-admin-tools includes:
  * a customizable menu bar,
  * tools to make admin theming easier.
 
-.. note::
-    This documentation covers the latest version of django-admin-tools (tip).
-    For older versions please follow the links below:
-
-    * `Version 0.4.1 <http://readthedocs.org/docs/django-admin-tools/v0.4.1/>`_
-    * `Version 0.4.0 <http://readthedocs.org/docs/django-admin-tools/v0.4.0/>`_
-    * `Version 0.3.0 <http://readthedocs.org/docs/django-admin-tools/v0.3.0/>`_
-    * `Version 0.2.0 <http://readthedocs.org/docs/django-admin-tools/v0.2.0/>`_
-    * `Version 0.1.1 <http://readthedocs.org/docs/django-admin-tools/v0.1.1/>`_
-    * `Version 0.1.0 <http://readthedocs.org/docs/django-admin-tools/v0.1.0/>`_
-
 To get up and running quickly, consult the :ref:`quick-start guide
 <quickstart>`, which describes all the necessary steps to install
 django-admin-tools and configure it for the default setup.

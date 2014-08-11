@@ -2,6 +2,24 @@
 django-admin-tools changelog
 ============================
 
+Version 0.5.2, 11 August 2014:
+------------------------------
+
+* Added django 1.5 and 1.6 support
+* Django 1.7 is supported but migrations still using south
+* Added python 3 support
+* Add some blocks to facilitate template inheritance
+* Add management command to remove the dashboard preferences
+* Fixed issue #126 (feedparser deprecation warning)
+* Fixed issue #133 (recent Actions links have an unecessary /admin/ prefix)
+* Use i18n app name in app_list, menu and breadcrumb of app_index
+* Use user.get_short_name and user.get_username in admin header (fixes #121)
+* Better docstring for AppList and ModelList modules
+* Eliminated jumping to top of page when clicking collapse/add/remove buttons on dashboard modules
+
+Thanks to all the folks who contributed to this release.
+
+
 Version 0.5.1, 13 March 2013:
 -----------------------------
 

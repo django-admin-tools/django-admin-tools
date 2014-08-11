@@ -18,7 +18,7 @@ setup(
     author='David Jean Louis',
     author_email='izimobil@gmail.com',
     url=bitbucket_url,
-    download_url='%sdownloads/django-admin-tools-%s.tar.gz' % (bitbucket_url, VERSION),
+    download_url='https://pypi.python.org/packages/source/d/django-admin-tools/django-admin-tools-%s.tar.gz' % VERSION,
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
