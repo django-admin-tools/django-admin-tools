@@ -11,9 +11,9 @@ custom modules.
 ..note::
     If your layout seems to be broken or you have problems with
     included javascript files, you should try to reset your dashboard
-    preferences (assuming a MySQL backend)::
+    preferences (assuming a MySQL backend, the truncate command also works in postgress)::
 
-        python manage dbshell
+        python manage.py dbshell
         mysql> truncate admin_tools_dashboard_preferences;
 
     For more information see `this issue
