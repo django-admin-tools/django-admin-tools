@@ -6,7 +6,11 @@ from fnmatch import fnmatch
 from django.conf import settings
 from django.contrib import admin
 from django.core.urlresolvers import reverse
-from django.utils.importlib import import_module
+try:
+    from importlib import import_module
+except ImportError:
+    # Django < 1.9 and Python < 2.7
+    from django.utils.importlib import import_module
 import warnings
 
 def uniquify(value, seen_values):
