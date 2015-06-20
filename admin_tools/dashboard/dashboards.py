@@ -3,7 +3,11 @@ Module where admin tools dashboard classes are defined.
 """
 
 from django.template.defaultfilters import slugify
-from django.utils.importlib import import_module
+try:
+    from importlib import import_module
+except ImportError:
+    # Django < 1.9 and Python < 2.7
+    from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType

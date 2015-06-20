@@ -2,7 +2,11 @@
 Dashboard utilities.
 """
 from django.conf import settings
-from django.utils.importlib import import_module
+try:
+    from importlib import import_module
+except ImportError:
+    # Django < 1.9 and Python < 2.7
+    from django.utils.importlib import import_module
 from django.utils.text import capfirst
 from django.core.urlresolvers import reverse
 
