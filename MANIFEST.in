@@ -1,4 +1,4 @@
-include CHANGELOG INSTALL LICENSE MANIFEST.in README AUTHORS
+include CHANGELOG INSTALL LICENSE MANIFEST.in README.rst AUTHORS
 recursive-include docs *
 recursive-include admin_tools/locale *
 recursive-include admin_tools/static *
