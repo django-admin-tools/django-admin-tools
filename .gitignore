@@ -1,4 +1,3 @@
-syntax: glob
 *.egg-info
 *.pyc
 *.*~
@@ -17,7 +16,4 @@ _static
 .svn
 .tox
 .venv
-
-syntax: regexp
-^test_proj/_coverage/(?!noremove)
-^test_proj/testdb.sqlite$
+*.sqlite
