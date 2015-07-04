@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[django-admin-tools.admin_tools]
+file_filter = admin_tools/locale/<lang>/LC_MESSAGES/<lang>.po
+source_file = admin_tools/locale/en/LC_MESSAGES/django.po
+source_lang = en
