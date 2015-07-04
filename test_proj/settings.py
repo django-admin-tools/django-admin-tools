@@ -126,12 +126,12 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = [
+    'django.contrib.contenttypes',
     'admin_tools',
     'admin_tools.dashboard',
     'admin_tools.menu',
     'admin_tools.theming',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
