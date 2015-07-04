@@ -3,7 +3,7 @@ import sys
 
 class AdminBasicTest(TestCase):
 
-    fixtures = ['initial_data.json']
+    fixtures = ['users.json']
 
     def test_admin_loads(self):
         for (username, password) in (('superuser', '123'), ('staff', '123')):
