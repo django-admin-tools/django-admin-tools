@@ -2,11 +2,10 @@ language: python
 sudo: false
 env:
   matrix:
-    - TOXENV=py26-dj13
-    - TOXENV=py27-dj14
-    - TOXENV=py27-dj15
-    - TOXENV=py27-dj16
-    - TOXENV=py33-dj16
+    - TOXENV=py27-dj17
+    - TOXENV=py27-dj18
+    - TOXENV=py33-dj17
+    - TOXENV=py33-dj18
 install:
   - pip install tox
 script: tox
