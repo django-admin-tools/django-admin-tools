@@ -1,4 +1,3 @@
-{% load url from future %}
 {% url 'admin-tools-menu-remove-bookmark' bookmark.id as form_url%}
 {% if form_url %}
 <form id="bookmark-form" action="{{ form_url }}" method="POST">
