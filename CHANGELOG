@@ -2,6 +2,29 @@
 django-admin-tools changelog
 ============================
 
+Version 0.6.0, 7 July 2015:
+---------------------------
+
+* VERY IMPORTANT INFORMATION, PLEASE READ: *
+
+Starting from this version (0.6.0) django-admin-tools is no more compatible with Django 1.6 or lower.
+
+Users of old django version should use the 0.5.2 version available on pypi.
+
+If you are already using django-admin-tools on django <= 1.6, make sure to add the version on your requirement file, eg:
+django-admin-tools==0.5.2
+If you don't do this, a "pip install --upgrade" may break your admin site.
+You have been warned !
+
+Now for the actual change log:
+
+* Dropped support for django 1.6 or lower
+* Added support for django 1.8
+* Cleaned up old compatibility code
+* Use django builtin staticfiles
+* Various improvements and bug fixes
+
+
 Version 0.5.2, 11 August 2014:
 ------------------------------
 

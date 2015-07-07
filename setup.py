@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 from admin_tools import VERSION
 
-bitbucket_url = 'http://bitbucket.org/izi/django-admin-tools/'
+repo_url = 'https://github.com/django-admin-tools/django-admin-tools'
 long_desc = '''
 %s
 
@@ -17,7 +17,7 @@ setup(
     long_description=long_desc,
     author='David Jean Louis',
     author_email='izimobil@gmail.com',
-    url=bitbucket_url,
+    url=repo_url,
     download_url='https://pypi.python.org/packages/source/d/django-admin-tools/django-admin-tools-%s.tar.gz' % VERSION,
     packages=find_packages(),
     include_package_data=True,
