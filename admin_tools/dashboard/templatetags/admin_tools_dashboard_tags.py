@@ -13,7 +13,7 @@ from django import template
 from django.db import IntegrityError
 from django.core.urlresolvers import reverse
 
-from admin_tools.utils import get_media_url, get_admin_site_name
+from admin_tools.utils import get_admin_site_name
 from admin_tools.dashboard.utils import get_dashboard
 from admin_tools.dashboard.models import DashboardPreferences
 
@@ -63,7 +63,6 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         'dashboard': dashboard,
         'dashboard_preferences': preferences,
         'split_at': math.ceil(float(len(dashboard.children))/float(dashboard.columns)),
-        'media_url': get_media_url(),
         'has_disabled_modules': len([m for m in dashboard.children \
                                 if not m.enabled]) > 0,
         'admin_url': reverse('%s:index' % get_admin_site_name(context)),
@@ -108,7 +107,6 @@ def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
     context.update({
         'template' : 'admin_tools/dashboard/css.html',
         'css_files': dashboard.Media.css,
-        'media_url': get_media_url(),
     })
     return context
 admin_tools_render_dashboard_css = tag_func(admin_tools_render_dashboard_css)

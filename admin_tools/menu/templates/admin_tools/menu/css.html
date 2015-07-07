@@ -1,6 +1,7 @@
-<link rel="stylesheet" href="{{ media_url }}/admin_tools/css/menu.css" type="text/css" media="screen, projection"/>
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static "admin_tools/css/menu.css" %}" type="text/css" media="screen, projection"/>
 <!--[if lt IE 8]>
-<link rel="stylesheet" href="{{ media_url }}/admin_tools/css/menu-ie.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="{% static "admin_tools/css/menu-ie.css" type="text/css" media="screen, projection"/>
 <![endif]-->
-{% for css in css_files %}
-<link rel="stylesheet" href="{{ media_url }}/{{ css }}" type="text/css" media="screen, projection"/>{% endfor %}
+{% for media_type, files in css_files.items %}{% for css in files %}
+<link rel="stylesheet" href="{% static css %}" type="text/css" media="{{ media_type }}"/>{% endfor %}{% endfor %}

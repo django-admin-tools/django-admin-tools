@@ -11,7 +11,7 @@ To load the menu tags in your templates: ``{% load admin_tools_menu_tags %}``.
 from django import template
 from django.core.urlresolvers import reverse
 
-from admin_tools.utils import get_media_url, get_admin_site_name
+from admin_tools.utils import get_admin_site_name
 from admin_tools.menu import items
 from admin_tools.menu.models import Bookmark
 from admin_tools.menu.utils import get_admin_menu
@@ -42,7 +42,6 @@ def admin_tools_render_menu(context, menu=None):
     context.update({
         'template': menu.template,
         'menu': menu,
-        'media_url': get_media_url(),
         'has_bookmark_item': has_bookmark_item,
         'bookmark': bookmark,
         'admin_url': reverse('%s:index' % get_admin_site_name(context)),
@@ -81,7 +80,6 @@ def admin_tools_render_menu_css(context, menu=None):
     context.update({
         'template': 'admin_tools/menu/css.html',
         'css_files': menu.Media.css,
-        'media_url': get_media_url(),
     })
     return context
 admin_tools_render_menu_css = tag_func(admin_tools_render_menu_css)

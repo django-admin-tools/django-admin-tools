@@ -154,14 +154,3 @@ class AppListElementMixin(object):
         return reverse('%s:%s_%s_add' % (get_admin_site_name(context),
                                          app_label,
                                          model.__name__.lower()))
-
-def get_media_url():
-    """
-    Returns the django admin tools media URL.
-    """
-    media_url = getattr(settings, 'ADMIN_TOOLS_MEDIA_URL', None)
-    if media_url is None:
-        media_url = getattr(settings, 'STATIC_URL', None)
-    if media_url is None:
-        media_url = getattr(settings, 'MEDIA_URL')
-    return media_url.rstrip('/')
