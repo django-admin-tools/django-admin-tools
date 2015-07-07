@@ -4,6 +4,14 @@ django-admin-tools
 .. image:: https://travis-ci.org/django-admin-tools/django-admin-tools.svg?branch=master
     :target: https://travis-ci.org/django-admin-tools/django-admin-tools
 
+.. image:: https://img.shields.io/pypi/l/django-admin-tools.svg
+
+.. image:: https://img.shields.io/pypi/pyversions/django-admin-tools.svg
+
+.. image:: https://img.shields.io/badge/django-1.7%20or%20newer-green.svg
+
+.. image:: https://img.shields.io/pypi/dm/django-admin-tools.svg
+
 
 django-admin-tools is a collection of extensions/tools for the default django 
 administration interface, it includes:
@@ -23,6 +31,14 @@ a good start is to read `the quickstart guide
 The project was created by `David Jean Louis <http://www.izimobil.org/>`_ and was previously hosted on `Bitbucket <http://bitbucket.org/izi/django-admin-tools/>`_. 
 
 Please join the `mailing list <http://groups.google.fr/group/django-admin-tools>`_ if you want to discuss of the future of django-admin-tools.
+
+************
+Requirements
+************
+
+django-admin-tools requires Python 2.7 or Python 3.3 or newer and Django 1.7 or newer.
+
+For older python and django versions please use the 0.5.2 version of django-admin-tools which is available on Pypi.
 
 ************
 Installation
