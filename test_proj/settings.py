@@ -102,9 +102,10 @@ ROOT_URLCONF = 'test_proj.urls'
 WSGI_APPLICATION = 'test_proj.wsgi.application'
 
 import django
+from distutils.version import LooseVersion
 version = django.get_version()
-
-if version < '1.8':
+use_older_syntax = LooseVersion(django.get_version()) < LooseVersion('1.8')
+if use_older_syntax:
     TEMPLATE_DIRS = (
         # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
         # Always use forward slashes, even on Windows.
