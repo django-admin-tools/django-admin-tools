@@ -7,28 +7,14 @@ This is information for developers of django-admin-tools itself.
 
 Running tests
 -------------
-Run the `runtests.sh` script which is situated at the root dir of
-django-admin-tools project.
 
-Run all tests::
+First, cd the test_proj directory::
 
-    $ ./runtests.sh
+    $ cd test_proj
 
-Run only unit tests::
+And to run the tests, just type::
 
-    $ ./runtests.sh unit
-
-Run only tests for specified app::
-
-    $ ./runtests.sh dashboard
-
-Run only one test case::
-
-    $ ./runtests.sh dashboard.ManagementCommandTest
-
-Run only one test::
-
-    $ ./runtests.sh dashboard.ManagementCommandTest.test_customdashboard
+    $ python manage.py test
 
 
 Code coverage report

@@ -5,7 +5,13 @@ Quick start guide
 
 Before installing django-admin-tools, you'll need to have a copy of
 `Django <http://www.djangoproject.com>`_ already installed. For the
-|version| release, Django 1.3 or newer is required.
+|version| release, Django 1.7 or newer is required.
+
+.. note::
+    *Important note to users of django 1.6 or below:*
+    starting from 0.6.0, django-admin-tools is *NOT* compatible with
+    django <= 1.6. If you want, you can still use the 0.5.2 version
+    that will always be available on Pypi.
 
 
 Installing django-admin-tools
@@ -54,6 +60,12 @@ Configuration
 First make sure you have the ``django.core.context_processors.request``
 template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS``.
 
+.. note::
+    Starting from django 1.8, ``TEMPLATE_CONTEXT_PROCESSORS`` is deprecated,
+    you must add the request context processor in your ``TEMPLATES`` variable
+    instead, please refer to the
+    `relevant django documentation <https://docs.djangoproject.com/en/1.8/ref/templates/upgrading/>`_.
+
 Then, add admin_tools and its modules to the ``INSTALLED_APPS`` like this::
 
     INSTALLED_APPS = (
@@ -82,12 +94,7 @@ Then, just add django-admin-tools to your urls.py file::
 
 Finally simply run::
 
-    python manage.py syncdb
-
-If you have South installed, make sure you run the following commands::
-
-    python manage.py migrate admin_tools.dashboard
-    python manage.py migrate admin_tools.menu
+    python manage.py migrate
 
 Testing your new shiny admin interface
 --------------------------------------
@@ -99,4 +106,3 @@ changed.
 django-admin-tools is fully customizable, but this is out of the scope of 
 this quickstart. To learn how to customize django-admin-tools modules 
 please read :ref:`the customization section<customization>`.
-

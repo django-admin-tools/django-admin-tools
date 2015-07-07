@@ -8,7 +8,13 @@ Requirements
 
 Before installing django-admin-tools, you'll need to have a copy of
 `Django <http://www.djangoproject.com>`_ already installed. For the
-|version| release, Django 1.3 or newer is required.
+|version| release, Django 1.7 or newer is required.
+
+.. note::
+    *Important note to users of django 1.6 or below:*
+    starting from 0.6.0, django-admin-tools is *NOT* compatible with
+    django <= 1.6. If you want, you can still use the 0.5.2 version
+    that will always be available on Pypi.
 
 For further information, consult the `Django download page
 <http://www.djangoproject.com/download/>`_, which offers convenient
@@ -95,19 +101,17 @@ installation script. From a command line in that directory, type::
     privileges (e.g., ``sudo python setup.py install``).
 
 
-Manual installation from a Mercurial checkout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Manual installation from a git checkout
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you'd like to try out the latest in-development code, you can
-obtain it from the django-admin-tools repository, which is hosted at
-`Bitbucket <http://bitbucket.org/>`_ and uses `Mercurial
-<http://www.selenic.com/mercurial/wiki/>`_ for version control. To
-obtain the latest code and documentation, you'll need to have
-Mercurial installed, at which point you can type::
+obtain it from the django-admin-tools repository, which is hosted on
+`Github <https://github.com/django-admin-tools/django-admin-tools>`_.
+To obtain the latest code and documentation, you'll need to have
+Git installed, at which point you can type::
 
-    hg clone http://bitbucket.org/izi/django-admin-tools/
+    git clone https://github.com/django-admin-tools/django-admin-tools.git
 
-This will create a copy of the django-admin-tools Mercurial repository
-on your computer; you can then add the ``django-admin-tools`` directory
-to your Python import path, or use the ``setup.py`` script to install
-as a package.
+This will create a copy of the django-admin-tools Git repository on your
+computer; you can then add the ``django-admin-tools`` directory to your
+Python import path, or use the ``setup.py`` script to install as a package.

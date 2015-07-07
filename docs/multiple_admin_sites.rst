@@ -8,17 +8,10 @@ Introduction
 
 Django supports custom admin sites, and of course you can have as many
 admin sites as you want, django-admin-tools provides basic support for
-this, you can setup a custom dashboard for each admin site.
+this, you can setup a custom dashboard or menu for each admin site.
 
-.. note::
-    Multiple admin site support in django-admin-tools is, at the moment,
-    limited to dashboards. This means you cannot have different menus or
-    theming for each instance of admin sites. This will change in the near
-    near future though.
-
-
-Setting up a different dashboard for each admin site instance
--------------------------------------------------------------
+Setting up a different dashboard and menu for each admin site instance
+----------------------------------------------------------------------
 
 In the following example we will assume that you have two admin site
 instances: the default django admin site and a custom admin site of your
@@ -51,3 +44,16 @@ settings file::
 
 Note that the same applies for the ``ADMIN_TOOLS_APP_INDEX_DASHBOARD``
 settings variable.
+
+Finally do the same thing for menu::
+
+    python manage.py custommenu django_admin_menu.py
+    python manage.py custommenu my_admin_menu.py
+
+And to tell django-admin-tools to use your custom menu depending on
+the admin site being used::
+
+    ADMIN_TOOLS_MENU = {
+        'django.contrib.admin.site': 'yourproject.django_admin_menu.CustomMenu',
+        'yourproject.admin.admin_site': 'yourproject.my_admin_menu.CustomMenu',
+    }

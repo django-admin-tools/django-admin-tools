@@ -33,6 +33,12 @@ Required settings
 First make sure you have the ``django.core.context_processors.request``
 template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS``.
 
+.. note::
+    Starting from django 1.8, ``TEMPLATE_CONTEXT_PROCESSORS`` is deprecated,
+    you must add the request context processor in your ``TEMPLATES`` variable
+    instead, please refer to the
+    `relevant django documentation <https://docs.djangoproject.com/en/1.8/ref/templates/upgrading/>`_.
+
 Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
 this::
 
@@ -69,13 +75,7 @@ Setting up the database
 
 To set up the tables that django-admin-tools uses you'll need to type::
 
-    python manage.py syncdb
-
-django-admin-tools supports `South <http://south.aeracode.org>`_, so if you
-have South installed, make sure you run the following commands::
-
-    python manage.py migrate admin_tools.dashboard
-    python manage.py migrate admin_tools.menu
+    python manage.py migrate
 
 Adding django-admin-tools to your urls.py file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
