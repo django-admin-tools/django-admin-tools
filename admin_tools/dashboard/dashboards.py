@@ -11,11 +11,7 @@ except ImportError:
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
-try:
-    from django.utils.encoding import force_text
-except ImportError:
-    # Django < 1.5
-    from django.utils.encoding import force_unicode as force_text
+from django.utils.encoding import force_text
 
 from admin_tools.dashboard import modules
 from admin_tools.utils import get_admin_site_name, uniquify
