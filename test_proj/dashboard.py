@@ -12,6 +12,12 @@ class CustomIndexDashboard(Dashboard):
     """
     Custom index dashboard for test_proj.
     """
+    class Media:
+        css = {
+            'all': ('test_app/dashboard.css',),
+        }
+        js = ('test_app/dashboard.js',)
+
     def __init__(self, **kwargs):
         Dashboard.__init__(self, **kwargs)
 

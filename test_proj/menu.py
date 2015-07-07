@@ -10,6 +10,12 @@ class CustomMenu(Menu):
     """
     Custom Menu for test_proj admin site.
     """
+    class Media:
+        css = {
+            'all': ('test_app/menu.css',),
+        }
+        js = ('test_app/menu.js',)
+
     def __init__(self, **kwargs):
         Menu.__init__(self, **kwargs)
         self.children += [
