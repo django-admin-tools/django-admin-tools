@@ -52,7 +52,7 @@
 
 {% block dashboard_title %}
 {% if dashboard.title %}
-<h1 class="dashboard-title">{{ dashboard.title }}</h1>
+<h1 class="dashboard-title">{% trans dashboard.title|capfirst %}</h1>
 {% endif %}
 {% endblock %}
 
@@ -64,7 +64,7 @@
         {% spaceless %}
         {% for module in dashboard.children %}
         {% if not module.enabled %}
-        <li><a href="#" rel="module_{{ module.id }}" class="addlink add-dashboard-module">{{ module.title }}</a></li>
+        <li><a href="#" rel="module_{{ module.id }}" class="addlink add-dashboard-module">{% trans module.title|capfirst %}</a></li>
         {% endif %}
         {% endfor %}
         {% endspaceless %}

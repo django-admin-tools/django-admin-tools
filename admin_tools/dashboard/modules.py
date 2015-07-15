@@ -2,12 +2,14 @@
 Module where admin tools dashboard modules classes are defined.
 """
 
-from django.utils.text import capfirst
+from django.apps import apps as django_apps
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from django.forms.utils import flatatt
-from django.utils.translation import ugettext_lazy as _
+
 from django.utils.itercompat import is_iterable
+from django.utils.text import capfirst
+from django.utils.translation import ugettext_lazy as _
 
 from admin_tools.utils import AppListElementMixin, uniquify
 
@@ -444,12 +446,12 @@ class AppList(DashboardModule, AppListElementMixin):
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
-                    'title': capfirst(app_label.title()),
+                    'title': django_apps.get_app_config(app_label).verbose_name,
                     'url': self._get_admin_app_list_url(model, context),
                     'models': []
                 }
             model_dict = {}
-            model_dict['title'] = capfirst(model._meta.verbose_name_plural)
+            model_dict['title'] = model._meta.verbose_name_plural
             if perms['change']:
                 model_dict['change_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
@@ -532,7 +534,7 @@ class ModelList(DashboardModule, AppListElementMixin):
             return
         for model, perms in items:
             model_dict = {}
-            model_dict['title'] = capfirst(model._meta.verbose_name_plural)
+            model_dict['title'] = model._meta.verbose_name_plural
             if perms['change']:
                 model_dict['change_url'] = self._get_admin_change_url(model, context)
             if perms['add']:

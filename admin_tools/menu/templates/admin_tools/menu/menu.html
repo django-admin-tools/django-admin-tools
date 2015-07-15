@@ -28,7 +28,7 @@
             {% if has_bookmark_item %}
                 process_bookmarks(
                    "{{ request.get_full_path }}",
-                   "{{ title }}",
+                   "{% trans title|capfirst %}",
                    "{% trans 'Please enter a name for the bookmark' %}"
                 );
             {% endif %}
