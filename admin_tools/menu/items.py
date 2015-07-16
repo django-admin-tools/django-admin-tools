@@ -1,6 +1,6 @@
+from django.apps import apps as django_apps
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
-from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 from admin_tools.utils import AppListElementMixin
 
@@ -191,12 +191,12 @@ class AppList(MenuItem, AppListElementMixin):
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
-                    'title': capfirst(app_label.title()),
+                    'title': django_apps.get_app_config(app_label).verbose_name,
                     'url': self._get_admin_app_list_url(model, context),
                     'models': []
                 }
             apps[app_label]['models'].append({
-                'title': capfirst(model._meta.verbose_name_plural),
+                'title': model._meta.verbose_name_plural,
                 'url': self._get_admin_change_url(model, context)
             })
 
@@ -283,7 +283,7 @@ class ModelList(MenuItem, AppListElementMixin):
         for model, perms in items:
             if not perms['change']:
                 continue
-            title = capfirst(model._meta.verbose_name_plural)
+            title = model._meta.verbose_name_plural
             url = self._get_admin_change_url(model, context)
             item = MenuItem(title=title, url=url)
             self.children.append(item)
