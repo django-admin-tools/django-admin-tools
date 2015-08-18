@@ -96,6 +96,15 @@ Finally simply run::
 
     python manage.py migrate
 
+To collect static files run::
+    
+    python manage.py collectstatic
+
+.. important::
+    it is very important that ``django.contrib.staticfiles.finders.AppDirectoriesFinder''
+    be there in your ``STATICFILES_FINDERS``.
+
+
 Testing your new shiny admin interface
 --------------------------------------
 
