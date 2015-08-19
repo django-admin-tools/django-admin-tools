@@ -87,6 +87,18 @@ You'll need to add django-admin-tools to your urls.py file::
         #...other url patterns...
     )
 
+Collecting the Static Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To collect static files run::
+    
+    python manage.py collectstatic
+
+.. important::
+    it is very important that ``django.contrib.staticfiles.finders.AppDirectoriesFinder''
+    be there in your ``STATICFILES_FINDERS``.
+
+
 Available settings variables
 ----------------------------
 
