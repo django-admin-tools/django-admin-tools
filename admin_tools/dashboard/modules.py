@@ -4,7 +4,6 @@ Module where admin tools dashboard modules classes are defined.
 
 from django.apps import apps as django_apps
 from django.core.urlresolvers import reverse
-from django.contrib.contenttypes.models import ContentType
 from django.forms.utils import flatatt
 
 from django.utils.itercompat import is_iterable
@@ -613,6 +612,10 @@ class RecentActions(DashboardModule):
         request = context['request']
 
         def get_qset(list):
+            
+            # Import this here to silence RemovedInDjango19Warning. See #15
+            from django.contrib.contenttypes.models import ContentType
+
             qset = None
             for contenttype in list:
                 if isinstance(contenttype, ContentType):

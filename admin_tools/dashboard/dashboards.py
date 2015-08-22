@@ -10,7 +10,6 @@ except ImportError:
     from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import force_text
 
 from admin_tools.dashboard import modules
@@ -201,7 +200,11 @@ class AppIndexDashboard(Dashboard):
         """
         Return a list of all content_types for this app.
         """
-        return [ContentType.objects.get_for_model(c) for c \
+        
+        # Import this here to silence RemovedInDjango19Warning. See #15
+        from django.contrib.contenttypes.models import ContentType
+
+        return [ContentType.objects.get_for_model(c) for c
                 in self.get_app_model_classes()]
 
     def get_id(self):
