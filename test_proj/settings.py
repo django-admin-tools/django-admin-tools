@@ -7,7 +7,6 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.dirname(PROJECT_PATH))
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -106,6 +105,7 @@ from distutils.version import LooseVersion
 version = django.get_version()
 use_older_syntax = LooseVersion(django.get_version()) < LooseVersion('1.8')
 if use_older_syntax:
+    TEMPLATE_DEBUG = DEBUG
     TEMPLATE_DIRS = (
         # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
         # Always use forward slashes, even on Windows.
@@ -138,6 +138,7 @@ else:
             ],
             'APP_DIRS': True,
             'OPTIONS': {
+                'debug': DEBUG,
                 'context_processors': [
                     'django.contrib.auth.context_processors.auth',
                     'django.template.context_processors.debug',
