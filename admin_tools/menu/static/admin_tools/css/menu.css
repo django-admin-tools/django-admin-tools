@@ -84,13 +84,6 @@
     background: transparent url(../images/admin-tools.png) no-repeat 0 -385px;
 }
 
-#header ul#navigation-menu li span {
-    float: right;
-    height: 10px;
-    width: 20px;
-    background: transparent url(../images/admin-tools.png) no-repeat 0 -360px;
-}
-
 #header ul#navigation-menu li:hover,
 #header ul#navigation-menu li.over,
 #header ul#navigation-menu li.selected {
@@ -118,14 +111,9 @@
     border: 1px solid #ededed;
     border-width: 0 1px 1px 1px;
     text-transform: none;
-    min-width: 180px;
 }
 
 #header ul#navigation-menu li ul li a.has-icon:after {
-    background: transparent url(../images/admin-tools.png) no-repeat 0 -370px;
-}
-
-#header ul#navigation-menu li ul li span {
     background-position: 0 -370px;
 }
 
