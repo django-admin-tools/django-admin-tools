@@ -156,3 +156,7 @@
 #header ul#navigation-menu li.disabled a.over {
     background: none;
 }
+
+#content {
+    clear: both;
+}

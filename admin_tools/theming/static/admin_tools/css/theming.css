@@ -5,6 +5,11 @@
 
 #header {
     background: url(../images/admin-tools.png) 0 0 repeat-x;
+
+    /* Reset the indents of django-flat-theme
+      (need to restore 40px on branding+user-tools instead) */
+    padding-left: 0;
+    padding-right: 0;
 }
 
 #header #branding h1 {
@@ -14,6 +19,11 @@
     background: transparent url(../images/django.png) 10px 5px no-repeat;
     height: 31px;
     width: 93px;
+}
+
+#header #user-tools {
+    /* Old Django: 1.2em, flat theme: 40px; */
+    padding-right: 1.2em;
 }
 
 #bookmark-form {
