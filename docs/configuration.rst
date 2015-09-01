@@ -43,6 +43,7 @@ Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
 this::
 
     INSTALLED_APPS = (
+        'admin_tools',
         'admin_tools.theming',
         'admin_tools.menu',
         'admin_tools.dashboard',
@@ -63,6 +64,7 @@ module, just remove or comment it in your ``INSTALLED_APPS``.
 For example, if you just want to use the dashboard::
 
     INSTALLED_APPS = (
+        'admin_tools',
         'admin_tools.dashboard',
         'django.contrib.auth',
         'django.contrib.sites',
@@ -115,7 +117,7 @@ Available settings variables
     "yourproject.dashboard.CustomAppIndexDashboard".
 
 ``ADMIN_TOOLS_THEMING_CSS``
-    The path to your theming css stylesheet, relative to your MEDIA_URL,
+    The path to your theming css stylesheet, relative to your STATIC_URL,
     for example::
 
         ADMIN_TOOLS_THEMING_CSS = 'css/theming.css'
