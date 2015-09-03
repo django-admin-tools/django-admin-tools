@@ -14,7 +14,7 @@ def check_configuration():
     Perform some configuration checks for django-admin-tools.
     """
     try:
-        templates = getattr(settings, 'TEMPLATES')
+        templates = getattr(settings, 'TEMPLATES', False)
     except ImproperlyConfigured:
         # settings are not configured, don't bother
         return False
