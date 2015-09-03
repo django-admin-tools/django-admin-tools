@@ -32,7 +32,7 @@ def check_configuration():
     else:
         processors_var_name = 'TEMPLATE_CONTEXT_PROCESSORS'
         loaders_var_name = 'TEMPLATE_LOADERS'
-        processors = settings.TEMPLATE_LOADERS
+        processors = settings.TEMPLATE_CONTEXT_PROCESSORS
         loaders = settings.TEMPLATE_LOADERS
     
     if 'django.template.context_processors.request' not in processors and \
