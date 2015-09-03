@@ -35,7 +35,8 @@ def check_configuration():
         processors = settings.TEMPLATE_LOADERS
         loaders = settings.TEMPLATE_LOADERS
     
-    if 'django.template.context_processors.request' not in processors:
+    if 'django.template.context_processors.request' not in processors and \
+       'django.core.context_processors.request' not in processors:
         raise ImproperlyConfigured(
             'You must add the "django.template.context_processors.request" '
             'template context processor to your %s settings variable' % \
