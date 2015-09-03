@@ -19,7 +19,7 @@ setup(
     author_email='izimobil@gmail.com',
     url=repo_url,
     download_url='https://pypi.python.org/packages/source/d/django-admin-tools/django-admin-tools-%s.tar.gz' % VERSION,
-    packages=find_packages(),
+    packages=find_packages(exclude=['test_proj*']),
     include_package_data=True,
     license='MIT License',
     classifiers=[
