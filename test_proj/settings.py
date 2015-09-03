@@ -117,6 +117,7 @@ if use_older_syntax:
     TEMPLATE_LOADERS = (
         'django.template.loaders.filesystem.Loader',
         'django.template.loaders.app_directories.Loader',
+        'admin_tools.template_loaders.Loader',
     )
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -136,9 +137,13 @@ else:
                 PROJECT_PATH + '/templates',
                 # insert your TEMPLATE_DIRS here
             ],
-            'APP_DIRS': True,
             'OPTIONS': {
                 'debug': DEBUG,
+                'loaders': [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                    'admin_tools.template_loaders.Loader',
+                ],
                 'context_processors': [
                     'django.contrib.auth.context_processors.auth',
                     'django.template.context_processors.debug',

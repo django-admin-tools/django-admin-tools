@@ -22,6 +22,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
+    install_requires=["django>=1.7"],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',

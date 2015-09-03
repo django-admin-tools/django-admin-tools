@@ -31,12 +31,16 @@ Required settings
 ~~~~~~~~~~~~~~~~~
 
 First make sure you have the ``django.core.context_processors.request``
-template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS``.
+template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS`` or
+``TEMPLATES`` settings variable
+
+Then add the ``admin_tools.template_loaders.Loader`` template loader to your
+``TEMPLATE_LOADERS`` or ``TEMPLATES`` settings variable.
 
 .. note::
-    Starting from django 1.8, ``TEMPLATE_CONTEXT_PROCESSORS`` is deprecated,
-    you must add the request context processor in your ``TEMPLATES`` variable
-    instead, please refer to the
+    Starting from django 1.8, ``TEMPLATE_CONTEXT_PROCESSORS`` and
+    ``TEMPLATE_LOADERS`` are deprecated, they are replaced by the
+    ``TEMPLATES`` variable, please refer to the
     `relevant django documentation <https://docs.djangoproject.com/en/1.8/ref/templates/upgrading/>`_.
 
 Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
