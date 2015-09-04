@@ -1,3 +1,7 @@
 {% extends "admin:admin/base.html" %}
 {% load theming_tags %}
-{% block extrastyle %}{% render_theming_css %}{% endblock %}
+{% block blockbots %}
+    {{ block.super }}
+    {# Using blockbots ensures theming css comes after any form media and other css #}
+    {% render_theming_css %}
+{% endblock %}
