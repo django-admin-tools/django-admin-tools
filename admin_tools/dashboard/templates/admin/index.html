@@ -1,13 +1,13 @@
 {% extends "admin:admin/index.html" %}
 {% load admin_tools_dashboard_tags %}
 {% block extrastyle %}
-{{ block.super }}
-{% block dashboard_css %}{% admin_tools_render_dashboard_css %}{% endblock %}
+    {{ block.super }}
+    {% block dashboard_css %}{% admin_tools_render_dashboard_css %}{% endblock %}
 {% endblock %}
 {% block coltype %}{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
 {% block content_title %}{% endblock %}
 {% block content %}
-{% admin_tools_render_dashboard %}
+    {% admin_tools_render_dashboard %}
 {% endblock %}
 {% block sidebar %}{% endblock %}

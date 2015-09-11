@@ -1,10 +1,10 @@
 {% extends "admin:admin/base_site.html" %}
 {% load admin_tools_menu_tags %}
 {% block extrastyle %}
-{{ block.super }}
-{% if user.is_active and user.is_staff and not is_popup %}{% admin_tools_render_menu_css %}{% endif %}
+    {{ block.super }}
+    {% if user.is_active and user.is_staff and not is_popup %}{% admin_tools_render_menu_css %}{% endif %}
 {% endblock %}
 {% block nav-global %}
-{{ block.super }}
-{% if user.is_active and user.is_staff and not is_popup %}{% admin_tools_render_menu %}{% endif %}
+    {{ block.super }}
+    {% if user.is_active and user.is_staff and not is_popup %}{% admin_tools_render_menu %}{% endif %}
 {% endblock %}

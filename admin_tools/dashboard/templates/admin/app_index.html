@@ -1,9 +1,9 @@
 {% extends "admin:admin/app_index.html" %} 
 {% load admin_tools_dashboard_tags %} 
 {% block extrastyle %}
-{{ block.super }}
-{% block dashboard_css %}{% admin_tools_render_dashboard_css 'app_index' %}{% endblock %}
+    {{ block.super }}
+    {% block dashboard_css %}{% admin_tools_render_dashboard_css 'app_index' %}{% endblock %}
 {% endblock %}
 {% block content %}
-{% admin_tools_render_dashboard 'app_index' %}
+    {% admin_tools_render_dashboard 'app_index' %}
 {% endblock %}
