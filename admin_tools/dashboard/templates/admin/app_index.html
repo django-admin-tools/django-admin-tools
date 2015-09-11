@@ -1,19 +1,9 @@
-{% extends "admin/index.html" %} 
-{% load i18n admin_tools_dashboard_tags %} 
-
-{% if not is_popup %}
-
-{% block dashboard_css %}{% admin_tools_render_dashboard_css 'app_index' %}{% endblock %}
-{% block breadcrumbs %}
-<div class="breadcrumbs"><a href="../">
-{% trans "Home" %}</a> &rsaquo; 
-{% for app in app_list %}
-{% trans app.name %}
-{% endfor %}</div>{% endblock %}
-
-{% endif %} 
-
-{% block content %}
-{% admin_tools_render_dashboard 'app_index' %}
+{% extends "admin:admin/app_index.html" %} 
+{% load admin_tools_dashboard_tags %} 
+{% block extrastyle %}
+    {{ block.super }}
+    {% block dashboard_css %}{% admin_tools_render_dashboard_css 'app_index' %}{% endblock %}
 {% endblock %}
-{% block sidebar %}{% endblock %}
+{% block content %}
+    {% admin_tools_render_dashboard 'app_index' %}
+{% endblock %}

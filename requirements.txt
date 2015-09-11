@@ -1,0 +1,7 @@
+# django-admin-tools requirements
+
+# required
+django>=1.7
+
+# optional, for documentation
+sphinx
