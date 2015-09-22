@@ -64,10 +64,10 @@ def get_app_index_dashboard(context):
     admin_site = get_admin_site(context=context)
 
     for model, model_admin in admin_site._registry.items():
-        if app['name'] == model._meta.app_label.title():
+        if app['app_label'] == model._meta.app_label:
             split = model.__module__.find(model._meta.app_label)
             app_label = model.__module__[0:split] + model._meta.app_label
-            app_title = model._meta.app_label.title()
+            # app_title = model._meta.app_label.title()
             for m in app['models']:
                 if m['name'] == capfirst(model._meta.verbose_name_plural):
                     mod = '%s.%s' % (model.__module__, model.__name__)
