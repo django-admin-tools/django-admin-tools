@@ -1,5 +1,6 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+from admin_tools.dashboard import views
 
-urlpatterns = patterns('admin_tools.dashboard.views',
-    url(r'^set_preferences/(?P<dashboard_id>.+)/$', 'set_preferences', name='admin-tools-dashboard-set-preferences'),
-)
+urlpatterns = [
+    url(r'^set_preferences/(?P<dashboard_id>.+)/$', views.set_preferences, name='admin-tools-dashboard-set-preferences'),
+]
