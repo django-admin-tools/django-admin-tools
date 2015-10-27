@@ -58,5 +58,14 @@ class Loader(FilesystemLoader):
         app_name, template_name = template_name.split(":", 1)
         template_dir = get_app_template_dir(app_name)
         if template_dir:
-            return [join(template_dir, template_name)]
+            try:
+                from django.template import Origin
+                origin = Origin(
+                    name=join(template_dir, template_name),
+                    template_name=template_name,
+                    loader=self,
+                )
+            except (ImportError, TypeError):
+                origin = join(template_dir, template_name)
+            return [origin]
         return []
