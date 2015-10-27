@@ -93,7 +93,9 @@ def filter_models(request, models, exclude):
                     wildcard_models.append(item)
             if wildcard_models:
                 # sort wildcard matches alphabetically before adding them
-                wildcard_models.sort(key=lambda x: unicode(x[0]))
+                wildcard_models.sort(
+                    key=lambda x: x[0]._meta.verbose_name_plural
+                )
                 included += wildcard_models
 
     result = included[:]
