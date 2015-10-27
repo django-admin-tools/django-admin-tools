@@ -79,10 +79,22 @@ def filter_models(request, models, exclude):
         included = items
     else:
         for pattern in models:
+            wildcard_models = []
             for item in items:
                 model, perms = item
-                if fnmatch(full_name(model), pattern) and item not in included:
+                model_str = full_name(model)
+                if model_str == pattern:
+                    # exact match
                     included.append(item)
+                elif fnmatch(model_str, pattern) and \
+                   item not in wildcard_models:
+                    # wildcard match, put item in separate list so it can be
+                    # sorted alphabetically later
+                    wildcard_models.append(item)
+            if wildcard_models:
+                # sort wildcard matches alphabetically before adding them
+                wildcard_models.sort(key=lambda x: unicode(x[0]))
+                included += wildcard_models
 
     result = included[:]
     for pattern in exclude:
