@@ -2,6 +2,22 @@
 django-admin-tools changelog
 ============================
 
+Version 0.7.0, 5 November 2015:
+-------------------------------
+
+* IMPORTANT INFORMATION, PLEASE READ: *
+
+Starting from this version (0.7.0) you must add ``admin_tools.template_loaders.Loader`` to your templates loaders variable in your settings file, see here for details:
+http://django-admin-tools.readthedocs.org/en/latest/configuration.html
+
+Change log:
+
+* Support for Django 1.9 and the new admin flat theme
+* Added a custom template loader (based on django-apptemplates) that allows us to extends admin templates instead of overriding them
+* Fixed a lot of warnings
+* Fixed other minor issues and typos
+
+
 Version 0.6.0, 7 July 2015:
 ---------------------------
 
