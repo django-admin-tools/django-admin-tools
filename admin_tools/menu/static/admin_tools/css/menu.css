@@ -2,6 +2,12 @@
 
 #header {
     overflow: visible;
+    padding-top: 0;
+    min-height: 67px;
+}
+
+div.breadcrumbs {
+    clear: both;
 }
 
 #header #branding h1 {
@@ -29,7 +35,9 @@
 #header #navigation-menu {
     height: 35px;
     z-index: 9999;
-    background: transparent url(../images/admin-tools.png) repeat-x 0 -205px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    clear: both;
 }
 
 #header #bookmark-button {
@@ -52,13 +60,14 @@
 
 #header ul#navigation-menu li {
     float: left;
+    line-height: 16px;
 }
 
 #header ul#navigation-menu li a {
     display: block;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 9px 30px 9px 15px;
+    padding: 8px 30px 9px 15px;
     border-right: 1px solid #ededed;
     color: #555;
 }
@@ -78,16 +87,15 @@
 }
 
 #header ul#navigation-menu li.first a {
-    margin: 5px 0 0 12px;
-    padding-top: 4px;
+    margin: 0 0 0 12px;
     text-indent: 14px;
-    background: transparent url(../images/admin-tools.png) no-repeat 0 -385px;
+    background: transparent url(../images/admin-tools.png) no-repeat 0 -380px;
 }
 
 #header ul#navigation-menu li:hover,
 #header ul#navigation-menu li.over,
 #header ul#navigation-menu li.selected {
-    background: url(../images/admin-tools.png) repeat-x 0 -245px;
+    background: #fff;
 }
 
 #header ul#navigation-menu li ul {
@@ -143,14 +151,14 @@
 #header ul#navigation-menu li.over>ul li,
 #header ul#navigation-menu li ul li:hover>ul li,
 #header ul#navigation-menu li ul li.over>ul li {
-    background: transparent url(../images/admin-tools.png) repeat-x 0 -285px;
+    background: #fff;
 }
 
 #header ul#navigation-menu li ul li:hover,
 #header ul#navigation-menu li ul li.over,
 #header ul#navigation-menu li ul li ul li:hover,
 #header ul#navigation-menu li ul li ul li.over {
-    background: transparent url(../images/admin-tools.png) repeat-x 0 -245px;
+    background: #fafafa;
 }
 
 #header ul#navigation-menu li.disabled a:hover,

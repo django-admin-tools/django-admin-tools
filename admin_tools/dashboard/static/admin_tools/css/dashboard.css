@@ -16,6 +16,7 @@
 .dashboard #content {
     display: block;
     width: auto; !important;
+    margin: 15px 5px;
 }
 
 .dashboard-container {
@@ -24,6 +25,8 @@
 
 h1.dashboard-title {
     float: left;
+    padding-bottom: 0;
+    margin: 0 10px;
 }
 
 #dashboard-panel {
@@ -81,7 +84,7 @@ h1.dashboard-title {
 
 .dashboard-module {
     margin: 10px 10px 5px 10px;
-    padding: 1px;
+    padding: 0;
     border: 1px solid #e5e5e5;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -89,7 +92,7 @@ h1.dashboard-title {
 
 .dashboard-placeholder {
     border: 2px dashed #cbe0ff;
-	background-color: #fafafa;
+	background-color: #f8f8f8;
     margin: 10px 10px 5px 10px;
 }
 
@@ -98,7 +101,7 @@ h1.dashboard-title {
     padding: 7px 5px 8px 8px;
     text-align: left;
     font-weight: normal;
-	background: url(../images/admin-tools.png) repeat-x 0 -245px;
+	background: #f8f8f8;
     height: 20px;
     color: #555;
 }
@@ -150,17 +153,17 @@ h1.dashboard-title {
 }
 
 .dashboard-module h3 {
-    padding: 5px 10px;
+    padding: 5px 8px;
     margin: 0;
-    background: transparent url(../images/admin-tools.png) repeat-x 0 -325px;
-    text-indent: 12px;
+    background: #fafafa;
     height: 22px;
 }
 
 .dashboard-module h3 a {
-    color: #808080;
+    margin: 0;
+    color: #666;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: normal;
 }
 
 .dashboard-module-content {
