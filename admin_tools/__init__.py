@@ -34,6 +34,10 @@ def check_configuration():
         loaders_var_name = 'TEMPLATE_LOADERS'
         processors = settings.TEMPLATE_CONTEXT_PROCESSORS
         loaders = settings.TEMPLATE_LOADERS
+
+    for loader in loaders:
+        if isinstance(loader, (tuple, list)):
+            loaders += loader[1]
     
     if 'django.template.context_processors.request' not in processors and \
        'django.core.context_processors.request' not in processors:
