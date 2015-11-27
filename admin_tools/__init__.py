@@ -6,7 +6,7 @@ administration interface, it includes:
  * a customizable menu bar,
  * tools to make admin theming easier.
 """
-VERSION = '0.7.0'
+VERSION = '0.7.1'
 
 
 def check_configuration():

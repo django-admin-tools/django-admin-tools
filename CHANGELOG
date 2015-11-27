@@ -2,6 +2,13 @@
 django-admin-tools changelog
 ============================
 
+Version 0.7.1, 27 November 2015:
+--------------------------------
+
+Bugfix release.
+This release fixes an incompatibility with ``django.template.loaders.cached.Loader``.
+
+
 Version 0.7.0, 5 November 2015:
 -------------------------------
 
