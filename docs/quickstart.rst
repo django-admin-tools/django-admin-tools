@@ -71,6 +71,12 @@ Then add the ``admin_tools.template_loaders.Loader`` template loader to your
     ``TEMPLATES`` variable, please refer to the
     `relevant django documentation <https://docs.djangoproject.com/en/1.8/ref/templates/upgrading/>`_.
 
+.. note::
+    Windows users: due to filename restrictions on windows platforms, you
+    have to put the ``admin_tools.template_loaders.Loader`` at the very
+    begining of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
+    settings variable.
+
 Then, add admin_tools and its modules to the ``INSTALLED_APPS`` like this::
 
     INSTALLED_APPS = (
