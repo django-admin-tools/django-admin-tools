@@ -12,31 +12,27 @@ Template usage example::
     {% extends "admin:admin/base.html" %}
 """
 
-from os.path import dirname, join, abspath
-from importlib import import_module
+from os.path import join
 
-from django.conf import settings
+from django.apps import apps
 from django.template.loaders.filesystem import Loader as FilesystemLoader
 
 _cache = {}
 
+
 def get_app_template_dir(app_name):
     """Get the template directory for an application
 
-    We do not use django.db.models.get_app, because this will fail if an
-    app does not have any models.
+    Uses apps interface available in django 1.7+
 
     Returns a full path, or None if the app was not found.
     """
     if app_name in _cache:
         return _cache[app_name]
     template_dir = None
-    for app in settings.INSTALLED_APPS:
-        if app.split('.')[-1] == app_name:
-            # Do not hide import errors; these should never happen at this point
-            # anyway
-            mod = import_module(app)
-            template_dir = join(abspath(dirname(mod.__file__)), 'templates')
+    for app in apps.get_app_configs():
+        if app.label == app_name:
+            template_dir = join(app.path, 'templates')
             break
     _cache[app_name] = template_dir
     return template_dir
