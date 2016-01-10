@@ -4,8 +4,10 @@ env:
   matrix:
     - TOXENV=py27-dj17
     - TOXENV=py27-dj18
-    - TOXENV=py33-dj17
-    - TOXENV=py33-dj18
+    - TOXENV=py27-dj19
+    - TOXENV=py34-dj17
+    - TOXENV=py34-dj18
+    - TOXENV=py34-dj19
 install:
   - pip install tox
 script: tox
