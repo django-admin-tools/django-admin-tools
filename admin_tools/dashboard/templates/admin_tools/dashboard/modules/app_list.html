@@ -2,12 +2,12 @@
 {% load i18n %}
 {% block module_content %}
         {% for child in module.children %}
-        <h3><a href="{{ child.url }}">{% trans child.title|capfirst %}</a></h3>
+        <h3><a href="{{ child.url }}">{{ child.title|capfirst }}</a></h3>
         <ul>
             {% for model in child.models %}
             {% spaceless %}
             <li>
-                {% if model.change_url %}<a href="{{ model.change_url }}">{% trans model.title|capfirst %}</a>{% else %}{% trans model.title|capfirst %}{% endif %}
+                {% if model.change_url %}<a href="{{ model.change_url }}">{{ model.title|capfirst }}</a>{% else %}{{ model.title|capfirst }}{% endif %}
                 {% if model.add_url or model.change_url %}
                 <ul>
                     {% if model.add_url %}<li><a class="addlink" href="{{ model.add_url }}"><span class="icon">{% trans "Add" %}</span></a></li>{% endif %}

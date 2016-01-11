@@ -1,11 +1,10 @@
 {% extends "admin_tools/dashboard/module.html" %}
-{% load i18n %}
 {% block module_content %}
 <ul class="{{ module.layout }}">
     {% spaceless %}
     {% for child in module.children %}
     <li class="{% cycle 'odd' 'even' %}">
-    <a{{ child.attrs|safe }}>{% trans child.title|capfirst %}</a> 
+    <a{{ child.attrs|safe }}>{{ child.title|capfirst }}</a> 
     </li>
     {% endfor %}
     {% endspaceless %}
