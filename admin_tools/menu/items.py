@@ -173,14 +173,14 @@ class AppList(MenuItem, AppListElementMixin):
         """
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        self.include_list = kwargs.pop('include_list', []) # deprecated
-        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
+        self.include_list = kwargs.pop('include_list', [])  # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', [])  # deprecated
         super(AppList, self).__init__(title, **kwargs)
-
 
     def init_with_context(self, context):
         """
-        Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
+        Please refer to
+        :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
         documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         items = self._visible_models(context['request'])
@@ -191,7 +191,8 @@ class AppList(MenuItem, AppListElementMixin):
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
-                    'title': django_apps.get_app_config(app_label).verbose_name,
+                    'title':
+                        django_apps.get_app_config(app_label).verbose_name,
                     'url': self._get_admin_app_list_url(model, context),
                     'models': []
                 }
@@ -252,7 +253,9 @@ class ModelList(MenuItem, AppListElementMixin):
             def __init__(self, **kwargs):
                 super(MyMenu, self).__init__(**kwargs)
                 self.children += [
-                    items.ModelList('Authentication', ['django.contrib.auth.*',])
+                    items.ModelList(
+                        'Authentication', ['django.contrib.auth.*',]
+                    )
                 ]
 
     .. note::
@@ -269,14 +272,15 @@ class ModelList(MenuItem, AppListElementMixin):
         """
         self.models = list(models or [])
         self.exclude = list(exclude or [])
-        self.include_list = kwargs.pop('include_list', []) # deprecated
-        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
+        self.include_list = kwargs.pop('include_list', [])  # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', [])  # deprecated
 
         super(ModelList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
         """
-        Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
+        Please refer to
+        :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
         documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         items = self._visible_models(context['request'])
@@ -332,7 +336,8 @@ class Bookmarks(MenuItem, AppListElementMixin):
 
     def init_with_context(self, context):
         """
-        Please refer to the :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
+        Please refer to
+        :meth:`~admin_tools.menu.items.MenuItem.init_with_context`
         documentation from :class:`~admin_tools.menu.items.MenuItem` class.
         """
         from admin_tools.menu.models import Bookmark
@@ -348,5 +353,3 @@ class Bookmarks(MenuItem, AppListElementMixin):
         A bookmark menu item is never considered as active, the real item is.
         """
         return False
-
-

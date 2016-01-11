@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from admin_tools.dashboard.registry import Registry
 from admin_tools.utils import get_admin_site
 
+
 def get_dashboard(context, location):
     """
     Returns the dashboard that match the given ``location``
@@ -23,6 +24,7 @@ def get_dashboard(context, location):
     elif location == 'app_index':
         return get_app_index_dashboard(context)
     raise ValueError('Invalid dashboard location: "%s"' % location)
+
 
 def _get_dashboard_cls(dashboard_cls, context):
     if isinstance(dashboard_cls, dict):
@@ -42,6 +44,7 @@ def _get_dashboard_cls(dashboard_cls, context):
         return getattr(mod, inst)
     raise ValueError('Dashboard matching "%s" not found' % dashboard_cls)
 
+
 def get_index_dashboard(context):
     """
     Returns the admin dashboard defined by the user or the default one.
@@ -51,6 +54,7 @@ def get_index_dashboard(context):
         'ADMIN_TOOLS_INDEX_DASHBOARD',
         'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
     ), context)()
+
 
 def get_app_index_dashboard(context):
     """

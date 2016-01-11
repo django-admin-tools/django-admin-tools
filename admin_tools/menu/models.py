@@ -4,6 +4,11 @@ This module contains the base classes for menu and menu items.
 from django.conf import settings
 from django.db import models
 
+# for backward-compatibility
+from admin_tools import menu
+from admin_tools.menu import items
+from admin_tools.deprecate_utils import import_path_is_changed
+
 user_model = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
@@ -22,10 +27,6 @@ class Bookmark(models.Model):
         db_table = 'admin_tools_menu_bookmark'
         ordering = ('id',)
 
-# for backward-compatibility
-from admin_tools import menu
-from admin_tools.menu import items
-from admin_tools.deprecate_utils import import_path_is_changed
 
 class Menu(
           import_path_is_changed(
@@ -33,7 +34,9 @@ class Menu(
               'admin_tools.menu.Menu'
           ),
           menu.Menu
-      ): pass
+      ):
+    pass
+
 
 class DefaultMenu(
           import_path_is_changed(
@@ -41,7 +44,9 @@ class DefaultMenu(
               'admin_tools.menu.DefaultMenu'
           ),
           menu.DefaultMenu
-      ): pass
+      ):
+    pass
+
 
 class MenuItem(
           import_path_is_changed(
@@ -49,7 +54,9 @@ class MenuItem(
               'admin_tools.menu.items.MenuItem'
           ),
           items.MenuItem
-      ): pass
+      ):
+    pass
+
 
 class AppListMenuItem(
           import_path_is_changed(
@@ -57,7 +64,9 @@ class AppListMenuItem(
               'admin_tools.menu.items.AppList'
           ),
           items.AppList
-      ): pass
+      ):
+    pass
+
 
 class BookmarkMenuItem(
           import_path_is_changed(
@@ -65,4 +74,5 @@ class BookmarkMenuItem(
               'admin_tools.menu.items.Bookmarks'
           ),
           items.Bookmarks
-      ): pass
+      ):
+    pass

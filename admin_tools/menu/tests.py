@@ -4,6 +4,7 @@ from django.core import management
 
 from admin_tools.menu.items import AppList
 
+
 class ManagementCommandTest(TestCase):
 
     def test_custommenu(self):

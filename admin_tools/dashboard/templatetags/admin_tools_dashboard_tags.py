@@ -18,7 +18,10 @@ from admin_tools.dashboard.utils import get_dashboard
 from admin_tools.dashboard.models import DashboardPreferences
 
 register = template.Library()
-tag_func = register.inclusion_tag('admin_tools/dashboard/dummy.html', takes_context=True)
+tag_func = register.inclusion_tag(
+    'admin_tools/dashboard/dummy.html',
+    takes_context=True
+)
 
 
 def admin_tools_render_dashboard(context, location='index', dashboard=None):
@@ -62,9 +65,12 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
         'template': dashboard.template,
         'dashboard': dashboard,
         'dashboard_preferences': preferences,
-        'split_at': math.ceil(float(len(dashboard.children))/float(dashboard.columns)),
-        'has_disabled_modules': len([m for m in dashboard.children \
-                                if not m.enabled]) > 0,
+        'split_at': math.ceil(
+            float(len(dashboard.children)) / float(dashboard.columns)
+        ),
+        'has_disabled_modules': len(
+            [m for m in dashboard.children if not m.enabled]
+        ) > 0,
         'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
@@ -83,10 +89,13 @@ def admin_tools_render_dashboard_module(context, module):
         'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
-admin_tools_render_dashboard_module = tag_func(admin_tools_render_dashboard_module)
+admin_tools_render_dashboard_module = tag_func(
+    admin_tools_render_dashboard_module
+)
 
 
-def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
+def admin_tools_render_dashboard_css(
+        context, location='index', dashboard=None):
     """
     Template tag that renders the dashboard css files, it takes two optional
     arguments:
@@ -105,7 +114,7 @@ def admin_tools_render_dashboard_css(context, location='index', dashboard=None):
         dashboard = get_dashboard(context, location)
 
     context.update({
-        'template' : 'admin_tools/dashboard/css.html',
+        'template': 'admin_tools/dashboard/css.html',
         'css_files': dashboard.Media.css,
     })
     return context

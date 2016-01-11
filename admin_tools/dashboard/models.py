@@ -4,6 +4,11 @@ This module contains the base classes for the dashboard and dashboard modules.
 from django.conf import settings
 from django.db import models
 
+# warnings for deprecated imports
+from admin_tools.deprecate_utils import import_path_is_changed
+from admin_tools.dashboard import dashboards
+from admin_tools.dashboard import modules
+
 user_model = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
@@ -24,18 +29,15 @@ class DashboardPreferences(models.Model):
         ordering = ('user',)
 
 
-# warnings for deprecated imports
-from admin_tools.deprecate_utils import import_path_is_changed
-from admin_tools.dashboard import dashboards
-from admin_tools.dashboard import modules
-
 class Dashboard(
           import_path_is_changed(
               'admin_tools.dashboard.models.Dashboard',
               'admin_tools.dashboard.Dashboard'
           ),
           dashboards.Dashboard
-      ): pass
+      ):
+    pass
+
 
 class DefaultIndexDashboard(
           import_path_is_changed(
@@ -43,7 +45,9 @@ class DefaultIndexDashboard(
               'admin_tools.dashboard.DefaultIndexDashboard',
           ),
           dashboards.DefaultIndexDashboard
-      ):pass
+      ):
+    pass
+
 
 class DefaultAppIndexDashboard(
           import_path_is_changed(
@@ -51,7 +55,9 @@ class DefaultAppIndexDashboard(
               'admin_tools.dashboard.DefaultAppIndexDashboard'
           ),
           dashboards.DefaultAppIndexDashboard
-      ):pass
+      ):
+    pass
+
 
 class AppIndexDashboard(
           import_path_is_changed(
@@ -59,7 +65,8 @@ class AppIndexDashboard(
               'admin_tools.dashboard.AppIndexDashboard'
           ),
           dashboards.AppIndexDashboard
-      ):pass
+      ):
+    pass
 
 
 class DashboardModule(
@@ -68,7 +75,9 @@ class DashboardModule(
               'admin_tools.dashboard.modules.DashboardModule',
           ),
           modules.DashboardModule
-      ):pass
+      ):
+    pass
+
 
 class AppListDashboardModule(
           import_path_is_changed(
@@ -76,7 +85,9 @@ class AppListDashboardModule(
               'admin_tools.dashboard.modules.AppList',
           ),
           modules.AppList
-      ): pass
+      ):
+    pass
+
 
 class ModelListDashboardModule(
           import_path_is_changed(
@@ -84,7 +95,9 @@ class ModelListDashboardModule(
               'admin_tools.dashboard.modules.ModelList',
           ),
           modules.ModelList
-      ): pass
+      ):
+    pass
+
 
 class LinkListDashboardModule(
           import_path_is_changed(
@@ -92,7 +105,9 @@ class LinkListDashboardModule(
               'admin_tools.dashboard.modules.LinkList',
           ),
           modules.LinkList
-      ): pass
+      ):
+    pass
+
 
 class FeedDashboardModule(
           import_path_is_changed(
@@ -100,4 +115,5 @@ class FeedDashboardModule(
               'admin_tools.dashboard.modules.Feed',
           ),
           modules.Feed
-      ): pass
+      ):
+    pass

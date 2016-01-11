@@ -89,7 +89,7 @@ class Dashboard(object):
 
     class Media:
         css = ()
-        js  = ()
+        js = ()
 
     def __init__(self, **kwargs):
         for key in kwargs:
@@ -200,7 +200,6 @@ class AppIndexDashboard(Dashboard):
         """
         Return a list of all content_types for this app.
         """
-        
         # Import this here to silence RemovedInDjango19Warning. See #15
         from django.contrib.contenttypes.models import ContentType
 
@@ -307,7 +306,7 @@ class DefaultAppIndexDashboard(AppIndexDashboard):
 
         # append a model list module and a recent actions module
         self.children += [
-            modules.ModelList( self.app_title,self.models),
+            modules.ModelList(self.app_title, self.models),
             modules.RecentActions(
                 _('Recent Actions'),
                 include_list=self.get_app_content_types(),

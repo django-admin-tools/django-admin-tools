@@ -18,7 +18,7 @@ from .models import Bookmark
 def add_bookmark(request):
     """
     This view serves and validates a bookmark form.
-    If requested via ajax it also returns the drop bookmark form to replace the 
+    If requested via ajax it also returns the drop bookmark form to replace the
     add bookmark form.
     """
     if request.method == "POST":
@@ -30,18 +30,19 @@ def add_bookmark(request):
                 if request.POST.get('next'):
                     return HttpResponseRedirect(request.POST.get('next'))
                 return HttpResponse('Added')
-            return render_to_response('admin_tools/menu/remove_bookmark_form.html',
-                       RequestContext(request, {
-                'bookmark': bookmark,
-                'url': bookmark.url,
-            }))
+            return render_to_response(
+                'admin_tools/menu/remove_bookmark_form.html',
+                RequestContext(request, {
+                    'bookmark': bookmark,
+                    'url': bookmark.url,
+                })
+            )
     else:
         form = BookmarkForm(user=request.user)
-    return render_to_response('admin_tools/menu/form.html',
-               RequestContext(request, {
-        'form': form,
-        'title': 'Add Bookmark',
-    }))
+    return render_to_response(
+        'admin_tools/menu/form.html',
+        RequestContext(request, {'form': form, 'title': 'Add Bookmark'})
+    )
 
 
 @login_required
@@ -49,7 +50,11 @@ def add_bookmark(request):
 def edit_bookmark(request, id):
     bookmark = get_object_or_404(Bookmark, id=id)
     if request.method == "POST":
-        form = BookmarkForm(user=request.user, data=request.POST, instance=bookmark)
+        form = BookmarkForm(
+            user=request.user,
+            data=request.POST,
+            instance=bookmark
+        )
         if form.is_valid():
             form.save()
             if not request.is_ajax():
@@ -59,11 +64,10 @@ def edit_bookmark(request, id):
             return HttpResponse('Saved')
     else:
         form = BookmarkForm(user=request.user, instance=bookmark)
-    return render_to_response('admin_tools/menu/form.html',
-               RequestContext(request, {
-        'form': form,
-        'title': 'Edit Bookmark',
-    }))
+    return render_to_response(
+        'admin_tools/menu/form.html',
+        RequestContext(request, {'form': form, 'title': 'Edit Bookmark'})
+    )
 
 
 @login_required
@@ -71,7 +75,7 @@ def edit_bookmark(request, id):
 def remove_bookmark(request, id):
     """
     This view deletes a bookmark.
-    If requested via ajax it also returns the add bookmark form to replace the 
+    If requested via ajax it also returns the add bookmark form to replace the
     drop bookmark form.
     """
     bookmark = get_object_or_404(Bookmark, id=id)
@@ -82,13 +86,17 @@ def remove_bookmark(request, id):
             if request.POST.get('next'):
                 return HttpResponseRedirect(request.POST.get('next'))
             return HttpResponse('Deleted')
-        return render_to_response('admin_tools/menu/add_bookmark_form.html',
-                   RequestContext(request, {
-            'url': request.POST.get('next'),
-            'title': '**title**' #This gets replaced on the javascript side
-        }))
-    return render_to_response('admin_tools/menu/delete_confirm.html',
-               RequestContext(request, {
-        'bookmark': bookmark,
-        'title': 'Delete Bookmark',
-    }))
+        return render_to_response(
+            'admin_tools/menu/add_bookmark_form.html',
+            RequestContext(request, {
+                'url': request.POST.get('next'),
+                'title': '**title**'  # replaced on the javascript side
+            })
+        )
+    return render_to_response(
+        'admin_tools/menu/delete_confirm.html',
+        RequestContext(request, {
+            'bookmark': bookmark,
+            'title': 'Delete Bookmark'
+        })
+    )

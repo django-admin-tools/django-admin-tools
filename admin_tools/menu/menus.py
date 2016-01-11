@@ -63,7 +63,7 @@ class Menu(object):
 
     class Media:
         css = ()
-        js  = ()
+        js = ()
 
     def __init__(self, **kwargs):
         for key in kwargs:

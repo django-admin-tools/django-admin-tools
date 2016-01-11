@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+
 def render_theming_css():
     """
     Template tag that renders the needed css files for the theming app.
@@ -18,5 +19,8 @@ def render_theming_css():
     css = getattr(settings, 'ADMIN_TOOLS_THEMING_CSS', False)
     if not css:
         css = '/'.join(['admin_tools', 'css', 'theming.css'])
-    return mark_safe('<link rel="stylesheet" type="text/css" media="screen" href="%s" />' % staticfiles_storage.url(css))
+    return mark_safe(
+        '<link rel="stylesheet" type="text/css" media="screen" href="%s" />' %
+        staticfiles_storage.url(css)
+    )
 register.simple_tag(render_theming_css)

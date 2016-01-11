@@ -147,8 +147,8 @@ class DashboardModule(object):
         True
         """
         return self.pre_content is None and \
-               self.post_content is None and \
-               len(self.children) == 0
+            self.post_content is None and \
+            len(self.children) == 0
 
     def render_css_classes(self):
         """
@@ -328,10 +328,10 @@ class LinkList(DashboardModule):
                             'title': 'Python website',
                             'url': 'http://www.python.org',
                             'external': True,
-                            'description': 'Python programming language rocks !',
+                            'description': 'Python language rocks !',
                             'attrs': {'target': '_blank'},
                         },
-                        ['Django website', 'http://www.djangoproject.com', True],
+                        ['Django', 'http://www.djangoproject.com', True],
                         ['Some internal link', '/some/internal/link/'],
                     )
                 ))
@@ -365,8 +365,9 @@ class LinkList(DashboardModule):
             if link.get('description', ''):
                 link['attrs']['title'] = link['description']
             if link.get('external', False):
-                link['attrs']['class'] = ' '.join(['external-link']
-                    + link['attrs'].get('class', '').split(' ')).strip()
+                link['attrs']['class'] = ' '.join(
+                    ['external-link'] + link['attrs'].get('class', '').split()
+                ).strip()
             link['attrs'] = flatatt(link['attrs'])
             new_children.append(link)
         self.children = new_children
@@ -382,8 +383,8 @@ class AppList(DashboardModule, AppListElementMixin):
 
     ``models``
         A list of models to include, only models whose name (e.g.
-        "blog.comments.models.Comment") match one of the strings (e.g. "blog.*")
-        in the models list will appear in the dashboard module.
+        "blog.comments.models.Comment") match one of the strings (e.g.
+        "blog.*") in the models list will appear in the dashboard module.
 
     ``exclude``
         A list of models to exclude, if a model name (e.g.
@@ -432,8 +433,8 @@ class AppList(DashboardModule, AppListElementMixin):
     def __init__(self, title=None, **kwargs):
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        self.include_list = kwargs.pop('include_list', []) # deprecated
-        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
+        self.include_list = kwargs.pop('include_list', [])  # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', [])  # deprecated
         super(AppList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
@@ -445,14 +446,18 @@ class AppList(DashboardModule, AppListElementMixin):
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
-                    'title': django_apps.get_app_config(app_label).verbose_name,
+                    'title':
+                        django_apps.get_app_config(app_label).verbose_name,
                     'url': self._get_admin_app_list_url(model, context),
                     'models': []
                 }
             model_dict = {}
             model_dict['title'] = model._meta.verbose_name_plural
             if perms['change']:
-                model_dict['change_url'] = self._get_admin_change_url(model, context)
+                model_dict['change_url'] = self._get_admin_change_url(
+                    model,
+                    context
+                )
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             apps[app_label]['models'].append(model_dict)
@@ -473,8 +478,8 @@ class ModelList(DashboardModule, AppListElementMixin):
 
     ``models``
         A list of models to include, only models whose name (e.g.
-        "blog.comments.models.Comment") match one of the strings (e.g. "blog.*")
-        in the models list will appear in the dashboard module.
+        "blog.comments.models.Comment") match one of the strings (e.g.
+        "blog.*") in the models list will appear in the dashboard module.
 
     ``exclude``
         A list of models to exclude, if a model name (e.g.
@@ -517,8 +522,8 @@ class ModelList(DashboardModule, AppListElementMixin):
     def __init__(self, title=None, models=None, exclude=None, **kwargs):
         self.models = list(models or [])
         self.exclude = list(exclude or [])
-        self.include_list = kwargs.pop('include_list', []) # deprecated
-        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
+        self.include_list = kwargs.pop('include_list', [])  # deprecated
+        self.exclude_list = kwargs.pop('exclude_list', [])  # deprecated
         if 'extra' in kwargs:
             self.extra = kwargs.pop('extra')
         else:
@@ -535,7 +540,10 @@ class ModelList(DashboardModule, AppListElementMixin):
             model_dict = {}
             model_dict['title'] = model._meta.verbose_name_plural
             if perms['change']:
-                model_dict['change_url'] = self._get_admin_change_url(model, context)
+                model_dict['change_url'] = self._get_admin_change_url(
+                    model,
+                    context
+                )
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             self.children.append(model_dict)
@@ -547,7 +555,6 @@ class ModelList(DashboardModule, AppListElementMixin):
                 model_dict['change_url'] = extra_url['change_url']
                 model_dict['add_url'] = extra_url.get('add_url', None)
                 self.children.append(model_dict)
-
 
         self._initialized = True
 
@@ -612,7 +619,6 @@ class RecentActions(DashboardModule):
         request = context['request']
 
         def get_qset(list):
-            
             # Import this here to silence RemovedInDjango19Warning. See #15
             from django.contrib.contenttypes.models import ContentType
 
@@ -624,7 +630,9 @@ class RecentActions(DashboardModule):
                     try:
                         app_label, model = contenttype.split('.')
                     except:
-                        raise ValueError('Invalid contenttype: "%s"' % contenttype)
+                        raise ValueError(
+                            'Invalid contenttype: "%s"' % contenttype
+                        )
                     current_qset = Q(
                         content_type__app_label=app_label,
                         content_type__model=model
@@ -731,4 +739,3 @@ class Feed(DashboardModule):
                 pass
             self.children.append(entry)
         self._initialized = True
-

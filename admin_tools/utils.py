@@ -13,6 +13,7 @@ except ImportError:
     from django.utils.importlib import import_module
 import warnings
 
+
 def uniquify(value, seen_values):
     """ Adds value to seen_values set and ensures it is unique """
     id = 1
@@ -22,6 +23,7 @@ def uniquify(value, seen_values):
         id += 1
     seen_values.add(new_value)
     return new_value
+
 
 def get_admin_site(context=None, request=None):
     dashboard_cls = getattr(
@@ -45,8 +47,10 @@ def get_admin_site(context=None, request=None):
         return admin.site
     raise ValueError('Admin site matching "%s" not found' % dashboard_cls)
 
+
 def get_admin_site_name(context):
     return get_admin_site(context).name
+
 
 def get_avail_models(request):
     """ Returns (model, perm,) for all models user can possibly see """
@@ -60,6 +64,7 @@ def get_avail_models(request):
         items.append((model, perms,))
     return items
 
+
 def filter_models(request, models, exclude):
     """
     Returns (model, perm,) for all models that match models/exclude patterns
@@ -67,7 +72,9 @@ def filter_models(request, models, exclude):
     """
     items = get_avail_models(request)
     included = []
-    full_name = lambda model: '%s.%s' % (model.__module__, model.__name__)
+
+    def full_name(model):
+        return '%s.%s' % (model.__module__, model.__name__)
 
     # I beleive that that implemented
     # O(len(patterns)*len(matched_patterns)*len(all_models))
@@ -87,7 +94,7 @@ def filter_models(request, models, exclude):
                     # exact match
                     included.append(item)
                 elif fnmatch(model_str, pattern) and \
-                   item not in wildcard_models:
+                        item not in wildcard_models:
                     # wildcard match, put item in separate list so it can be
                     # sorted alphabetically later
                     wildcard_models.append(item)
@@ -123,14 +130,16 @@ class AppListElementMixin(object):
         if self.include_list:
             warnings.warn(
                "`include_list` is deprecated for ModelList and AppList and "
-               "will be removed in future releases. Please use `models` instead.",
+               "will be removed in future releases. Please use `models` "
+               "instead.",
                DeprecationWarning
             )
 
         if self.exclude_list:
             warnings.warn(
                "`exclude_list` is deprecated for ModelList and AppList and "
-               "will be removed in future releases. Please use `exclude` instead.",
+               "will be removed in future releases. Please use `exclude` "
+               "instead.",
                DeprecationWarning
             )
 

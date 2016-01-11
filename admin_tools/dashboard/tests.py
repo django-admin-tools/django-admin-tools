@@ -7,6 +7,7 @@ from django.contrib.auth import models as auth_models
 from admin_tools.dashboard import AppIndexDashboard
 from admin_tools.dashboard.modules import DashboardModule, Group
 
+
 class ManagementCommandTest(DjangoTestCase):
     def test_customdashboard(self):
         # check that customdashboard command doesn't raise exceptions
@@ -18,6 +19,7 @@ class ManagementCommandTest(DjangoTestCase):
             assert False
         except:
             pass
+
 
 class AppIndexDashboardTest(TestCase):
     def test_models(self):

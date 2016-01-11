@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 
 DEFAULT_FILE = 'menu.py'
 
+
 class Command(BaseCommand):
     help = ('Creates a template file containing the base code to get you '
             'started with your custom menu')
@@ -20,4 +21,3 @@ class Command(BaseCommand):
             'file': os.path.basename(dst).split('.')[0]
         }))
         self.stdout.write('"%s" written.' % os.path.join(dst))
-

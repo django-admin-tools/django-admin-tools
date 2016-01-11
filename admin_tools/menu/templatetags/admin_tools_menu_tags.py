@@ -17,7 +17,11 @@ from admin_tools.menu.models import Bookmark
 from admin_tools.menu.utils import get_admin_menu
 
 register = template.Library()
-tag_func = register.inclusion_tag('admin_tools/menu/dummy.html', takes_context=True)
+tag_func = register.inclusion_tag(
+    'admin_tools/menu/dummy.html',
+    takes_context=True
+)
+
 
 def admin_tools_render_menu(context, menu=None):
     """
@@ -35,7 +39,9 @@ def admin_tools_render_menu(context, menu=None):
         has_bookmark_item = True
         url = context['request'].get_full_path()
         try:
-            bookmark = Bookmark.objects.filter(user=context['request'].user, url=url)[0]
+            bookmark = Bookmark.objects.filter(
+                user=context['request'].user, url=url
+            )[0]
         except:
             pass
 
@@ -70,7 +76,7 @@ admin_tools_render_menu_item = tag_func(admin_tools_render_menu_item)
 
 def admin_tools_render_menu_css(context, menu=None):
     """
-    Template tag that renders the menu css files,, it takes an optional 
+    Template tag that renders the menu css files,, it takes an optional
     ``Menu`` instance as unique argument, if not given, the menu will be
     retrieved with the ``get_admin_menu`` function.
     """

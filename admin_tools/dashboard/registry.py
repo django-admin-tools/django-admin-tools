@@ -1,4 +1,7 @@
-#coding: utf-8
+"""
+Dashboard registry.
+"""
+
 
 class Registry(object):
     """
@@ -11,8 +14,10 @@ class Registry(object):
         if not issubclass(klass, Dashboard):
             raise ValueError('%s is not an instance of Dashboard' % klass)
         if app_name in cls.registry:
-            raise ValueError('A dashboard has already been registered for '
-                             'the application "%s"', app_name)
+            raise ValueError(
+                'A dashboard has already been registered for app "%s"' %
+                app_name
+            )
         cls.registry[app_name] = klass
     register = classmethod(register)
 
