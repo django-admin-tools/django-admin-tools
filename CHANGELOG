@@ -2,6 +2,16 @@
 django-admin-tools changelog
 ============================
 
+Version 0.7.2, 14 January 2015:
+--------------------------------
+
+Bugfix release.
+
+* Removed the config check that was causing issues in certain situations, we now use the builtin django system checks framework
+* Removed superfluous "trans" calls in admin_tools templates
+* Full PEP8 compliance
+
+
 Version 0.7.1, 27 November 2015:
 --------------------------------
 
