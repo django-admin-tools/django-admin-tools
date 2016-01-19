@@ -3,7 +3,7 @@ from django.template.loader import get_template, TemplateDoesNotExist
 
 
 W001 = Warning(
-    'You must add "admin_tools.template_loaders.TemplateLoader" in your '
+    'You must add "admin_tools.template_loaders.Loader" in your '
     'template loaders variable, see: '
     'https://django-admin-tools.readthedocs.org/en/latest/configuration.html',
     id='admin_tools.W001',
