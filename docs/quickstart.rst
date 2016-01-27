@@ -112,7 +112,7 @@ To collect static files run::
     python manage.py collectstatic
 
 .. important::
-    it is very important that ``django.contrib.staticfiles.finders.AppDirectoriesFinder''
+    it is very important that ``django.contrib.staticfiles.finders.AppDirectoriesFinder``
     be there in your ``STATICFILES_FINDERS``.
 
 
