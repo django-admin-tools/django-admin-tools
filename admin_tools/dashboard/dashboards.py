@@ -43,7 +43,9 @@ class Dashboard(object):
 
         class MyDashboard(Dashboard):
             class Media:
-                css = ('css/mydashboard.css',)
+                css = {
+                    'text/css': ('css/mydashboard.css',),
+                }
                 js = ('js/mydashboard.js',)
 
     Here's an example of a custom dashboard::
