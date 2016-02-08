@@ -44,7 +44,7 @@ class Dashboard(object):
         class MyDashboard(Dashboard):
             class Media:
                 css = {
-                    'text/css': ('css/mydashboard.css',),
+                    'screen, projection': ('css/mydashboard.css',),
                 }
                 js = ('js/mydashboard.js',)
 
