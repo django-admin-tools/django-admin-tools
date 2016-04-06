@@ -26,7 +26,7 @@ Django-admin-tools is generously documented, you can
 `browse the documentation online 
 <http://django-admin-tools.readthedocs.org/>`_.
 a good start is to read `the quickstart guide 
-<http://django-admin-tools.readthedocs.org/quickstart.html>`_.
+<http://django-admin-tools.readthedocs.org/en/latest/quickstart.html>`_.
 
 The project was created by `David Jean Louis <http://www.izimobil.org/>`_ and was previously hosted on `Bitbucket <http://bitbucket.org/izi/django-admin-tools/>`_. 
 
