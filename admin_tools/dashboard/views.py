@@ -4,17 +4,11 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.contrib import messages
 
-try:
-    from django.views.decorators.csrf import csrf_exempt
-except ImportError:
-    from django.contrib.csrf.middleware import csrf_exempt
-
 from .forms import DashboardPreferencesForm
 from .models import DashboardPreferences
 
 
 @login_required
-@csrf_exempt
 def set_preferences(request, dashboard_id):
     """
     This view serves and validates a preferences form.

@@ -4,17 +4,11 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.contrib import messages
 
-try:
-    from django.views.decorators.csrf import csrf_exempt
-except ImportError:
-    from django.contrib.csrf.middleware import csrf_exempt
-
 from .forms import BookmarkForm
 from .models import Bookmark
 
 
 @login_required
-@csrf_exempt
 def add_bookmark(request):
     """
     This view serves and validates a bookmark form.
@@ -46,7 +40,6 @@ def add_bookmark(request):
 
 
 @login_required
-@csrf_exempt
 def edit_bookmark(request, id):
     bookmark = get_object_or_404(Bookmark, id=id)
     if request.method == "POST":
@@ -71,7 +64,6 @@ def edit_bookmark(request, id):
 
 
 @login_required
-@csrf_exempt
 def remove_bookmark(request, id):
     """
     This view deletes a bookmark.
