@@ -1,4 +1,5 @@
-from django.contrib.auth.decorators import login_required
+
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -13,7 +14,7 @@ from .forms import BookmarkForm
 from .models import Bookmark
 
 
-@login_required
+@staff_member_required
 @csrf_exempt
 def add_bookmark(request):
     """
