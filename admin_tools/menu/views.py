@@ -46,7 +46,7 @@ def add_bookmark(request):
     )
 
 
-@login_required
+@staff_member_required
 @csrf_exempt
 def edit_bookmark(request, id):
     bookmark = get_object_or_404(Bookmark, id=id)
@@ -71,7 +71,7 @@ def edit_bookmark(request, id):
     )
 
 
-@login_required
+@staff_member_required
 @csrf_exempt
 def remove_bookmark(request, id):
     """
