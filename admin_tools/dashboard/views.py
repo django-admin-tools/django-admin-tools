@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -13,7 +13,7 @@ from .forms import DashboardPreferencesForm
 from .models import DashboardPreferences
 
 
-@login_required
+@staff_member_required
 @csrf_exempt
 def set_preferences(request, dashboard_id):
     """
