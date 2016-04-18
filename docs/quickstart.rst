@@ -92,7 +92,7 @@ Then, add admin_tools and its modules to the ``INSTALLED_APPS`` like this::
 
 .. important::
     it is very important that you put the admin_tools modules **before** 
-    the ``django.contrib.admin module``, because django-admin-tools
+    the ``django.contrib.admin`` module, because django-admin-tools
     overrides the default Django admin templates, and this will not work 
     otherwise.
 
