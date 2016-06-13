@@ -14,7 +14,7 @@ There are various possibilities to get involved, for example you can:
 * `Discuss new features ideas 
   <http://groups.google.fr/group/django-admin-tools>`_
 * Fork the project, implement those features and send a pull request
-* Enhance the `documentation <http://django-admin-tools.readthedocs.org/en/latest/>`_
+* Enhance the `documentation <https://django-admin-tools.readthedocs.io/en/latest/>`_
 * `Translate django-admin-tools 
   <https://www.transifex.net/projects/p/django-admin-tools/c/admin_tools/>`_ 
   in your language

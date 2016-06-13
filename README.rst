@@ -24,9 +24,9 @@ The code is hosted on `Github <https://github.com/django-admin-tools/django-admi
 
 Django-admin-tools is generously documented, you can 
 `browse the documentation online 
-<http://django-admin-tools.readthedocs.org/>`_.
+<https://django-admin-tools.readthedocs.io/>`_.
 a good start is to read `the quickstart guide 
-<http://django-admin-tools.readthedocs.org/en/latest/quickstart.html>`_.
+<https://django-admin-tools.readthedocs.io/en/latest/quickstart.html>`_.
 
 The project was created by `David Jean Louis <http://www.izimobil.org/>`_ and was previously hosted on `Bitbucket <http://bitbucket.org/izi/django-admin-tools/>`_. 
 
@@ -61,13 +61,13 @@ Or if you'd prefer you can simply place the included "admin_tools" directory
 somewhere on your python path, or symlink to it from somewhere on your Python 
 path; this is useful if you're working from a Mercurial checkout.
 
-An `installation guide <http://django-admin-tools.readthedocs.org/en/latest/installation.html>`_ is available in the documentation.
+An `installation guide <https://django-admin-tools.readthedocs.io/en/latest/installation.html>`_ is available in the documentation.
 
 *************
 Documentation
 *************
 
-`Extensive documentation <http://django-admin-tools.readthedocs.org/>`_ is available, it was made with the excellent `Sphinx program <http://sphinx.pocoo.org/>`_
+`Extensive documentation <https://django-admin-tools.readthedocs.io/>`_ is available, it was made with the excellent `Sphinx program <http://sphinx.pocoo.org/>`_
 
 ************
 Translations
