@@ -25,7 +25,7 @@ Version 0.7.0, 5 November 2015:
 * IMPORTANT INFORMATION, PLEASE READ: *
 
 Starting from this version (0.7.0) you must add ``admin_tools.template_loaders.Loader`` to your templates loaders variable in your settings file, see here for details:
-http://django-admin-tools.readthedocs.org/en/latest/configuration.html
+https://django-admin-tools.readthedocs.io/en/latest/configuration.html
 
 Change log:
 
