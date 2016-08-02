@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url, include
 
 urlpatterns = []
 if 'admin_tools.menu' in settings.INSTALLED_APPS:
