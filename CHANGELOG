@@ -2,6 +2,19 @@
 django-admin-tools changelog
 ============================
 
+Version 0.8.0, 12 August 2016:
+------------------------------
+
+This release adds support for Django 1.10 and fixes various bugs and documentation issues.
+
+* Django 1.10 support
+* Dashboard pre_content and post_content now accept HTML by default
+* Use the staff_member_required decorator instead of login_required
+* Use user.get_username() instead of user.username
+* Fixed wrong template loader class name in a warning issued by DAT
+* Fixed various typos in docs and docstrings
+
+
 Version 0.7.2, 14 January 2016:
 --------------------------------
 
