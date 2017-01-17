@@ -32,7 +32,7 @@ class Menu(object):
 
         class MyMenu(Menu):
             class Media:
-                css = ('/media/css/mymenu.css',)
+                css = {'all': ('/media/css/mymenu.css',)}
                 js = ('/media/js/mymenu.js',)
 
     Here's a concrete example of a custom menu::
