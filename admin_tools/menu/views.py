@@ -79,7 +79,7 @@ def remove_bookmark(request, id):
     If requested via ajax it also returns the add bookmark form to replace the
     drop bookmark form.
     """
-    bookmark = get_object_or_404(Bookmark, id=id)
+    bookmark = get_object_or_404(Bookmark, id=id, user=request.user)
     if request.method == "POST":
         bookmark.delete()
         if not request.is_ajax():
