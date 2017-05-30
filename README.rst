@@ -2,16 +2,22 @@ django-admin-tools
 ==================
 
 .. image:: https://travis-ci.org/django-admin-tools/django-admin-tools.svg?branch=master
-    :target: https://travis-ci.org/django-admin-tools/django-admin-tools
+   :target: https://travis-ci.org/django-admin-tools/django-admin-tools
+   :alt: Build status
+
+.. image:: https://codecov.io/gh/django-admin-tools/django-admin-tools/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/django-admin-tools/django-admin-tools
+   :alt: Test coverage status
 
 .. image:: https://img.shields.io/pypi/l/django-admin-tools.svg
+   :target: https://github.com/django-admin-tools/django-admin-tools/
+   :alt: django-admin-tools
 
 .. image:: https://img.shields.io/pypi/pyversions/django-admin-tools.svg
 
 .. image:: https://img.shields.io/badge/django-1.7%20or%20newer-green.svg
 
-.. image:: https://img.shields.io/pypi/dm/django-admin-tools.svg
-
+.. image:: https://img.shields.io/pypi/pyversions/django-admin-tools.svg
 
 django-admin-tools is a collection of extensions/tools for the default django 
 administration interface, it includes:
