@@ -187,13 +187,6 @@ INSTALLED_APPS = [
     'test_app',
 ]
 
-try:
-    import django_coverage
-    TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
-    COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(PROJECT_PATH, '_coverage')
-except ImportError:
-    TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
 
 ADMIN_TOOLS_INDEX_DASHBOARD = 'test_proj.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_MENU = 'test_proj.menu.CustomMenu'
