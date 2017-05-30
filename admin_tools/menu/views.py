@@ -2,7 +2,6 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
 from django.contrib import messages
 
 try:
@@ -33,16 +32,13 @@ def add_bookmark(request):
                 return HttpResponse('Added')
             return render_to_response(
                 'admin_tools/menu/remove_bookmark_form.html',
-                RequestContext(request, {
-                    'bookmark': bookmark,
-                    'url': bookmark.url,
-                })
+                {'bookmark': bookmark, 'url': bookmark.url}
             )
     else:
         form = BookmarkForm(user=request.user)
     return render_to_response(
         'admin_tools/menu/form.html',
-        RequestContext(request, {'form': form, 'title': 'Add Bookmark'})
+        {'form': form, 'title': 'Add Bookmark'}
     )
 
 
@@ -67,7 +63,7 @@ def edit_bookmark(request, id):
         form = BookmarkForm(user=request.user, instance=bookmark)
     return render_to_response(
         'admin_tools/menu/form.html',
-        RequestContext(request, {'form': form, 'title': 'Edit Bookmark'})
+        {'form': form, 'title': 'Edit Bookmark'}
     )
 
 
@@ -89,15 +85,12 @@ def remove_bookmark(request, id):
             return HttpResponse('Deleted')
         return render_to_response(
             'admin_tools/menu/add_bookmark_form.html',
-            RequestContext(request, {
+            {
                 'url': request.POST.get('next'),
                 'title': '**title**'  # replaced on the javascript side
-            })
+            }
         )
     return render_to_response(
         'admin_tools/menu/delete_confirm.html',
-        RequestContext(request, {
-            'bookmark': bookmark,
-            'title': 'Delete Bookmark'
-        })
+        {'bookmark': bookmark, 'title': 'Delete Bookmark'}
     )
