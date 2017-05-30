@@ -2,6 +2,18 @@
 django-admin-tools changelog
 ============================
 
+Version 0.8.1, 30 May 2017:
+---------------------------
+
+This release adds support for Django 1.11 and fixes various issues.
+
+* Django 1.11 support
+* Added app config to enable label override to avoid app name collisions
+* Security fix: prevent removing users bookmarks by knowing the id
+* Better support for custom user models
+* Fixed docstrings
+
+
 Version 0.8.0, 12 August 2016:
 ------------------------------
 
