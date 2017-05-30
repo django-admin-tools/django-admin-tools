@@ -8,7 +8,10 @@ except ImportError:
     # Django < 1.9 and Python < 2.7
     from django.utils.importlib import import_module
 from django.utils.text import capfirst
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 from admin_tools.dashboard.registry import Registry
 from admin_tools.utils import get_admin_site

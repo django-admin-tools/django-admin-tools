@@ -1,5 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from admin_tools.dashboard import Dashboard, AppIndexDashboard
 from admin_tools.dashboard import modules
 

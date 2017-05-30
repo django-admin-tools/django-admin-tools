@@ -3,7 +3,10 @@ Module where admin tools dashboard modules classes are defined.
 """
 
 from django.apps import apps as django_apps
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from django.forms.utils import flatatt
 
 from django.utils.itercompat import is_iterable

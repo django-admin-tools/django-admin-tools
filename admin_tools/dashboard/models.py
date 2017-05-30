@@ -16,7 +16,7 @@ class DashboardPreferences(models.Model):
     """
     This model represents the dashboard preferences for a user.
     """
-    user = models.ForeignKey(user_model)
+    user = models.ForeignKey(user_model, on_delete=models.CASCADE)
     data = models.TextField()
     dashboard_id = models.CharField(max_length=100)
 

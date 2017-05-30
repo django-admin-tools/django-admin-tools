@@ -8,7 +8,10 @@ try:
 except ImportError:
     # Django < 1.9 and Python < 2.7
     from django.utils.importlib import import_module
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 
 def _get_menu_cls(menu_cls, context):

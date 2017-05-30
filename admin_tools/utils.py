@@ -5,7 +5,10 @@ from fnmatch import fnmatch
 
 from django.conf import settings
 from django.contrib import admin
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 try:
     from importlib import import_module
 except ImportError:

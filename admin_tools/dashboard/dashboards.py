@@ -9,7 +9,10 @@ except ImportError:
     # Django < 1.9 and Python < 2.7
     from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from django.utils.encoding import force_text
 
 from admin_tools.dashboard import modules
