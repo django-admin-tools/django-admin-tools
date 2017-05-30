@@ -1,22 +1,31 @@
 language: python
-python:
-  - "2.7"
-  - "3.5"
 sudo: false
-env:
-  - TOXENV=py27-dj17
-  - TOXENV=py27-dj18
-  - TOXENV=py27-dj19
-  - TOXENV=py27-dj110
-  - TOXENV=py27-dj111
-  - TOXENV=py35-dj18
-  - TOXENV=py35-dj19
-  - TOXENV=py35-dj110
-  - TOXENV=py35-dj111
-  - TOXENV=py35-djdev
+cache: pip
 matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=py27-dj17
+    - python: 2.7
+      env: TOXENV=py27-dj18
+    - python: 2.7
+      env: TOXENV=py27-dj19
+    - python: 2.7
+      env: TOXENV=py27-dj110
+    - python: 2.7
+      env: TOXENV=py27-dj111
+    - python: 3.5
+      env: TOXENV=py35-dj18
+    - python: 3.5
+      env: TOXENV=py35-dj19
+    - python: 3.5
+      env: TOXENV=py35-dj110
+    - python: 3.5
+      env: TOXENV=py35-dj111
+    - python: 3.5
+      env: TOXENV=py35-djdev
   allow_failures:
     - env: TOXENV=py35-djdev
 install:
   - pip install tox
-script: tox
+script:
+  - tox -v
