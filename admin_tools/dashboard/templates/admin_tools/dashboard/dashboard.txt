@@ -30,9 +30,6 @@ class CustomIndexDashboard(Dashboard):
         self.children.append(modules.LinkList(
             _('Quick links'),
             layout='inline',
-            draggable=False,
-            deletable=False,
-            collapsible=False,
             children=[
                 [_('Return to site'), '/'],
                 [_('Change password'),

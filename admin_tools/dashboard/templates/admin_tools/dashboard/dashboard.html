@@ -7,70 +7,21 @@
     // Load js files syncronously and conditionally
 
     var js_files = [
-        {
-            src : '{% static "admin_tools/js/jquery/jquery.min.js" %}',
-            test: function() { return typeof(jQuery) == 'undefined'; }
-        },
-        {
-            src : '{% static "admin_tools/js/jquery/jquery-ui.min.js" %}',
-            test: function() { return typeof(jQuery.ui) == 'undefined'; }
-        },
-        {
-            src : '{% static "admin_tools/js/json.min.js" %}',
-            test: function() { return typeof(JSON.stringify) == 'undefined'; }
-        },
-        {
-            src : '{% static "admin_tools/js/jquery/jquery.cookie.min.js" %}',
-            test: function() { return typeof(jQuery.cookie) == 'undefined'; }
-        },
-        {
-            src : '{% static "admin_tools/js/jquery/jquery.dashboard.js" %}',
-            test: function() { return true; }
-        },
-        {
-            src : '{% static "admin_tools/js/dashboard.js" %}',
-            test: function() { return true; }
-        }{% for js in dashboard.Media.js %},
+        {% for js in dashboard.Media.js %},
         {
             src : '{% static js %}',
             test: function() { return true; }
         }{% endfor %}
     ];
 
-    loadScripts(js_files, function(){
-        jQuery(function($) {
-            init_dashboard(
-                '{{ dashboard.get_id }}',
-                {{ dashboard.columns }},
-                {% autoescape off %}{{ dashboard_preferences }}{% endautoescape %},
-                '{% url 'admin-tools-dashboard-set-preferences' dashboard.get_id %}'
-            );
-        });
-    });
+    loadScripts(js_files, function() {});
 </script>
-{% endblock %}
 
+{% endblock %}
 {% block dashboard_title %}
 {% if dashboard.title %}
 <h1 class="dashboard-title">{{ dashboard.title|capfirst }}</h1>
 {% endif %}
-{% endblock %}
-
-{% block dashboard_panel %}
-<div id="dashboard-panel">
-    <h3><a href="#">{% trans "Modules" %}</a></h3>
-    {% if has_disabled_modules %}
-    <ul>
-        {% spaceless %}
-        {% for module in dashboard.children %}
-        {% if not module.enabled %}
-        <li><a href="#" rel="module_{{ module.id }}" class="addlink add-dashboard-module">{{ module.title|capfirst }}</a></li>
-        {% endif %}
-        {% endfor %}
-        {% endspaceless %}
-    </ul>
-    {% endif %}
-</div>
 {% endblock %}
 
 {% block dashboard_container %}

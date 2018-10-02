@@ -8,7 +8,6 @@ except ImportError:
 from django.contrib.auth.models import User
 
 from admin_tools.menu.items import AppList
-from admin_tools.menu.models import Bookmark
 
 
 class ManagementCommandTest(TestCase):
@@ -23,41 +22,6 @@ class ManagementCommandTest(TestCase):
             assert False
         except:
             pass
-
-
-class DeleteBookMarkTest(TestCase):
-    fixtures = ['users.json']
-
-    def setUp(self):
-        self.superuser_credentials = ('superuser', '123')
-        self.staff_credentials = ('staff', '123')
-        user = User.objects.get(username=self.superuser_credentials[0])
-        self.bookmark = Bookmark.objects.create(
-            user=user,
-            url='/test/',
-            title='test'
-        )
-        self.delete_bookmark_url = reverse('admin-tools-menu-remove-bookmark', args=(self.bookmark.id,))
-
-    def _login_user(self, username, password):
-        try:
-            user = User.objects.get(username=username)
-            self.client.force_login(user)
-        except AttributeError:  # in Django<1.9
-            logged_in = self.client.login(username=user.username, password=password)
-            self.assertTrue(logged_in)
-
-    def test_removing_of_own_bookmark(self):
-        self.assertEqual(Bookmark.objects.count(), 1)
-        self._login_user(*self.superuser_credentials)
-        self.client.post(self.delete_bookmark_url)
-        self.assertFalse(Bookmark.objects.count())
-
-    def test_removing_others_bookmark(self):
-        self.assertEqual(Bookmark.objects.count(), 1)
-        self._login_user(*self.staff_credentials)
-        self.client.post(self.delete_bookmark_url)
-        self.assertEqual(Bookmark.objects.first(), self.bookmark)
 
 
 __test__ = {

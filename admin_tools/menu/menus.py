@@ -101,7 +101,6 @@ class DefaultMenu(Menu):
 
         self.children += [
             items.MenuItem(_('Dashboard'), reverse('%s:index' % site_name)),
-            items.Bookmarks(),
             items.AppList(
                 _('Applications'),
                 exclude=('django.contrib.*',)
