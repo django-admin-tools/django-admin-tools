@@ -9,8 +9,6 @@ except ImportError:
     from django.core.urlresolvers import reverse
 from django.forms.utils import flatatt
 
-from django.utils.itercompat import is_iterable
-from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 
 from admin_tools.utils import AppListElementMixin, uniquify
@@ -24,18 +22,6 @@ class DashboardModule(object):
     ``enabled``
         Boolean that determines whether the module should be enabled in
         the dashboard by default or not. Default value: ``True``.
-
-    ``draggable``
-        Boolean that determines whether the module can be draggable or not.
-        Draggable modules can be re-arranged by users. Default value: ``True``.
-
-    ``collapsible``
-        Boolean that determines whether the module is collapsible, this
-        allows users to show/hide module content. Default: ``True``.
-
-    ``deletable``
-        Boolean that determines whether the module can be removed from the
-        dashboard by users or not. Default: ``True``.
 
     ``title``
         String that contains the module title, make sure you use the django
@@ -68,8 +54,6 @@ class DashboardModule(object):
 
     template = 'admin_tools/dashboard/module.html'
     enabled = True
-    draggable = True
-    collapsible = True
     deletable = True
     show_title = True
     title = ''
@@ -157,26 +141,19 @@ class DashboardModule(object):
         """
         Return a string containing the css classes for the module.
 
-        >>> mod = DashboardModule(enabled=False, draggable=True,
-        ...                       collapsible=True, deletable=True)
+        >>> mod = DashboardModule(enabled=False)
         >>> mod.render_css_classes()
-        'dashboard-module disabled draggable collapsible deletable'
+        'dashboard-module disabled'
         >>> mod.css_classes.append('foo')
         >>> mod.render_css_classes()
-        'dashboard-module disabled draggable collapsible deletable foo'
+        'dashboard-module disabled foo'
         >>> mod.enabled = True
         >>> mod.render_css_classes()
-        'dashboard-module draggable collapsible deletable foo'
+        'dashboard-module foo'
         """
         ret = ['dashboard-module']
         if not self.enabled:
             ret.append('disabled')
-        if self.draggable:
-            ret.append('draggable')
-        if self.collapsible:
-            ret.append('collapsible')
-        if self.deletable:
-            ret.append('deletable')
         ret += self.css_classes
         return ' '.join(ret)
 
@@ -238,11 +215,6 @@ class Group(DashboardModule):
         if self._initialized:
             return
         for module in self.children:
-            # to simplify the whole stuff, modules have some limitations,
-            # they cannot be dragged, collapsed or closed
-            module.collapsible = False
-            module.draggable = False
-            module.deletable = False
             if self.force_show_title:
                 module.show_title = (self.display == 'stacked')
             module.init_with_context(context)

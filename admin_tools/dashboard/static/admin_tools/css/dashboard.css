@@ -21,6 +21,24 @@
 
 .dashboard-container {
     clear: both;
+    height: 1000px;
+
+    /*
+     * display: flex;
+     * flex-wrap: wrap;
+     * flex-direction: column;
+     *
+     * Using autoprefixer becomes:
+     */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 h1.dashboard-title {
@@ -104,10 +122,6 @@ h1.dashboard-title {
 	background: #f8f8f8;
     height: 20px;
     color: #555;
-}
-
-.dashboard-module.draggable h2 {
-    cursor: move;
 }
 
 .dashboard-module h2 a.toggle-icon,

@@ -23,18 +23,6 @@
         }{% endfor %}
     ];
 
-    loadScripts(js_files, function(){
-        jQuery(function($) {
-            {% if has_bookmark_item %}
-                process_bookmarks(
-                   "{{ request.get_full_path }}",
-                   "{{ title|capfirst }}",
-                   "{% trans 'Please enter a name for the bookmark' %}"
-                );
-            {% endif %}
-        });
-    });
-
 </script>
 <!--[if IE 6]>
 <script type="text/javascript">
@@ -47,15 +35,6 @@ jQuery(document).ready(function() {
 </script>
 <![endif]-->
 
-{% if has_bookmark_item %}
-
-{% if bookmark %}
-{% include "admin_tools/menu/remove_bookmark_form.html" %}
-{% else %}
-{% include "admin_tools/menu/add_bookmark_form.html" %}
-{% endif %}
-
-{% endif %}
 <ul id="navigation-menu">
     {% for item in menu.children %}{% admin_tools_render_menu_item item forloop.counter %}{% endfor %}
 </ul>

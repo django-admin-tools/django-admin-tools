@@ -1,31 +1,11 @@
 """
 This module contains the base classes for menu and menu items.
 """
-from django.conf import settings
-from django.db import models
 
 # for backward-compatibility
 from admin_tools import menu
 from admin_tools.menu import items
 from admin_tools.deprecate_utils import import_path_is_changed
-
-user_model = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
-
-
-class Bookmark(models.Model):
-    """
-    This model represents a user created bookmark.
-    """
-    user = models.ForeignKey(user_model, on_delete=models.CASCADE)
-    url = models.CharField(max_length=255)
-    title = models.CharField(max_length=255)
-
-    def __unicode__(self):
-        return "%s - %s" % (self.title, self.url)
-
-    class Meta:
-        db_table = 'admin_tools_menu_bookmark'
-        ordering = ('id',)
 
 
 class Menu(
@@ -64,15 +44,5 @@ class AppListMenuItem(
               'admin_tools.menu.items.AppList'
           ),
           items.AppList
-      ):
-    pass
-
-
-class BookmarkMenuItem(
-          import_path_is_changed(
-              'admin_tools.menu.models.BookmarkMenuItem',
-              'admin_tools.menu.items.Bookmarks'
-          ),
-          items.Bookmarks
       ):
     pass

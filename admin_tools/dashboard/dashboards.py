@@ -33,10 +33,6 @@ class Dashboard(object):
         The template to use to render the dashboard.
         Default value: 'admin_tools/dashboard/dashboard.html'
 
-    ``columns``
-        An integer that represents the number of columns for the dashboard.
-        Default value: 2.
-
     If you want to customize the look of your dashboard and it's modules, you
     can declare css stylesheets and/or javascript files to include when
     rendering the dashboard (these files should be placed in your
@@ -58,10 +54,6 @@ class Dashboard(object):
         from admin_tools.dashboard import modules, Dashboard
 
         class MyDashboard(Dashboard):
-
-            # we want a 3 columns layout
-            columns = 3
-
             def __init__(self, **kwargs):
 
                 # append an app list module for "Applications"
@@ -89,7 +81,6 @@ class Dashboard(object):
 
     title = _('Dashboard')
     template = 'admin_tools/dashboard/dashboard.html'
-    columns = 2
     children = None
 
     class Media:
@@ -235,9 +226,6 @@ class DefaultIndexDashboard(Dashboard):
         self.children.append(modules.LinkList(
             _('Quick links'),
             layout='inline',
-            draggable=False,
-            deletable=False,
-            collapsible=False,
             children=[
                 [_('Return to site'), '/'],
                 [_('Change password'),

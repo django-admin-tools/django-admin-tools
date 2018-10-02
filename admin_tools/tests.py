@@ -69,4 +69,3 @@ class DeprecationTest(TestCase):
         from admin_tools.menu import items
         self.assertNotDeprecated(items.MenuItem)
         self.assertNotDeprecated(items.AppList)
-        self.assertNotDeprecated(items.Bookmarks)
