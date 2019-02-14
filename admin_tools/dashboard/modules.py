@@ -456,7 +456,7 @@ class AppList(DashboardModule, AppListElementMixin):
                 }
             model_dict = {}
             model_dict['title'] = model._meta.verbose_name_plural
-            if perms['change']:
+            if perms['change'] or perms.get('view', False):
                 model_dict['change_url'] = self._get_admin_change_url(
                     model,
                     context
@@ -542,7 +542,7 @@ class ModelList(DashboardModule, AppListElementMixin):
         for model, perms in items:
             model_dict = {}
             model_dict['title'] = model._meta.verbose_name_plural
-            if perms['change']:
+            if perms['change'] or perms.get('view', False):
                 model_dict['change_url'] = self._get_admin_change_url(
                     model,
                     context

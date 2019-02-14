@@ -189,7 +189,7 @@ class AppList(MenuItem, AppListElementMixin):
         items = self._visible_models(context['request'])
         apps = {}
         for model, perms in items:
-            if not perms['change']:
+            if not (perms['change'] or perms.get('view', False)):
                 continue
             app_label = model._meta.app_label
             if app_label not in apps:
@@ -288,7 +288,7 @@ class ModelList(MenuItem, AppListElementMixin):
         """
         items = self._visible_models(context['request'])
         for model, perms in items:
-            if not perms['change']:
+            if not (perms['change'] or perms.get('view', False)):
                 continue
             title = model._meta.verbose_name_plural
             url = self._get_admin_change_url(model, context)
