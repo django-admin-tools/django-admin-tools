@@ -79,7 +79,7 @@ Now for the actual change log:
 * Dropped support for django 1.6 or lower
 * Added support for django 1.8
 * Cleaned up old compatibility code
-* Use django builtin staticfiles
+* Use django builtin static
 * Various improvements and bug fixes
 
 
@@ -178,7 +178,7 @@ Bugfixes and minor changes
 * Fixed issue #60: explicitely set color for links in module content;
 * Some fixes for the future django 1.3;
 * Fixes issue #61: Create empty preferences instance if user has no
-  preferences saved yet. 
+  preferences saved yet.
 * Fixed issue #62: updated base template to reflect django 1.2 changes;
 * Fixed various js namespace pollutions;
 * Improved docs;
@@ -208,7 +208,7 @@ Bugfixes and minor changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * moved the menu and dashboard template dirs in a "admin_tools" directory to
-  avoid name conflicts with other apps, for example: django-cms 
+  avoid name conflicts with other apps, for example: django-cms
   (see: http://github.com/digi604/django-cms-2.0/issues/issue/397/);
 * fixed bookmark bugs. The saved url was urlencoded, so we need to decode it
   before we save it. Added a clean_url method to the ``BookmarkForm``.
@@ -217,18 +217,18 @@ Bugfixes and minor changes
 * better display of selected menu items;
 * avoid a useless ajax GET request for retrieving dashboard preferences;
 * upgraded jquery and jquery ui and renamed the files to more generic names;
-* don't show bookmark form if ``NoReverseError``. This was breaking the 
+* don't show bookmark form if ``NoReverseError``. This was breaking the
   ``django.contrib.auth`` unit tests;
 * fixed url lookup for remove bookmark form;
 * fixed issue #26 (menu bar showing for non-staff users) and also updated
   templates to match the django 1.2 templates;
 * fixed issue #29 : Django 1.2 admin base template change;
-* changed the way js files are loaded, hopefully now they are loaded 
+* changed the way js files are loaded, hopefully now they are loaded
   syncronously (fixes issue #32);
 * fixed issue #33: empty applist menu items should not be displayed;
-* fixed issue #34: can't drag modules into an empty column;  
+* fixed issue #34: can't drag modules into an empty column;
 * fixed issue #35 (wrong docstring for menu).
-  
+
 New class names and paths
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 

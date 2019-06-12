@@ -1,3 +1,4 @@
+.vscode
 *.egg-info
 *.pyc
 *.*~
