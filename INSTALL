@@ -1,20 +1,20 @@
 Thanks for downloading django-admin-tools.
 
-This application requires Python 2.7 or later and Django 1.7 or newer.
+This application requires Python 2.7 or later and Django 1.11 or newer.
 django-admin-tools is fully compatible with Python 3.
 
-Important note to users of django 1.6 or below: starting from 0.6.0,
-django-admin-tools is *NOT* compatible with Django <= 1.6. If you want,
-you can still use the 0.5.2 version.
+Important note to users of django 1.10 or below: starting from 0.9.0,
+django-admin-tools is *NOT* compatible with Django <= 1.10. If you want,
+you can still use the 0.8.1 version.
 
-It is recommended that you install the FeedParser module 
+It is recommended that you install the FeedParser module
 (http://www.feedparser.org/) if you want to use the feed dashboard module.
 
 To install django-admin-tools, run the following command inside this directory::
 
     python setup.py install
 
-If you have the Python ``easy_install`` utility available, you can also type 
+If you have the Python ``easy_install`` utility available, you can also type
 the following to download and install in one step::
 
    easy_install django-admin-tools
@@ -23,6 +23,6 @@ Or if you're using ``pip``::
 
     pip install django-admin-tools
 
-Or if you'd prefer you can simply place the included ``admin_tools`` directory 
-somewhere on your Python path, or symlink to it from somewhere on your Python 
+Or if you'd prefer you can simply place the included ``admin_tools`` directory
+somewhere on your Python path, or symlink to it from somewhere on your Python
 path; this is useful if you're working from a Mercurial checkout.

@@ -9,7 +9,7 @@ django-admin-tools
    :alt: Test coverage status
 .. image:: https://img.shields.io/pypi/l/django-admin-tools.svg
 .. image:: https://img.shields.io/pypi/pyversions/django-admin-tools.svg
-.. image:: https://img.shields.io/badge/django-1.7%20or%20newer-green.svg
+.. image:: https://img.shields.io/badge/django-1.11%20or%20newer-green.svg
 
 django-admin-tools is a collection of extensions/tools for the default django
 administration interface, it includes:

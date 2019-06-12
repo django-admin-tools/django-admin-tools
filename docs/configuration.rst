@@ -38,12 +38,6 @@ Then add the ``admin_tools.template_loaders.Loader`` template loader to your
 ``TEMPLATE_LOADERS`` or ``TEMPLATES`` settings variable.
 
 .. note::
-    Starting from django 1.8, ``TEMPLATE_CONTEXT_PROCESSORS`` and
-    ``TEMPLATE_LOADERS`` are deprecated, they are replaced by the
-    ``TEMPLATES`` variable, please refer to the
-    `relevant django documentation <https://docs.djangoproject.com/en/1.8/ref/templates/upgrading/>`_.
-
-.. note::
     Windows users: due to filename restrictions on windows platforms, you
     have to put the ``admin_tools.template_loaders.Loader`` at the very
     begining of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
@@ -103,7 +97,7 @@ Collecting the Static Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To collect static files run::
-    
+
     python manage.py collectstatic
 
 .. important::
