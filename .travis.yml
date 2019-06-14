@@ -4,38 +4,31 @@ cache: pip
 matrix:
   include:
     - python: 2.7
-      env: TOXENV=py27-dj17
-    - python: 2.7
-      env: TOXENV=py27-dj18
-    - python: 2.7
-      env: TOXENV=py27-dj19
-    - python: 2.7
-      env: TOXENV=py27-dj110
-    - python: 2.7
       env: TOXENV=py27-dj111
-    - python: 3.5
-      env: TOXENV=py35-dj18
-    - python: 3.5
-      env: TOXENV=py35-dj19
-    - python: 3.5
-      env: TOXENV=py35-dj110
     - python: 3.5
       env: TOXENV=py35-dj111
     - python: 3.5
-      env: TOXENV=py35-djdev
-    - python: 3.6
-      env: TOXENV=py36-dj18
-    - python: 3.6
-      env: TOXENV=py36-dj19
-    - python: 3.6
-      env: TOXENV=py36-dj110
+      env: TOXENV=py35-dj21
+    - python: 3.5
+      env: TOXENV=py35-dj22
     - python: 3.6
       env: TOXENV=py36-dj111
     - python: 3.6
+      env: TOXENV=py36-dj21
+    - python: 3.6
+      env: TOXENV=py36-dj22
+    - python: 3.6
       env: TOXENV=py36-djdev
+    - python: 3.7
+      env: TOXENV=py37-dj21
+    - python: 3.7
+      env: TOXENV=py37-dj22
+    - python: 3.7
+      env: TOXENV=py37-djdev
   allow_failures:
     - env: TOXENV=py35-djdev
     - env: TOXENV=py36-djdev
+    - env: TOXENV=py37-djdev
 install:
   - pip install tox codecov
 script:

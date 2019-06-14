@@ -1,7 +1,6 @@
-
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
 
 try:
@@ -26,19 +25,21 @@ def add_bookmark(request):
         if form.is_valid():
             bookmark = form.save()
             if not request.is_ajax():
-                messages.success(request, 'Bookmark added')
-                if request.POST.get('next'):
-                    return HttpResponseRedirect(request.POST.get('next'))
-                return HttpResponse('Added')
-            return render_to_response(
-                'admin_tools/menu/remove_bookmark_form.html',
-                {'bookmark': bookmark, 'url': bookmark.url}
+                messages.success(request, "Bookmark added")
+                if request.POST.get("next"):
+                    return HttpResponseRedirect(request.POST.get("next"))
+                return HttpResponse("Added")
+            return render(
+                request,
+                "admin_tools/menu/remove_bookmark_form.html",
+                context={"bookmark": bookmark, "url": bookmark.url},
             )
     else:
         form = BookmarkForm(user=request.user)
-    return render_to_response(
-        'admin_tools/menu/form.html',
-        {'form': form, 'title': 'Add Bookmark'}
+    return render(
+        request,
+        "admin_tools/menu/form.html",
+        context={"form": form, "title": "Add Bookmark"},
     )
 
 
@@ -48,22 +49,21 @@ def edit_bookmark(request, id):
     bookmark = get_object_or_404(Bookmark, id=id)
     if request.method == "POST":
         form = BookmarkForm(
-            user=request.user,
-            data=request.POST,
-            instance=bookmark
+            user=request.user, data=request.POST, instance=bookmark
         )
         if form.is_valid():
             form.save()
             if not request.is_ajax():
-                messages.success(request, 'Bookmark updated')
-                if request.POST.get('next'):
-                    return HttpResponseRedirect(request.POST.get('next'))
-            return HttpResponse('Saved')
+                messages.success(request, "Bookmark updated")
+                if request.POST.get("next"):
+                    return HttpResponseRedirect(request.POST.get("next"))
+            return HttpResponse("Saved")
     else:
         form = BookmarkForm(user=request.user, instance=bookmark)
-    return render_to_response(
-        'admin_tools/menu/form.html',
-        {'form': form, 'title': 'Edit Bookmark'}
+    return render(
+        request,
+        "admin_tools/menu/form.html",
+        context={"form": form, "title": "Edit Bookmark"},
     )
 
 
@@ -79,18 +79,20 @@ def remove_bookmark(request, id):
     if request.method == "POST":
         bookmark.delete()
         if not request.is_ajax():
-            messages.success(request, 'Bookmark removed')
-            if request.POST.get('next'):
-                return HttpResponseRedirect(request.POST.get('next'))
-            return HttpResponse('Deleted')
-        return render_to_response(
-            'admin_tools/menu/add_bookmark_form.html',
-            {
-                'url': request.POST.get('next'),
-                'title': '**title**'  # replaced on the javascript side
-            }
+            messages.success(request, "Bookmark removed")
+            if request.POST.get("next"):
+                return HttpResponseRedirect(request.POST.get("next"))
+            return HttpResponse("Deleted")
+        return render(
+            request,
+            "admin_tools/menu/add_bookmark_form.html",
+            context={
+                "url": request.POST.get("next"),
+                "title": "**title**",  # replaced on the javascript side
+            },
         )
     return render_to_response(
-        'admin_tools/menu/delete_confirm.html',
-        {'bookmark': bookmark, 'title': 'Delete Bookmark'}
+        request,
+        "admin_tools/menu/delete_confirm.html",
+        context={"bookmark": bookmark, "title": "Delete Bookmark"},
     )

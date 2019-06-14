@@ -1,6 +1,7 @@
 from tempfile import mktemp
 from django.test import TestCase
 from django.core import management
+
 try:
     from django.urls import reverse
 except ImportError:
@@ -12,39 +13,40 @@ from admin_tools.menu.models import Bookmark
 
 
 class ManagementCommandTest(TestCase):
-
     def test_custommenu(self):
         # check that custommenu command doesn't raise exceptions
         file_name = mktemp()
-        management.call_command('custommenu', file=file_name)
+        management.call_command("custommenu", file_name)
         # and fails if file is already here
         try:
-            management.call_command('custommenu', file=file_name)
+            management.call_command("custommenu", file_name)
             assert False
         except:
             pass
 
 
 class DeleteBookMarkTest(TestCase):
-    fixtures = ['users.json']
+    fixtures = ["users.json"]
 
     def setUp(self):
-        self.superuser_credentials = ('superuser', '123')
-        self.staff_credentials = ('staff', '123')
+        self.superuser_credentials = ("superuser", "123")
+        self.staff_credentials = ("staff", "123")
         user = User.objects.get(username=self.superuser_credentials[0])
         self.bookmark = Bookmark.objects.create(
-            user=user,
-            url='/test/',
-            title='test'
+            user=user, url="/test/", title="test"
         )
-        self.delete_bookmark_url = reverse('admin-tools-menu-remove-bookmark', args=(self.bookmark.id,))
+        self.delete_bookmark_url = reverse(
+            "admin-tools-menu-remove-bookmark", args=(self.bookmark.id,)
+        )
 
     def _login_user(self, username, password):
         try:
             user = User.objects.get(username=username)
             self.client.force_login(user)
         except AttributeError:  # in Django<1.9
-            logged_in = self.client.login(username=user.username, password=password)
+            logged_in = self.client.login(
+                username=user.username, password=password
+            )
             self.assertTrue(logged_in)
 
     def test_removing_of_own_bookmark(self):
@@ -60,6 +62,4 @@ class DeleteBookMarkTest(TestCase):
         self.assertEqual(Bookmark.objects.first(), self.bookmark)
 
 
-__test__ = {
-    'AppList.is_empty': AppList.is_empty,
-}
+__test__ = {"AppList.is_empty": AppList.is_empty}
