@@ -91,7 +91,7 @@ def remove_bookmark(request, id):
                 "title": "**title**",  # replaced on the javascript side
             },
         )
-    return render_to_response(
+    return render(
         request,
         "admin_tools/menu/delete_confirm.html",
         context={"bookmark": bookmark, "title": "Delete Bookmark"},
