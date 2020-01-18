@@ -2,6 +2,15 @@
 django-admin-tools changelog
 ============================
 
+Version 0.9.0, 19 January 2020:
+---------------------------
+
+This release adds support for Django up to 2.2 and fixes various issues.
+
+* Django 2.2 support
+* Python 3.7 support
+* Updated documentation
+
 Version 0.8.1, 30 May 2017:
 ---------------------------
 

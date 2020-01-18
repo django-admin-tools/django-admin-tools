@@ -7,5 +7,5 @@ administration interface, it includes:
  * tools to make admin theming easier.
 """
 
-VERSION = '0.8.1'
+VERSION = '0.9.0'
 default_app_config = 'admin_tools.apps.AdminToolsConfig'
