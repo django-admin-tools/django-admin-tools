@@ -136,6 +136,11 @@ class AdminBasicTest(TestCase):
         self._login('superuser', '123')
         user = User.objects.get(username='superuser')
         bm = Bookmark.objects.create(user=user, url='/admin/', title='Test bookmark')
+        res = self.client.get(
+            reverse('admin-tools-menu-remove-bookmark', args=(bm.pk,))
+        )
+        self.assertContains(res, 'Are you sure you want to delete this bookmark')
+
         res = self.client.post(
             reverse('admin-tools-menu-remove-bookmark', args=(bm.pk,))
         )
