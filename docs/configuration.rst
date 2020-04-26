@@ -30,7 +30,7 @@ your django admin site, if you didn't, please refer to the
 Required settings
 ~~~~~~~~~~~~~~~~~
 
-First make sure you have the ``django.core.context_processors.request``
+First make sure you have the ``django.template.context_processors.request``
 template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS`` or
 ``TEMPLATES`` settings variable
 
