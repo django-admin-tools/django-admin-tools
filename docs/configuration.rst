@@ -40,7 +40,7 @@ Then add the ``admin_tools.template_loaders.Loader`` template loader to your
 .. note::
     Windows users: due to filename restrictions on windows platforms, you
     have to put the ``admin_tools.template_loaders.Loader`` at the very
-    begining of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
+    beginning of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
     settings variable.
 
 Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
