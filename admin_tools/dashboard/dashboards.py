@@ -208,8 +208,16 @@ class AppIndexDashboard(Dashboard):
         # Import this here to silence RemovedInDjango19Warning. See #15
         from django.contrib.contenttypes.models import ContentType
 
-        return [ContentType.objects.get_for_model(c) for c
-                in self.get_app_model_classes()]
+        result = []
+        for cls in self.get_app_model_classes():
+            try:
+                result.append(ContentType.objects.get_for_model(cls))
+            except AttributeError:
+                # Can happen when "fake" models are used in th admin, see:
+                # https://github.com/django-admin-tools/django-admin-tools/issues/103
+                # https://github.com/jazzband/django-constance/issues/244
+                pass
+        return result
 
     def get_id(self):
         """
