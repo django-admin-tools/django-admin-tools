@@ -6,6 +6,9 @@ administration interface, it includes:
  * a customizable menu bar,
  * tools to make admin theming easier.
 """
+import django
 
 VERSION = '0.9.0'
-default_app_config = 'admin_tools.apps.AdminToolsConfig'
+
+if django.VERSION < (3, 2):
+    default_app_config = 'admin_tools.apps.AdminToolsConfig'

@@ -10,6 +10,7 @@ except ImportError:
 
 from .forms import BookmarkForm
 from .models import Bookmark
+from admin_tools.utils import is_xhr
 
 
 @staff_member_required
@@ -24,7 +25,7 @@ def add_bookmark(request):
         form = BookmarkForm(user=request.user, data=request.POST)
         if form.is_valid():
             bookmark = form.save()
-            if not request.is_ajax():
+            if not is_xhr(request):
                 messages.success(request, "Bookmark added")
                 if request.POST.get("next"):
                     return HttpResponseRedirect(request.POST.get("next"))
@@ -53,7 +54,7 @@ def edit_bookmark(request, id):
         )
         if form.is_valid():
             form.save()
-            if not request.is_ajax():
+            if not is_xhr(request):
                 messages.success(request, "Bookmark updated")
                 if request.POST.get("next"):
                     return HttpResponseRedirect(request.POST.get("next"))
@@ -78,7 +79,7 @@ def remove_bookmark(request, id):
     bookmark = get_object_or_404(Bookmark, id=id, user=request.user)
     if request.method == "POST":
         bookmark.delete()
-        if not request.is_ajax():
+        if not is_xhr(request):
             messages.success(request, "Bookmark removed")
             if request.POST.get("next"):
                 return HttpResponseRedirect(request.POST.get("next"))

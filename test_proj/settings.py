@@ -148,3 +148,6 @@ INSTALLED_APPS = [
 
 ADMIN_TOOLS_INDEX_DASHBOARD = 'test_proj.dashboard.CustomIndexDashboard'
 ADMIN_TOOLS_MENU = 'test_proj.menu.CustomMenu'
+
+# Added to avoid warnings with django >= 4
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

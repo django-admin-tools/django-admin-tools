@@ -3,6 +3,7 @@ Admin ui common utilities.
 """
 from fnmatch import fnmatch
 
+import django
 from django.conf import settings
 from django.contrib import admin
 try:
@@ -15,6 +16,12 @@ except ImportError:
     # Django < 1.9 and Python < 2.7
     from django.utils.importlib import import_module
 import warnings
+
+
+def is_xhr(request):
+    if django.VERSION < (2, 2):
+        return request.is_ajax()
+    return request.headers.get("x-requested-with") == "XMLHttpRequest"
 
 
 def uniquify(value, seen_values):
