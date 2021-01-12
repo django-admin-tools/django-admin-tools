@@ -2,6 +2,15 @@
 django-admin-tools changelog
 ============================
 
+Version 0.9.1, 12 January 2021:
+-------------------------------
+
+This release adds support for django 3.X versions and future versions
+
+* Dropped support for django < 1.11
+* Support django 3.X and future versions
+* Updated jQuery and jQuery UI to latest versions
+
 Version 0.9.0, 19 January 2020:
 -------------------------------
 
