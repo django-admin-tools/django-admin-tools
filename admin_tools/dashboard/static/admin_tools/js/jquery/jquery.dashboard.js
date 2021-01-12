@@ -145,9 +145,13 @@
                 stop  = start + sizes[i];
                 last_stop = sizes[i];
             }
-            elts.slice(start, stop).wrapAll(
-                '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>'
-            );
+            var slices = elts.slice(start, stop);
+            var html = '<div class="dashboard-column" style="float:left;width:'+percent+'%;"/>';
+            if (slices.length) {
+                slices.wrapAll(html);
+            } else {
+                elt.append(html);
+            }
         }
     };
 
