@@ -30,7 +30,7 @@ your django admin site, if you didn't, please refer to the
 Required settings
 ~~~~~~~~~~~~~~~~~
 
-First make sure you have the ``django.core.context_processors.request``
+First make sure you have the ``django.template.context_processors.request``
 template context processor in your ``TEMPLATE_CONTEXT_PROCESSORS`` or
 ``TEMPLATES`` settings variable
 
@@ -40,7 +40,7 @@ Then add the ``admin_tools.template_loaders.Loader`` template loader to your
 .. note::
     Windows users: due to filename restrictions on windows platforms, you
     have to put the ``admin_tools.template_loaders.Loader`` at the very
-    begining of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
+    beginning of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
     settings variable.
 
 Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
