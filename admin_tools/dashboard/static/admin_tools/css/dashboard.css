@@ -40,8 +40,7 @@ h1.dashboard-title {
     display: block;
     text-align: center;
     border: 1px solid #e5e5e5;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 6px;
 }
 
 #dashboard-panel ul {
@@ -121,6 +120,7 @@ h1.dashboard-title {
     cursor: pointer;
     background-image: url(../images/admin-tools.png);
     background-repeat: no-repeat;
+    transition: none !important;
 }
 
 .dashboard-module h2 a.toggle-icon {
@@ -252,8 +252,6 @@ h1.dashboard-title {
     background-color: #fafafa;
     border-width: 0 0 1px 0;
     border-color: #d3d3d3;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
     border-radius: 0;
 }
 
@@ -293,5 +291,78 @@ h1.dashboard-title {
     border: 0;
 }
 
+
+/* }}} */
+/* Dark mode tweaks {{{ */
+
+@media (prefers-color-scheme: dark) {
+    .group ul,
+    .dashboard-module,
+    .dashboard-placeholder,
+    #dashboard-panel ul li {
+        border-color: #666;
+        border-radius: 0;
+    }
+
+    .group .ui-state-default,
+    .dashboard-module-content {
+        border-color: #666;
+    }
+
+    #dashboard-panel h3 a {
+        background: #666;
+    }
+
+    .group ul {
+        border: 0;
+        background: #111;
+    }
+
+    .dashboard-module.ui-tabs-panel,
+    .group .ui-state-default,
+    .group-accordion .group-accordion-header.ui-state-default,
+    #dashboard-panel ul li,
+    .dashboard-module ul li {
+        background: #111;
+    }
+
+    .dashboard-module ul li:hover {
+        background: #1a1a1a;
+        color: #aaa;
+    }
+
+    .group .ui-state-default a {
+        color: #aaa;
+    }
+
+    .group .ui-tabs-active,
+    .group .ui-state-default:hover,
+    .dashboard-placeholder {
+        background-color: #333;
+    }
+
+    .dashboard-module h2 {
+        background-color: var(--primary);
+        color: #ccc;
+    }
+
+    .dashboard-module h3 {
+        background-color: #1f1f1f;
+        color: #aaa;
+    }
+
+    .dashboard-module ul li.odd {
+        background-color: #1a1a1a;
+    }
+
+    .dashboard-module ul li.even {
+        background-color: #111;
+    }
+
+    .dashboard-module h2 a.toggle-icon,
+    .dashboard-module h2 a.close-icon {
+        filter: invert(1);
+    }
+}
 
 /* }}} */

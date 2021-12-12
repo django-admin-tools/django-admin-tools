@@ -9,8 +9,6 @@
 }
 
 #header {
-    background: #205067;
-
     /* Reset the indents of django-flat-theme
       (need to restore 40px on branding+user-tools instead) */
     padding-left: 0;
@@ -45,4 +43,10 @@ div.breadcrumbs {
 
 div.breadcrumbs a {
     display: inline;
+}
+
+@media (prefers-color-scheme: dark) {
+    div.breadcrumbs {
+        border-bottom: 0;
+    }
 }
