@@ -1,15 +1,10 @@
 django-admin-tools
 ==================
 
-.. image:: https://travis-ci.org/django-admin-tools/django-admin-tools.svg?branch=master
-   :target: https://travis-ci.org/django-admin-tools/django-admin-tools
-   :alt: Build status
-.. image:: https://codecov.io/gh/django-admin-tools/django-admin-tools/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/django-admin-tools/django-admin-tools
-   :alt: Test coverage status
-.. image:: https://img.shields.io/pypi/l/django-admin-tools.svg
-.. image:: https://img.shields.io/pypi/pyversions/django-admin-tools.svg
-.. image:: https://img.shields.io/badge/django-1.11%20or%20newer-green.svg
+|build-status-image| |codecov-image| |documentation-status-image| |pypi-version| |py-versions|
+
+Overview
+--------
 
 django-admin-tools is a collection of extensions/tools for the default django
 administration interface, it includes:
@@ -30,17 +25,15 @@ The project was created by `David Jean Louis <http://www.izimobil.org/>`_ and wa
 
 Please join the `mailing list <http://groups.google.fr/group/django-admin-tools>`_ if you want to discuss of the future of django-admin-tools.
 
-************
 Requirements
-************
+------------
 
-django-admin-tools is compatible with Django 1.11 LTS, and 2.1+, 3.0 as well Python 2.7, 3.5+.
+django-admin-tools is compatible with Django 1.11 LTS up to Django 4.0 as well Python 2.7, 3.5+.
 
 For older python and django versions please use the 0.8.1 version of django-admin-tools which is available on Pypi.
 
-************
 Installation
-************
+------------
 
 To install django-admin-tools, run the following command inside this directory:
 
@@ -61,21 +54,18 @@ path; this is useful if you're working from a Mercurial checkout.
 
 An `installation guide <https://django-admin-tools.readthedocs.io/en/latest/installation.html>`_ is available in the documentation.
 
-*************
 Documentation
-*************
+-------------
 
 `Extensive documentation <https://django-admin-tools.readthedocs.io/>`_ is available, it was made with the excellent `Sphinx program <http://sphinx.pocoo.org/>`_
 
-************
 Translations
-************
+------------
 
 There is a `a transifex project <https://transifex.net/projects/p/django-admin-tools/>`_ for django-admin-tools.
 
-************
 Screenshots
-************
+-----------
 
 The django admin login screen:
 
@@ -104,3 +94,26 @@ The app index dashboard:
 .. image:: http://www.izimobil.org/django-admin-tools/images/capture-5.png
    :alt: The app index dashboard
 
+
+.. |build-status-image| image:: https://api.travis-ci.com/django-admin-tools/django-admin-tools.svg?branch=master
+   :target: http://travis-ci.com/django-admin-tools/django-admin-tools?branch=master
+   :alt: Travis build
+
+.. |codecov-image| image:: https://codecov.io/gh/django-admin-tools/django-admin-tools/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/django-admin-tools/django-admin-tools
+
+.. |pypi-version| image:: https://img.shields.io/pypi/v/django-admin-tools.svg
+   :target: https://pypi.python.org/pypi/django-admin-tools
+   :alt: Pypi version
+
+.. |documentation-status-image| image:: https://readthedocs.org/projects/django-admin-tools/badge/?version=latest
+   :target: http://django-admin-tools.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. |py-versions| image:: https://img.shields.io/pypi/pyversions/djangorestframework-datatables.svg
+   :target: https://img.shields.io/pypi/pyversions/djangorestframework-datatables.svg
+   :alt: Python versions
+
+.. |dj-versions| image:: https://img.shields.io/pypi/djversions/djangorestframework-datatables.svg
+   :target: https://img.shields.io/pypi/djversions/djangorestframework-datatables.svg
+   :alt: Django versions
