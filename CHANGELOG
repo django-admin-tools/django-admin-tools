@@ -1,4 +1,3 @@
-============================
 django-admin-tools changelog
 ============================
 
@@ -133,8 +132,7 @@ Thanks to all the folks who contributed to this release.
 Version 0.5.1, 13 March 2013:
 -----------------------------
 
-Bugfix release, everyone using django < 1.5 should upgrade
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Bugfix release, everyone using django < 1.5 should upgrade**
 
 This release fixes a bug that was breaking the LinkList dashboard module
 (thanks Iacopo Spalletti for the pull request).
@@ -143,8 +141,7 @@ This release fixes a bug that was breaking the LinkList dashboard module
 Version 0.5.0, 06 March 2013:
 -----------------------------
 
-Important information if you are upgrading from a previous version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Important information if you are upgrading from a previous version**
 
 Starting from this version, django-admin-tools requires Django 1.3 or
 superior. If you're running Django < 1.3, DO NOT UPGRADE and stay with
@@ -170,8 +167,7 @@ Version 0.4.1, 15 November 2011:
 Version 0.4.0, 13 December 2010:
 --------------------------------
 
-Important information if you are upgrading from a previous version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Important information if you are upgrading from a previous version**
 
 This release of django-admin-tools introduces support for south database
 migrations, if you are **not** using south you can skip this step.
@@ -186,8 +182,7 @@ New users should do::
     python manage.py migrate admin_tools.dashboard
     python manage.py migrate admin_tools.menu
 
-Major changes
-~~~~~~~~~~~~~
+**Major changes**
 
 * big improvements of the API (see the dashboard and menu documentation for
   details), the old API is still supported but now deprecated;
@@ -196,8 +191,7 @@ Major changes
 * better integration with django-grappelli;
 * django south support.
 
-Bugfixes and minor changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Bugfixes and minor changes**
 
 * Fixed issue #40 (python 2.5 compatibility);
 * Fixed issue #49: disable rendering of empty group modules;
@@ -220,8 +214,7 @@ http://bitbucket.org/izi/django-admin-tools/changesets
 Version 0.3.0, 16 July 2010:
 ----------------------------
 
-Major changes
-~~~~~~~~~~~~~
+**Major changes**
 
 * added tests infrastructure, code coverage is around 70%;
 * import paths and class names are changed. Old class names and paths are
@@ -233,8 +226,7 @@ Major changes
 * implemented dashboard module groups : you can now group modules in tabs,
   accordion or in a stacked layout.
 
-Bugfixes and minor changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Bugfixes and minor change**
 
 * moved the menu and dashboard template dirs in a "admin_tools" directory to
   avoid name conflicts with other apps, for example: django-cms
@@ -258,10 +250,9 @@ Bugfixes and minor changes
 * fixed issue #34: can't drag modules into an empty column;
 * fixed issue #35 (wrong docstring for menu).
 
-New class names and paths
-~~~~~~~~~~~~~~~~~~~~~~~~~
+**New class names and paths**
 
-**admin_tools.dashboard**:
+***admin_tools.dashboard***
 
 - admin_tools.dashboard.models.Dashboard => admin_tools.dashboard.Dashboard
 - admin_tools.dashboard.models.DefaultIndexDashboard => admin_tools.dashboard.DefaultIndexDashboard
@@ -273,7 +264,7 @@ New class names and paths
 - admin_tools.dashboard.models.LinkListDashboardModule => admin_tools.dashboard.modules.LinkList
 - admin_tools.dashboard.models.FeedDashboardModule => admin_tools.dashboard.modules.Feed
 
-**admin_tools.menu**:
+***admin_tools.menu***
 
 - admin_tools.menu.models.Menu => admin_tools.menu.Menu
 - admin_tools.menu.models.DefaultMenu => admin_tools.menu.DefaultMenu
@@ -294,8 +285,8 @@ Version 0.2.0, 15 March 2010:
 * added polish, italian, greek and brazilian locales;
 * updated docs.
 
-Backwards incompatible changes in 0.2.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Backwards incompatible changes in 0.2.0**
+
 Now, django-admin-tools stores menu and dashboard preferences in the database,
 so you'll need to run syncdb and to add the django-admin-tools urls to your
 urlconf. These steps are described in details in the documentation.
