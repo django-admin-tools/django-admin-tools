@@ -2,6 +2,15 @@
 django-admin-tools changelog
 ============================
 
+Version 0.9.2, 12 December 2021:
+--------------------------------
+
+* Fixed support for Django 4.0
+* Compatibility with admin dark mode
+* Fixed issue #100 (js bug when adding last column)
+* Fixed issue #103 (compatibility with django-constance)
+
+
 Version 0.9.1, 12 January 2021:
 -------------------------------
 
@@ -10,6 +19,7 @@ This release adds support for django 3.X versions and future versions
 * Dropped support for django < 1.11
 * Support django 3.X and future versions
 * Updated jQuery and jQuery UI to latest versions
+
 
 Version 0.9.0, 19 January 2020:
 -------------------------------

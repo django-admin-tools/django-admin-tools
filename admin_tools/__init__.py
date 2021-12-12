@@ -7,7 +7,7 @@ administration interface, it includes:
  * tools to make admin theming easier.
 """
 
-VERSION = '0.9.1'
+VERSION = '0.9.2'
 
 try:
     import django
