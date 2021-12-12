@@ -99,8 +99,8 @@ The app index dashboard:
    :target: http://travis-ci.com/django-admin-tools/django-admin-tools?branch=master
    :alt: Travis build
 
-.. |codecov-image| image:: https://codecov.io/gh/django-admin-tools/django-admin-tools/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/django-admin-tools/django-admin-tools
+.. |codecov-image| image:: https://codecov.io/gh/django-admin-tools/django-admin-tools/branch/master/graph/badge.svg?token=RtyqJORRby
+   :target: https://codecov.io/gh/django-admin-tools/django-admin-tools
 
 .. |pypi-version| image:: https://img.shields.io/pypi/v/django-admin-tools.svg
    :target: https://pypi.python.org/pypi/django-admin-tools
