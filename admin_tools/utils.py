@@ -86,9 +86,9 @@ def filter_models(request, models, exclude):
     def full_name(model):
         return '%s.%s' % (model.__module__, model.__name__)
 
-    # I beleive that that implemented
+    # I believe that that implemented
     # O(len(patterns)*len(matched_patterns)*len(all_models))
-    # algorythm is fine for model lists because they are small and admin
+    # algorithm is fine for model lists because they are small and admin
     # performance is not a bottleneck. If it is not the case then the code
     # should be optimized.
 
