@@ -49,7 +49,7 @@ class Loader(FilesystemLoader):
         The parent FilesystemLoader.load_template_source() will take care
         of the actual loading for us.
         """
-        if ':' not in template_name:
+        if ':' not in str(template_name):
             return []
         app_name, template_name = template_name.split(":", 1)
         template_dir = get_app_template_dir(app_name)
