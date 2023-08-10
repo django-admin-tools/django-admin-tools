@@ -1,6 +1,15 @@
 django-admin-tools changelog
 ============================
 
+Version 0.9.3, 10 August 2023:
+------------------------------
+
+* Doc fixes
+* Upgrade to jquery-ui 1.13.2
+* Fix when template_name is given as PosixPath or other type 
+* Add default template name to dummy.html to satisfy django-compressor
+
+
 Version 0.9.2, 12 December 2021:
 --------------------------------
 
