@@ -43,6 +43,15 @@ Then add the ``admin_tools.template_loaders.Loader`` template loader to your
     beginning of the list in your ``TEMPLATES`` or ``TEMPLATE_LOADERS``
     settings variable.
 
+.. important::
+    it is very important that ``django.contrib.staticfiles.finders.AppDirectoriesFinder''
+    be there in your ``STATICFILES_FINDERS``.
+
+.. important::
+    Starting from django 2.1, using ``template_loaders`` option require making disable 
+    ``APP_DIRS`` option and you have to put the ``admin_tools.template_loaders.Loader`` together with
+    ``admin_tools.template_loaders.Loader``
+
 Then, add the django-admin-tools modules to the ``INSTALLED_APPS`` like
 this::
 
@@ -99,10 +108,6 @@ Collecting the Static Files
 To collect static files run::
 
     python manage.py collectstatic
-
-.. important::
-    it is very important that ``django.contrib.staticfiles.finders.AppDirectoriesFinder''
-    be there in your ``STATICFILES_FINDERS``.
 
 
 Available settings variables
