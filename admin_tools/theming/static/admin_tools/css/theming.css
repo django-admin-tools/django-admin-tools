@@ -44,9 +44,3 @@ div.breadcrumbs {
 div.breadcrumbs a {
     display: inline;
 }
-
-@media (prefers-color-scheme: dark) {
-    div.breadcrumbs {
-        border-bottom: 0;
-    }
-}
