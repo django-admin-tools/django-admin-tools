@@ -98,7 +98,6 @@ class AdminBasicTest(TestCase):
         pref = DashboardPreferences.objects.create(
             user=user,
             dashboard_id='test-dashboard',
-            data=json.dumps('{}')
         )
         new_pref_data = {"bar": "baz"}
         res = self.client.post(
