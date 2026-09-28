@@ -12,7 +12,6 @@ except ImportError:
     from django.core.urlresolvers import reverse
     from django.utils.translation import ugettext_lazy as _
 from django.forms.utils import flatatt
-from django.utils.itercompat import is_iterable
 from django.utils.text import capfirst
 
 from admin_tools.utils import AppListElementMixin, uniquify
