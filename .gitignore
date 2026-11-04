@@ -17,4 +17,6 @@ _static
 .svn
 .tox
 .venv
+.venv*/
+__pycache__/
 *.sqlite

@@ -1,6 +1,15 @@
 django-admin-tools changelog
 ============================
 
+Version 0.9.4 (unreleased):
+---------------------------
+
+* Fixed a ``ModuleNotFoundError`` on Django 6.0 by removing a dead import of
+  ``django.utils.itercompat`` (module removed in Django 6.0)
+* Declared and tested support for Python 3.9 - 3.13 and Django 4.2 - 6.0
+* Modernized packaging: python_requires / install_requires / classifiers
+* Added a GitHub Actions test matrix
+
 Version 0.9.3, 10 August 2023:
 ------------------------------
 
