@@ -16,12 +16,25 @@ except ImportError:
     # Django < 1.9 and Python < 2.7
     from django.utils.importlib import import_module
 import warnings
+try:
+    from django.utils.http import url_has_allowed_host_and_scheme
+except ImportError:
+    from django.utils.http import is_safe_url as url_has_allowed_host_and_scheme
 
 
 def is_xhr(request):
     if django.VERSION < (2, 2):
         return request.is_ajax()
     return request.headers.get("x-requested-with") == "XMLHttpRequest"
+
+
+def get_safe_next_url(request):
+    url = request.POST.get("next")
+    if url and url_has_allowed_host_and_scheme(
+        url, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+    ):
+        return url
+    return None
 
 
 def uniquify(value, seen_values):

@@ -10,7 +10,7 @@ except ImportError:
 
 from .forms import BookmarkForm
 from .models import Bookmark
-from admin_tools.utils import is_xhr
+from admin_tools.utils import get_safe_next_url, is_xhr
 
 
 @staff_member_required
@@ -27,8 +27,9 @@ def add_bookmark(request):
             bookmark = form.save()
             if not is_xhr(request):
                 messages.success(request, "Bookmark added")
-                if request.POST.get("next"):
-                    return HttpResponseRedirect(request.POST.get("next"))
+                next_url = get_safe_next_url(request)
+                if next_url:
+                    return HttpResponseRedirect(next_url)
                 return HttpResponse("Added")
             return render(
                 request,
@@ -56,8 +57,9 @@ def edit_bookmark(request, id):
             form.save()
             if not is_xhr(request):
                 messages.success(request, "Bookmark updated")
-                if request.POST.get("next"):
-                    return HttpResponseRedirect(request.POST.get("next"))
+                next_url = get_safe_next_url(request)
+                if next_url:
+                    return HttpResponseRedirect(next_url)
             return HttpResponse("Saved")
     else:
         form = BookmarkForm(user=request.user, instance=bookmark)
@@ -81,8 +83,9 @@ def remove_bookmark(request, id):
         bookmark.delete()
         if not is_xhr(request):
             messages.success(request, "Bookmark removed")
-            if request.POST.get("next"):
-                return HttpResponseRedirect(request.POST.get("next"))
+            next_url = get_safe_next_url(request)
+            if next_url:
+                return HttpResponseRedirect(next_url)
             return HttpResponse("Deleted")
         return render(
             request,
