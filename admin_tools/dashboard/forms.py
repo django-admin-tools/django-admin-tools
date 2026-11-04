@@ -1,3 +1,5 @@
+import json
+
 from django import forms
 
 from admin_tools.dashboard.models import DashboardPreferences
@@ -13,6 +15,14 @@ class DashboardPreferencesForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)
         self.dashboard_id = kwargs.pop('dashboard_id', None)
         super(DashboardPreferencesForm, self).__init__(*args, **kwargs)
+
+    def clean_data(self):
+        data = self.cleaned_data['data']
+        try:
+            json.loads(data)
+        except ValueError:
+            raise forms.ValidationError('Invalid JSON data.')
+        return data
 
     def save(self, *args, **kwargs):
         preferences = super(DashboardPreferencesForm, self).save(

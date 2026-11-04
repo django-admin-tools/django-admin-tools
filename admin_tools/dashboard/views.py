@@ -3,18 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib import messages
 
-try:
-    from django.views.decorators.csrf import csrf_exempt
-except ImportError:
-    from django.contrib.csrf.middleware import csrf_exempt
-
 from .forms import DashboardPreferencesForm
 from .models import DashboardPreferences
 from admin_tools.utils import is_xhr
 
 
 @staff_member_required
-@csrf_exempt
 def set_preferences(request, dashboard_id):
     """
     This view serves and validates a preferences form.

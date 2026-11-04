@@ -7,6 +7,7 @@ Dashboard template tags, the following dashboard tags are available:
 To load the dashboard tags: ``{% load admin_tools_dashboard_tags %}``.
 """
 
+import json
 import math
 
 from django import template
@@ -20,11 +21,23 @@ from admin_tools.utils import get_admin_site_name
 from admin_tools.dashboard.utils import get_dashboard
 from admin_tools.dashboard.models import DashboardPreferences
 
+JSON_SCRIPT_ESCAPES = {ord('<'): '\\u003C', ord('>'): '\\u003E', ord('&'): '\\u0026'}
+
 register = template.Library()
 tag_func = register.inclusion_tag(
     'admin_tools/dashboard/dummy.html',
     takes_context=True
 )
+
+
+def _serialize_preferences(data):
+    try:
+        data = json.loads(data)
+    except ValueError:
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+    return json.dumps(data).translate(JSON_SCRIPT_ESCAPES)
 
 
 def admin_tools_render_dashboard(context, location='index', dashboard=None):
@@ -67,7 +80,7 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,
-        'dashboard_preferences': preferences,
+        'dashboard_preferences': _serialize_preferences(preferences),
         'split_at': math.ceil(
             float(len(dashboard.children)) / float(dashboard.columns)
         ),

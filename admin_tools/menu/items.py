@@ -7,7 +7,6 @@ try:
 except ImportError:
     from django.core.urlresolvers import reverse
     from django.utils.translation import ugettext_lazy as _
-from django.utils.safestring import mark_safe
 from admin_tools.utils import AppListElementMixin
 
 
@@ -349,7 +348,7 @@ class Bookmarks(MenuItem, AppListElementMixin):
         from admin_tools.menu.models import Bookmark
 
         for b in Bookmark.objects.filter(user=context['request'].user):
-            self.children.append(MenuItem(mark_safe(b.title), b.url))
+            self.children.append(MenuItem(b.title, b.url))
 
         if not len(self.children):
             self.enabled = False

@@ -1,8 +1,9 @@
 try:
-    from urllib.parse import unquote
+    from urllib.parse import unquote, urlparse
 except ImportError:
     # Python 2 compatibility
     from urllib import unquote
+    from urlparse import urlparse
 
 from django import forms
 
@@ -20,8 +21,10 @@ class BookmarkForm(forms.ModelForm):
         self.user = user
 
     def clean_url(self):
-        url = self.cleaned_data['url']
-        return unquote(url)
+        url = unquote(self.cleaned_data['url']).strip()
+        if urlparse(url).scheme.lower() not in ('', 'http', 'https'):
+            raise forms.ValidationError('Invalid URL scheme.')
+        return url
 
     def save(self, *args, **kwargs):
         bookmark = super(BookmarkForm, self).save(

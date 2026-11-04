@@ -14,7 +14,9 @@ var process_bookmarks = function(url, title, prompt_msg) {
         e.preventDefault();
         if ($(this).hasClass('bookmarked')) {
             $(this).removeClass('bookmarked');
-            $('#navigation-menu li.bookmark ul li a[href="' + url + '"]').parent().remove();
+            $('#navigation-menu li.bookmark ul li a').filter(function() {
+                return $(this).attr('href') === url;
+            }).parent().remove();
             if (!$('#navigation-menu li.bookmark ul li').length) {
                 $('#navigation-menu li.bookmark ul').remove();
                 $('#navigation-menu li.bookmark a span').remove();
@@ -22,7 +24,8 @@ var process_bookmarks = function(url, title, prompt_msg) {
             }
             //Drop bookmark and switch form
             $.post(submit_url, $("#bookmark-form").serialize(), function(data) {
-                $("#bookmark-form").replaceWith(data.replace('**title**', title));
+                $("#bookmark-form").replaceWith(data);
+                $('#bookmark-form input[name=title]').val(title);
             }, 'html');
         } else {
             new_title = prompt(prompt_msg, title);
@@ -36,7 +39,7 @@ var process_bookmarks = function(url, title, prompt_msg) {
                 $('#navigation-menu li.bookmark').removeClass('disabled');
             }
             $('#navigation-menu li.bookmark ul').append(
-                '<li><a href="' + url + '">' + new_title + '</a></li>'
+                $('<li/>').append($('<a/>').attr('href', url).text(new_title))
             );
             $('#bookmark-form input[name=title]').attr('value', new_title);
             // Save bookmark and switch form
