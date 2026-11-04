@@ -1,6 +1,24 @@
 django-admin-tools changelog
 ============================
 
+Version 0.9.4, 4 November 2026:
+-------------------------------
+
+This is a security release, all users are strongly encouraged to upgrade as
+soon as possible.
+
+* Security: fixed open redirect (CWE-601) in bookmark views via the "next"
+  parameter (reported by Wu Jiaxuan)
+* Security: removed csrf_exempt from bookmark and dashboard preferences views
+* Security: fixed stored XSS via bookmark titles and dashboard preferences
+* Security: users can no longer edit other users' bookmarks
+* Security: reject bookmark URLs with a scheme other than http(s)
+* Fixed compatibility with Django 6.0 (removed django.utils.itercompat import)
+
+Note: if you override "admin_tools/dashboard/dashboard.html", pass
+'{{ csrf_token|escapejs }}' as the last argument of init_dashboard().
+
+
 Version 0.9.3, 10 August 2023:
 ------------------------------
 
