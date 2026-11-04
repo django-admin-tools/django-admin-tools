@@ -14,7 +14,9 @@ long_desc = '''
 
 
 if sys.argv[-1] == 'publish':
-    os.system("rm -rf dist && python -m build && twine upload dist/*")
+    cmd = "rm -rf dist && {0} -m build && {0} -m twine upload dist/*"
+    if os.system(cmd.format(sys.executable)) != 0:
+        sys.exit("Publish failed.")
     print("You probably want to also tag the version now:")
     print("  git tag -a {0} -m 'version {0}'".format(VERSION))
     print("  git push --tags")
