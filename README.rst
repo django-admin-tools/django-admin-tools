@@ -28,7 +28,7 @@ Please join the `mailing list <http://groups.google.fr/group/django-admin-tools>
 Requirements
 ------------
 
-django-admin-tools is compatible with Django 1.11 LTS up to Django 4.0 as well Python 2.7, 3.5+.
+django-admin-tools is compatible with Django 1.11 LTS up to Django 6.1 as well as Python 2.7, 3.5+.
 
 For older python and django versions please use the 0.8.1 version of django-admin-tools which is available on Pypi.
 
